@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ShowUpAnimation_TR">
+        <item name="android:windowEnterAnimation">@anim/menu_show_up_tr</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_tr</item>
+    </style>
+    <style name="ShowUpAnimation_TL">
+        <item name="android:windowEnterAnimation">@anim/menu_show_up_tl</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_tl</item>
+    </style>
+    <style name="ShowUpAnimation_BR">
+        <item name="android:windowEnterAnimation">@anim/menu_show_up_br</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_br</item>
+    </style>
+    <style name="ShowUpAnimation_BL">
+        <item name="android:windowEnterAnimation">@anim/menu_show_up_bl</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_bl</item>
+    </style>
+    <style name="ShowUpAnimation_Center">
+        <item name="android:windowEnterAnimation">@anim/menu_show_up_center</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_center</item>
+    </style>
+    <style name="ElasticMenuAnimation_TR">
+        <item name="android:windowEnterAnimation">@anim/menu_elastic_tr</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_tr</item>
+    </style>
+    <style name="ElasticMenuAnimation_TL">
+        <item name="android:windowEnterAnimation">@anim/menu_elastic_tl</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_tl</item>
+    </style>
+    <style name="ElasticMenuAnimation_BR">
+        <item name="android:windowEnterAnimation">@anim/menu_elastic_br</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_br</item>
+    </style>
+    <style name="ElasticMenuAnimation_BL">
+        <item name="android:windowEnterAnimation">@anim/menu_elastic_bl</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_bl</item>
+    </style>
+    <style name="ElasticMenuAnimation_Center">
+        <item name="android:windowEnterAnimation">@anim/menu_elastic_center</item>
+        <item name="android:windowExitAnimation">@anim/menu_show_down_center</item>
+    </style>
+    <style name="FadeMenuAnimation">
+        <item name="android:windowEnterAnimation">@anim/menu_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/menu_fade_out</item>
+    </style>
+</resources>

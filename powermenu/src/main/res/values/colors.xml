@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="menu_background">#EDC9FF</color>
+    <color name="menu_text_selected">#AA00FF</color>
+    <color name="menu_text_no_selected">#dd000000</color>
+</resources>

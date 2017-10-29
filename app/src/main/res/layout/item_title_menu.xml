@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textColor="@color/menu_text_no_selected"
+        android:lineSpacingExtra="6sp"
+        android:padding="13dp"
+        android:gravity="center"
+        tools:text="All Contents" />
+
+</RelativeLayout>

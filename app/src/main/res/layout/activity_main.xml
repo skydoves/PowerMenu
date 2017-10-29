@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/layout_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:onClick="onHamburger"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_hamburger"
+                android:tint="@android:color/white" />
+
+            <ImageView
+                android:onClick="onProfile"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_user"
+                android:tint="@android:color/white" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/layout_main_body" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:onClick="onWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_pencil" />
+
+</android.support.design.widget.CoordinatorLayout >
