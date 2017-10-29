@@ -127,6 +127,46 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
     };
 ```
 
+## Functions
+### Popup & Item Attrubutes
+```java
+.addItemList(list)
+.addItem(new PowerMenuItem("Journals", false)) // add an PowerMenuItem
+.addItem(3, new PowerMenuItem("Travel", false)) // add an PowerMenuItem at position 3
+.setWith(300) // set popup width size
+.setHeight(400) // set popup height size
+.setMenuRadius(10f) // set popup corner radius
+.setMenuShadow(10f) // set popup shadow
+.setDivider(new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300))) // set a divider
+.setDividerHeight(1) // set divider's height
+.setAnimation(MenuAnimation.FADE) // set Animation
+.setTextColor(context.getResources().getColor(R.color.md_grey_800)) // set normoal item text color
+.setSelectedTextColor(Color.WHITE) // set selected item text color
+.setMenuColor(Color.WHITE) // set normoal item background color
+.setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // set selected item background color
+.setSelectedEffect(false) // if false, no apply selected colors(text, background)
+.setOnMenuItemClickListener(onMenuItemClickListener) // add a item click listener
+```
+
+### Background Attrubutes
+```java
+.setBackgroundAlpha(0.7f) // set background's alpha
+.setBackgroundColor(Color.GRAY) // set background's color
+.setShowBackground(false) // set showing background
+.setOnBackgroundClickListener(onClickListener) // set a background click listener. default is dismiss popup.
+```
+
+### Show & Dismiss
+```java
+.showAsDropDown(view); // show popup with drop-down at anchor view
+.showAsDropDown(view, -370, 0); // showAsDropDown with moves (xoff, yoff)
+.showAtCenter(layout); // show popup at anchor view's center
+.showAtCenter(layout, 0, 0); // showAtCenter with moves (xoff, yoff)
+.isShowing(); return true or false
+.dismiss(); // dismiss popup
+```
+
+
 # License
 ```xml
 Copyright 2017 skydoves
