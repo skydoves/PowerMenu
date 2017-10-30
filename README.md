@@ -15,7 +15,7 @@ dependencies {
 ## Usage
 
 ### Basic example
-This is basic example on screenshot. <br>
+This is a basic example on a screenshot. <br>
 You can build PowerMenu using Builder.
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
@@ -34,12 +34,12 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
 ```
 
 You can add items or item List using PowerMenuItem class. <br>
-This is how to initialize PowerMenuItem
+This is how to initialize PowerMenuItem.
 ```java
 PowerMenuItem powerMenuItem = new PowerMenuItem("Travel", true);
 ```
 
-At first argument is item Title, and the other is setting selected status. <br>
+At first, argument is item Title, and the other is setting selected status. <br>
 If true, the item's text or background colour is changed by your settings like below<br>
 
 ```java
@@ -47,7 +47,7 @@ If true, the item's text or background colour is changed by your settings like b
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
 ```
 
-You can listening on item click.
+You can listen to item click.
 ```java
     private  OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
@@ -78,8 +78,8 @@ public class IconPowerMenuItem {
 
 ```
 
-And next, you should create your own customized xml layout and adapter. <br>
-Custom Adapter should extends MenuBaseAdapter<YOUR_ITEM_MODEL>.
+And next, you should create your own customized XML layout and adapter. <br>
+Custom Adapter should extend MenuBaseAdapter<YOUR_ITEM_MODEL>.
 
 ```java
 public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
