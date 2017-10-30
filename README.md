@@ -7,7 +7,9 @@ A library that let you implement popup so easily. <br>
 ## Download
 #### Gradle
 ```java
-compile 'com.github.skydoves:powermenu:1.0.2'
+dependencies {
+    compile 'com.github.skydoves:powermenu:1.0.2'
+}
 ```
 
 ## Usage
@@ -58,7 +60,7 @@ You can listening on item click.
 ```
 
 
-### Customzing Popup
+### Customizing Popup
 You can customizing item styles using CustomPowerMenu and your customized adapter. <br>
 Below is how to customizing popup item that has an icon.  <br><br>
 At first, you should create your item model.
