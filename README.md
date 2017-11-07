@@ -1,8 +1,8 @@
 # PowerMenu
 A library that let you implement popup so easily. <br>
 
-![gif0](https://github.com/skydoves/PowerMenu/blob/master/screenshots/gif1.gif)
-![screenshot](https://github.com/skydoves/PowerMenu/blob/master/screenshots/screenshot0.jpg)
+![gif1](https://user-images.githubusercontent.com/24237865/32500436-c52b02ec-c418-11e7-8027-9aceb5cbe368.gif)
+![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
 
 ## Download
 #### Gradle
@@ -59,6 +59,14 @@ You can listen to item click.
     };
 ```
 
+and the last, show popup
+```java
+powerMenu.showAsDropDown(view); // view is an anchor
+```
+or
+```java
+powerMenu.showAsDropDown(view, (int)xOffset, (int)yOffset);
+```
 
 ### Customizing Popup
 You can customizing item styles using CustomPowerMenu and your customized adapter. <br>
