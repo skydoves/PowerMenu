@@ -1,5 +1,6 @@
 package com.skydoves.powermenudemo;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
  * Copyright (c) 2017 skydoves rights reserved.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LifecycleOwner {
 
     private PowerMenu hamburgerMenu;
     private PowerMenu profileMenu;
@@ -29,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        hamburgerMenu = PowerMenuUtils.getHamburgerPowerMenu(this, onHamburgerItemClickListener);
-        profileMenu = PowerMenuUtils.getProfilePowerMenu(this, onProfileItemClickListener);
-        writeMenu = PowerMenuUtils.getWritePowerMenu(this, onWriteItemClickListener);
-        alertMenu = PowerMenuUtils.getAlertPowerMenu(this, onAlertItemClickListener);
-        iconMenu = PowerMenuUtils.getIconPowerMenu(this, onIconMenuItemClickListener);
+        hamburgerMenu = PowerMenuUtils.getHamburgerPowerMenu(this, this, onHamburgerItemClickListener);
+        profileMenu = PowerMenuUtils.getProfilePowerMenu(this, this, onProfileItemClickListener);
+        writeMenu = PowerMenuUtils.getWritePowerMenu(this, this, onWriteItemClickListener);
+        alertMenu = PowerMenuUtils.getAlertPowerMenu(this, this, onAlertItemClickListener);
+        iconMenu = PowerMenuUtils.getIconPowerMenu(this, this, onIconMenuItemClickListener);
     }
 
     private  OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {

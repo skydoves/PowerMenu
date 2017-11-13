@@ -17,6 +17,10 @@
 
 package com.skydoves.powermenu;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class PowerMenu implements IMenuItem<PowerMenuItem> {
+public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private View backgroundView;
     private View menuView;
@@ -43,6 +47,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
 
     private PopupWindow backgroundWindow;
     private PopupWindow menuWindow;
+
+    private LifecycleOwner lifecycleOwner;
 
     private MenuListAdapter adapter;
 
@@ -70,6 +76,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
         setFocusable(builder.focusable);
         setSelectedEffect(builder.selectedEffect);
 
+        if(builder.lifecycleOwner != null)
+            setLifecycleOwner(builder.lifecycleOwner);
         if(builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
         if(builder.backgroundClickListener != null)
@@ -193,6 +201,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
         layoutParams.height = height;
         menuListView.setLayoutParams(layoutParams);
+    }
+
+    public void setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+        lifecycleOwner.getLifecycle().addObserver(this);
+        this.lifecycleOwner = lifecycleOwner;
     }
 
     public void setSelectedEffect(boolean effect) {
@@ -338,6 +351,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
             adapter.clearItems();
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        dismiss();
+    }
+
     @Override
     public List<PowerMenuItem> getItemList() {
         return adapter.getItemList();
@@ -348,6 +366,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
         private Context context;
 
         private boolean showBackground = true;
+        private LifecycleOwner lifecycleOwner = null;
         private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
         private View.OnClickListener backgroundClickListener = null;
         private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
@@ -373,6 +392,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem> {
         public Builder(Context context) {
             this.context = context;
             this.powerMenuItems = new ArrayList<>();
+        }
+
+        public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+            this.lifecycleOwner = lifecycleOwner;
+            return this;
         }
 
         public Builder setShowBackground(boolean show) {

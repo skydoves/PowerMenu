@@ -17,6 +17,10 @@
 
 package com.skydoves.powermenu;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuItem<T> {
+public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuItem<T>, LifecycleObserver {
 
     private View backgroundView;
     private View menuView;
@@ -43,6 +47,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     private PopupWindow backgroundWindow;
     private PopupWindow menuWindow;
+
+    private LifecycleOwner lifecycleOwner;
 
     private E adapter;
 
@@ -174,6 +180,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             menuItemClickListener.onItemClick(index, adapter.getItem(index));
         }
     };
+
+    public void setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+        lifecycleOwner.getLifecycle().addObserver(this);
+        this.lifecycleOwner = lifecycleOwner;
+    }
 
     public void setWidth(int width) {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
@@ -309,6 +320,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             adapter.clearItems();
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        dismiss();
+    }
+
     @Override
     public List<T> getItemList() {
         return adapter.getItemList();
@@ -321,6 +337,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         private E adapter;
         private boolean showBackground = true;
+        private LifecycleOwner lifecycleOwner = null;
         private OnMenuItemClickListener<T> menuItemClickListener = null;
         private View.OnClickListener backgroundClickListener = null;
         private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
@@ -342,6 +359,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.context = context;
             this.Ts = new ArrayList<>();
             this.adapter = adapter;
+        }
+
+        public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+            this.lifecycleOwner = lifecycleOwner;
+            return this;
         }
 
         public Builder setShowBackground(boolean show) {

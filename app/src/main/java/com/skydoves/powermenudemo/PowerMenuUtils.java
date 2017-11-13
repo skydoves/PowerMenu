@@ -1,5 +1,6 @@
 package com.skydoves.powermenudemo;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,13 +22,14 @@ import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
 
 public class PowerMenuUtils {
 
-    public static PowerMenu getHamburgerPowerMenu(Context context, OnMenuItemClickListener onMenuItemClickListener) {
+    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Novel", true))
                 .addItem(new PowerMenuItem("Poetry", false))
                 .addItem(new PowerMenuItem("Art", false))
                 .addItem(new PowerMenuItem("Journals", false))
                 .addItem(new PowerMenuItem("Travel", false))
+                .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
@@ -39,11 +41,12 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static PowerMenu getProfilePowerMenu(Context context, OnMenuItemClickListener onMenuItemClickListener) {
+    public static PowerMenu getProfilePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Profile", false))
                 .addItem(new PowerMenuItem("Board", false))
                 .addItem(new PowerMenuItem("Logout", false))
+                .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
@@ -54,7 +57,7 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static CustomPowerMenu getWritePowerMenu(Context context, OnMenuItemClickListener onMenuItemClickListener) {
+    public static CustomPowerMenu getWritePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
         ColorDrawable drawable = new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300));
         return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
                 .addItem("Novel")
@@ -62,6 +65,7 @@ public class PowerMenuUtils {
                 .addItem("Art")
                 .addItem("Journals")
                 .addItem("Travel")
+                .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.FADE)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
@@ -71,9 +75,10 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static CustomPowerMenu getAlertPowerMenu(Context context, OnMenuItemClickListener onMenuItemClickListener) {
+    public static CustomPowerMenu getAlertPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
         return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
                 .addItem("You need to login!")
+                .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.ELASTIC_CENTER)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
@@ -86,12 +91,13 @@ public class PowerMenuUtils {
                 }).build();
     }
 
-    public static CustomPowerMenu getIconPowerMenu(Context context, OnMenuItemClickListener onMenuItemClickListener) {
+    public static CustomPowerMenu getIconPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
         return new CustomPowerMenu.Builder<>(context, new IconMenuAdapter())
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
+                .setLifecycleOwner(lifecycleOwner)
                 .setOnMenuItemClickListener(onMenuItemClickListener)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
                 .setMenuRadius(10f)
