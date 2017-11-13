@@ -8,7 +8,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.0.2'
+    compile 'com.github.skydoves:powermenu:1.0.3'
 }
 ```
 
@@ -143,6 +143,7 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 .addItemList(list)
 .addItem(new PowerMenuItem("Journals", false)) // add an PowerMenuItem
 .addItem(3, new PowerMenuItem("Travel", false)) // add an PowerMenuItem at position 3
+.setLifecycleOwner(lifecycleOwner) // set powermenu's LifecycleOwner what activity or fragment. This make avoid memory leak.
 .setWith(300) // set popup width size
 .setHeight(400) // set popup height size
 .setMenuRadius(10f) // set popup corner radius
@@ -174,6 +175,21 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 .showAtCenter(layout, 0, 0); // showAtCenter with moves (xoff, yoff)
 .isShowing(); return true or false
 .dismiss(); // dismiss popup
+```
+
+## Avoid Memory leak
+Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
+But Lifecycles are now also integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
+So you can solve memory leak issue so easily.<br>
+
+First, implement LifecycleOwner on your activity or fragment.
+```java
+public class MainActivity extends AppCompatActivity implements LifecycleOwner
+```
+
+The last, just use setLifecycleOwner method before show.
+```java
+.setLifecycleOwner(lifecycleOwner)
 ```
 
 
