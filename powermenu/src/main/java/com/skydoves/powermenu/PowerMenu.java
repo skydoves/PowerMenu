@@ -54,6 +54,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private ListView menuListView;
     private OnMenuItemClickListener menuItemClickListener;
+    private LayoutInflater layoutInflater;
 
     private boolean showBackground = true;
     private boolean allowTouchBackground = false;
@@ -108,7 +109,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private void initialize(Context context) {
         adapter = new MenuListAdapter();
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
         backgroundView.setAlpha(0.5f);
@@ -294,6 +295,34 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     public MenuListAdapter getAdapter() {
         return this.adapter;
+    }
+
+    public ListView getMenuListView() {
+        return this.menuListView;
+    }
+
+    public void addHeaderView(int layout) {
+        this.menuListView.addHeaderView(layoutInflater.inflate(layout, null, false));
+    }
+
+    public void addHeaderView(View view) {
+        this.menuListView.addHeaderView(view);
+    }
+
+    public void addHeaderView(View view, Object data, boolean isSelectable) {
+        this.menuListView.addHeaderView(view, data, isSelectable);
+    }
+
+    public void addFooterView(int layout) {
+        this.menuListView.addFooterView(layoutInflater.inflate(layout, null, false));
+    }
+
+    public void addFooterView(View view) {
+        this.menuListView.addFooterView(view);
+    }
+
+    public void addFooterView(View view, Object data, boolean isSelectable) {
+        this.menuListView.addFooterView(view, data, isSelectable);
     }
 
     public void setBackgroundColor(int color) {

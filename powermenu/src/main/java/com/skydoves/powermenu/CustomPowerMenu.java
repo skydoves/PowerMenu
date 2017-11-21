@@ -55,6 +55,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     private ListView menuListView;
     private OnMenuItemClickListener menuItemClickListener;
 
+    private LayoutInflater layoutInflater;
+
     private boolean showBackground = true;
     private boolean allowTouchBackground = false;
 
@@ -99,7 +101,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     private void initialize(Context context) {
         adapter = (E)(new MenuBaseAdapter<>());
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
         backgroundView.setAlpha(0.5f);
@@ -264,6 +266,30 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     public E getAdapter() {
         return this.adapter;
+    }
+
+    public void addHeaderView(int layout) {
+        this.menuListView.addHeaderView(layoutInflater.inflate(layout, null, false));
+    }
+
+    public void addHeaderView(View view) {
+        this.menuListView.addHeaderView(view);
+    }
+
+    public void addHeaderView(View view, Object data, boolean isSelectable) {
+        this.menuListView.addHeaderView(view, data, isSelectable);
+    }
+
+    public void addFooterView(int layout) {
+        this.menuListView.addFooterView(layoutInflater.inflate(layout, null, false));
+    }
+
+    public void addFooterView(View view) {
+        this.menuListView.addFooterView(view);
+    }
+
+    public void addFooterView(View view, Object data, boolean isSelectable) {
+        this.menuListView.addFooterView(view, data, isSelectable);
     }
 
     public void setBackgroundColor(int color) {
