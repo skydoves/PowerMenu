@@ -268,6 +268,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         return this.adapter;
     }
 
+    public ListView getMenuListView() {
+        return this.menuListView;
+    }
+
     public void addHeaderView(int layout) {
         this.menuListView.addHeaderView(layoutInflater.inflate(layout, null, false));
     }
@@ -290,6 +294,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     public void addFooterView(View view, Object data, boolean isSelectable) {
         this.menuListView.addFooterView(view, data, isSelectable);
+    }
+
+    public void setSelection(int position) {
+        this.menuListView.setSelection(position);
     }
 
     public void setBackgroundColor(int color) {

@@ -325,6 +325,10 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         this.menuListView.addFooterView(view, data, isSelectable);
     }
 
+    public void setSelection(int position) {
+        this.menuListView.setSelection(position);
+    }
+
     public void setBackgroundColor(int color) {
         backgroundView.setBackgroundColor(color);
     }
