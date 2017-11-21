@@ -8,7 +8,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.0.4'
+    compile 'com.github.skydoves:powermenu:1.0.5'
 }
 ```
 
@@ -161,6 +161,8 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 .addHeaderView(View v, Object data, boolean isSelectable) // Add a fixed view to appear at the top of the list
 .addFooterView(View v) // Add a fixed view to appear at the bottom of the list
 .addFooterView(View v, Object data, boolean isSelectable) // Add a fixed view to appear at the bottom of the list
+.setSelection(int position) // scroll to position
+.getMenuListView() // return menu ListView on Powermenu
 ```
 
 ### Background Attrubutes
