@@ -1,5 +1,5 @@
 # PowerMenu
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+![license](https://img.shields.io/badge/license-apache%202.0-green.svg)
 ![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master) <br>
 A library that let you implement popup so easily. <br>
 
