@@ -2,6 +2,8 @@
 
 buildscript {
 
+    ext.supportLib = '26.1.0'
+
     repositories {
         google()
         jcenter()
