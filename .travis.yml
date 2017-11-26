@@ -19,4 +19,4 @@ android:
     #- sys-img-x86-android-17
 
   licenses:
-    - '.+'
+    - android-sdk-license-5be876d5
