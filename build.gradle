@@ -2,7 +2,7 @@
 
 buildscript {
 
-    ext.supportLib = '26.1.0'
+    ext.supportLib = '26.0.2'
 
     repositories {
         google()
