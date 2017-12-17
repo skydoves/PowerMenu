@@ -117,11 +117,7 @@ public class PowerMenuUtils {
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
                 .setWith(600)
-                .setTextColor(context.getResources().getColor(R.color.md_grey_800))
-                .setSelectedTextColor(Color.WHITE)
-                .setMenuColor(Color.WHITE)
                 .setSelectedEffect(false)
-                .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
                 .build();
     }
 
