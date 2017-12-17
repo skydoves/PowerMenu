@@ -85,9 +85,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         if(builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
         if(builder.headerView != null)
-            addHeaderView(builder.headerView);
+            setHeaderView(builder.headerView);
         if(builder.footerView != null)
-            addFooterView(builder.footerView);
+            setFooterView(builder.footerView);
         if(builder.animationStyle != -1)
             setAnimationStyle(builder.animationStyle);
         if(builder.selected != -1)
@@ -286,7 +286,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         return this.menuListView;
     }
 
-    public void addHeaderView(int layout) {
+    public void setHeaderView(int layout) {
         if(this.headerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
             this.menuListView.addHeaderView(view);
@@ -295,7 +295,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void addHeaderView(View view) {
+    public void setHeaderView(View view) {
         if(this.headerView == null) {
             this.menuListView.addHeaderView(view);
             this.headerView = view;
@@ -303,7 +303,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void addHeaderView(View view, Object data, boolean isSelectable) {
+    public void setHeaderView(View view, Object data, boolean isSelectable) {
         if(this.headerView == null) {
             this.menuListView.addHeaderView(view, data, isSelectable);
             this.headerView = view;
@@ -311,7 +311,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void addFooterView(int layout) {
+    public void setFooterView(int layout) {
         if(this.footerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
             this.menuListView.addFooterView(view);
@@ -320,7 +320,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void addFooterView(View view) {
+    public void setFooterView(View view) {
         if(this.footerView == null) {
             this.menuListView.addFooterView(view);
             this.footerView = view;
@@ -328,7 +328,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void addFooterView(View view, Object data, boolean isSelectable) {
+    public void setFooterView(View view, Object data, boolean isSelectable) {
         if(this.footerView == null) {
             this.menuListView.addFooterView(view, data, isSelectable);
             this.footerView = view;
