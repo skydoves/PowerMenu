@@ -12,8 +12,10 @@ import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
+import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.IconMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
+import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 /**
  * Developed by skydoves on 2017-10-29.
@@ -100,6 +102,37 @@ public class PowerMenuUtils {
                 .setLifecycleOwner(lifecycleOwner)
                 .setOnMenuItemClickListener(onMenuItemClickListener)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
+                .setMenuRadius(10f)
+                .setMenuShadow(10f)
+                .build();
+    }
+
+    public static PowerMenu getDialogPowerMenu(Context context, LifecycleOwner lifecycleOwner) {
+        return new PowerMenu.Builder(context)
+                .setHeaderView(R.layout.layout_dialog_header)
+                .setFooterView(R.layout.layout_dialog_footer)
+                .addItem(new PowerMenuItem("This is DialogPowerMenu", false))
+                .setLifecycleOwner(lifecycleOwner)
+                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                .setMenuRadius(10f)
+                .setMenuShadow(10f)
+                .setWith(600)
+                .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+                .setSelectedTextColor(Color.WHITE)
+                .setMenuColor(Color.WHITE)
+                .setSelectedEffect(false)
+                .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
+                .build();
+    }
+
+    public static CustomPowerMenu getCustomDialogPowerMenu(Context context, LifecycleOwner lifecycleOwner) {
+        return new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
+                .setHeaderView(R.layout.layout_custom_dialog_header)
+                .setFooterView(R.layout.layout_custom_dialog_footer)
+                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+                .setLifecycleOwner(lifecycleOwner)
+                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                .setWith(800)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
                 .build();

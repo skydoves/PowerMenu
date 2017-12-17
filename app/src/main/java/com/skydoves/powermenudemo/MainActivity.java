@@ -1,9 +1,9 @@
 package com.skydoves.powermenudemo;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skydoves.powermenu.CustomPowerMenu;
@@ -17,12 +17,14 @@ import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
  * Copyright (c) 2017 skydoves rights reserved.
  */
 
-public class MainActivity extends AppCompatActivity implements LifecycleOwner {
+public class MainActivity extends AppCompatActivity {
 
     private PowerMenu hamburgerMenu;
     private PowerMenu profileMenu;
     private CustomPowerMenu writeMenu;
     private CustomPowerMenu alertMenu;
+    private PowerMenu dialogMenu;
+    private CustomPowerMenu customDialogMenu;
     private CustomPowerMenu iconMenu;
 
     @Override
@@ -35,6 +37,51 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
         writeMenu = PowerMenuUtils.getWritePowerMenu(this, this, onWriteItemClickListener);
         alertMenu = PowerMenuUtils.getAlertPowerMenu(this, this, onAlertItemClickListener);
         iconMenu = PowerMenuUtils.getIconPowerMenu(this, this, onIconMenuItemClickListener);
+
+        initializeDialogMenu();
+        initializeCustomDialogMenu();
+    }
+
+    private void initializeDialogMenu() {
+        dialogMenu = PowerMenuUtils.getDialogPowerMenu(this, this);
+        View footerView = dialogMenu.getFooterView();
+        TextView textView_yes = footerView.findViewById(R.id.textView_yes);
+        textView_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Yes", Toast.LENGTH_SHORT).show();
+                dialogMenu.dismiss();
+            }
+        });
+        TextView textView_no = footerView.findViewById(R.id.textView_no);
+        textView_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "No", Toast.LENGTH_SHORT).show();
+                dialogMenu.dismiss();
+            }
+        });
+    }
+
+    private void initializeCustomDialogMenu() {
+        customDialogMenu = PowerMenuUtils.getCustomDialogPowerMenu(this, this);
+        View footerView = customDialogMenu.getFooterView();
+        TextView textView_yes = footerView.findViewById(R.id.textView_yes);
+        textView_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Read More", Toast.LENGTH_SHORT).show();
+                customDialogMenu.dismiss();
+            }
+        });
+        TextView textView_no = footerView.findViewById(R.id.textView_no);
+        textView_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
+                customDialogMenu.dismiss();
+            }
+        });
     }
 
     private  OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
@@ -51,6 +98,13 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
         public void onItemClick(int position, PowerMenuItem item) {
             Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
             profileMenu.dismiss();
+        }
+    };
+
+    private OnMenuItemClickListener<PowerMenuItem> onSecondProfileItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
+        @Override
+        public void onItemClick(int position, PowerMenuItem item) {
+            dialogMenu.dismiss();
         }
     };
 
@@ -94,6 +148,24 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
         profileMenu.showAsDropDown(view, -370, 0);
     }
 
+    public void onDialog(View view) {
+        if(dialogMenu.isShowing()) {
+            dialogMenu.dismiss();
+            return;
+        }
+        View layout = findViewById(R.id.layout_main);
+        dialogMenu.showAtCenter(layout);
+    }
+
+    public void onCustomDialog(View view) {
+        if(customDialogMenu.isShowing()) {
+            customDialogMenu.dismiss();
+            return;
+        }
+        View layout = findViewById(R.id.layout_main);
+        customDialogMenu.showAtCenter(layout);
+    }
+
     public void onWrite(View view) {
         if(writeMenu.isShowing()) {
             writeMenu.dismiss();
@@ -130,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner {
             writeMenu.dismiss();
         else if(alertMenu.isShowing())
             alertMenu.dismiss();
+        else if(dialogMenu.isShowing())
+            dialogMenu.dismiss();
+        else if(customDialogMenu.isShowing())
+            customDialogMenu.dismiss();
         else if(iconMenu.isShowing())
             iconMenu.dismiss();
         else

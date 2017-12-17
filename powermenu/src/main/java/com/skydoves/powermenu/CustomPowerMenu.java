@@ -57,6 +57,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     private LayoutInflater layoutInflater;
 
+    private View headerView;
+    private View footerView;
+
     private boolean showBackground = true;
     private boolean allowTouchBackground = false;
 
@@ -81,6 +84,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             setOnMenuItemClickListener(builder.menuItemClickListener);
         if(builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
+        if(builder.headerView != null)
+            addHeaderView(builder.headerView);
+        if(builder.footerView != null)
+            addFooterView(builder.footerView);
         if(builder.animationStyle != -1)
             setAnimationStyle(builder.animationStyle);
         if(builder.selected != -1)
@@ -121,6 +128,13 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<T>() {
         @Override
         public void onItemClick(int position, T item) {
+
+        }
+    };
+
+    private View.OnClickListener headerFooterClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
         }
     };
@@ -273,27 +287,61 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     }
 
     public void addHeaderView(int layout) {
-        this.menuListView.addHeaderView(layoutInflater.inflate(layout, null, false));
+        if(this.headerView == null) {
+            View view = layoutInflater.inflate(layout, null, false);
+            this.menuListView.addHeaderView(view);
+            this.headerView = view;
+            this.headerView.setOnClickListener(headerFooterClickListener);
+        }
     }
 
     public void addHeaderView(View view) {
-        this.menuListView.addHeaderView(view);
+        if(this.headerView == null) {
+            this.menuListView.addHeaderView(view);
+            this.headerView = view;
+            this.headerView.setOnClickListener(headerFooterClickListener);
+        }
     }
 
     public void addHeaderView(View view, Object data, boolean isSelectable) {
-        this.menuListView.addHeaderView(view, data, isSelectable);
+        if(this.headerView == null) {
+            this.menuListView.addHeaderView(view, data, isSelectable);
+            this.headerView = view;
+            this.headerView.setOnClickListener(headerFooterClickListener);
+        }
     }
 
     public void addFooterView(int layout) {
-        this.menuListView.addFooterView(layoutInflater.inflate(layout, null, false));
+        if(this.footerView == null) {
+            View view = layoutInflater.inflate(layout, null, false);
+            this.menuListView.addFooterView(view);
+            this.footerView = view;
+            this.footerView.setOnClickListener(headerFooterClickListener);
+        }
     }
 
     public void addFooterView(View view) {
-        this.menuListView.addFooterView(view);
+        if(this.footerView == null) {
+            this.menuListView.addFooterView(view);
+            this.footerView = view;
+            this.footerView.setOnClickListener(headerFooterClickListener);
+        }
     }
 
     public void addFooterView(View view, Object data, boolean isSelectable) {
-        this.menuListView.addFooterView(view, data, isSelectable);
+        if(this.footerView == null) {
+            this.menuListView.addFooterView(view, data, isSelectable);
+            this.footerView = view;
+            this.footerView.setOnClickListener(headerFooterClickListener);
+        }
+    }
+
+    public View getHeaderview() {
+        return headerView;
+    }
+
+    public View getFooterView() {
+        return footerView;
     }
 
     public void setSelection(int position) {
@@ -368,6 +416,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     public static class Builder<T, E extends MenuBaseAdapter<T>> {
 
         private Context context;
+        private LayoutInflater layoutInflater;
 
         private E adapter;
         private boolean showBackground = true;
@@ -375,6 +424,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         private OnMenuItemClickListener<T> menuItemClickListener = null;
         private View.OnClickListener backgroundClickListener = null;
         private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
+        private View headerView = null;
+        private View footerView = null;
         private int animationStyle = -1;
         private float menuRadius = 5;
         private float menuShadow = 5;
@@ -393,6 +444,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.context = context;
             this.Ts = new ArrayList<>();
             this.adapter = adapter;
+            this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
@@ -412,6 +464,26 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
             this.backgroundClickListener = onBackgroundClickListener;
+            return this;
+        }
+
+        public Builder setHeaderView(int headerView) {
+            this.headerView = layoutInflater.inflate(headerView, null);
+            return this;
+        }
+
+        public Builder setHeaderView(View headerView) {
+            this.headerView = headerView;
+            return this;
+        }
+
+        public Builder setFooterView(int footerView) {
+            this.footerView = layoutInflater.inflate(footerView, null);
+            return this;
+        }
+
+        public Builder setFooterView(View footerView) {
+            this.footerView = footerView;
             return this;
         }
 
