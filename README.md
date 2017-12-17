@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.0.5'
+    compile 'com.github.skydoves:powermenu:1.0.7'
 }
 ```
 
@@ -159,11 +159,13 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // set selected item background color
 .setSelectedEffect(false) // if false, no apply selected colors(text, background)
 .setOnMenuItemClickListener(onMenuItemClickListener) // add a item click listener
-.addHeaderView(int layout) // Add a fixed view to appear at the top of the list
-.addHeaderView(View v, Object data, boolean isSelectable) // Add a fixed view to appear at the top of the list
-.addFooterView(View v) // Add a fixed view to appear at the bottom of the list
-.addFooterView(View v, Object data, boolean isSelectable) // Add a fixed view to appear at the bottom of the list
+.setHeaderView(int layout) // set a fixed view to appear at the top of the list
+.setHeaderView(View view) // set a fixed view to appear at the top of the list
+.setFooterView(View v) // set a fixed view to appear at the bottom of the list
+.setFooterView(View view) // set a fixed view to appear at the bottom of the list
 .setSelection(int position) // scroll to position
+.getHeaderView() // get header view
+.getFooterView() // get footer view
 .getMenuListView() // return menu ListView on Powermenu
 ```
 
