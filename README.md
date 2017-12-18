@@ -147,9 +147,9 @@ You can create dialogs using PowerMenu.<br><br>
 Below example is normal dialog. dialogs are be composed of header, footer and body. <br>
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
-                .setHeaderView(R.layout.layout_dialog_header) // header used title
-                .setFooterView(R.layout.layout_dialog_footer) // footer used yes and no buttons
-                .addItem(new PowerMenuItem("This is DialogPowerMenu", false))
+                .setHeaderView(R.layout.layout_dialog_header) // header used for title
+                .setFooterView(R.layout.layout_dialog_footer) // footer used for yes and no buttons
+                .addItem(new PowerMenuItem("This is DialogPowerMenu", false)) // this is body
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOW_UP_CENTER)
                 .setMenuRadius(10f)
@@ -162,9 +162,9 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
 And you can customizing dialog like below.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
-                .setHeaderView(R.layout.layout_custom_dialog_header) // header uesed title
-                .setFooterView(R.layout.layout_custom_dialog_footer) // footer uesd Read More and Close buttons
-                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+                .setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
+                .setFooterView(R.layout.layout_custom_dialog_footer) // footer uesd for Read More and Close buttons
+                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie",<br> context.getString(R.string.board3)))  // this is body
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOW_UP_CENTER)
                 .setWith(800)
