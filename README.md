@@ -1,5 +1,4 @@
 # PowerMenu
-[![license](https://img.shields.io/badge/license-apache%202.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) <br>
 A library that let you implement popup so easily. <br>
 
@@ -137,6 +136,40 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
             iconMenu.dismiss();
         }
     };
+```
+
+### Dialogs
+You can create dialogs using PowerMenu.<br><br>
+![screenshot01](https://user-images.githubusercontent.com/24237865/34109811-1af7f532-e448-11e7-88ac-48cf7fc2c14d.jpg) 
+![screenshot02](https://user-images.githubusercontent.com/24237865/34109812-1b2592e4-e448-11e7-8c57-a33da0acb95b.jpg)<br>
+
+Below example is normal dialog. dialogs are be composed of header, footer and body. <br>
+```java
+PowerMenu powerMenu = new PowerMenu.Builder(context)
+                .setHeaderView(R.layout.layout_dialog_header) // header used title
+                .setFooterView(R.layout.layout_dialog_footer) // footer used yes and no buttons
+                .addItem(new PowerMenuItem("This is DialogPowerMenu", false))
+                .setLifecycleOwner(lifecycleOwner)
+                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                .setMenuRadius(10f)
+                .setMenuShadow(10f)
+                .setWith(600)
+                .setSelectedEffect(false)
+                .build();
+```
+
+And you can customizing dialog like below.
+```java
+CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
+                .setHeaderView(R.layout.layout_custom_dialog_header) // header uesed title
+                .setFooterView(R.layout.layout_custom_dialog_footer) // footer uesd Read More and Close buttons
+                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+                .setLifecycleOwner(lifecycleOwner)
+                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                .setWith(800)
+                .setMenuRadius(10f)
+                .setMenuShadow(10f)
+                .build();
 ```
 
 ## Functions
