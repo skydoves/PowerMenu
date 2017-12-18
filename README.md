@@ -140,8 +140,9 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 
 ### Dialogs
 You can create dialogs using PowerMenu.<br><br>
-![screenshot01](https://user-images.githubusercontent.com/24237865/34109811-1af7f532-e448-11e7-88ac-48cf7fc2c14d.jpg) 
-![screenshot02](https://user-images.githubusercontent.com/24237865/34109812-1b2592e4-e448-11e7-8c57-a33da0acb95b.jpg)<br>
+![screenshot_2017-12-18-23-39-00](https://user-images.githubusercontent.com/24237865/34111113-1de9bfce-e44c-11e7-9b60-44b8d440b910.png)
+![screenshot_2017-12-18-23-39-05](https://user-images.githubusercontent.com/24237865/34111114-1e19ddf8-e44c-11e7-9747-17713d2932bd.png)
+<br>
 
 Below example is normal dialog. dialogs are be composed of header, footer and body. <br>
 ```java
