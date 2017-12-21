@@ -193,7 +193,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-            menuItemClickListener.onItemClick(index, adapter.getItem(index));
+            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
         }
     };
 
