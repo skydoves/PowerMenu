@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.0.8'
+    compile 'com.github.skydoves:powermenu:1.0.9'
 }
 ```
 
@@ -200,6 +200,7 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
 .setFooterView(View v) // set a fixed view to appear at the bottom of the list
 .setFooterView(View view) // set a fixed view to appear at the bottom of the list
 .setSelection(int position) // scroll to position
+.getSelectedPosition() // get the last selected item's position. if not selected before, return -1 .
 .getHeaderView() // get header view
 .getFooterView() // get footer view
 .getMenuListView() // return menu ListView on Powermenu
