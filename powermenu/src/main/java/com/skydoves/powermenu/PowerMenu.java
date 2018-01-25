@@ -199,6 +199,10 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         return isShowing;
     }
 
+    public int getSelectedPosition() {
+        return adapter.getSelectedPosition();
+    }
+
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {

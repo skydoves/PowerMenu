@@ -33,6 +33,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
     private boolean selectedEffect = true;
 
+    private int selectedPosition = -1;
+
     @Override
     public View getView(int index, View view, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
@@ -49,6 +51,9 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
         title.setText(powerMenuItem.title);
 
         if(powerMenuItem.isSelected) {
+
+            selectedPosition = index;
+
             if(selectedMenuColor == -2)
                 background.setBackgroundColor(context.getResources().getColor(R.color.menu_background));
             else
@@ -79,7 +84,10 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
                 PowerMenuItem item = (PowerMenuItem) getItem(i);
 
                 item.setIsSelected(false);
-                if (i == position) item.setIsSelected(true);
+                if (i == position) {
+                    item.setIsSelected(true);
+                    selectedPosition = position;
+                }
             }
             notifyDataSetChanged();
         }
@@ -103,5 +111,9 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
     public void setSelectedEffect(boolean selectedEffect) {
         this.selectedEffect = selectedEffect;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
     }
 }
