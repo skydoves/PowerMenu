@@ -112,12 +112,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
         backgroundView.setAlpha(0.5f);
-        backgroundWindow = new PopupWindow(backgroundView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        backgroundWindow = new PopupWindow(backgroundView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT, true);
 
         menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
         menuListView = menuView.findViewById(R.id.power_menu_listView);
         menuListView.setAdapter(adapter);
-        menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
 
         menuCard = menuView.findViewById(R.id.power_menu_card);
 
