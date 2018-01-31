@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.0.9'
+    compile 'com.github.skydoves:powermenu:1.1.0'
 }
 ```
 
