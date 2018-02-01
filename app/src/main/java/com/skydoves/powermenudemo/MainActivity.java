@@ -101,13 +101,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private OnMenuItemClickListener<PowerMenuItem> onSecondProfileItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, PowerMenuItem item) {
-            dialogMenu.dismiss();
-        }
-    };
-
     private OnMenuItemClickListener<String> onWriteItemClickListener = new OnMenuItemClickListener<String>() {
         @Override
         public void onItemClick(int position, String title) {
