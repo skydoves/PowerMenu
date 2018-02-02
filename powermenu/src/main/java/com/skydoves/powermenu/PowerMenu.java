@@ -25,7 +25,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -94,7 +93,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(builder.animationStyle != -1)
             setAnimationStyle(builder.animationStyle);
         if(builder.selected != -1)
-            setSelected(builder.selected);
+            setSelectedPosition(builder.selected);
         if(builder.width != 0)
             setWidth(builder.width);
         if (builder.height != 0)
@@ -112,11 +111,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(builder.selectedMenuColor != -2)
             setSelectedMenuColor(builder.selectedMenuColor);
 
+        this.menuListView.setAdapter(adapter);
         addItemList(builder.powerMenuItems);
     }
 
     private void initialize(Context context) {
-        adapter = new MenuListAdapter();
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
@@ -125,14 +124,9 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
         menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
         menuListView = menuView.findViewById(R.id.power_menu_listView);
-        menuListView.setAdapter(adapter);
-
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2)
-            menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        else
-            menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
-
+        menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         menuCard = menuView.findViewById(R.id.power_menu_card);
+        adapter = new MenuListAdapter(menuListView);
 
         setFocusable(false);
         setOnMenuItemClickListener(onMenuItemClickListener);
@@ -205,7 +199,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     }
 
     public int getSelectedPosition() {
-        return adapter.getSelectedPosition();
+        return getAdapter().getSelectedPosition();
     }
 
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
@@ -214,6 +208,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
             menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
         }
     };
+
+    @Override
+    public void setListView(ListView listView) {
+        getAdapter().setListView(getMenuListView());
+    }
 
     public void setWidth(int width) {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
@@ -233,23 +232,23 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     }
 
     public void setSelectedEffect(boolean effect) {
-        adapter.setSelectedEffect(effect);
+        getAdapter().setSelectedEffect(effect);
     }
 
     public void setTextColor(int color) {
-        this.adapter.setTextColor(color);
+        this.getAdapter().setTextColor(color);
     }
 
     public void setMenuColor(int color) {
-        this.adapter.setMenuColor(color);
+        this.getAdapter().setMenuColor(color);
     }
 
     public void setSelectedTextColor(int color) {
-        this.adapter.setSelectedTextColor(color);
+        this.getAdapter().setSelectedTextColor(color);
     }
 
     public void setSelectedMenuColor(int color) {
-        this.adapter.setSelectedMenuColor(color);
+        this.getAdapter().setSelectedMenuColor(color);
     }
 
     public void setDividerHeight(int height) {
@@ -400,45 +399,45 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     }
 
     @Override
-    public void setSelected(int position) {
-        if (adapter != null)
-            adapter.setSelected(position);
+    public void setSelectedPosition(int position) {
+        if (getAdapter() != null)
+            getAdapter().setSelectedPosition(position);
     }
 
     @Override
     public void addItem(PowerMenuItem item) {
-        if (adapter != null)
-            adapter.addItem(item);
+        if (getAdapter() != null)
+            getAdapter().addItem(item);
     }
 
     @Override
     public void addItem(int position, PowerMenuItem item) {
-        if (adapter != null)
-            adapter.addItem(position, item);
+        if (getAdapter() != null)
+            getAdapter().addItem(position, item);
     }
 
     @Override
     public void addItemList(List<PowerMenuItem> itemList) {
-        if (adapter != null)
-            adapter.addItemList(itemList);
+        if (getAdapter() != null)
+            getAdapter().addItemList(itemList);
     }
 
     @Override
     public void removeItem(PowerMenuItem item) {
-        if (adapter != null)
-            adapter.removeItem(item);
+        if (getAdapter() != null)
+            getAdapter().removeItem(item);
     }
 
     @Override
     public void removeItem(int position) {
-        if (adapter != null)
-            adapter.removeItem(position);
+        if (getAdapter() != null)
+            getAdapter().removeItem(position);
     }
 
     @Override
     public void clearItems() {
         if (adapter != null)
-            adapter.clearItems();
+            getAdapter().clearItems();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -448,7 +447,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     @Override
     public List<PowerMenuItem> getItemList() {
-        return adapter.getItemList();
+        return getAdapter().getItemList();
     }
 
     public static class Builder {

@@ -36,6 +36,6 @@ public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
         icon.setImageDrawable(item.getIcon());
         final TextView title = view.findViewById(R.id.item_title);
         title.setText(item.getTitle());
-        return view;
+        return super.getView(index, view, viewGroup);
     }
 }

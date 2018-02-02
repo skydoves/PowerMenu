@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusable="true">
 
     <android.support.v7.widget.CardView
         android:id="@+id/power_menu_card"
@@ -15,12 +16,21 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
         <ListView
             android:id="@+id/power_menu_listView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:dividerHeight="0dp"
             android:divider="@null"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="true"
+            android:descendantFocusability="blocksDescendants"
             tools:listitem="@layout/item_power_menu"/>
     </android.support.v7.widget.CardView>
 </FrameLayout>

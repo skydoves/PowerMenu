@@ -5,7 +5,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'powermenu'
-    publishVersion = '1.1.1'
+    publishVersion = '2.0.0'
     desc = 'This is PowerMenu by skydoves'
     website = 'https://github.com/skydoves/PowerMenu'
     issueTracker = "${website}/issues"
@@ -13,11 +13,11 @@ publish {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true

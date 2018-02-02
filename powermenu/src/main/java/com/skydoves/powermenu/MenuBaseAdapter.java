@@ -20,6 +20,7 @@ package com.skydoves.powermenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,19 @@ import java.util.List;
 public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
     private List<T> itemList;
+    private ListView listView;
+
+    private int selectedPosition = -1;
 
     public MenuBaseAdapter() {
         super();
-        itemList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
+    }
+
+    public MenuBaseAdapter(ListView listView) {
+        super();
+        this.itemList = new ArrayList<>();
+        this.listView = listView;
     }
 
     @Override
@@ -49,7 +59,15 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int index, View view, ViewGroup viewGroup) {
+        if(view != null && listView != null && listView.getOnItemClickListener() != null) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listView.getOnItemClickListener().onItemClick(listView, view, index, getItemId(index));
+                }
+            });
+        }
         return view;
     }
 
@@ -72,8 +90,18 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     }
 
     @Override
-    public void setSelected(int position) {
+    public void setSelectedPosition(int position) {
+        this.selectedPosition = position;
+    }
 
+    @Override
+    public int getSelectedPosition() {
+        return this.selectedPosition;
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        this.listView = listView;
     }
 
     @Override

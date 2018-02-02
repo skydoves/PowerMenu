@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.skydoves.powermenu.powermenudemo"
-        minSdkVersion 17
-        targetSdkVersion 26
+        minSdkVersion 16
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -14,6 +14,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 

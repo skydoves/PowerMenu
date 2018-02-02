@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
             Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            hamburgerMenu.setSelected(position);
+            hamburgerMenu.setSelectedPosition(position);
             hamburgerMenu.dismiss();
         }
     };

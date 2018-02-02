@@ -17,6 +17,8 @@
 
 package com.skydoves.powermenu;
 
+import android.widget.ListView;
+
 import java.util.List;
 
 public interface IMenuItem<T> {
@@ -24,7 +26,10 @@ public interface IMenuItem<T> {
     void addItem(int position, T item);
     void addItemList(List<T> itemList);
 
-    void setSelected(int position);
+    void setListView(ListView listView);
+
+    void setSelectedPosition(int position);
+    int getSelectedPosition();
 
     void removeItem(T item);
     void removeItem(int position);

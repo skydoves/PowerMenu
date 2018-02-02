@@ -33,11 +33,11 @@ public class CenterMenuAdapter extends MenuBaseAdapter<String> {
         final TextView title = view.findViewById(R.id.item_title);
         title.setText(item);
         title.setTextColor(context.getResources().getColor(R.color.md_grey_800));
-        return view;
+        return super.getView(index, view, viewGroup);
     }
 
     @Override
-    public void setSelected(int position) {
+    public void setSelectedPosition(int position) {
         notifyDataSetChanged();
     }
 }

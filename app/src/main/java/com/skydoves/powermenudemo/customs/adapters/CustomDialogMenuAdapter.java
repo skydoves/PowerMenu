@@ -39,6 +39,6 @@ public class CustomDialogMenuAdapter extends MenuBaseAdapter<NameCardMenuItem> {
         name.setText(item.getName());
         final TextView content = view.findViewById(R.id.item_name_card_board);
         content.setText(item.getContent());
-        return view;
+        return super.getView(index, view, viewGroup);
     }
 }

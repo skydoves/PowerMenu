@@ -25,7 +25,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -92,7 +91,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         if(builder.animationStyle != -1)
             setAnimationStyle(builder.animationStyle);
         if(builder.selected != -1)
-            setSelected(builder.selected);
+            setSelectedPosition(builder.selected);
         if(builder.width != 0)
             setWidth(builder.width);
         if (builder.height != 0)
@@ -103,12 +102,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             setDividerHeight(builder.dividerHeight);
 
         this.adapter = builder.adapter;
+        this.adapter.setListView(getMenuListView());
         this.menuListView.setAdapter(adapter);
         addItemList(builder.Ts);
     }
 
     private void initialize(Context context) {
-        adapter = (E)(new MenuBaseAdapter<>());
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
@@ -117,14 +116,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
         menuListView = menuView.findViewById(R.id.power_menu_listView);
-        menuListView.setAdapter(adapter);
-
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2)
-            menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        else
-            menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
-
+        menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         menuCard = menuView.findViewById(R.id.power_menu_card);
+        adapter = (E)(new MenuBaseAdapter<>(menuListView));
 
         setFocusable(false);
         setOnMenuItemClickListener(onMenuItemClickListener);
@@ -205,6 +199,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     public void setLifecycleOwner(LifecycleOwner lifecycleOwner) {
         lifecycleOwner.getLifecycle().addObserver(this);
         this.lifecycleOwner = lifecycleOwner;
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        getAdapter().setListView(getMenuListView());
     }
 
     public void setWidth(int width) {
@@ -353,6 +352,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         this.menuListView.setSelection(position);
     }
 
+    @Override
+    public int getSelectedPosition() {
+        return getAdapter().getSelectedPosition();
+    }
+
     public void setBackgroundColor(int color) {
         backgroundView.setBackgroundColor(color);
     }
@@ -366,45 +370,45 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         menuWindow.setOutsideTouchable(!focusable);
     }
 
-    public void setSelected(int position) {
-        if (adapter != null)
-            adapter.setSelected(position);
+    public void setSelectedPosition(int position) {
+        if (getAdapter() != null)
+            getAdapter().setSelectedPosition(position);
     }
 
     @Override
     public void addItem(Object item) {
-        if (adapter != null)
-            adapter.addItem((T)item);
+        if (getAdapter() != null)
+            getAdapter().addItem((T)item);
     }
 
     @Override
     public void addItem(int position, T item) {
-        if (adapter != null)
-            adapter.addItem(position, item);
+        if (getAdapter() != null)
+            getAdapter().addItem(position, item);
     }
 
     @Override
     public void addItemList(List<T> itemList) {
-        if (adapter != null)
-            adapter.addItemList(itemList);
+        if (getAdapter() != null)
+            getAdapter().addItemList(itemList);
     }
 
     @Override
     public void removeItem(T item) {
-        if (adapter != null)
-            adapter.removeItem(item);
+        if (getAdapter() != null)
+            getAdapter().removeItem(item);
     }
 
     @Override
     public void removeItem(int position) {
-        if (adapter != null)
-            adapter.removeItem(position);
+        if (getAdapter() != null)
+            getAdapter().removeItem(position);
     }
 
     @Override
     public void clearItems() {
-        if (adapter != null)
-            adapter.clearItems();
+        if (getAdapter() != null)
+            getAdapter().clearItems();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -414,7 +418,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     @Override
     public List<T> getItemList() {
-        return adapter.getItemList();
+        return getAdapter().getItemList();
     }
 
     @SuppressWarnings("unchecked")

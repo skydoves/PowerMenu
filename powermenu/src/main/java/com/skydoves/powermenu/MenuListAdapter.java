@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
@@ -33,10 +34,12 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
     private boolean selectedEffect = true;
 
-    private int selectedPosition = -1;
+    public MenuListAdapter(ListView listView) {
+        super(listView);
+    }
 
     @Override
-    public View getView(int index, View view, ViewGroup viewGroup) {
+    public View getView(final int index, View view, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
 
         if(view == null) {
@@ -52,7 +55,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
         if(powerMenuItem.isSelected) {
 
-            selectedPosition = index;
+            setSelectedPosition(index);
 
             if(selectedMenuColor == -2)
                 background.setBackgroundColor(context.getResources().getColor(R.color.menu_background));
@@ -74,11 +77,13 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
             else
                 title.setTextColor(textColor);
         }
-        return view;
+        return super.getView(index, view, viewGroup);
     }
 
     @Override
-    public void setSelected(int position) {
+    public void setSelectedPosition(int position) {
+        super.setSelectedPosition(position);
+
         if(selectedEffect) {
             for (int i = 0; i < getItemList().size(); i++) {
                 PowerMenuItem item = (PowerMenuItem) getItem(i);
@@ -86,7 +91,6 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
                 item.setIsSelected(false);
                 if (i == position) {
                     item.setIsSelected(true);
-                    selectedPosition = position;
                 }
             }
             notifyDataSetChanged();
@@ -111,9 +115,5 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
     public void setSelectedEffect(boolean selectedEffect) {
         this.selectedEffect = selectedEffect;
-    }
-
-    public int getSelectedPosition() {
-        return selectedPosition;
     }
 }
