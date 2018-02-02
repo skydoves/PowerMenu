@@ -64,7 +64,7 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listView.getOnItemClickListener().onItemClick(listView, view, index, getItemId(index));
+                    listView.getOnItemClickListener().onItemClick(listView, view, index + listView.getHeaderViewsCount(), getItemId(index));
                 }
             });
         }

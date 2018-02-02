@@ -5,7 +5,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'powermenu'
-    publishVersion = '2.0.0'
+    publishVersion = '2.0.1'
     desc = 'This is PowerMenu by skydoves'
     website = 'https://github.com/skydoves/PowerMenu'
     issueTracker = "${website}/issues"
