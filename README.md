@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:1.1.1'
+    compile 'com.github.skydoves:powermenu:2.0.0'
 }
 ```
 
@@ -55,7 +55,7 @@ You can listen to item click.
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
             Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            powerMenu.setSelected(position); // change selected item
+            powerMenu.setSelectedPosition(position); // change selected item
             powerMenu.dismiss();
         }
     };
@@ -108,7 +108,7 @@ public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
         icon.setImageDrawable(item.getIcon());
         final TextView title = view.findViewById(R.id.item_title);
         title.setText(item.getTitle());
-        return view;
+        return super.getView(index, view, viewGroup);
     }
 }
 
