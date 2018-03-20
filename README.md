@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:2.0.1'
+    compile 'com.github.skydoves:powermenu:2.0.2'
 }
 ```
 
@@ -216,10 +216,12 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
 
 ### Show & Dismiss
 ```java
-.showAsDropDown(view); // show popup with drop-down at anchor view
-.showAsDropDown(view, -370, 0); // showAsDropDown with moves (xoff, yoff)
-.showAtCenter(layout); // show popup at anchor view's center
-.showAtCenter(layout, 0, 0); // showAtCenter with moves (xoff, yoff)
+.showAsDropDown(View anchor); // shows a popup as drop-down below an anchor view
+.showAsDropDown(View anchor, -370, 0); // showAsDropDown with offset (xoff, yoff)
+.showAtCenter(View layout); // shows a popup at anchor view's center
+.showAtCenter(View layout, 0, 0); // showAtCenter with offset (xoff, yoff)
+.showAtLocation(View anchor, int xOff, int yOff)
+.showAtLocation(View anchor, int gravity, int xOff, int yOff)
 .isShowing(); return true or false
 .dismiss(); // dismiss popup
 ```
