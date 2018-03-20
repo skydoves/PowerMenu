@@ -79,7 +79,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         setBackgroundColor(builder.backgroundColor);
         setBackgroundAlpha(builder.backgroundAlpha);
         setFocusable(builder.focusable);
+        setIsClipping(builder.isClipping);
 
+        if(builder.lifecycleOwner != null)
+            setLifecycleOwner(builder.lifecycleOwner);
         if(builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
         if(builder.backgroundClickListener != null)
@@ -177,6 +180,23 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             isShowing = true;
         }
     }
+
+    public void showAtLocation(View anchor, int xOff, int yOff) {
+        if(!isShowing()) {
+            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
+            isShowing = true;
+        }
+    }
+
+    public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
+        if(!isShowing()) {
+            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
+            isShowing = true;
+        }
+    }
+
     public void dismiss() {
         if(isShowing()) {
             backgroundWindow.dismiss();
@@ -340,6 +360,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
+    public void setIsClipping(boolean isClipping) {
+        this.menuWindow.setClippingEnabled(isClipping);
+    }
+
     public View getHeaderview() {
         return headerView;
     }
@@ -446,6 +470,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         private float backgroundAlpha = 0.6f;
         private boolean focusable = false;
         private int selected = -1;
+        private boolean isClipping = true;
 
         private List<T> Ts;
 
@@ -553,6 +578,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         public Builder setSelected(int position) {
             this.selected = position;
+            return this;
+        }
+
+        public Builder setIsClipping(boolean isClipping) {
+            this.isClipping = isClipping;
             return this;
         }
 

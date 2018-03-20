@@ -79,6 +79,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         setBackgroundAlpha(builder.backgroundAlpha);
         setFocusable(builder.focusable);
         setSelectedEffect(builder.selectedEffect);
+        setIsClipping(builder.isClipping);
 
         if(builder.lifecycleOwner != null)
             setLifecycleOwner(builder.lifecycleOwner);
@@ -182,6 +183,22 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(!isShowing()) {
             if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
+            isShowing = true;
+        }
+    }
+
+    public void showAtLocation(View anchor, int xOff, int yOff) {
+        if(!isShowing()) {
+            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
+            isShowing = true;
+        }
+    }
+
+    public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
+        if(!isShowing()) {
+            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
             isShowing = true;
         }
     }
@@ -373,6 +390,10 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         }
     }
 
+    public void setIsClipping(boolean isClipping) {
+        this.menuWindow.setClippingEnabled(isClipping);
+    }
+
     public View getHeaderView() {
         return headerView;
     }
@@ -478,6 +499,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         private float backgroundAlpha = 0.6f;
         private boolean focusable = false;
         private int selected = -1;
+        private boolean isClipping = true;
 
         private List<PowerMenuItem> powerMenuItems;
 
@@ -609,6 +631,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
         public Builder setSelected(int position) {
             this.selected = position;
+            return this;
+        }
+
+        public Builder setIsClipping(boolean isClipping) {
+            this.isClipping = isClipping;
             return this;
         }
 
