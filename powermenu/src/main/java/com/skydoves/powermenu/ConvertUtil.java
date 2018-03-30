@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2017 skydoves
+ * Copyright (C) 2018 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,27 +17,14 @@
 
 package com.skydoves.powermenu;
 
-import android.widget.ListView;
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 
-import java.util.List;
-
-public interface IMenuItem<T> {
-    void addItem(T item);
-    void addItem(int position, T item);
-    void addItemList(List<T> itemList);
-
-    void setListView(ListView listView);
-    ListView getListView();
-
-    void setSelectedPosition(int position);
-    int getSelectedPosition();
-
-    void removeItem(T item);
-    void removeItem(int position);
-
-    void clearItems();
-
-    List<T> getItemList();
-
-    int getContentViewHeight();
+public class ConvertUtil {
+    public static int convertDpToPixel(float dp, Context context) {
+        Resources resources = context.getResources();
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics()));
+    }
 }

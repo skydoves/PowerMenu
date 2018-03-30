@@ -64,6 +64,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private boolean isShowing = false;
 
+    private int contentViewPadding;
+
     public PowerMenu(Context context) {
         initialize(context);
     }
@@ -131,6 +133,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
         setFocusable(false);
         setOnMenuItemClickListener(onMenuItemClickListener);
+
+        contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     }
 
     private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
@@ -157,50 +161,61 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     public void showAsDropDown(View anchor) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAsDropDown(anchor);
-            isShowing = true;
         }
     }
 
     public void showAsDropDown(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAsDropDown(anchor, xOff, yOff);
-            isShowing = true;
         }
     }
 
     public void showAtCenter(View anchor) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-            isShowing = true;
         }
     }
 
     public void showAtCenter(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
-            isShowing = true;
         }
     }
 
     public void showAtLocation(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
-            isShowing = true;
         }
     }
 
     public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
-            isShowing = true;
         }
+    }
+
+    public void showAtCenterOnAnchor(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor,
+                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
+                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
+        }
+    }
+
+    private void showPopup(View anchor) {
+        if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+        isShowing = true;
+
+        if(menuWindow.getWidth() == 0) setWidth(getContentViewWidth());
+        if(menuWindow.getHeight() == 0) setHeight(getContentViewHeight());
     }
 
     public void dismiss() {
@@ -226,9 +241,44 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         }
     };
 
+    public int getContentViewWidth() {
+        int width = menuWindow.getContentView().getWidth();
+        if(width == 0) {
+            return getMeasuredContentView().getMeasuredWidth();
+        } else {
+            return width;
+        }
+    }
+
+    public int getContentViewHeight() {
+        int height = menuWindow.getContentView().getHeight();
+        if(height == 0) {
+            return getAdapter().getContentViewHeight() + getContentViewPadding();
+        } else {
+            return height;
+        }
+    }
+
+    private View getMeasuredContentView() {
+        View contentView = menuWindow.getContentView();
+        contentView.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        return contentView;
+    }
+
+    private int getContentViewPadding() {
+        return this.contentViewPadding;
+    }
+
     @Override
     public void setListView(ListView listView) {
         getAdapter().setListView(getMenuListView());
+    }
+
+    @Override
+    public ListView getListView() {
+        return getAdapter().getListView();
     }
 
     public void setWidth(int width) {
