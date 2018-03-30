@@ -173,6 +173,43 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         }
     }
 
+    public void showAsAnchorCenter(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor,
+                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
+                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
+        }
+    }
+
+    public void showAsAnchorLeftTop(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
+        }
+    }
+
+    public void showAsAnchorLeftBottom(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
+        }
+    }
+
+    public void showAsAnchorRightTop(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -anchor.getMeasuredHeight());
+        }
+    }
+
+    public void showAsAnchorRightBottom(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -getContentViewPadding());
+        }
+    }
+
     public void showAtCenter(View anchor) {
         if(!isShowing()) {
             showPopup(anchor);
@@ -198,15 +235,6 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(!isShowing()) {
             showPopup(anchor);
             menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
-        }
-    }
-
-    public void showAtCenterOnAnchor(View anchor) {
-        if(!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAsDropDown(anchor,
-                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
-                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
         }
     }
 
