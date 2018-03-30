@@ -213,9 +213,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     private void showPopup(View anchor) {
         if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         isShowing = true;
-
-        if(menuWindow.getWidth() == 0) setWidth(getContentViewWidth());
-        if(menuWindow.getHeight() == 0) setHeight(getContentViewHeight());
+        setWidth(getContentViewWidth());
+        setHeight(getContentViewHeight());
     }
 
     public void dismiss() {
@@ -282,15 +281,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     }
 
     public void setWidth(int width) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
-        layoutParams.width = width;
-        menuListView.setLayoutParams(layoutParams);
+        this.menuWindow.setWidth(width);
     }
 
     public void setHeight(int height) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
-        layoutParams.height = height;
-        menuListView.setLayoutParams(layoutParams);
+        this.menuWindow.setHeight(height);
     }
 
     public void setLifecycleOwner(LifecycleOwner lifecycleOwner) {
