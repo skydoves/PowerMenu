@@ -201,6 +201,13 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
                 .build();
 ```
 
+### Background
+```java
+.setShowBackground(false) // do not showing background
+.setTouchInterceptor(onTouchListener) // set touch listener what outside of popup.
+.setFocusable(true) // do not allow touch outside of popup
+```
+
 ## Functions
 ### Popup & Item Attrubutes
 ```java
