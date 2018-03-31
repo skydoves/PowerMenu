@@ -10,7 +10,7 @@ A library that let you implement popup so easily. <br>
 #### Gradle
 ```java
 dependencies {
-    compile 'com.github.skydoves:powermenu:2.0.2'
+    compile 'com.github.skydoves:powermenu:2.0.3'
 }
 ```
 
@@ -137,6 +137,32 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
             iconMenu.dismiss();
         }
     };
+```
+
+### Anchor
+You can show a popup by anchors. <br><br>
+![anchor](https://user-images.githubusercontent.com/24237865/38161125-da1ac0aa-3503-11e8-9a91-7dc4f8f4d9c3.gif)
+
+```java
+.showAsAnchorLeftTop(view)
+.showAsAnchorLeftBottom(view)
+.showAsAnchorRightTop(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
+.showAsAnchorRightBottom(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
+.showAsAnchorCenter(view) // with .setAnimation(MenuAnimation.SHOW_UP_CENTER) looks better
+```
+
+or you can customize your own position using below methods.
+```java
+.getContentViewWidth() // return popup's measured width
+.getContentViewHeight() // return popup's measured height
+```
+
+like this.
+```java
+// show popup at the center of an anchor. it's same using .showAsAnchorCenter
+hamburgerMenu.showAsDropDown(view, 
+             view.getMeasuredWidth()/2 - hamburgerMenu.getContentViewWidth(), 
+             -view.getMeasuredHeight()/2 - hamburgerMenu.getContentViewHeight());
 ```
 
 ### Dialogs
