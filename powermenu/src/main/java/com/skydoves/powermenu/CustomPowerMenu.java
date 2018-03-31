@@ -246,15 +246,6 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         }
     }
 
-    public void showAtCenterOnAnchor(View anchor) {
-        if(!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAsDropDown(anchor,
-                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
-                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
-        }
-    }
-
     private void showPopup(View anchor) {
         if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         isShowing = true;
