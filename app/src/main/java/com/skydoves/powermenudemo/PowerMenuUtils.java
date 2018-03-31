@@ -24,7 +24,7 @@ import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 public class PowerMenuUtils {
 
-    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
+    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Novel", true))
                 .addItem(new PowerMenuItem("Poetry", false))
@@ -43,7 +43,7 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static PowerMenu getProfilePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
+    public static PowerMenu getProfilePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Profile", false))
                 .addItem(new PowerMenuItem("Board", false))
@@ -101,7 +101,7 @@ public class PowerMenuUtils {
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
                 .setLifecycleOwner(lifecycleOwner)
                 .setOnMenuItemClickListener(onMenuItemClickListener)
-                .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
+                .setAnimation(MenuAnimation.FADE)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
                 .build();
@@ -116,7 +116,7 @@ public class PowerMenuUtils {
                 .setAnimation(MenuAnimation.SHOW_UP_CENTER)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
-                .setWith(600)
+                .setWidth(600)
                 .setSelectedEffect(false)
                 .build();
     }
@@ -128,7 +128,7 @@ public class PowerMenuUtils {
                 .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOW_UP_CENTER)
-                .setWith(800)
+                .setWidth(800)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
                 .build();
