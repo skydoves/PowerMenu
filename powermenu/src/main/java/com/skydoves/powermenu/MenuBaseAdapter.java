@@ -105,6 +105,11 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     }
 
     @Override
+    public ListView getListView() {
+        return this.listView;
+    }
+
+    @Override
     public void removeItem(T item) {
         this.itemList.remove(item);
     }
@@ -123,5 +128,26 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     @Override
     public List<T> getItemList() {
         return itemList;
+    }
+
+    @Override
+    public int getContentViewHeight() {
+        int totalHeight = 0;
+
+        for(int i=0; i<getCount(); i++) {
+            View view = getView(i, null, getListView());
+            view.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            totalHeight += view.getMeasuredHeight();
+        }
+
+        totalHeight += (getListView().getDividerHeight() * (getCount() - 1));
+
+        ViewGroup.LayoutParams params = getListView().getLayoutParams();
+        params.height = totalHeight;
+        getListView().setLayoutParams(params);
+
+        return totalHeight;
     }
 }

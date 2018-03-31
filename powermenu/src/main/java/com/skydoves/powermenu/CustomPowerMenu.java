@@ -28,6 +28,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -64,6 +65,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     private boolean allowTouchBackground = false;
 
     private boolean isShowing = false;
+
+    private int contentViewPadding;
 
     public CustomPowerMenu(Context context) {
         initialize(context);
@@ -125,6 +128,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         setFocusable(false);
         setOnMenuItemClickListener(onMenuItemClickListener);
+        setTouchInterceptor(onTouchListener);
+
+        contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     }
 
     private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<T>() {
@@ -133,6 +139,18 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         }
     };
+
+    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
+                dismiss();
+                return true;
+            }
+            return false;
+        }
+    };
+
 
     private View.OnClickListener headerFooterClickListener = new View.OnClickListener() {
         @Override
@@ -151,50 +169,88 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     public void showAsDropDown(View anchor) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAsDropDown(anchor);
-            isShowing = true;
         }
     }
 
     public void showAsDropDown(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAsDropDown(anchor, xOff, yOff);
-            isShowing = true;
+        }
+    }
+
+    public void showAsAnchorCenter(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor,
+                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
+                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
+        }
+    }
+
+    public void showAsAnchorLeftTop(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
+        }
+    }
+
+    public void showAsAnchorLeftBottom(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
+        }
+    }
+
+    public void showAsAnchorRightTop(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -anchor.getMeasuredHeight());
+        }
+    }
+
+    public void showAsAnchorRightBottom(View anchor) {
+        if(!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -getContentViewPadding());
         }
     }
 
     public void showAtCenter(View anchor) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-            isShowing = true;
         }
     }
 
     public void showAtCenter(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
-            isShowing = true;
         }
     }
 
     public void showAtLocation(View anchor, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
-            isShowing = true;
         }
     }
 
     public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
         if(!isShowing()) {
-            if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            showPopup(anchor);
             menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
-            isShowing = true;
         }
+    }
+
+    private void showPopup(View anchor) {
+        if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+        isShowing = true;
+        setWidth(getContentViewWidth());
+        setHeight(getContentViewHeight());
     }
 
     public void dismiss() {
@@ -221,21 +277,61 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         this.lifecycleOwner = lifecycleOwner;
     }
 
+    public int getContentViewWidth() {
+        int width = menuWindow.getContentView().getWidth();
+        if(width == 0) {
+            return getMeasuredContentView().getMeasuredWidth();
+        } else {
+            return width;
+        }
+    }
+
+    public int getContentViewHeight() {
+        int height = menuWindow.getContentView().getHeight();
+        if(height == 0) {
+            height += getAdapter().getContentViewHeight() + getContentViewPadding();
+            if(getHeaderView() != null) height += getHeaderView().getMeasuredHeight();
+            if (getFooterView() != null) height += getFooterView().getMeasuredHeight();
+            return height;
+        } else {
+            return height;
+        }
+    }
+
+    private View getMeasuredContentView() {
+        View contentView = menuWindow.getContentView();
+        contentView.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        return contentView;
+    }
+
+    private int getContentViewPadding() {
+        return this.contentViewPadding;
+    }
+
     @Override
     public void setListView(ListView listView) {
         getAdapter().setListView(getMenuListView());
     }
 
+    @Override
+    public ListView getListView() {
+        return getAdapter().getListView();
+    }
+
     public void setWidth(int width) {
+        this.menuWindow.setWidth(width);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
-        layoutParams.width = width;
-        menuListView.setLayoutParams(layoutParams);
+        layoutParams.width = width - contentViewPadding;
+        getMenuListView().setLayoutParams(layoutParams);
     }
 
     public void setHeight(int height) {
+        this.menuWindow.setHeight(height);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
-        layoutParams.height = height;
-        menuListView.setLayoutParams(layoutParams);
+        layoutParams.height = height - contentViewPadding;
+        getMenuListView().setLayoutParams(layoutParams);
     }
 
     public void setDividerHeight(int height) {
@@ -253,6 +349,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     public void setOnMenuItemClickListener(OnMenuItemClickListener<T> menuItemClickListener) {
         this.menuItemClickListener = menuItemClickListener;
         this.menuListView.setOnItemClickListener(itemClickListener);
+    }
+
+    public void setTouchInterceptor(View.OnTouchListener onTouchListener) {
+        this.menuWindow.setTouchInterceptor(onTouchListener);
     }
 
     public void setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
@@ -313,9 +413,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     public void setHeaderView(int layout) {
         if(this.headerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
-            this.menuListView.addHeaderView(view);
-            this.headerView = view;
-            this.headerView.setOnClickListener(headerFooterClickListener);
+            setHeaderView(view);
         }
     }
 
@@ -324,6 +422,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.menuListView.addHeaderView(view);
             this.headerView = view;
             this.headerView.setOnClickListener(headerFooterClickListener);
+            this.headerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         }
     }
 
@@ -332,15 +433,16 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.menuListView.addHeaderView(view, data, isSelectable);
             this.headerView = view;
             this.headerView.setOnClickListener(headerFooterClickListener);
+            this.headerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         }
     }
 
     public void setFooterView(int layout) {
         if(this.footerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
-            this.menuListView.addFooterView(view);
-            this.footerView = view;
-            this.footerView.setOnClickListener(headerFooterClickListener);
+            setFooterView(view);
         }
     }
 
@@ -349,6 +451,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.menuListView.addFooterView(view);
             this.footerView = view;
             this.footerView.setOnClickListener(headerFooterClickListener);
+            this.footerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         }
     }
 
@@ -357,6 +462,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             this.menuListView.addFooterView(view, data, isSelectable);
             this.footerView = view;
             this.footerView.setOnClickListener(headerFooterClickListener);
+            this.footerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         }
     }
 
@@ -364,12 +472,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         this.menuWindow.setClippingEnabled(isClipping);
     }
 
-    public View getHeaderview() {
-        return headerView;
+    public View getHeaderView() {
+        return this.headerView;
     }
 
     public View getFooterView() {
-        return footerView;
+        return this.footerView;
     }
 
     public void setSelection(int position) {
@@ -541,7 +649,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             return this;
         }
 
-        public Builder setWith(int width) {
+        public Builder setWidth(int width) {
             this.width = width;
             return this;
         }
