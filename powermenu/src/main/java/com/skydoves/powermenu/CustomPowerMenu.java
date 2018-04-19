@@ -63,6 +63,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     private boolean showBackground = true;
     private boolean allowTouchBackground = false;
+    private boolean fixedHeight = false;
 
     private boolean isShowing = false;
 
@@ -250,7 +251,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         isShowing = true;
         setWidth(getContentViewWidth());
-        setHeight(getContentViewHeight());
+
+        if(fixedHeight) setHeight(menuWindow.getHeight());
+        else setMeasuredHeight(getContentViewHeight());
     }
 
     public void dismiss() {
@@ -328,6 +331,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     }
 
     public void setHeight(int height) {
+        this.fixedHeight = true;
+        this.menuWindow.setHeight(height);
+    }
+
+    private void setMeasuredHeight(int height) {
         this.menuWindow.setHeight(height);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
         layoutParams.height = height - contentViewPadding;

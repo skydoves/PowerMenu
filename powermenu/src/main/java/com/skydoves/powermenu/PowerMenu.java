@@ -62,6 +62,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private boolean showBackground = true;
     private boolean allowTouchBackground = false;
+    private boolean fixedHeight = false;
 
     private boolean isShowing = false;
 
@@ -255,7 +256,9 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         isShowing = true;
         setWidth(getContentViewWidth());
-        setHeight(getContentViewHeight());
+
+        if(fixedHeight) setHeight(menuWindow.getHeight());
+        else setMeasuredHeight(getContentViewHeight());
     }
 
     public void dismiss() {
@@ -332,6 +335,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     }
 
     public void setHeight(int height) {
+        this.fixedHeight = true;
+        this.menuWindow.setHeight(height);
+    }
+
+    private void setMeasuredHeight(int height) {
         this.menuWindow.setHeight(height);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
         layoutParams.height = height - contentViewPadding;
