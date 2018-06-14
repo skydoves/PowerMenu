@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
+import com.skydoves.powermenu.PowerMenuDismissListener;
 import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
 
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         writeMenu = PowerMenuUtils.getWritePowerMenu(this, this, onWriteItemClickListener);
         alertMenu = PowerMenuUtils.getAlertPowerMenu(this, this, onAlertItemClickListener);
         iconMenu = PowerMenuUtils.getIconPowerMenu(this, this, onIconMenuItemClickListener);
+
+        hamburgerMenu.setOnDismissListener(new PowerMenuDismissListener() {
+            @Override
+            public void onPowerMenuDismiss() {
+                // do something on dismiss
+            }
+        });
 
         initializeDialogMenu();
         initializeCustomDialogMenu();

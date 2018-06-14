@@ -237,6 +237,7 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
 .getHeaderView() // get header view
 .getFooterView() // get footer view
 .getMenuListView() // return menu ListView on Powermenu
+.setMaxHeight(200) // set a max value(dp) for your list
 ```
 
 ### Background Attrubutes
@@ -257,6 +258,15 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
 .showAtLocation(View anchor, int gravity, int xOff, int yOff)
 .isShowing(); return true or false
 .dismiss(); // dismiss popup
+
+
+hamburgerMenu.setOnDismissListener(new PowerMenuDismissListener() {
+            @Override
+            public void onPowerMenuDismiss() {
+                // do something on dismiss
+            }
+        });
+
 ```
 
 ## Avoid Memory leak
