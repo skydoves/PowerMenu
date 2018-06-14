@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp" />
 
-        <ListView
+        <com.skydoves.powermenu.MaxHeightListView
             android:id="@+id/power_menu_listView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"

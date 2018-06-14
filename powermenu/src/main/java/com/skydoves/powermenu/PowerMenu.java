@@ -53,8 +53,9 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private MenuListAdapter adapter;
 
-    private ListView menuListView;
+    private MaxHeightListView menuListView;
     private OnMenuItemClickListener menuItemClickListener;
+    private PowerMenuDismissListener dismissListener;
     private LayoutInflater layoutInflater;
 
     private View headerView;
@@ -69,11 +70,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     private int contentViewPadding;
 
     public PowerMenu(Context context) {
-        initialize(context);
+        initialize(context,null);
     }
 
     private PowerMenu(Context context, Builder builder) {
-        initialize(context);
+        initialize(context,builder);
 
         setShowBackground(builder.showBackground);
         setAnimation(builder.menuAnimation);
@@ -120,7 +121,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         addItemList(builder.powerMenuItems);
     }
 
-    private void initialize(Context context) {
+    private void initialize(Context context,Builder builder) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
@@ -129,6 +130,9 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
         menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
         menuListView = menuView.findViewById(R.id.power_menu_listView);
+        if (builder!=null){
+            menuListView.setMaxHeight(builder.getMaxHeight());
+        }
         menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         menuCard = menuView.findViewById(R.id.power_menu_card);
         adapter = new MenuListAdapter(menuListView);
@@ -185,6 +189,10 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor, xOff, yOff);
         }
+    }
+
+    public void setOnDismissListener(PowerMenuDismissListener listener){
+        this.dismissListener = listener;
     }
 
     public void showAsAnchorCenter(View anchor) {
@@ -265,6 +273,9 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         if(isShowing()) {
             menuWindow.dismiss();
             backgroundWindow.dismiss();
+            if (dismissListener!=null){
+                dismissListener.onPowerMenuDismiss();
+            }
             isShowing = false;
         }
     }
@@ -615,6 +626,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         private boolean focusable = false;
         private int selected = -1;
         private boolean isClipping = true;
+        private int maxHeight = -1;
 
         private List<PowerMenuItem> powerMenuItems;
 
@@ -767,6 +779,15 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         public Builder addItemList(List<PowerMenuItem> itemList) {
             this.powerMenuItems.addAll(itemList);
             return this;
+        }
+
+        public Builder setMaxHeight(int dpValue){
+            this.maxHeight = dpValue;
+            return this;
+        }
+
+        public int getMaxHeight(){
+            return maxHeight;
         }
 
         public PowerMenu build() {
