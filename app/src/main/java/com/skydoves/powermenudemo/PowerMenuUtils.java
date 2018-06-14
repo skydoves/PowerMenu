@@ -31,6 +31,9 @@ public class PowerMenuUtils {
                 .addItem(new PowerMenuItem("Art", false))
                 .addItem(new PowerMenuItem("Journals", false))
                 .addItem(new PowerMenuItem("Travel", false))
+                .addItem(new PowerMenuItem("Stories", false))
+                .addItem(new PowerMenuItem("History", false))
+                .addItem(new PowerMenuItem("Georgy", false))
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
                 .setMenuRadius(10f)
@@ -40,6 +43,7 @@ public class PowerMenuUtils {
                 .setMenuColor(Color.WHITE)
                 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
                 .setOnMenuItemClickListener(onMenuItemClickListener)
+                .setMaxHeight(200)
                 .build();
     }
 

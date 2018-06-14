@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="MaxHeightStyle" format="reference" />
+    <declare-styleable name="MaxHeightListView">
+        <attr name="MaxHeight" format="integer"/>
+    </declare-styleable>
+</resources>
