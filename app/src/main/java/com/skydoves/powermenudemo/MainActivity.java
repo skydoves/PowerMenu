@@ -2,11 +2,13 @@ package com.skydoves.powermenudemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skydoves.powermenu.CustomPowerMenu;
+import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        hamburgerMenu = PowerMenuUtils.getHamburgerPowerMenu(this, this, onHamburgerItemClickListener);
+        hamburgerMenu = PowerMenuUtils.getHamburgerPowerMenu(this, this, onHamburgerItemClickListener, onHamburgerMenuDismissedListener);
         profileMenu = PowerMenuUtils.getProfilePowerMenu(this, this, onProfileItemClickListener);
         writeMenu = PowerMenuUtils.getWritePowerMenu(this, this, onWriteItemClickListener);
         alertMenu = PowerMenuUtils.getAlertPowerMenu(this, this, onAlertItemClickListener);
@@ -90,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
             hamburgerMenu.setSelectedPosition(position);
             hamburgerMenu.dismiss();
+        }
+    };
+
+    private OnDismissedListener onHamburgerMenuDismissedListener = new OnDismissedListener() {
+        @Override
+        public void onDismissed() {
+            Log.d("Test", "onDismissed hamburger menu");
         }
     };
 

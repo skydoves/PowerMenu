@@ -55,7 +55,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
     private ListView menuListView;
     private OnMenuItemClickListener menuItemClickListener;
-
+    private OnDismissedListener onDismissedListener;
     private LayoutInflater layoutInflater;
 
     private View headerView;
@@ -91,6 +91,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             setOnMenuItemClickListener(builder.menuItemClickListener);
         if(builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
+        if(builder.onDismissedListener != null)
+            setOnDismissedListener(builder.onDismissedListener);
         if(builder.headerView != null)
             setHeaderView(builder.headerView);
         if(builder.footerView != null)
@@ -261,6 +263,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
             backgroundWindow.dismiss();
             menuWindow.dismiss();
             isShowing = false;
+            if(onDismissedListener != null)
+                onDismissedListener.onDismissed();
         }
     }
 
@@ -357,6 +361,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
     public void setOnMenuItemClickListener(OnMenuItemClickListener<T> menuItemClickListener) {
         this.menuItemClickListener = menuItemClickListener;
         this.menuListView.setOnItemClickListener(itemClickListener);
+    }
+
+    public void setOnDismissedListener(OnDismissedListener onDismissedListener) {
+        this.onDismissedListener = onDismissedListener;
     }
 
     public void setTouchInterceptor(View.OnTouchListener onTouchListener) {
@@ -572,6 +580,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
         private LifecycleOwner lifecycleOwner = null;
         private OnMenuItemClickListener<T> menuItemClickListener = null;
         private View.OnClickListener backgroundClickListener = null;
+        private OnDismissedListener onDismissedListener = null;
         private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
         private View headerView = null;
         private View footerView = null;
@@ -614,6 +623,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> implements IMenuIt
 
         public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
             this.backgroundClickListener = onBackgroundClickListener;
+            return this;
+        }
+
+        public Builder setOnDismissListener(OnDismissedListener onDismissListener) {
+            this.onDismissedListener = onDismissListener;
             return this;
         }
 

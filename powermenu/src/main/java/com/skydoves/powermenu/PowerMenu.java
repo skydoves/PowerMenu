@@ -55,6 +55,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
     private ListView menuListView;
     private OnMenuItemClickListener menuItemClickListener;
+    private OnDismissedListener onDismissedListener;
     private LayoutInflater layoutInflater;
 
     private View headerView;
@@ -91,6 +92,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
             setOnMenuItemClickListener(builder.menuItemClickListener);
         if(builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
+        if(builder.onDismissedListener != null)
+            setOnDismissedListener(builder.onDismissedListener);
         if(builder.headerView != null)
             setHeaderView(builder.headerView);
         if(builder.footerView != null)
@@ -266,6 +269,8 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
             menuWindow.dismiss();
             backgroundWindow.dismiss();
             isShowing = false;
+            if(onDismissedListener != null)
+                onDismissedListener.onDismissed();
         }
     }
 
@@ -386,6 +391,10 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
     public void setOnMenuItemClickListener(OnMenuItemClickListener<PowerMenuItem> menuItemClickListener) {
         this.menuItemClickListener = menuItemClickListener;
         this.menuListView.setOnItemClickListener(itemClickListener);
+    }
+
+    public void setOnDismissedListener(OnDismissedListener onDismissedListener) {
+        this.onDismissedListener = onDismissedListener;
     }
 
     public void setTouchInterceptor(View.OnTouchListener onTouchListener) {
@@ -595,6 +604,7 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
         private LifecycleOwner lifecycleOwner = null;
         private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
         private View.OnClickListener backgroundClickListener = null;
+        private OnDismissedListener onDismissedListener = null;
         private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
         private View headerView = null;
         private View footerView = null;
@@ -641,6 +651,11 @@ public class PowerMenu implements IMenuItem<PowerMenuItem>, LifecycleObserver {
 
         public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
             this.backgroundClickListener = onBackgroundClickListener;
+            return this;
+        }
+
+        public Builder setOnDismissListener(OnDismissedListener onDismissListener) {
+            this.onDismissedListener = onDismissListener;
             return this;
         }
 

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
+import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
@@ -24,7 +25,7 @@ import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 public class PowerMenuUtils {
 
-    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
+    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener, OnDismissedListener onDismissedListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Novel", true))
                 .addItem(new PowerMenuItem("Poetry", false))
@@ -40,6 +41,7 @@ public class PowerMenuUtils {
                 .setMenuColor(Color.WHITE)
                 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
                 .setOnMenuItemClickListener(onMenuItemClickListener)
+                .setOnDismissListener(onDismissedListener)
                 .build();
     }
 
