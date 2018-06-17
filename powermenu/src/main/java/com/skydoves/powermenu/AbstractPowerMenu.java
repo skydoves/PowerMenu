@@ -1,3 +1,20 @@
+
+/*
+ * Copyright (C) 2018 skydoves
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.skydoves.powermenu;
 
 import android.arch.lifecycle.LifecycleObserver;
@@ -10,13 +27,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class AbstractPowerMenu<T extends MenuBaseAdapter> implements LifecycleObserver {
+@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
+public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements LifecycleObserver {
 
     protected View backgroundView;
     protected View menuView;
@@ -45,6 +63,45 @@ public abstract class AbstractPowerMenu<T extends MenuBaseAdapter> implements Li
 
     protected int contentViewPadding;
 
+    protected AbstractPowerMenu(Context context) {
+        initialize(context);
+    }
+
+    protected AbstractPowerMenu(Context context, AbstractMenuBuilder builder) {
+        initialize(context);
+
+        setShowBackground(builder.showBackground);
+        setAnimation(builder.menuAnimation);
+        setMenuRadius(builder.menuRadius);
+        setMenuShadow(builder.menuShadow);
+        setBackgroundColor(builder.backgroundColor);
+        setBackgroundAlpha(builder.backgroundAlpha);
+        setFocusable(builder.focusable);
+        setIsClipping(builder.isClipping);
+
+        if(builder.lifecycleOwner != null)
+            setLifecycleOwner(builder.lifecycleOwner);
+        if(builder.backgroundClickListener != null)
+            setOnBackgroundClickListener(builder.backgroundClickListener);
+        if(builder.onDismissedListener != null)
+            setOnDismissedListener(builder.onDismissedListener);
+        if(builder.headerView != null)
+            setHeaderView(builder.headerView);
+        if(builder.footerView != null)
+            setFooterView(builder.footerView);
+        if(builder.animationStyle != -1)
+            setAnimationStyle(builder.animationStyle);
+        if(builder.width != 0)
+            setWidth(builder.width);
+        if (builder.height != 0)
+            setHeight(builder.height);
+        if(builder.divider != null)
+            setDivider(builder.divider);
+        if(builder.dividerHeight != 0)
+            setDividerHeight(builder.dividerHeight);
+    }
+
+
     @SuppressWarnings("ConstantConditions")
     protected void initialize(Context context) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,6 +117,7 @@ public abstract class AbstractPowerMenu<T extends MenuBaseAdapter> implements Li
 
         setFocusable(false);
         setTouchInterceptor(onTouchListener);
+        setOnMenuItemClickListener(onMenuItemClickListener);
 
         contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     }
@@ -69,14 +127,32 @@ public abstract class AbstractPowerMenu<T extends MenuBaseAdapter> implements Li
         this.lifecycleOwner = lifecycleOwner;
     }
 
-    protected void setFocusable(boolean focusable) {
+    public void setFocusable(boolean focusable) {
         menuWindow.setBackgroundDrawable(new BitmapDrawable());
         menuWindow.setOutsideTouchable(!focusable);
     }
 
-    protected void setTouchInterceptor(View.OnTouchListener onTouchListener) {
+    public void setTouchInterceptor(View.OnTouchListener onTouchListener) {
         this.menuWindow.setTouchInterceptor(onTouchListener);
     }
+
+    public void setOnMenuItemClickListener(OnMenuItemClickListener<E> menuItemClickListener) {
+        this.menuItemClickListener = menuItemClickListener;
+        this.menuListView.setOnItemClickListener(itemClickListener);
+    }
+
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+        }
+    };
+
+    private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<E>() {
+        @Override
+        public void onItemClick(int position, E item) {
+        }
+    };
 
     private View.OnClickListener background_clickListener = new View.OnClickListener() {
         @Override

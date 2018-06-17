@@ -21,59 +21,26 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<E> implements IMenuItem<T> {
+public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> implements IMenuItem<T> {
 
-    public CustomPowerMenu(Context context) {
-        initialize(context);
-    }
+    protected CustomPowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
+        super(context, abstractMenuBuilder);
 
-    private CustomPowerMenu(Context context, Builder<T, E> builder) {
-        initialize(context);
+        Builder<T, E> builder = (Builder) abstractMenuBuilder;
 
-        setShowBackground(builder.showBackground);
-        setAnimation(builder.menuAnimation);
-        setMenuRadius(builder.menuRadius);
-        setMenuShadow(builder.menuShadow);
-        setBackgroundColor(builder.backgroundColor);
-        setBackgroundAlpha(builder.backgroundAlpha);
-        setFocusable(builder.focusable);
-        setIsClipping(builder.isClipping);
-
-        if(builder.lifecycleOwner != null)
-            setLifecycleOwner(builder.lifecycleOwner);
         if(builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
-        if(builder.backgroundClickListener != null)
-            setOnBackgroundClickListener(builder.backgroundClickListener);
-        if(builder.onDismissedListener != null)
-            setOnDismissedListener(builder.onDismissedListener);
-        if(builder.headerView != null)
-            setHeaderView(builder.headerView);
-        if(builder.footerView != null)
-            setFooterView(builder.footerView);
-        if(builder.animationStyle != -1)
-            setAnimationStyle(builder.animationStyle);
         if(builder.selected != -1)
             setSelectedPosition(builder.selected);
-        if(builder.width != 0)
-            setWidth(builder.width);
-        if (builder.height != 0)
-            setHeight(builder.height);
-        if(builder.divider != null)
-            setDivider(builder.divider);
-        if(builder.dividerHeight != 0)
-            setDividerHeight(builder.dividerHeight);
 
         this.adapter = builder.adapter;
         this.adapter.setListView(getMenuListView());
@@ -85,27 +52,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     protected void initialize(Context context) {
         super.initialize(context);
         this.adapter = (E)(new MenuBaseAdapter<>(menuListView));
-        setOnMenuItemClickListener(onMenuItemClickListener);
     }
-
-    public void setOnMenuItemClickListener(OnMenuItemClickListener<T> menuItemClickListener) {
-        this.menuItemClickListener = menuItemClickListener;
-        this.menuListView.setOnItemClickListener(itemClickListener);
-    }
-
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
-        }
-    };
-
-    private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<T>() {
-        @Override
-        public void onItemClick(int position, T item) {
-
-        }
-    };
 
     @Override
     public void setListView(ListView listView) {
@@ -119,8 +66,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
     @Override
     public void setSelectedPosition(int position) {
-        if (getAdapter() != null)
-            getAdapter().setSelectedPosition(position);
+        getAdapter().setSelectedPosition(position);
     }
 
     @Override
@@ -130,38 +76,32 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
     @Override
     public void addItem(Object item) {
-        if (getAdapter() != null)
-            getAdapter().addItem((T)item);
+        getAdapter().addItem((T)item);
     }
 
     @Override
     public void addItem(int position, T item) {
-        if (getAdapter() != null)
-            getAdapter().addItem(position, item);
+        getAdapter().addItem(position, item);
     }
 
     @Override
     public void addItemList(List<T> itemList) {
-        if (getAdapter() != null)
-            getAdapter().addItemList(itemList);
+        getAdapter().addItemList(itemList);
     }
 
     @Override
     public void removeItem(T item) {
-        if (getAdapter() != null)
-            getAdapter().removeItem(item);
+        getAdapter().removeItem(item);
     }
 
     @Override
     public void removeItem(int position) {
-        if (getAdapter() != null)
-            getAdapter().removeItem(position);
+        getAdapter().removeItem(position);
     }
 
     @Override
     public void clearItems() {
-        if (getAdapter() != null)
-            getAdapter().clearItems();
+        getAdapter().clearItems();
     }
 
     @Override
@@ -175,33 +115,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     }
 
     @SuppressWarnings("unchecked")
-    public static class Builder<T, E extends MenuBaseAdapter<T>> {
+    public static class Builder<T, E extends MenuBaseAdapter<T>> extends AbstractMenuBuilder {
 
-        private Context context;
-        private LayoutInflater layoutInflater;
+        private OnMenuItemClickListener<T> menuItemClickListener = null;
 
         private E adapter;
-        private boolean showBackground = true;
-        private LifecycleOwner lifecycleOwner = null;
-        private OnMenuItemClickListener<T> menuItemClickListener = null;
-        private View.OnClickListener backgroundClickListener = null;
-        private OnDismissedListener onDismissedListener = null;
-        private MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
-        private View headerView = null;
-        private View footerView = null;
-        private int animationStyle = -1;
-        private float menuRadius = 5;
-        private float menuShadow = 5;
-        private int width = 0;
-        private int height = 0;
-        private int dividerHeight = 0;
-        private Drawable divider = null;
-        private int backgroundColor = Color.BLACK;
-        private float backgroundAlpha = 0.6f;
-        private boolean focusable = false;
-        private int selected = -1;
-        private boolean isClipping = true;
-
         private List<T> Ts;
 
         public Builder(Context context, E adapter) {
