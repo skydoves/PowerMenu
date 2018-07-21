@@ -20,10 +20,17 @@ package com.skydoves.powermenu;
 public class PowerMenuItem {
     public String title;
     public boolean isSelected;
+    private Object tag;
 
     public PowerMenuItem(String title, boolean isSelected) {
         this.title = title;
         this.isSelected = isSelected;
+    }
+
+    public PowerMenuItem(String title, boolean isSelected, Object tag) {
+        this.title = title;
+        this.isSelected = isSelected;
+        this.tag = tag;
     }
 
     public String getTitle() {
@@ -40,5 +47,13 @@ public class PowerMenuItem {
 
     public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
+    }
+
+    public Object getTag() {
+        return tag;
+    }
+
+    public void setTag(Object tag) {
+        this.tag = tag;
     }
 }
