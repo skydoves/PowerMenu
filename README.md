@@ -1,5 +1,6 @@
 # PowerMenu
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326)
 [![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) <br>
 A library that let you implement popup so easily. <br>
 
