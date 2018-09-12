@@ -1,4 +1,5 @@
 # PowerMenu
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f2c560683f648f68db4e7f493fb6d5e)](https://app.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&utm_medium=referral&utm_content=skydoves/PowerMenu&utm_campaign=Badge_Grade_Dashboard)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326)
 [![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) <br>
