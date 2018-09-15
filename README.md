@@ -9,8 +9,8 @@ A library that let you implement popup so easily. <br>
 ![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
 
 ## Download
-#### Gradle
-```java
+### Gradle
+```gradle
 dependencies {
     implementation "com.github.skydoves:powermenu:2.0.5"
 }
@@ -20,7 +20,7 @@ dependencies {
 
 ### Basic example
 This is a basic example on a screenshot. <br>
-You can build PowerMenu using Builder.
+You can create PowerMenu using Builder.
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .addItemList(list) // list has "Novel", "Poerty", "Art"
@@ -37,33 +37,38 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .build();
 ```
 
-You can add items or item List using PowerMenuItem class. <br>
+You can add items or an item list using `PowerMenuItem` class. <br>
 This is how to initialize PowerMenuItem.
 ```java
 PowerMenuItem powerMenuItem = new PowerMenuItem("Travel", true);
 ```
 
-At first, argument is item Title, and the other is setting selected status. <br>
-If true, the item's text or background colour is changed by your settings like below<br>
+The first argument is an item **title**, and the other is **selected status**. <br>
+If **selected status** is true, the item's text and background color be changed by your settings like below.<br>
 
 ```java
 .setSelectedTextColor(Color.WHITE)
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
 ```
 
-You can listen to item click.
+`OnMenuItemClickListener` is an interface definition for a callback to be invoked when a menu item is clicked.
 ```java
-    private  OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, PowerMenuItem item) {
-            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            powerMenu.setSelectedPosition(position); // change selected item
-            powerMenu.dismiss();
-        }
-    };
+private OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
+    @Override
+    public void onItemClick(int position, PowerMenuItem item) {
+        Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+        powerMenu.setSelectedPosition(position); // change selected item
+        powerMenu.dismiss();
+    }
+};
 ```
 
-and the last, show popup
+After declaring the listener, you should set about `PowerMenu` using below method.
+```java
+.setOnMenuItemClickListener(onMenuItemClickListener)
+```
+
+The last, just show your popup!
 ```java
 powerMenu.showAsDropDown(view); // view is an anchor
 ```
@@ -72,8 +77,8 @@ or
 powerMenu.showAsDropDown(view, (int)xOffset, (int)yOffset);
 ```
 
-### Customizing Popup
-You can customizing item styles using CustomPowerMenu and your customized adapter. <br>
+## Customizing Popup
+You can customizing item styles using `CustomPowerMenu` and your customized `adapter`. <br>
 Below is how to customizing popup item that has an icon.  <br><br>
 At first, you should create your item model.
 ```java
@@ -87,11 +92,10 @@ public class IconPowerMenuItem {
     }
  // --- skipped setter and getter methods
 }
-
 ```
 
 And next, you should create your own customized XML layout and adapter. <br>
-Custom Adapter should extend MenuBaseAdapter<YOUR_ITEM_MODEL>.
+Custom Adapter should extend `MenuBaseAdapter<YOUR_ITEM_MODEL>`.
 
 ```java
 public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
@@ -113,35 +117,32 @@ public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
         return super.getView(index, view, viewGroup);
     }
 }
-
 ```
 
-and the last, build CustomPowerMenu.
-```
+The last, create CustomPowerMenu and attach `onMenuItemClickListener`.
+```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new IconMenuAdapter())
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
                 .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
-                .setOnMenuItemClickListener(onMenuItemClickListener)
+                .setOnMenuItemClickListener(onIconMenuItemClickListener)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
                 .setMenuRadius(10f)
                 .setMenuShadow(10f)
                 .build();
 ```
-
-You can add a onMenuItemClickListener like below.
 ```java
 private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<IconPowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, IconPowerMenuItem item) {
-            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            iconMenu.dismiss();
-        }
-    };
+    @Override
+    public void onItemClick(int position, IconPowerMenuItem item) {
+        Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+        iconMenu.dismiss();
+    }
+};
 ```
 
-### Anchor
+## Anchor
 You can show a popup by anchors. <br><br>
 ![anchor](https://user-images.githubusercontent.com/24237865/38161125-da1ac0aa-3503-11e8-9a91-7dc4f8f4d9c3.gif)
 
@@ -153,13 +154,13 @@ You can show a popup by anchors. <br><br>
 .showAsAnchorCenter(view) // with .setAnimation(MenuAnimation.SHOW_UP_CENTER) looks better
 ```
 
-or you can customize your own position using below methods.
+or you can customize your own position using the below methods.
 ```java
 .getContentViewWidth() // return popup's measured width
 .getContentViewHeight() // return popup's measured height
 ```
 
-like this.
+like this :
 ```java
 // show popup at the center of an anchor. it's same using .showAsAnchorCenter
 hamburgerMenu.showAsDropDown(view, 
@@ -167,13 +168,13 @@ hamburgerMenu.showAsDropDown(view,
              -view.getMeasuredHeight()/2 - hamburgerMenu.getContentViewHeight());
 ```
 
-### Dialogs
-You can create dialogs using PowerMenu.<br><br>
+## Dialogs
+You can create seems like dialogs using `PowerMenu`.<br><br>
 ![screenshot_2017-12-18-23-39-00](https://user-images.githubusercontent.com/24237865/34111113-1de9bfce-e44c-11e7-9b60-44b8d440b910.png)
 ![screenshot_2017-12-18-23-39-05](https://user-images.githubusercontent.com/24237865/34111114-1e19ddf8-e44c-11e7-9747-17713d2932bd.png)
 <br>
 
-Below example is normal dialog. dialogs are be composed of header, footer and body. <br>
+Below example is normal dialog. Dialogs are composed of a header, footer and body. <br>
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .setHeaderView(R.layout.layout_dialog_header) // header used for title
@@ -188,7 +189,7 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .build();
 ```
 
-And you can customizing dialog like below.
+And you can create a customized dialog like below.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
                 .setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
@@ -204,6 +205,7 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
 ```
 
 ### Background
+This is options about the background.
 ```java
 .setShowBackground(false) // do not showing background
 .setTouchInterceptor(onTouchListener) // set touch listener what outside of popup.
@@ -267,16 +269,10 @@ Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before act
 But Lifecycles are now also integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
 So you can solve memory leak issue so easily.<br>
 
-First, implement LifecycleOwner on your activity or fragment.
-```java
-public class MainActivity extends AppCompatActivity implements LifecycleOwner
-```
-
-The last, just use setLifecycleOwner method before show.
+Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment are destroyed.
 ```java
 .setLifecycleOwner(lifecycleOwner)
 ```
-
 
 # License
 ```xml
