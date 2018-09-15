@@ -19,8 +19,7 @@ dependencies {
 ## Usage
 
 ### Basic example
-This is a basic example on a screenshot. <br>
-You can create PowerMenu using Builder.
+This is a basic example on a screenshot. You can create `PowerMenu` using `PowerMenu.Builder`.
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .addItemList(list) // list has "Novel", "Poerty", "Art"
@@ -37,8 +36,7 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
                 .build();
 ```
 
-You can add items or an item list using `PowerMenuItem` class. <br>
-This is how to initialize PowerMenuItem.
+You can add items or an item list using `PowerMenuItem` class. This is how to initialize `PowerMenuItem`.
 ```java
 PowerMenuItem powerMenuItem = new PowerMenuItem("Travel", true);
 ```
@@ -68,13 +66,9 @@ After declaring the listener, you should set about `PowerMenu` using below metho
 .setOnMenuItemClickListener(onMenuItemClickListener)
 ```
 
-The last, just show your popup!
+The last, just show your popup! 
 ```java
 powerMenu.showAsDropDown(view); // view is an anchor
-```
-or
-```java
-powerMenu.showAsDropDown(view, (int)xOffset, (int)yOffset);
 ```
 
 ## Customizing Popup
@@ -216,9 +210,9 @@ This is options about the background.
 ### Popup & Item Attrubutes
 ```java
 .addItemList(list)
-.addItem(new PowerMenuItem("Journals", false)) // add an PowerMenuItem
-.addItem(3, new PowerMenuItem("Travel", false)) // add an PowerMenuItem at position 3
-.setLifecycleOwner(lifecycleOwner) // set powermenu's LifecycleOwner what activity or fragment. This make avoid memory leak.
+.addItem(new PowerMenuItem("Journals", false)) // add a `PowerMenuItem`
+.addItem(3, new PowerMenuItem("Travel", false)) // add a `PowerMenuItem` at position 3
+.setLifecycleOwner(lifecycleOwner) // set `LifecycleOwner` about activity or fragment. This helps avoid a memory leak.
 .setWith(300) // set popup width size
 .setHeight(400) // set popup height size
 .setMenuRadius(10f) // set popup corner radius
@@ -238,7 +232,7 @@ This is options about the background.
 .setFooterView(View v) // set a fixed view to appear at the bottom of the list
 .setFooterView(View view) // set a fixed view to appear at the bottom of the list
 .setSelection(int position) // scroll to position
-.getSelectedPosition() // get the last selected item's position. if not selected before, return -1 .
+.getSelectedPosition() // get the last selected item's position. if not selected before, returns -1 .
 .getHeaderView() // get header view
 .getFooterView() // get footer view
 .getMenuListView() // return menu ListView on Powermenu
@@ -249,7 +243,7 @@ This is options about the background.
 .setBackgroundAlpha(0.7f) // set background's alpha
 .setBackgroundColor(Color.GRAY) // set background's color
 .setShowBackground(false) // set showing background
-.setOnBackgroundClickListener(onClickListener) // set a background click listener. default is dismiss popup.
+.setOnBackgroundClickListener(onClickListener) // set a background click listener. the default is dismissing the popup.
 ```
 
 ### Show & Dismiss
