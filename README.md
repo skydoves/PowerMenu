@@ -66,14 +66,18 @@ After declaring the listener, you should set about `PowerMenu` using below metho
 .setOnMenuItemClickListener(onMenuItemClickListener)
 ```
 
-The last, just show your popup! [Various show & dismiss](https://github.com/skydoves/PowerMenu#show--dismiss).
+The last, just show your popup! [Various show & dismiss methods](https://github.com/skydoves/PowerMenu#show--dismiss).
 ```java
 powerMenu.showAsDropDown(view); // view is an anchor
 ```
 
 ## Customizing Popup
-You can customizing item styles using `CustomPowerMenu` and your customized `adapter`. <br>
-Below is how to customizing popup item that has an icon.  <br><br>
+You can customizing item styles using `CustomPowerMenu` and your customized adapter. <br>
+Below is how to customizing popup item that has an icon. <br>
+
+![custom0](https://user-images.githubusercontent.com/24237865/45586080-5a07e800-b92b-11e8-8c7e-5aa0e524598c.png)
+![gif0](https://user-images.githubusercontent.com/24237865/45586081-5a07e800-b92b-11e8-9cba-303eb013b7c9.gif) <br>
+
 At first, you should create your item model.
 ```java
 public class IconPowerMenuItem {
@@ -210,9 +214,9 @@ This is options about the background.
 ### Popup & Item Attrubutes
 ```java
 .addItemList(list)
-.addItem(new PowerMenuItem("Journals", false)) // add a `PowerMenuItem`
-.addItem(3, new PowerMenuItem("Travel", false)) // add a `PowerMenuItem` at position 3
-.setLifecycleOwner(lifecycleOwner) // set `LifecycleOwner` about activity or fragment. This helps avoid a memory leak.
+.addItem(new PowerMenuItem("Journals", false)) // add a PowerMenuItem
+.addItem(3, new PowerMenuItem("Travel", false)) // add a PowerMenuItem at position 3
+.setLifecycleOwner(lifecycleOwner) // set LifecycleOwner about activity or fragment. This helps avoid a memory leak.
 .setWith(300) // set popup width size
 .setHeight(400) // set popup height size
 .setMenuRadius(10f) // set popup corner radius
