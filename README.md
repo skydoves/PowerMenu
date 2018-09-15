@@ -66,7 +66,7 @@ After declaring the listener, you should set about `PowerMenu` using below metho
 .setOnMenuItemClickListener(onMenuItemClickListener)
 ```
 
-The last, just show your popup! 
+The last, just show your popup! [Various show & dismiss](https://github.com/skydoves/PowerMenu#show--dismiss).
 ```java
 powerMenu.showAsDropDown(view); // view is an anchor
 ```
@@ -136,32 +136,6 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 };
 ```
 
-## Anchor
-You can show a popup by anchors. <br><br>
-![anchor](https://user-images.githubusercontent.com/24237865/38161125-da1ac0aa-3503-11e8-9a91-7dc4f8f4d9c3.gif)
-
-```java
-.showAsAnchorLeftTop(view)
-.showAsAnchorLeftBottom(view)
-.showAsAnchorRightTop(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
-.showAsAnchorRightBottom(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
-.showAsAnchorCenter(view) // with .setAnimation(MenuAnimation.SHOW_UP_CENTER) looks better
-```
-
-or you can customize your own position using the below methods.
-```java
-.getContentViewWidth() // return popup's measured width
-.getContentViewHeight() // return popup's measured height
-```
-
-like this :
-```java
-// show popup at the center of an anchor. it's same using .showAsAnchorCenter
-hamburgerMenu.showAsDropDown(view, 
-             view.getMeasuredWidth()/2 - hamburgerMenu.getContentViewWidth(), 
-             -view.getMeasuredHeight()/2 - hamburgerMenu.getContentViewHeight());
-```
-
 ## Dialogs
 You can create seems like dialogs using `PowerMenu`.<br><br>
 ![screenshot_2017-12-18-23-39-00](https://user-images.githubusercontent.com/24237865/34111113-1de9bfce-e44c-11e7-9b60-44b8d440b910.png)
@@ -198,7 +172,33 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
                 .build();
 ```
 
-### Background
+## Anchor
+You can show a popup by anchors. <br><br>
+![anchor](https://user-images.githubusercontent.com/24237865/38161125-da1ac0aa-3503-11e8-9a91-7dc4f8f4d9c3.gif)
+
+```java
+.showAsAnchorLeftTop(view)
+.showAsAnchorLeftBottom(view)
+.showAsAnchorRightTop(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
+.showAsAnchorRightBottom(view) // with .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT) looks better
+.showAsAnchorCenter(view) // with .setAnimation(MenuAnimation.SHOW_UP_CENTER) looks better
+```
+
+or you can customize your own position using the below methods.
+```java
+.getContentViewWidth() // return popup's measured width
+.getContentViewHeight() // return popup's measured height
+```
+
+like this :
+```java
+// show popup at the center of an anchor. it's same using .showAsAnchorCenter
+hamburgerMenu.showAsDropDown(view, 
+             view.getMeasuredWidth()/2 - hamburgerMenu.getContentViewWidth(), 
+             -view.getMeasuredHeight()/2 - hamburgerMenu.getContentViewHeight());
+```
+
+## Background
 This is options about the background.
 ```java
 .setShowBackground(false) // do not showing background
