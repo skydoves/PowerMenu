@@ -30,6 +30,7 @@ public class PowerMenuUtils {
                 .addItem(new PowerMenuItem("Art", false))
                 .addItem(new PowerMenuItem("Journals", false))
                 .addItem(new PowerMenuItem("Travel", false))
+                .setAutoDismiss(true)
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
                 .setMenuRadius(10f)

@@ -300,6 +300,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
             return this;
         }
 
+        public Builder setAutoDismiss(boolean autoDismiss) {
+            this.autoDismiss = autoDismiss;
+            return this;
+        }
+
         public Builder addItem(PowerMenuItem item) {
             this.powerMenuItems.add(item);
             return this;
