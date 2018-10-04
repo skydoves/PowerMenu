@@ -18,10 +18,10 @@
 package com.skydoves.powermenu;
 
 public class PowerMenuItem {
-    private String title;
-    private int icon;
-    private boolean isSelected;
-    private Object tag;
+    protected String title;
+    protected int icon;
+    protected boolean isSelected;
+    protected Object tag;
 
     public PowerMenuItem(String title) {
         this.title = title;
