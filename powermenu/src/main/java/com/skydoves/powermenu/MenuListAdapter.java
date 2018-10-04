@@ -22,6 +22,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
     public View getView(final int index, View view, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
 
-        if(view == null) {
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_power_menu, viewGroup, false);
         }
@@ -51,28 +52,37 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
         final View background = view.findViewById(R.id.item_power_menu_layout);
         final TextView title = view.findViewById(R.id.item_power_menu_title);
+        final ImageView icon = view.findViewById(R.id.item_power_menu_icon);
+
         title.setText(powerMenuItem.title);
 
-        if(powerMenuItem.isSelected) {
+        if (powerMenuItem.icon != 0) {
+            icon.setImageResource(powerMenuItem.icon);
+            icon.setVisibility(View.VISIBLE);
+        } else {
+            icon.setVisibility(View.GONE);
+        }
+
+        if (powerMenuItem.isSelected) {
 
             setSelectedPosition(index);
 
-            if(selectedMenuColor == -2)
+            if (selectedMenuColor == -2)
                 background.setBackgroundColor(context.getResources().getColor(R.color.menu_background));
             else
                 background.setBackgroundColor(selectedMenuColor);
 
-            if(selectedTextColor == -2)
+            if (selectedTextColor == -2)
                 title.setTextColor(context.getResources().getColor(R.color.menu_text_selected));
             else
                 title.setTextColor(selectedTextColor);
         } else {
-            if(menuColor == -2)
+            if (menuColor == -2)
                 background.setBackgroundColor(Color.WHITE);
             else
                 background.setBackgroundColor(menuColor);
 
-            if(textColor == -2)
+            if (textColor == -2)
                 title.setTextColor(context.getResources().getColor(R.color.menu_text_no_selected));
             else
                 title.setTextColor(textColor);
@@ -84,7 +94,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
     public void setSelectedPosition(int position) {
         super.setSelectedPosition(position);
 
-        if(selectedEffect) {
+        if (selectedEffect) {
             for (int i = 0; i < getItemList().size(); i++) {
                 PowerMenuItem item = (PowerMenuItem) getItem(i);
 

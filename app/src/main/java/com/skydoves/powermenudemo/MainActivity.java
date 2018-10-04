@@ -12,7 +12,6 @@ import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
-import com.skydoves.powermenu.IconPowerMenuItem;
 
 /**
  * Developed by skydoves on 2017-10-29.
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private CustomPowerMenu alertMenu;
     private PowerMenu dialogMenu;
     private CustomPowerMenu customDialogMenu;
-    private CustomPowerMenu iconMenu;
+    private PowerMenu iconMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<IconPowerMenuItem>() {
+    private OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
-        public void onItemClick(int position, IconPowerMenuItem item) {
+        public void onItemClick(int position, PowerMenuItem item) {
             Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
             iconMenu.dismiss();
         }

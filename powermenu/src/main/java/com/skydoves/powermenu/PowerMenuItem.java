@@ -17,18 +17,48 @@
 
 package com.skydoves.powermenu;
 
+import android.graphics.drawable.Drawable;
+
 public class PowerMenuItem {
-    public String title;
-    public boolean isSelected;
-    private Object tag;
+    String title;
+    int icon;
+    boolean isSelected;
+    Object tag;
+
+    public PowerMenuItem(String title) {
+        this.title = title;
+    }
+
+    public PowerMenuItem(String title, int icon) {
+        this.title = title;
+        this.icon = icon;
+    }
 
     public PowerMenuItem(String title, boolean isSelected) {
         this.title = title;
         this.isSelected = isSelected;
     }
 
+    public PowerMenuItem(String title, Object tag) {
+        this.title = title;
+        this.tag = tag;
+    }
+
+    public PowerMenuItem(String title, int icon, boolean isSelected) {
+        this.title = title;
+        this.icon = icon;
+        this.isSelected = isSelected;
+    }
+
     public PowerMenuItem(String title, boolean isSelected, Object tag) {
         this.title = title;
+        this.isSelected = isSelected;
+        this.tag = tag;
+    }
+
+    public PowerMenuItem(String title, int icon, boolean isSelected, Object tag) {
+        this.title = title;
+        this.icon = icon;
         this.isSelected = isSelected;
         this.tag = tag;
     }
@@ -55,5 +85,13 @@ public class PowerMenuItem {
 
     public void setTag(Object tag) {
         this.tag = tag;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }
