@@ -1,4 +1,4 @@
-package com.skydoves.powermenudemo.customs.items;
+package com.skydoves.powermenu;
 
 import android.graphics.drawable.Drawable;
 

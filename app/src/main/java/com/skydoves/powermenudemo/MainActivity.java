@@ -12,7 +12,7 @@ import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
-import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
+import com.skydoves.powermenu.IconPowerMenuItem;
 
 /**
  * Developed by skydoves on 2017-10-29.

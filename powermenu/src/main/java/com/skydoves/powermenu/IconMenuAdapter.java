@@ -1,4 +1,4 @@
-package com.skydoves.powermenudemo.customs.adapters;
+package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,10 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.skydoves.powermenu.MenuBaseAdapter;
-import com.skydoves.powermenudemo.R;
-import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
 
 /**
  * Developed by skydoves on 2017-10-29.

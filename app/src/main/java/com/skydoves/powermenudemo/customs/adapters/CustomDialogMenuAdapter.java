@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.skydoves.powermenu.MenuBaseAdapter;
 import com.skydoves.powermenudemo.R;
-import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 /**

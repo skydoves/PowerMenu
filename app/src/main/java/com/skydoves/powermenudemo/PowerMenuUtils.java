@@ -14,8 +14,8 @@ import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
-import com.skydoves.powermenudemo.customs.adapters.IconMenuAdapter;
-import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
+import com.skydoves.powermenu.IconMenuAdapter;
+import com.skydoves.powermenu.IconPowerMenuItem;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 /**
