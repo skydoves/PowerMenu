@@ -32,13 +32,19 @@ public class PowerMenuItem {
         this.icon = icon;
     }
 
+    public PowerMenuItem(String title, Object tag) {
+        this.title = title;
+        this.tag = tag;
+    }
+
     public PowerMenuItem(String title, boolean isSelected) {
         this.title = title;
         this.isSelected = isSelected;
     }
 
-    public PowerMenuItem(String title, Object tag) {
+    public PowerMenuItem(String title, int icon, Object tag) {
         this.title = title;
+        this.icon = icon;
         this.tag = tag;
     }
 
