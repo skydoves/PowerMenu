@@ -17,13 +17,11 @@
 
 package com.skydoves.powermenu;
 
-import android.graphics.drawable.Drawable;
-
 public class PowerMenuItem {
-    String title;
-    int icon;
-    boolean isSelected;
-    Object tag;
+    private String title;
+    private int icon;
+    private boolean isSelected;
+    private Object tag;
 
     public PowerMenuItem(String title) {
         this.title = title;
