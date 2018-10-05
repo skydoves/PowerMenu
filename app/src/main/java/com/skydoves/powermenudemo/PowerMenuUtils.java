@@ -14,8 +14,6 @@ import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
-import com.skydoves.powermenudemo.customs.adapters.IconMenuAdapter;
-import com.skydoves.powermenudemo.customs.items.IconPowerMenuItem;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 /**
@@ -32,6 +30,7 @@ public class PowerMenuUtils {
                 .addItem(new PowerMenuItem("Art", false))
                 .addItem(new PowerMenuItem("Journals", false))
                 .addItem(new PowerMenuItem("Travel", false))
+                .setAutoDismiss(true)
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
                 .setMenuRadius(10f)
@@ -95,12 +94,14 @@ public class PowerMenuUtils {
                 }).build();
     }
 
-    public static CustomPowerMenu getIconPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
-        return new CustomPowerMenu.Builder<>(context, new IconMenuAdapter())
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
+    public static PowerMenu getIconPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
+
+        return new PowerMenu.Builder(context)
+                .addItem(new PowerMenuItem("WeChat", R.drawable.ic_wechat))
+                .addItem(new PowerMenuItem("Facebook", R.drawable.ic_facebook))
+                .addItem(new PowerMenuItem("Twitter", R.drawable.ic_twitter))
+                .addItem(new PowerMenuItem("Line", R.drawable.ic_line))
+                .addItem(new PowerMenuItem("Other"))
                 .setLifecycleOwner(lifecycleOwner)
                 .setOnMenuItemClickListener(onMenuItemClickListener)
                 .setAnimation(MenuAnimation.FADE)

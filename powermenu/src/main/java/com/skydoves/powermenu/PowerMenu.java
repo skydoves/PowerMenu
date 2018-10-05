@@ -38,17 +38,17 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
         Builder builder = (Builder) abstractMenuBuilder;
 
         setSelectedEffect(builder.selectedEffect);
-        if(builder.menuItemClickListener != null)
+        if (builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
-        if(builder.textColor != -2)
+        if (builder.textColor != -2)
             setTextColor(builder.textColor);
-        if(builder.menuColor != -2)
+        if (builder.menuColor != -2)
             setMenuColor(builder.menuColor);
-        if(builder.selectedTextColor != -2)
+        if (builder.selectedTextColor != -2)
             setSelectedTextColor(builder.selectedTextColor);
-        if(builder.selectedMenuColor != -2)
+        if (builder.selectedMenuColor != -2)
             setSelectedMenuColor(builder.selectedMenuColor);
-        if(builder.selected != -1)
+        if (builder.selected != -1)
             setSelectedPosition(builder.selected);
 
         this.menuListView.setAdapter(adapter);
@@ -297,6 +297,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
         public Builder setIsClipping(boolean isClipping) {
             this.isClipping = isClipping;
+            return this;
+        }
+
+        public Builder setAutoDismiss(boolean autoDismiss) {
+            this.autoDismiss = autoDismiss;
             return this;
         }
 

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/item_power_menu_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_power_menu_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_power_menu_icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="7dp"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/item_power_menu_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:textColor="@color/menu_text_no_selected"
         android:lineSpacingExtra="6sp"
         android:padding="13dp"
+        android:textColor="@color/menu_text_no_selected"
+        android:textSize="14sp"
+        android:textStyle="bold"
         tools:text="All Contents" />
 
-</RelativeLayout>
+</LinearLayout>

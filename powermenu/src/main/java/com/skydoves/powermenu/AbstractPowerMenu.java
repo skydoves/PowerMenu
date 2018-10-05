@@ -62,6 +62,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     protected boolean isShowing = false;
 
     protected int contentViewPadding;
+    private boolean autoDismiss;
 
     protected AbstractPowerMenu(Context context) {
         initialize(context);
@@ -78,26 +79,27 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         setBackgroundAlpha(builder.backgroundAlpha);
         setFocusable(builder.focusable);
         setIsClipping(builder.isClipping);
+        setAutoDismiss(builder.autoDismiss);
 
-        if(builder.lifecycleOwner != null)
+        if (builder.lifecycleOwner != null)
             setLifecycleOwner(builder.lifecycleOwner);
-        if(builder.backgroundClickListener != null)
+        if (builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
-        if(builder.onDismissedListener != null)
+        if (builder.onDismissedListener != null)
             setOnDismissedListener(builder.onDismissedListener);
-        if(builder.headerView != null)
+        if (builder.headerView != null)
             setHeaderView(builder.headerView);
-        if(builder.footerView != null)
+        if (builder.footerView != null)
             setFooterView(builder.footerView);
-        if(builder.animationStyle != -1)
+        if (builder.animationStyle != -1)
             setAnimationStyle(builder.animationStyle);
-        if(builder.width != 0)
+        if (builder.width != 0)
             setWidth(builder.width);
         if (builder.height != 0)
             setHeight(builder.height);
-        if(builder.divider != null)
+        if (builder.divider != null)
             setDivider(builder.divider);
-        if(builder.dividerHeight != 0)
+        if (builder.dividerHeight != 0)
             setDividerHeight(builder.dividerHeight);
     }
 
@@ -144,6 +146,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+            if (autoDismiss) {
+                dismiss();
+            }
             menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
         }
     };
@@ -157,7 +162,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     private View.OnClickListener background_clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!allowTouchBackground)
+            if (!allowTouchBackground)
                 dismiss();
         }
     };
@@ -180,95 +185,95 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     };
 
     public void showAsDropDown(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor);
         }
     }
 
     public void showAsDropDown(View anchor, int xOff, int yOff) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor, xOff, yOff);
         }
     }
 
     public void showAsAnchorLeftTop(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
         }
     }
 
     public void showAsAnchorLeftBottom(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
         }
     }
 
     public void showAsAnchorRightTop(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
-            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -anchor.getMeasuredHeight());
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2, -anchor.getMeasuredHeight());
         }
     }
 
     public void showAsAnchorRightBottom(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
-            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth()/2 + getContentViewWidth()/2, -getContentViewPadding());
+            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2, -getContentViewPadding());
         }
     }
 
     public void showAtCenter(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         }
     }
 
     public void showAtCenter(View anchor, int xOff, int yOff) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
         }
     }
 
     public void showAtLocation(View anchor, int xOff, int yOff) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
         }
     }
 
     public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
         }
     }
 
     public void showAsAnchorCenter(View anchor) {
-        if(!isShowing()) {
+        if (!isShowing()) {
             showPopup(anchor);
             menuWindow.showAsDropDown(anchor,
-                    anchor.getMeasuredWidth()/2 - getContentViewWidth()/2,
-                    -anchor.getMeasuredHeight()/2 - getContentViewHeight()/2);
+                    anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
+                    -anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
         }
     }
 
     public void showPopup(View anchor) {
-        if(showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+        if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
         isShowing = true;
     }
 
     public void dismiss() {
-        if(isShowing()) {
+        if (isShowing()) {
             menuWindow.dismiss();
             backgroundWindow.dismiss();
             isShowing = false;
-            if(onDismissedListener != null)
+            if (onDismissedListener != null)
                 onDismissedListener.onDismissed();
         }
     }
@@ -279,7 +284,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     public int getContentViewWidth() {
         int width = menuWindow.getContentView().getWidth();
-        if(width == 0) {
+        if (width == 0) {
             return getMeasuredContentView().getMeasuredWidth();
         } else {
             return width;
@@ -288,9 +293,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     public int getContentViewHeight() {
         int height = menuWindow.getContentView().getHeight();
-        if(height == 0) {
+        if (height == 0) {
             height += getAdapter().getContentViewHeight() + getContentViewPadding();
-            if(getHeaderView() != null) height += getHeaderView().getMeasuredHeight();
+            if (getHeaderView() != null) height += getHeaderView().getMeasuredHeight();
             if (getFooterView() != null) height += getFooterView().getMeasuredHeight();
             return height;
         } else {
@@ -350,33 +355,32 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setAnimation(MenuAnimation menuAnimation) {
-        if(menuAnimation == MenuAnimation.NONE)
+        if (menuAnimation == MenuAnimation.NONE)
             menuWindow.setAnimationStyle(0);
-        else if(menuAnimation == MenuAnimation.DROP_DOWN)
+        else if (menuAnimation == MenuAnimation.DROP_DOWN)
             menuWindow.setAnimationStyle(-1);
-        else if(menuAnimation == MenuAnimation.FADE) {
+        else if (menuAnimation == MenuAnimation.FADE) {
             menuWindow.setAnimationStyle(R.style.FadeMenuAnimation);
             backgroundWindow.setAnimationStyle(R.style.FadeMenuAnimation);
-        }
-        else if(menuAnimation == MenuAnimation.SHOWUP_BOTTOM_LEFT)
+        } else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_LEFT)
             menuWindow.setAnimationStyle(R.style.ShowUpAnimation_BL);
-        else if(menuAnimation == MenuAnimation.SHOWUP_BOTTOM_RIGHT)
+        else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_RIGHT)
             menuWindow.setAnimationStyle(R.style.ShowUpAnimation_BR);
-        else if(menuAnimation == MenuAnimation.SHOWUP_TOP_LEFT)
+        else if (menuAnimation == MenuAnimation.SHOWUP_TOP_LEFT)
             menuWindow.setAnimationStyle(R.style.ShowUpAnimation_TL);
-        else if(menuAnimation == MenuAnimation.SHOWUP_TOP_RIGHT)
+        else if (menuAnimation == MenuAnimation.SHOWUP_TOP_RIGHT)
             menuWindow.setAnimationStyle(R.style.ShowUpAnimation_TR);
-        else if(menuAnimation == MenuAnimation.SHOW_UP_CENTER)
+        else if (menuAnimation == MenuAnimation.SHOW_UP_CENTER)
             menuWindow.setAnimationStyle(R.style.ShowUpAnimation_Center);
-        else if(menuAnimation == MenuAnimation.ELASTIC_BOTTOM_LEFT)
+        else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_LEFT)
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_BL);
-        else if(menuAnimation == MenuAnimation.ELASTIC_BOTTOM_RIGHT)
+        else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_RIGHT)
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_BR);
-        else if(menuAnimation == MenuAnimation.ELASTIC_TOP_LEFT)
+        else if (menuAnimation == MenuAnimation.ELASTIC_TOP_LEFT)
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_TL);
-        else if(menuAnimation == MenuAnimation.ELASTIC_TOP_RIGHT)
+        else if (menuAnimation == MenuAnimation.ELASTIC_TOP_RIGHT)
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_TR);
-        else if(menuAnimation == MenuAnimation.ELASTIC_CENTER)
+        else if (menuAnimation == MenuAnimation.ELASTIC_CENTER)
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_Center);
     }
 
@@ -409,14 +413,14 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setHeaderView(int layout) {
-        if(this.headerView == null) {
+        if (this.headerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
             setHeaderView(view);
         }
     }
 
     public void setHeaderView(View view) {
-        if(this.headerView == null) {
+        if (this.headerView == null) {
             this.menuListView.addHeaderView(view);
             this.headerView = view;
             this.headerView.setOnClickListener(headerFooterClickListener);
@@ -427,7 +431,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setHeaderView(View view, Object data, boolean isSelectable) {
-        if(this.headerView == null) {
+        if (this.headerView == null) {
             this.menuListView.addHeaderView(view, data, isSelectable);
             this.headerView = view;
             this.headerView.setOnClickListener(headerFooterClickListener);
@@ -438,14 +442,14 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setFooterView(int layout) {
-        if(this.footerView == null) {
+        if (this.footerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
             setFooterView(view);
         }
     }
 
     public void setFooterView(View view) {
-        if(this.footerView == null) {
+        if (this.footerView == null) {
             this.menuListView.addFooterView(view);
             this.footerView = view;
             this.footerView.setOnClickListener(headerFooterClickListener);
@@ -456,7 +460,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setFooterView(View view, Object data, boolean isSelectable) {
-        if(this.footerView == null) {
+        if (this.footerView == null) {
             this.menuListView.addFooterView(view, data, isSelectable);
             this.footerView = view;
             this.footerView.setOnClickListener(headerFooterClickListener);
@@ -480,5 +484,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     public View getFooterView() {
         return footerView;
+    }
+
+    public void setAutoDismiss(boolean autoDismiss) {
+        this.autoDismiss = autoDismiss;
     }
 }

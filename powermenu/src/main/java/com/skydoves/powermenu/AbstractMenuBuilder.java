@@ -49,4 +49,5 @@ public abstract class AbstractMenuBuilder {
     protected boolean focusable = false;
     protected int selected = -1;
     protected boolean isClipping = true;
+    protected boolean autoDismiss = false;
 }

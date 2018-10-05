@@ -239,6 +239,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
             return this;
         }
 
+        public Builder setAutoDismiss(boolean autoDismiss) {
+            this.autoDismiss = autoDismiss;
+            return this;
+        }
+
         public Builder addItem(Object item) {
             this.Ts.add((T)item);
             return this;
