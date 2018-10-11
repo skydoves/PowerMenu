@@ -166,7 +166,7 @@ And you can create a customized dialog like below.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
                 .setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
-                .setFooterView(R.layout.layout_custom_dialog_footer) // footer uesd for Read More and Close buttons
+                .setFooterView(R.layout.layout_custom_dialog_footer) // footer used for Read More and Close buttons
                  // this is body
                 .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
                 .setLifecycleOwner(lifecycleOwner)
@@ -214,7 +214,7 @@ This is options about the background.
 ```
 
 ## Functions
-### Popup & Item Attrubutes
+### Popup & Item Attributes
 ```java
 .addItemList(list)
 .addItem(new PowerMenuItem("Journals", false)) // add a PowerMenuItem
@@ -227,9 +227,9 @@ This is options about the background.
 .setDivider(new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300))) // set a divider
 .setDividerHeight(1) // set divider's height
 .setAnimation(MenuAnimation.FADE) // set Animation
-.setTextColor(context.getResources().getColor(R.color.md_grey_800)) // set normoal item text color
+.setTextColor(context.getResources().getColor(R.color.md_grey_800)) // set normal item text color
 .setSelectedTextColor(Color.WHITE) // set selected item text color
-.setMenuColor(Color.WHITE) // set normoal item background color
+.setMenuColor(Color.WHITE) // set normal item background color
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // set selected item background color
 .setSelectedEffect(false) // if false, no apply selected colors(text, background)
 .setOnMenuItemClickListener(onMenuItemClickListener) // add an item click listener
@@ -245,7 +245,7 @@ This is options about the background.
 .getMenuListView() // return menu ListView on Powermenu
 ```
 
-### Background Attrubutes
+### Background Attributes
 ```java
 .setBackgroundAlpha(0.7f) // set background's alpha
 .setBackgroundColor(Color.GRAY) // set background's color
