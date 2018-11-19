@@ -1,10 +1,10 @@
 # PowerMenu
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
-[![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f2c560683f648f68db4e7f493fb6d5e)](https://app.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&utm_medium=referral&utm_content=skydoves/PowerMenu&utm_campaign=Badge_Grade_Dashboard)
-[![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) <br>
-A library that let you implement popup so easily. <br>
+[![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) 
+[![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326) <br>
+A library that lets you implement popup so easily. <br>
 
 ![gif1](https://user-images.githubusercontent.com/24237865/32500436-c52b02ec-c418-11e7-8027-9aceb5cbe368.gif)
 ![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
