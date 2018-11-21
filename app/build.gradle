@@ -21,8 +21,8 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLib"
-    implementation "com.android.support:design:$supportLib"
+    implementation "androidx.appcompat:appcompat:$accompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation project(":powermenu")
 }

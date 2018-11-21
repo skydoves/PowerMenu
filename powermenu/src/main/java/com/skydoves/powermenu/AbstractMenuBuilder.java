@@ -17,7 +17,7 @@
 
 package com.skydoves.powermenu;
 
-import android.arch.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
