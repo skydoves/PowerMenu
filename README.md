@@ -11,8 +11,12 @@ A library that lets you implement popup so easily. <br>
 
 ## Download
 ### Gradle
+And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
+    implementation "com.github.skydoves:powermenu:2.0.6"
+    
+    // If your project is not migrated to AndroidX yet
     implementation "com.github.skydoves:powermenu:2.0.5"
 }
 ```
