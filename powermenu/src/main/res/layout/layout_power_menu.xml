@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:focusable="true">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/power_menu_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,5 +32,5 @@
             android:focusedByDefault="true"
             android:descendantFocusability="blocksDescendants"
             tools:listitem="@layout/item_power_menu"/>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>
