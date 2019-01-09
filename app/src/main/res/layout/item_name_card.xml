@@ -19,19 +19,19 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/face3"/>
+                android:src="@drawable/face3" />
 
             <TextView
                 android:id="@+id/item_name_card_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/item_name_card_profile"
                 android:layout_centerVertical="true"
-                android:text="Sophie"
+                android:layout_toRightOf="@+id/item_name_card_profile"
                 android:fontFamily="sans-serif"
+                android:text="Sophie"
                 android:textColor="@color/md_grey_800"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <TextView
@@ -42,10 +42,10 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:ellipsize="end"
-            android:maxLines="4"
             android:fontFamily="sans-serif"
-            android:textSize="15sp"
+            android:maxLines="4"
             android:textColor="@color/md_grey_600"
-            tools:text="@string/board3"/>
+            android:textSize="15sp"
+            tools:text="@string/board3" />
     </LinearLayout>
 </LinearLayout>

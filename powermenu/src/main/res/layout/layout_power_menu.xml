@@ -10,9 +10,9 @@
         android:id="@+id/power_menu_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:clipToPadding="false"
         android:padding="5dp"
-        android:layout_margin="5dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
@@ -24,13 +24,13 @@
             android:id="@+id/power_menu_listView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:dividerHeight="0dp"
-            android:divider="@null"
-            android:focusable="true"
             android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:focusable="true"
             android:focusableInTouchMode="true"
             android:focusedByDefault="true"
-            android:descendantFocusability="blocksDescendants"
-            tools:listitem="@layout/item_power_menu"/>
+            tools:listitem="@layout/item_power_menu" />
     </androidx.cardview.widget.CardView>
 </FrameLayout>

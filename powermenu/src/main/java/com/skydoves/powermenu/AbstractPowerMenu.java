@@ -17,12 +17,9 @@
 
 package com.skydoves.powermenu;
 
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.cardview.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,6 +29,10 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements LifecycleObserver {
@@ -63,6 +64,42 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     protected int contentViewPadding;
     private boolean autoDismiss;
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+            if (autoDismiss) {
+                dismiss();
+            }
+            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+        }
+    };
+    private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<E>() {
+        @Override
+        public void onItemClick(int position, E item) {
+        }
+    };
+    private View.OnClickListener background_clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (!allowTouchBackground)
+                dismiss();
+        }
+    };
+    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
+                dismiss();
+                return true;
+            }
+            return false;
+        }
+    };
+    private View.OnClickListener headerFooterClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+        }
+    };
 
     protected AbstractPowerMenu(Context context) {
         initialize(context);
@@ -103,7 +140,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
             setDividerHeight(builder.dividerHeight);
     }
 
-
     @SuppressWarnings("ConstantConditions")
     protected void initialize(Context context) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -142,47 +178,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         this.menuItemClickListener = menuItemClickListener;
         this.menuListView.setOnItemClickListener(itemClickListener);
     }
-
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-            if (autoDismiss) {
-                dismiss();
-            }
-            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
-        }
-    };
-
-    private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<E>() {
-        @Override
-        public void onItemClick(int position, E item) {
-        }
-    };
-
-    private View.OnClickListener background_clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (!allowTouchBackground)
-                dismiss();
-        }
-    };
-
-    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
-                dismiss();
-                return true;
-            }
-            return false;
-        }
-    };
-
-    private View.OnClickListener headerFooterClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
-    };
 
     public void showAsDropDown(View anchor) {
         if (!isShowing()) {
@@ -419,17 +414,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
-    public void setHeaderView(View view) {
-        if (this.headerView == null) {
-            this.menuListView.addHeaderView(view);
-            this.headerView = view;
-            this.headerView.setOnClickListener(headerFooterClickListener);
-            this.headerView.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        }
-    }
-
     public void setHeaderView(View view, Object data, boolean isSelectable) {
         if (this.headerView == null) {
             this.menuListView.addHeaderView(view, data, isSelectable);
@@ -445,17 +429,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         if (this.footerView == null) {
             View view = layoutInflater.inflate(layout, null, false);
             setFooterView(view);
-        }
-    }
-
-    public void setFooterView(View view) {
-        if (this.footerView == null) {
-            this.menuListView.addFooterView(view);
-            this.footerView = view;
-            this.footerView.setOnClickListener(headerFooterClickListener);
-            this.footerView.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         }
     }
 
@@ -482,8 +455,30 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         return headerView;
     }
 
+    public void setHeaderView(View view) {
+        if (this.headerView == null) {
+            this.menuListView.addHeaderView(view);
+            this.headerView = view;
+            this.headerView.setOnClickListener(headerFooterClickListener);
+            this.headerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        }
+    }
+
     public View getFooterView() {
         return footerView;
+    }
+
+    public void setFooterView(View view) {
+        if (this.footerView == null) {
+            this.menuListView.addFooterView(view);
+            this.footerView = view;
+            this.footerView.setOnClickListener(headerFooterClickListener);
+            this.footerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        }
     }
 
     public void setAutoDismiss(boolean autoDismiss) {

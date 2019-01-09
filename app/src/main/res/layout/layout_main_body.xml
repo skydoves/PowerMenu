@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="15dp"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.cardview.widget.CardView
@@ -24,30 +24,30 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile1"
-                    android:onClick="onAlert"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/face2"/>
+                    android:onClick="onAlert"
+                    android:src="@drawable/face2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/profile1"
                     android:layout_centerVertical="true"
-                    android:text="Grace"
+                    android:layout_toRightOf="@+id/profile1"
                     android:fontFamily="sans-serif"
+                    android:text="Grace"
                     android:textColor="@color/md_grey_800"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:onClick="onShare"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/icon_share"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:onClick="onShare"
+                    android:src="@drawable/icon_share" />
             </RelativeLayout>
 
             <TextView
@@ -57,11 +57,11 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:ellipsize="end"
-                android:maxLines="4"
                 android:fontFamily="sans-serif"
-                android:textSize="15sp"
+                android:maxLines="4"
+                android:text="@string/board1"
                 android:textColor="@color/md_grey_600"
-                android:text="@string/board1"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -69,8 +69,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:layout_marginTop="15dp"
+        android:elevation="5dp"
         android:padding="5dp">
 
         <LinearLayout
@@ -84,30 +84,30 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile2"
-                    android:onClick="onDialog"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/face1"/>
+                    android:onClick="onDialog"
+                    android:src="@drawable/face1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/profile2"
                     android:layout_centerVertical="true"
-                    android:text="Amelia"
+                    android:layout_toRightOf="@+id/profile2"
                     android:fontFamily="sans-serif"
+                    android:text="Amelia"
                     android:textColor="@color/md_grey_800"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:onClick="onShare"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/icon_share"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:onClick="onShare"
+                    android:src="@drawable/icon_share" />
             </RelativeLayout>
 
             <TextView
@@ -117,11 +117,11 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:ellipsize="end"
-                android:maxLines="4"
                 android:fontFamily="sans-serif"
-                android:textSize="15sp"
+                android:maxLines="4"
+                android:text="@string/board2"
                 android:textColor="@color/md_grey_600"
-                android:text="@string/board2"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -129,8 +129,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:layout_marginTop="15dp"
+        android:elevation="5dp"
         android:padding="5dp">
 
         <LinearLayout
@@ -144,30 +144,30 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile3"
-                    android:onClick="onCustomDialog"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/face3"/>
+                    android:onClick="onCustomDialog"
+                    android:src="@drawable/face3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/profile3"
                     android:layout_centerVertical="true"
-                    android:text="Sophie"
+                    android:layout_toRightOf="@+id/profile3"
                     android:fontFamily="sans-serif"
+                    android:text="Sophie"
                     android:textColor="@color/md_grey_800"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ImageView
-                    android:onClick="onShare"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/icon_share"
                     android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:onClick="onShare"
+                    android:src="@drawable/icon_share" />
             </RelativeLayout>
 
             <TextView
@@ -177,11 +177,11 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:ellipsize="end"
-                android:maxLines="4"
                 android:fontFamily="sans-serif"
-                android:textSize="15sp"
+                android:maxLines="4"
+                android:text="@string/board3"
                 android:textColor="@color/md_grey_600"
-                android:text="@string/board3"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

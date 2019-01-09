@@ -60,7 +60,7 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
     @Override
     public View getView(final int index, View view, ViewGroup viewGroup) {
-        if(view != null && listView != null && listView.getOnItemClickListener() != null) {
+        if (view != null && listView != null && listView.getOnItemClickListener() != null) {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -90,23 +90,23 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     }
 
     @Override
-    public void setSelectedPosition(int position) {
-        this.selectedPosition = position;
-    }
-
-    @Override
     public int getSelectedPosition() {
         return this.selectedPosition;
     }
 
     @Override
-    public void setListView(ListView listView) {
-        this.listView = listView;
+    public void setSelectedPosition(int position) {
+        this.selectedPosition = position;
     }
 
     @Override
     public ListView getListView() {
         return this.listView;
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        this.listView = listView;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     public int getContentViewHeight() {
         int totalHeight = 0;
 
-        for(int i=0; i<getCount(); i++) {
+        for (int i = 0; i < getCount(); i++) {
             View view = getView(i, null, getListView());
             view.measure(
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),

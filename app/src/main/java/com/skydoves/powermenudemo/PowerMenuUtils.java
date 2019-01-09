@@ -1,6 +1,5 @@
 package com.skydoves.powermenudemo;
 
-import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +14,8 @@ import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
+
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * Developed by skydoves on 2017-10-29.

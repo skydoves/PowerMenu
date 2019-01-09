@@ -1,7 +1,6 @@
 package com.skydoves.powermenudemo;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +11,8 @@ import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Developed by skydoves on 2017-10-29.
@@ -27,6 +28,47 @@ public class MainActivity extends AppCompatActivity {
     private PowerMenu dialogMenu;
     private CustomPowerMenu customDialogMenu;
     private PowerMenu iconMenu;
+    private OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
+        @Override
+        public void onItemClick(int position, PowerMenuItem item) {
+            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            hamburgerMenu.setSelectedPosition(position);
+        }
+    };
+    private OnDismissedListener onHamburgerMenuDismissedListener = new OnDismissedListener() {
+        @Override
+        public void onDismissed() {
+            Log.d("Test", "onDismissed hamburger menu");
+        }
+    };
+    private OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
+        @Override
+        public void onItemClick(int position, PowerMenuItem item) {
+            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            profileMenu.dismiss();
+        }
+    };
+    private OnMenuItemClickListener<String> onWriteItemClickListener = new OnMenuItemClickListener<String>() {
+        @Override
+        public void onItemClick(int position, String title) {
+            Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
+            writeMenu.dismiss();
+        }
+    };
+    private OnMenuItemClickListener<String> onAlertItemClickListener = new OnMenuItemClickListener<String>() {
+        @Override
+        public void onItemClick(int position, String title) {
+            Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
+            alertMenu.dismiss();
+        }
+    };
+    private OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
+        @Override
+        public void onItemClick(int position, PowerMenuItem item) {
+            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            iconMenu.dismiss();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,55 +127,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private  OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, PowerMenuItem item) {
-            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            hamburgerMenu.setSelectedPosition(position);
-        }
-    };
-
-    private OnDismissedListener onHamburgerMenuDismissedListener = new OnDismissedListener() {
-        @Override
-        public void onDismissed() {
-            Log.d("Test", "onDismissed hamburger menu");
-        }
-    };
-
-    private OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, PowerMenuItem item) {
-            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            profileMenu.dismiss();
-        }
-    };
-
-    private OnMenuItemClickListener<String> onWriteItemClickListener = new OnMenuItemClickListener<String>() {
-        @Override
-        public void onItemClick(int position, String title) {
-            Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
-            writeMenu.dismiss();
-        }
-    };
-
-    private OnMenuItemClickListener<String> onAlertItemClickListener = new OnMenuItemClickListener<String>() {
-        @Override
-        public void onItemClick(int position, String title) {
-            Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
-            alertMenu.dismiss();
-        }
-    };
-
-    private OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<PowerMenuItem>() {
-        @Override
-        public void onItemClick(int position, PowerMenuItem item) {
-            Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-            iconMenu.dismiss();
-        }
-    };
-
     public void onHamburger(View view) {
-        if(hamburgerMenu.isShowing()) {
+        if (hamburgerMenu.isShowing()) {
             hamburgerMenu.dismiss();
             return;
         }
@@ -141,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onProfile(View view) {
-        if(profileMenu.isShowing()) {
+        if (profileMenu.isShowing()) {
             profileMenu.dismiss();
             return;
         }
@@ -149,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDialog(View view) {
-        if(dialogMenu.isShowing()) {
+        if (dialogMenu.isShowing()) {
             dialogMenu.dismiss();
             return;
         }
@@ -158,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCustomDialog(View view) {
-        if(customDialogMenu.isShowing()) {
+        if (customDialogMenu.isShowing()) {
             customDialogMenu.dismiss();
             return;
         }
@@ -167,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onWrite(View view) {
-        if(writeMenu.isShowing()) {
+        if (writeMenu.isShowing()) {
             writeMenu.dismiss();
             return;
         }
@@ -176,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAlert(View view) {
-        if(alertMenu.isShowing()) {
+        if (alertMenu.isShowing()) {
             alertMenu.dismiss();
             return;
         }
@@ -185,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onShare(View view) {
-        if(iconMenu.isShowing()) {
+        if (iconMenu.isShowing()) {
             iconMenu.dismiss();
             return;
         }
@@ -194,19 +189,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(hamburgerMenu.isShowing())
+        if (hamburgerMenu.isShowing())
             hamburgerMenu.dismiss();
-        else if(profileMenu.isShowing())
+        else if (profileMenu.isShowing())
             profileMenu.dismiss();
-        else if(writeMenu.isShowing())
+        else if (writeMenu.isShowing())
             writeMenu.dismiss();
-        else if(alertMenu.isShowing())
+        else if (alertMenu.isShowing())
             alertMenu.dismiss();
-        else if(dialogMenu.isShowing())
+        else if (dialogMenu.isShowing())
             dialogMenu.dismiss();
-        else if(customDialogMenu.isShowing())
+        else if (customDialogMenu.isShowing())
             customDialogMenu.dismiss();
-        else if(iconMenu.isShowing())
+        else if (iconMenu.isShowing())
             iconMenu.dismiss();
         else
             super.onBackPressed();

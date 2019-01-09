@@ -17,9 +17,6 @@
 
 package com.skydoves.powermenu;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -29,6 +26,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.OnLifecycleEvent;
+
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> implements IMenuItem<T> {
 
@@ -37,9 +38,9 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
         Builder<T, E> builder = (Builder) abstractMenuBuilder;
 
-        if(builder.menuItemClickListener != null)
+        if (builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
-        if(builder.selected != -1)
+        if (builder.selected != -1)
             setSelectedPosition(builder.selected);
 
         this.adapter = builder.adapter;
@@ -51,12 +52,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     @Override
     protected void initialize(Context context) {
         super.initialize(context);
-        this.adapter = (E)(new MenuBaseAdapter<>(menuListView));
-    }
-
-    @Override
-    public void setListView(ListView listView) {
-        getAdapter().setListView(getMenuListView());
+        this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
     }
 
     @Override
@@ -65,8 +61,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     }
 
     @Override
-    public void setSelectedPosition(int position) {
-        getAdapter().setSelectedPosition(position);
+    public void setListView(ListView listView) {
+        getAdapter().setListView(getMenuListView());
     }
 
     @Override
@@ -75,8 +71,13 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     }
 
     @Override
+    public void setSelectedPosition(int position) {
+        getAdapter().setSelectedPosition(position);
+    }
+
+    @Override
     public void addItem(Object item) {
-        getAdapter().addItem((T)item);
+        getAdapter().addItem((T) item);
     }
 
     @Override
@@ -140,7 +141,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
         }
 
         public Builder setOnMenuItemClickListener(Object menuItemClickListener) {
-            this.menuItemClickListener = (OnMenuItemClickListener<T>)menuItemClickListener;
+            this.menuItemClickListener = (OnMenuItemClickListener<T>) menuItemClickListener;
             return this;
         }
 
@@ -245,12 +246,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
         }
 
         public Builder addItem(Object item) {
-            this.Ts.add((T)item);
+            this.Ts.add((T) item);
             return this;
         }
 
         public Builder addItem(int position, Object item) {
-            this.Ts.add(position, (T)item);
+            this.Ts.add(position, (T) item);
             return this;
         }
 

@@ -17,19 +17,20 @@
 
 package com.skydoves.powermenu;
 
-import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.lifecycle.LifecycleOwner;
+
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractMenuBuilder {
 
     protected Context context;
     protected LayoutInflater layoutInflater;
-    
+
     protected boolean showBackground = true;
     protected LifecycleOwner lifecycleOwner = null;
     protected View.OnClickListener backgroundClickListener = null;

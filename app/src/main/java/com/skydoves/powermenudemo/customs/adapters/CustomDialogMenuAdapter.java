@@ -26,7 +26,7 @@ public class CustomDialogMenuAdapter extends MenuBaseAdapter<NameCardMenuItem> {
     public View getView(int index, View view, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
 
-        if(view == null) {
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_name_card, viewGroup, false);
         }

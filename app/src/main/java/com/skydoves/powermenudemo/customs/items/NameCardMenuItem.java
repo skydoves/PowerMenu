@@ -18,20 +18,20 @@ public class NameCardMenuItem {
         this.content = content;
     }
 
-    public void setIcon(Drawable drawable) {
-        this.icon = drawable;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Drawable getIcon() {
         return this.icon;
     }
 
+    public void setIcon(Drawable drawable) {
+        this.icon = drawable;
+    }
+
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContent() {

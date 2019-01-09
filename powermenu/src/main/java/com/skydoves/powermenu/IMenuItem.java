@@ -23,16 +23,21 @@ import java.util.List;
 
 public interface IMenuItem<T> {
     void addItem(T item);
+
     void addItem(int position, T item);
+
     void addItemList(List<T> itemList);
 
-    void setListView(ListView listView);
     ListView getListView();
 
-    void setSelectedPosition(int position);
+    void setListView(ListView listView);
+
     int getSelectedPosition();
 
+    void setSelectedPosition(int position);
+
     void removeItem(T item);
+
     void removeItem(int position);
 
     void clearItems();

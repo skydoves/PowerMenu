@@ -17,9 +17,6 @@
 
 package com.skydoves.powermenu;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -28,6 +25,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.OnLifecycleEvent;
 
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter> implements IMenuItem<PowerMenuItem> {
@@ -62,24 +63,24 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     }
 
     @Override
+    public ListView getListView() {
+        return getAdapter().getListView();
+    }
+
+    @Override
     public void setListView(ListView listView) {
         getAdapter().setListView(getMenuListView());
     }
 
     @Override
-    public ListView getListView() {
-        return getAdapter().getListView();
+    public int getSelectedPosition() {
+        return getAdapter().getSelectedPosition();
     }
 
     @Override
     public void setSelectedPosition(int position) {
         if (getAdapter() != null)
             getAdapter().setSelectedPosition(position);
-    }
-
-    @Override
-    public int getSelectedPosition() {
-        return getAdapter().getSelectedPosition();
     }
 
     @Override

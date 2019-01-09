@@ -10,25 +10,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:padding="10dp"
         android:text="Read More"
         android:textColor="@color/md_black_1000"
-        android:fontFamily="sans-serif"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="10dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:padding="10dp"
         android:text="Close"
         android:textColor="@color/md_black_1000"
-        android:fontFamily="sans-serif"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="10dp"/>
+        android:textStyle="bold" />
 
 </LinearLayout>
