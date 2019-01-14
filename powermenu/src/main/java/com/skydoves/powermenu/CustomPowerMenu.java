@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -22,16 +21,15 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> implements IMenuItem<T> {
+public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E>
+        implements IMenuItem<T> {
 
     protected CustomPowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
         super(context, abstractMenuBuilder);
@@ -40,8 +38,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
         if (builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
-        if (builder.selected != -1)
-            setSelectedPosition(builder.selected);
+        if (builder.selected != -1) setSelectedPosition(builder.selected);
 
         this.adapter = builder.adapter;
         this.adapter.setListView(getMenuListView());
@@ -127,7 +124,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
             this.context = context;
             this.Ts = new ArrayList<>();
             this.adapter = adapter;
-            this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.layoutInflater =
+                    (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
@@ -145,7 +143,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
             return this;
         }
 
-        public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
+        public Builder setOnBackgroundClickListener(
+                View.OnClickListener onBackgroundClickListener) {
             this.backgroundClickListener = onBackgroundClickListener;
             return this;
         }

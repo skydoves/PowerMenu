@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -45,7 +44,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
         final Context context = viewGroup.getContext();
 
         if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater =
+                    (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_power_menu, viewGroup, false);
         }
 
@@ -69,24 +69,20 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
             setSelectedPosition(index);
 
             if (selectedMenuColor == -2)
-                background.setBackgroundColor(context.getResources().getColor(R.color.menu_background));
-            else
-                background.setBackgroundColor(selectedMenuColor);
+                background.setBackgroundColor(
+                        context.getResources().getColor(R.color.menu_background));
+            else background.setBackgroundColor(selectedMenuColor);
 
             if (selectedTextColor == -2)
                 title.setTextColor(context.getResources().getColor(R.color.menu_text_selected));
-            else
-                title.setTextColor(selectedTextColor);
+            else title.setTextColor(selectedTextColor);
         } else {
-            if (menuColor == -2)
-                background.setBackgroundColor(Color.WHITE);
-            else
-                background.setBackgroundColor(menuColor);
+            if (menuColor == -2) background.setBackgroundColor(Color.WHITE);
+            else background.setBackgroundColor(menuColor);
 
             if (textColor == -2)
                 title.setTextColor(context.getResources().getColor(R.color.menu_text_no_selected));
-            else
-                title.setTextColor(textColor);
+            else title.setTextColor(textColor);
         }
         return super.getView(index, view, viewGroup);
     }

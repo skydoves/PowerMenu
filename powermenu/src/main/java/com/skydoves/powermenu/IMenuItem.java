@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -18,7 +17,6 @@
 package com.skydoves.powermenu;
 
 import android.widget.ListView;
-
 import java.util.List;
 
 public interface IMenuItem<T> {

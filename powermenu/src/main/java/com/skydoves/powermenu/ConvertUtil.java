@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -25,7 +24,8 @@ import android.util.TypedValue;
 public class ConvertUtil {
     public static int convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
-        return Math.round(TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics()));
+        return Math.round(
+                TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics()));
     }
 }
