@@ -1,16 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
-
-publish {
-    userOrg = 'devmagician'
-    groupId = 'com.github.skydoves'
-    artifactId = 'powermenu'
-    publishVersion = '2.0.6'
-    desc = 'This is PowerMenu by skydoves'
-    website = 'https://github.com/skydoves/PowerMenu'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
-}
+apply from: '../publish.gradle'
 
 android {
     compileSdkVersion 28
@@ -28,3 +17,5 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$accompatVersion"
     implementation "androidx.cardview:cardview:$androidxVersion"
 }
+
+apply from: '../spotless.gradle'

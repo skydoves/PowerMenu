@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'devmagician'
+    groupId = 'com.github.skydoves'
+    artifactId = 'powermenu'
+    publishVersion = '2.0.6'
+    desc = 'This is PowerMenu by skydoves'
+    website = 'https://github.com/skydoves/PowerMenu'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
