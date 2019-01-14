@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -17,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -29,7 +29,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -64,42 +63,49 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     protected int contentViewPadding;
     private boolean autoDismiss;
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-            if (autoDismiss) {
-                dismiss();
-            }
-            menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
-        }
-    };
-    private OnMenuItemClickListener onMenuItemClickListener = new OnMenuItemClickListener<E>() {
-        @Override
-        public void onItemClick(int position, E item) {
-        }
-    };
-    private View.OnClickListener background_clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (!allowTouchBackground)
-                dismiss();
-        }
-    };
-    private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
-                dismiss();
-                return true;
-            }
-            return false;
-        }
-    };
-    private View.OnClickListener headerFooterClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        }
-    };
+    private AdapterView.OnItemClickListener itemClickListener =
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+                    if (autoDismiss) {
+                        dismiss();
+                    }
+                    menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+                }
+            };
+    private OnMenuItemClickListener onMenuItemClickListener =
+            new OnMenuItemClickListener<E>() {
+                @Override
+                public void onItemClick(int position, E item) {
+                    // empty body
+                }
+            };
+    private View.OnClickListener background_clickListener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!allowTouchBackground) dismiss();
+                }
+            };
+    private View.OnTouchListener onTouchListener =
+            new View.OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
+                        dismiss();
+                        return true;
+                    }
+                    return false;
+                }
+            };
+    private View.OnClickListener headerFooterClickListener =
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // empty body
+                }
+            };
 
     protected AbstractPowerMenu(Context context) {
         initialize(context);
@@ -118,39 +124,40 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         setIsClipping(builder.isClipping);
         setAutoDismiss(builder.autoDismiss);
 
-        if (builder.lifecycleOwner != null)
-            setLifecycleOwner(builder.lifecycleOwner);
+        if (builder.lifecycleOwner != null) setLifecycleOwner(builder.lifecycleOwner);
         if (builder.backgroundClickListener != null)
             setOnBackgroundClickListener(builder.backgroundClickListener);
         if (builder.onDismissedListener != null)
             setOnDismissedListener(builder.onDismissedListener);
-        if (builder.headerView != null)
-            setHeaderView(builder.headerView);
-        if (builder.footerView != null)
-            setFooterView(builder.footerView);
-        if (builder.animationStyle != -1)
-            setAnimationStyle(builder.animationStyle);
-        if (builder.width != 0)
-            setWidth(builder.width);
-        if (builder.height != 0)
-            setHeight(builder.height);
-        if (builder.divider != null)
-            setDivider(builder.divider);
-        if (builder.dividerHeight != 0)
-            setDividerHeight(builder.dividerHeight);
+        if (builder.headerView != null) setHeaderView(builder.headerView);
+        if (builder.footerView != null) setFooterView(builder.footerView);
+        if (builder.animationStyle != -1) setAnimationStyle(builder.animationStyle);
+        if (builder.width != 0) setWidth(builder.width);
+        if (builder.height != 0) setHeight(builder.height);
+        if (builder.divider != null) setDivider(builder.divider);
+        if (builder.dividerHeight != 0) setDividerHeight(builder.dividerHeight);
     }
 
+    @SuppressLint("InflateParams")
     @SuppressWarnings("ConstantConditions")
     protected void initialize(Context context) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
         backgroundView.setOnClickListener(background_clickListener);
         backgroundView.setAlpha(0.5f);
-        backgroundWindow = new PopupWindow(backgroundView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        backgroundWindow =
+                new PopupWindow(
+                        backgroundView,
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT);
 
         menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
         menuListView = menuView.findViewById(R.id.power_menu_listView);
-        menuWindow = new PopupWindow(menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        menuWindow =
+                new PopupWindow(
+                        menuView,
+                        FrameLayout.LayoutParams.WRAP_CONTENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT);
         menuCard = menuView.findViewById(R.id.power_menu_card);
 
         setFocusable(false);
@@ -210,14 +217,20 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     public void showAsAnchorRightTop(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
-            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2, -anchor.getMeasuredHeight());
+            menuWindow.showAsDropDown(
+                    anchor,
+                    anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+                    -anchor.getMeasuredHeight());
         }
     }
 
     public void showAsAnchorRightBottom(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
-            menuWindow.showAsDropDown(anchor, anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2, -getContentViewPadding());
+            menuWindow.showAsDropDown(
+                    anchor,
+                    anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+                    -getContentViewPadding());
         }
     }
 
@@ -252,7 +265,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     public void showAsAnchorCenter(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
-            menuWindow.showAsDropDown(anchor,
+            menuWindow.showAsDropDown(
+                    anchor,
                     anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
                     -anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
         }
@@ -268,8 +282,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
             menuWindow.dismiss();
             backgroundWindow.dismiss();
             isShowing = false;
-            if (onDismissedListener != null)
-                onDismissedListener.onDismissed();
+            if (onDismissedListener != null) onDismissedListener.onDismissed();
         }
     }
 
@@ -312,7 +325,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     public void setWidth(int width) {
         this.menuWindow.setWidth(width);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams =
+                (FrameLayout.LayoutParams) menuListView.getLayoutParams();
         layoutParams.width = width - contentViewPadding;
         getMenuListView().setLayoutParams(layoutParams);
     }
@@ -324,7 +338,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
 
     protected void setMeasuredHeight(int height) {
         this.menuWindow.setHeight(height);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) menuListView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams =
+                (FrameLayout.LayoutParams) menuListView.getLayoutParams();
         layoutParams.height = height - contentViewPadding;
         getMenuListView().setLayoutParams(layoutParams);
     }
@@ -350,10 +365,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     public void setAnimation(MenuAnimation menuAnimation) {
-        if (menuAnimation == MenuAnimation.NONE)
-            menuWindow.setAnimationStyle(0);
-        else if (menuAnimation == MenuAnimation.DROP_DOWN)
-            menuWindow.setAnimationStyle(-1);
+        if (menuAnimation == MenuAnimation.NONE) menuWindow.setAnimationStyle(0);
+        else if (menuAnimation == MenuAnimation.DROP_DOWN) menuWindow.setAnimationStyle(-1);
         else if (menuAnimation == MenuAnimation.FADE) {
             menuWindow.setAnimationStyle(R.style.FadeMenuAnimation);
             backgroundWindow.setAnimationStyle(R.style.FadeMenuAnimation);

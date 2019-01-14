@@ -14,6 +14,7 @@ import com.skydoves.powermenudemo.R;
  * Copyright (c) 2017 skydoves rights reserved.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class CenterMenuAdapter extends MenuBaseAdapter<String> {
 
     public CenterMenuAdapter() {

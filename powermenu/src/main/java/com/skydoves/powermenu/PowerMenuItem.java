@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -17,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
     protected String title;
     protected int icon;

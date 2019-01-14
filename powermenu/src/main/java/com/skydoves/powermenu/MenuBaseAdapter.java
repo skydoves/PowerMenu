@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -21,10 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("WeakerAccess")
 public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
     private List<T> itemList;
@@ -61,12 +60,18 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     @Override
     public View getView(final int index, View view, ViewGroup viewGroup) {
         if (view != null && listView != null && listView.getOnItemClickListener() != null) {
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listView.getOnItemClickListener().onItemClick(listView, view, index + listView.getHeaderViewsCount(), getItemId(index));
-                }
-            });
+            view.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            listView.getOnItemClickListener()
+                                    .onItemClick(
+                                            listView,
+                                            view,
+                                            index + listView.getHeaderViewsCount(),
+                                            getItemId(index));
+                        }
+                    });
         }
         return view;
     }

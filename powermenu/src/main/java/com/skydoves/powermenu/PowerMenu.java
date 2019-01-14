@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -22,16 +21,15 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter> implements IMenuItem<PowerMenuItem> {
+public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
+        implements IMenuItem<PowerMenuItem> {
 
     protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
         super(context, abstractMenuBuilder);
@@ -41,16 +39,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
         setSelectedEffect(builder.selectedEffect);
         if (builder.menuItemClickListener != null)
             setOnMenuItemClickListener(builder.menuItemClickListener);
-        if (builder.textColor != -2)
-            setTextColor(builder.textColor);
-        if (builder.menuColor != -2)
-            setMenuColor(builder.menuColor);
-        if (builder.selectedTextColor != -2)
-            setSelectedTextColor(builder.selectedTextColor);
-        if (builder.selectedMenuColor != -2)
-            setSelectedMenuColor(builder.selectedMenuColor);
-        if (builder.selected != -1)
-            setSelectedPosition(builder.selected);
+        if (builder.textColor != -2) setTextColor(builder.textColor);
+        if (builder.menuColor != -2) setMenuColor(builder.menuColor);
+        if (builder.selectedTextColor != -2) setSelectedTextColor(builder.selectedTextColor);
+        if (builder.selectedMenuColor != -2) setSelectedMenuColor(builder.selectedMenuColor);
+        if (builder.selected != -1) setSelectedPosition(builder.selected);
 
         this.menuListView.setAdapter(adapter);
         addItemList(builder.powerMenuItems);
@@ -79,44 +72,37 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
     @Override
     public void setSelectedPosition(int position) {
-        if (getAdapter() != null)
-            getAdapter().setSelectedPosition(position);
+        if (getAdapter() != null) getAdapter().setSelectedPosition(position);
     }
 
     @Override
     public void addItem(PowerMenuItem item) {
-        if (getAdapter() != null)
-            getAdapter().addItem(item);
+        if (getAdapter() != null) getAdapter().addItem(item);
     }
 
     @Override
     public void addItem(int position, PowerMenuItem item) {
-        if (getAdapter() != null)
-            getAdapter().addItem(position, item);
+        if (getAdapter() != null) getAdapter().addItem(position, item);
     }
 
     @Override
     public void addItemList(List<PowerMenuItem> itemList) {
-        if (getAdapter() != null)
-            getAdapter().addItemList(itemList);
+        if (getAdapter() != null) getAdapter().addItemList(itemList);
     }
 
     @Override
     public void removeItem(PowerMenuItem item) {
-        if (getAdapter() != null)
-            getAdapter().removeItem(item);
+        if (getAdapter() != null) getAdapter().removeItem(item);
     }
 
     @Override
     public void removeItem(int position) {
-        if (getAdapter() != null)
-            getAdapter().removeItem(position);
+        if (getAdapter() != null) getAdapter().removeItem(position);
     }
 
     @Override
     public void clearItems() {
-        if (adapter != null)
-            getAdapter().clearItems();
+        if (adapter != null) getAdapter().clearItems();
     }
 
     @Override
@@ -163,7 +149,8 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
         public Builder(Context context) {
             this.context = context;
             this.powerMenuItems = new ArrayList<>();
-            this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.layoutInflater =
+                    (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
@@ -176,12 +163,14 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
             return this;
         }
 
-        public Builder setOnMenuItemClickListener(OnMenuItemClickListener<PowerMenuItem> menuItemClickListener) {
+        public Builder setOnMenuItemClickListener(
+                OnMenuItemClickListener<PowerMenuItem> menuItemClickListener) {
             this.menuItemClickListener = menuItemClickListener;
             return this;
         }
 
-        public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
+        public Builder setOnBackgroundClickListener(
+                View.OnClickListener onBackgroundClickListener) {
             this.backgroundClickListener = onBackgroundClickListener;
             return this;
         }

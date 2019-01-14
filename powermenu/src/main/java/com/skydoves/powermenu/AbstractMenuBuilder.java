@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -22,7 +21,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import androidx.lifecycle.LifecycleOwner;
 
 @SuppressWarnings("WeakerAccess")

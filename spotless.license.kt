@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2017 skydoves
  *
@@ -13,34 +14,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.skydoves.powermenu;
-
-import android.widget.ListView;
-import java.util.List;
-
-public interface IMenuItem<T> {
-    void addItem(T item);
-
-    void addItem(int position, T item);
-
-    void addItemList(List<T> itemList);
-
-    ListView getListView();
-
-    void setListView(ListView listView);
-
-    int getSelectedPosition();
-
-    void setSelectedPosition(int position);
-
-    void removeItem(T item);
-
-    void removeItem(int position);
-
-    void clearItems();
-
-    List<T> getItemList();
-
-    int getContentViewHeight();
-}
+ 
