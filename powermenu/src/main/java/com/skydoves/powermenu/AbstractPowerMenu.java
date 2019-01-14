@@ -76,7 +76,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     private OnMenuItemClickListener onMenuItemClickListener =
             new OnMenuItemClickListener<E>() {
                 @Override
-                public void onItemClick(int position, E item) {}
+                public void onItemClick(int position, E item) {
+                    // empty body
+                }
             };
     private View.OnClickListener background_clickListener =
             new View.OnClickListener() {
@@ -100,7 +102,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     private View.OnClickListener headerFooterClickListener =
             new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {}
+                public void onClick(View view) {
+                    // empty body
+                }
             };
 
     protected AbstractPowerMenu(Context context) {
