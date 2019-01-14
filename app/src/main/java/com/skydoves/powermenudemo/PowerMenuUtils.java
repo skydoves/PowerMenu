@@ -22,6 +22,7 @@ import androidx.lifecycle.LifecycleOwner;
  * Copyright (c) 2017 skydoves rights reserved.
  */
 
+@SuppressWarnings("WeakerAccess")
 public class PowerMenuUtils {
 
     public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener, OnDismissedListener onDismissedListener) {

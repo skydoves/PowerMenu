@@ -25,6 +25,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("WeakerAccess")
 public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
     private List<T> itemList;

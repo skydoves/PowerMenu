@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+@SuppressWarnings({"WeakerAccess", "ConstantConditions"})
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
 
     private int textColor = -2;

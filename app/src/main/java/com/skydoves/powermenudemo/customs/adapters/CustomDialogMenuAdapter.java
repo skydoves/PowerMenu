@@ -16,6 +16,7 @@ import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
  * Copyright (c) 2017 skydoves rights reserved.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class CustomDialogMenuAdapter extends MenuBaseAdapter<NameCardMenuItem> {
 
     public CustomDialogMenuAdapter() {

@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;
 
+@SuppressWarnings("WeakerAccess")
 public class ConvertUtil {
     public static int convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
