@@ -15,9 +15,6 @@ And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
     implementation "com.github.skydoves:powermenu:2.0.6"
-    
-    // If your project is not migrated to AndroidX yet
-    implementation "com.github.skydoves:powermenu:2.0.5"
 }
 ```
 
@@ -27,18 +24,18 @@ dependencies {
 This is a basic example on a screenshot. You can create `PowerMenu` using `PowerMenu.Builder`.
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
-                .addItemList(list) // list has "Novel", "Poerty", "Art"
-                .addItem(new PowerMenuItem("Journals", false))
-                .addItem(new PowerMenuItem("Travel", false))
-                .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT)
-                .setMenuRadius(10f)
-                .setMenuShadow(10f)
-                .setTextColor(context.getResources().getColor(R.color.md_grey_800))
-                .setSelectedTextColor(Color.WHITE)
-                .setMenuColor(Color.WHITE)
-                .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
-                .setOnMenuItemClickListener(onMenuItemClickListener)
-                .build();
+            .addItemList(list) // list has "Novel", "Poerty", "Art"
+            .addItem(new PowerMenuItem("Journals", false))
+            .addItem(new PowerMenuItem("Travel", false))
+            .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT)
+            .setMenuRadius(10f)
+            .setMenuShadow(10f)
+            .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+            .setSelectedTextColor(Color.WHITE)
+            .setMenuColor(Color.WHITE)
+            .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
+            .setOnMenuItemClickListener(onMenuItemClickListener)
+            .build();
 ```
 
 You can add items or an item list using `PowerMenuItem` class. This is how to initialize `PowerMenuItem`.
@@ -125,15 +122,15 @@ public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
 The last, create CustomPowerMenu and attach `onMenuItemClickListener`.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new IconMenuAdapter())
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
-                .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
-                .setOnMenuItemClickListener(onIconMenuItemClickListener)
-                .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
-                .setMenuRadius(10f)
-                .setMenuShadow(10f)
-                .build();
+          .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
+          .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
+          .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
+          .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
+          .setOnMenuItemClickListener(onIconMenuItemClickListener)
+          .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
+          .setMenuRadius(10f)
+          .setMenuShadow(10f)
+          .build();
 ```
 ```java
 private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener = new OnMenuItemClickListener<IconPowerMenuItem>() {
@@ -154,16 +151,16 @@ You can create seems like dialogs using `PowerMenu`.<br><br>
 Below example is normal dialog. Dialogs are composed of a header, footer and body. <br>
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
-                .setHeaderView(R.layout.layout_dialog_header) // header used for title
-                .setFooterView(R.layout.layout_dialog_footer) // footer used for yes and no buttons
-                .addItem(new PowerMenuItem("This is DialogPowerMenu", false)) // this is body
-                .setLifecycleOwner(lifecycleOwner)
-                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
-                .setMenuRadius(10f)
-                .setMenuShadow(10f)
-                .setWith(600)
-                .setSelectedEffect(false)
-                .build();
+           .setHeaderView(R.layout.layout_dialog_header) // header used for title
+           .setFooterView(R.layout.layout_dialog_footer) // footer used for yes and no buttons
+           .addItem(new PowerMenuItem("This is DialogPowerMenu", false)) // this is body
+           .setLifecycleOwner(lifecycleOwner)
+           .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+           .setMenuRadius(10f)
+           .setMenuShadow(10f)
+           .setWith(600)
+           .setSelectedEffect(false)
+           .build();
 ```
 
 And you can create a customized dialog like below.
