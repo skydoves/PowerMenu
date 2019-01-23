@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.skydoves.powermenu.powermenudemo"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
     }
     buildTypes {
         release {
@@ -21,8 +22,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$accompatVersion"
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    implementation "com.google.android.material:material:$versions.googleMaterial"
+    implementation "de.hdodenhof:circleimageview:$versions.circleimageview"
     implementation project(":powermenu")
 }

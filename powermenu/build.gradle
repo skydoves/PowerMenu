@@ -1,21 +1,22 @@
 apply plugin: 'com.android.library'
+apply from: '../dependencies.gradle'
 apply from: '../publish.gradle'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
         multiDexEnabled = true
     }
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$accompatVersion"
-    implementation "androidx.cardview:cardview:$androidxVersion"
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    implementation "androidx.cardview:cardview:$versions.cardView"
 }
 
 apply from: '../spotless.gradle'
