@@ -6,6 +6,7 @@
 [![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326)
 [![Javadoc](https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg)](https://skydoves.github.io/libraries/powermenu/javadoc/index.html) <br>
 The most powerful and easiest way to implement modern popup. <br>
+PowerMenu can be fully customized and used for popup dialogs. <br>
 
 ![gif1](https://user-images.githubusercontent.com/24237865/32500436-c52b02ec-c418-11e7-8027-9aceb5cbe368.gif)
 ![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
@@ -170,16 +171,16 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
 And we can create a customized dialog like below.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
-                .setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
-                .setFooterView(R.layout.layout_custom_dialog_footer) // footer used for Read More and Close buttons
-                 // this is body
-                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
-                .setLifecycleOwner(lifecycleOwner)
-                .setAnimation(MenuAnimation.SHOW_UP_CENTER)
-                .setWith(800)
-                .setMenuRadius(10f)
-                .setMenuShadow(10f)
-                .build();
+         setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
+        .setFooterView(R.layout.layout_custom_dialog_footer) // footer used for Read More and Close buttons
+         // this is body
+        .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+        .setLifecycleOwner(lifecycleOwner)
+        .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+        .setWith(800)
+        .setMenuRadius(10f)
+        .setMenuShadow(10f)
+        .build();
 ```
 
 ## Anchor
