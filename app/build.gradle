@@ -27,3 +27,5 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:$versions.circleimageview"
     implementation project(":powermenu")
 }
+
+apply from: '../spotless.gradle'

@@ -1,10 +1,26 @@
+/*
+ * Copyright (C) 2017 skydoves
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.skydoves.powermenudemo;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-
+import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
 import com.skydoves.powermenu.OnDismissedListener;
@@ -15,17 +31,14 @@ import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
-import androidx.lifecycle.LifecycleOwner;
-
-/**
- * Developed by skydoves on 2017-10-29.
- * Copyright (c) 2017 skydoves rights reserved.
- */
-
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unchecked"})
 public class PowerMenuUtils {
 
-    public static PowerMenu getHamburgerPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener, OnDismissedListener onDismissedListener) {
+    public static PowerMenu getHamburgerPowerMenu(
+            Context context,
+            LifecycleOwner lifecycleOwner,
+            OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener,
+            OnDismissedListener onDismissedListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Novel", true))
                 .addItem(new PowerMenuItem("Poetry", false))
@@ -46,7 +59,10 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static PowerMenu getProfilePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
+    public static PowerMenu getProfilePowerMenu(
+            Context context,
+            LifecycleOwner lifecycleOwner,
+            OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("Profile", false))
                 .addItem(new PowerMenuItem("Board", false))
@@ -62,8 +78,12 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static CustomPowerMenu getWritePowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
-        ColorDrawable drawable = new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300));
+    public static CustomPowerMenu getWritePowerMenu(
+            Context context,
+            LifecycleOwner lifecycleOwner,
+            OnMenuItemClickListener onMenuItemClickListener) {
+        ColorDrawable drawable =
+                new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300));
         return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
                 .addItem("Novel")
                 .addItem("Poetry")
@@ -80,7 +100,10 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static CustomPowerMenu getAlertPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
+    public static CustomPowerMenu getAlertPowerMenu(
+            Context context,
+            LifecycleOwner lifecycleOwner,
+            OnMenuItemClickListener onMenuItemClickListener) {
         return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
                 .addItem("You need to login!")
                 .setLifecycleOwner(lifecycleOwner)
@@ -89,14 +112,18 @@ public class PowerMenuUtils {
                 .setMenuShadow(10f)
                 .setFocusable(true)
                 .setOnMenuItemClickListener(onMenuItemClickListener)
-                .setOnBackgroundClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                    }
-                }).build();
+                .setOnBackgroundClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {}
+                        })
+                .build();
     }
 
-    public static PowerMenu getIconPowerMenu(Context context, LifecycleOwner lifecycleOwner, OnMenuItemClickListener onMenuItemClickListener) {
+    public static PowerMenu getIconPowerMenu(
+            Context context,
+            LifecycleOwner lifecycleOwner,
+            OnMenuItemClickListener onMenuItemClickListener) {
 
         return new PowerMenu.Builder(context)
                 .addItem(new PowerMenuItem("WeChat", R.drawable.ic_wechat))
@@ -126,11 +153,16 @@ public class PowerMenuUtils {
                 .build();
     }
 
-    public static CustomPowerMenu getCustomDialogPowerMenu(Context context, LifecycleOwner lifecycleOwner) {
+    public static CustomPowerMenu getCustomDialogPowerMenu(
+            Context context, LifecycleOwner lifecycleOwner) {
         return new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
                 .setHeaderView(R.layout.layout_custom_dialog_header)
                 .setFooterView(R.layout.layout_custom_dialog_footer)
-                .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+                .addItem(
+                        new NameCardMenuItem(
+                                context.getResources().getDrawable(R.drawable.face3),
+                                "Sophie",
+                                context.getString(R.string.board3)))
                 .setLifecycleOwner(lifecycleOwner)
                 .setAnimation(MenuAnimation.SHOW_UP_CENTER)
                 .setWidth(800)
