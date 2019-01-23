@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Copyright (C) 2017 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
 public class ConvertUtil {
-    public static int convertDpToPixel(float dp, Context context) {
+    protected static int convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
         return Math.round(
                 TypedValue.applyDimension(

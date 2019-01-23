@@ -1,9 +1,11 @@
 apply plugin: 'com.novoda.bintray-release'
+apply from: '../dependencies.gradle'
+
 publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'powermenu'
-    publishVersion = '2.0.6'
+    publishVersion = versions.versionName
     desc = 'This is PowerMenu by skydoves'
     website = 'https://github.com/skydoves/PowerMenu'
     issueTracker = "${website}/issues"

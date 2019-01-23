@@ -27,6 +27,11 @@ import androidx.lifecycle.OnLifecycleEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CustomPowerMenu is one the implementation of the {@link AbstractPowerMenu}.
+ *
+ * <p>It implements the customized {@link PowerMenu} by the user.
+ */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E>
         implements IMenuItem<T> {
@@ -112,6 +117,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
         dismiss();
     }
 
+    /** {@link CustomPowerMenu} builder class. */
     @SuppressWarnings("unchecked")
     public static class Builder<T, E extends MenuBaseAdapter<T>> extends AbstractMenuBuilder {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Copyright (C) 2017 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 package com.skydoves.powermenu;
 
+/** OnDismissedListener is for listening to the dismissing of the popup menu. */
 public interface OnDismissedListener {
+    /** invoked when the popup menu would be dismissed. */
     void onDismissed();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Copyright (C) 2017 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import androidx.lifecycle.LifecycleOwner;
 
+/**
+ * AbstractMenuBuilder is the abstract builder class of {@link PowerMenu.Builder} and {@link
+ * CustomPowerMenu.Builder}.
+ */
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractMenuBuilder {
 

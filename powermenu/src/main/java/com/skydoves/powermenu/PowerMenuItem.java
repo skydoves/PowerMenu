@@ -16,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+/** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
     protected String title;
@@ -27,19 +28,14 @@ public class PowerMenuItem {
         this.title = title;
     }
 
-    public PowerMenuItem(String title, int icon) {
-        this.title = title;
-        this.icon = icon;
-    }
-
     public PowerMenuItem(String title, Object tag) {
         this.title = title;
         this.tag = tag;
     }
 
-    public PowerMenuItem(String title, boolean isSelected) {
+    public PowerMenuItem(String title, int icon) {
         this.title = title;
-        this.isSelected = isSelected;
+        this.icon = icon;
     }
 
     public PowerMenuItem(String title, int icon, Object tag) {
@@ -48,9 +44,8 @@ public class PowerMenuItem {
         this.tag = tag;
     }
 
-    public PowerMenuItem(String title, int icon, boolean isSelected) {
+    public PowerMenuItem(String title, boolean isSelected) {
         this.title = title;
-        this.icon = icon;
         this.isSelected = isSelected;
     }
 
@@ -60,6 +55,12 @@ public class PowerMenuItem {
         this.tag = tag;
     }
 
+    public PowerMenuItem(String title, int icon, boolean isSelected) {
+        this.title = title;
+        this.icon = icon;
+        this.isSelected = isSelected;
+    }
+
     public PowerMenuItem(String title, int icon, boolean isSelected, Object tag) {
         this.title = title;
         this.icon = icon;
@@ -67,34 +68,74 @@ public class PowerMenuItem {
         this.tag = tag;
     }
 
+    /**
+     * gets the title.
+     *
+     * @return the title.
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /**
+     * sets the title.
+     *
+     * @param title title.
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * gets the selected or not.
+     *
+     * @return the selected or not.
+     */
     public boolean isSelected() {
         return this.isSelected;
     }
 
+    /**
+     * sets the selected.
+     *
+     * @param isSelected selected or not.
+     */
     public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
 
+    /**
+     * gets the tag.
+     *
+     * @return the tag.
+     */
     public Object getTag() {
         return tag;
     }
 
+    /**
+     * sets a tag.
+     *
+     * @param tag {@link Object}.
+     */
     public void setTag(Object tag) {
         this.tag = tag;
     }
 
+    /**
+     * gets the icon.
+     *
+     * @return the icon.
+     */
     public int getIcon() {
         return icon;
     }
 
+    /**
+     * sets a icon.
+     *
+     * @param icon icon.
+     */
     public void setIcon(int icon) {
         this.icon = icon;
     }

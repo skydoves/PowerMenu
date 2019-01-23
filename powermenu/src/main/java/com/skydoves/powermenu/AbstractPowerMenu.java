@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 skydoves
+ * Copyright (C) 2017 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,13 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
+/**
+ * AbstractPowerMenu is the abstract class of {@link PowerMenu} and {@link CustomPowerMenu}.
+ *
+ * <p>It implements basically almost things of the PowerMenu.
+ *
+ * <p>
+ */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements LifecycleObserver {
 
@@ -167,25 +174,66 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     }
 
+    /**
+     * sets {@link LifecycleOwner} for preventing memory leak.
+     *
+     * <p>if sets the {@link LifecycleOwner} this popup will be dismissed automatically
+     *
+     * <p>when onDestroy method called by lifecycle.
+     *
+     * @param lifecycleOwner {@link androidx.appcompat.app.AppCompatActivity},
+     *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+     *     LifecycleOwner}.
+     */
     public void setLifecycleOwner(LifecycleOwner lifecycleOwner) {
         lifecycleOwner.getLifecycle().addObserver(this);
         this.lifecycleOwner = lifecycleOwner;
     }
 
+    /**
+     * makes focusing only on the menu popup.
+     *
+     * @param focusable focusable or not.
+     */
     public void setFocusable(boolean focusable) {
         menuWindow.setBackgroundDrawable(new BitmapDrawable());
         menuWindow.setOutsideTouchable(!focusable);
     }
 
+    /**
+     * sets {@link android.view.View.OnTouchListener} manually for the outside of popup.
+     *
+     * @param onTouchListener onTouchListener.
+     */
     public void setTouchInterceptor(View.OnTouchListener onTouchListener) {
         this.menuWindow.setTouchInterceptor(onTouchListener);
     }
 
+    /**
+     * sets {@link OnMenuItemClickListener}.
+     *
+     * @param menuItemClickListener menu item click listener.
+     */
     public void setOnMenuItemClickListener(OnMenuItemClickListener<E> menuItemClickListener) {
         this.menuItemClickListener = menuItemClickListener;
         this.menuListView.setOnItemClickListener(itemClickListener);
     }
 
+    /**
+     * showing the popup to the anchor.
+     *
+     * @param anchor anchor view.
+     */
+    public void showPopup(View anchor) {
+        if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+        isShowing = true;
+    }
+
+    /**
+     * showing the popup menu as drop down to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsDropDown(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -193,6 +241,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * showing the popup menu as drop down to the anchor with x-off and y-off.
+     *
+     * @param anchor anchor view.
+     * @param xOff x-off,
+     * @param yOff y-off.
+     */
     public void showAsDropDown(View anchor, int xOff, int yOff) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -200,6 +255,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * showing the popup menu as left-top aligns to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsAnchorLeftTop(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -207,6 +267,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * showing the popup menu as left-bottom aligns to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsAnchorLeftBottom(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -214,6 +279,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * showing the popup menu as right-top aligns to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsAnchorRightTop(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -224,6 +294,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * showing the popup menu as right-bottom aligns to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsAnchorRightBottom(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -234,34 +309,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
-    public void showAtCenter(View anchor) {
-        if (!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-        }
-    }
-
-    public void showAtCenter(View anchor, int xOff, int yOff) {
-        if (!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
-        }
-    }
-
-    public void showAtLocation(View anchor, int xOff, int yOff) {
-        if (!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
-        }
-    }
-
-    public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
-        if (!isShowing()) {
-            showPopup(anchor);
-            menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
-        }
-    }
-
+    /**
+     * showing the popup menu as center align to the anchor.
+     *
+     * @param anchor anchor view.
+     */
     public void showAsAnchorCenter(View anchor) {
         if (!isShowing()) {
             showPopup(anchor);
@@ -272,11 +324,62 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
-    public void showPopup(View anchor) {
-        if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-        isShowing = true;
+    /**
+     * showing the popup menu as center aligns to the anchor.
+     *
+     * @param anchor anchor view.
+     */
+    public void showAtCenter(View anchor) {
+        if (!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+        }
     }
 
+    /**
+     * showing the popup menu as center aligns to the anchor with x-off and y-off.
+     *
+     * @param anchor anchor view.
+     * @param xOff x-off.
+     * @param yOff y-off.
+     */
+    public void showAtCenter(View anchor, int xOff, int yOff) {
+        if (!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
+        }
+    }
+
+    /**
+     * showing the popup menu to the specific location to the anchor.
+     *
+     * @param anchor anchor view.
+     * @param xOff x-off.
+     * @param yOff y-off.
+     */
+    public void showAtLocation(View anchor, int xOff, int yOff) {
+        if (!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
+        }
+    }
+
+    /**
+     * showing the popup menu to the specific location to the anchor with {@link Gravity}.
+     *
+     * @param anchor anchor view.
+     * @param gravity gravity of the menu.
+     * @param xOff x-off.
+     * @param yOff y-off.
+     */
+    public void showAtLocation(View anchor, int gravity, int xOff, int yOff) {
+        if (!isShowing()) {
+            showPopup(anchor);
+            menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
+        }
+    }
+
+    /** dismiss the popup menu. */
     public void dismiss() {
         if (isShowing()) {
             menuWindow.dismiss();
@@ -286,10 +389,20 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * gets the popup is showing or not.
+     *
+     * @return the popup is showing or not.
+     */
     public boolean isShowing() {
         return isShowing;
     }
 
+    /**
+     * gets measured width of the popup.
+     *
+     * @return measured width of the popup.
+     */
     public int getContentViewWidth() {
         int width = menuWindow.getContentView().getWidth();
         if (width == 0) {
@@ -299,6 +412,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * gets measured height of the popup.
+     *
+     * @return measured height of the popup.
+     */
     public int getContentViewHeight() {
         int height = menuWindow.getContentView().getHeight();
         if (height == 0) {
@@ -311,6 +429,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * gets the content view of the popup menu.
+     *
+     * @return content view of the popup menu.
+     */
     protected View getMeasuredContentView() {
         View contentView = menuWindow.getContentView();
         contentView.measure(
@@ -319,10 +442,20 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         return contentView;
     }
 
+    /**
+     * gets the content view padding of the popup menu.
+     *
+     * @return the content view padding view of the popup menu.
+     */
     protected int getContentViewPadding() {
         return this.contentViewPadding;
     }
 
+    /**
+     * sets the width of the popup menu.
+     *
+     * @param width width of the popup menu.
+     */
     public void setWidth(int width) {
         this.menuWindow.setWidth(width);
         FrameLayout.LayoutParams layoutParams =
@@ -331,11 +464,21 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         getMenuListView().setLayoutParams(layoutParams);
     }
 
+    /**
+     * sets the height of the popup menu.
+     *
+     * @param height height of the popup menu.
+     */
     public void setHeight(int height) {
         this.fixedHeight = true;
         this.menuWindow.setHeight(height);
     }
 
+    /**
+     * sets the measured height of the popup menu list.
+     *
+     * @param height the measured height of the popup menu list.
+     */
     protected void setMeasuredHeight(int height) {
         this.menuWindow.setHeight(height);
         FrameLayout.LayoutParams layoutParams =
@@ -344,26 +487,56 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         getMenuListView().setLayoutParams(layoutParams);
     }
 
+    /**
+     * sets the divider height of the popup menu.
+     *
+     * @param height divider height of the popup menu.
+     */
     public void setDividerHeight(int height) {
         menuListView.setDividerHeight(height);
     }
 
+    /**
+     * sets the drawable of the divider.
+     *
+     * @param divider drawable of the divider.
+     */
     public void setDivider(Drawable divider) {
         menuListView.setDivider(divider);
     }
 
+    /**
+     * sets the background is showing or not.
+     *
+     * @param show background is showing or not.
+     */
     public void setShowBackground(boolean show) {
         this.showBackground = show;
     }
 
+    /**
+     * sets the dismissed listener of the popup menu.
+     *
+     * @param onDismissedListener {@link OnDismissedListener}.
+     */
     public void setOnDismissedListener(OnDismissedListener onDismissedListener) {
         this.onDismissedListener = onDismissedListener;
     }
 
+    /**
+     * sets the background click listener of the background.
+     *
+     * @param onBackgroundClickListener {@link android.view.View.OnClickListener}.
+     */
     public void setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
         this.backgroundView.setOnClickListener(onBackgroundClickListener);
     }
 
+    /**
+     * sets animations of the popup. It will start up when the popup is showing.
+     *
+     * @param menuAnimation menu animation.
+     */
     public void setAnimation(MenuAnimation menuAnimation) {
         if (menuAnimation == MenuAnimation.NONE) menuWindow.setAnimationStyle(0);
         else if (menuAnimation == MenuAnimation.DROP_DOWN) menuWindow.setAnimationStyle(-1);
@@ -392,82 +565,74 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
             menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_Center);
     }
 
+    /**
+     * sets custom animations of the popup. It will start up when the popup is showing.
+     *
+     * @param style custom animation style.
+     */
     public void setAnimationStyle(int style) {
         this.menuWindow.setAnimationStyle(style);
     }
 
+    /**
+     * sets the corner radius of the popup menu.
+     *
+     * @param radius corner radius.
+     */
     public void setMenuRadius(float radius) {
         this.menuCard.setRadius(radius);
     }
 
+    /**
+     * sets the shadow of the popup menu.
+     *
+     * @param shadow shadow value.
+     */
     public void setMenuShadow(float shadow) {
         this.menuCard.setCardElevation(shadow);
     }
 
+    /**
+     * sets the clipping enable or unable.
+     *
+     * @param isClipping clipping enable or unable.
+     */
     public void setIsClipping(boolean isClipping) {
         this.menuWindow.setClippingEnabled(isClipping);
     }
 
+    /**
+     * sets the selected position of the popup menu. It can be used for scrolling as the position.
+     *
+     * @param position selected position.
+     */
     public void setSelection(int position) {
         this.menuListView.setSelection(position);
     }
 
+    /**
+     * sets the color of the background.
+     *
+     * @param color color value.
+     */
     public void setBackgroundColor(int color) {
         backgroundView.setBackgroundColor(color);
     }
 
+    /**
+     * sets the alpha of the background.
+     *
+     * @param alpha alpha value.
+     */
     public void setBackgroundAlpha(float alpha) {
         backgroundView.setAlpha(alpha);
     }
 
-    public void setHeaderView(int layout) {
-        if (this.headerView == null) {
-            View view = layoutInflater.inflate(layout, null, false);
-            setHeaderView(view);
-        }
-    }
-
-    public void setHeaderView(View view, Object data, boolean isSelectable) {
-        if (this.headerView == null) {
-            this.menuListView.addHeaderView(view, data, isSelectable);
-            this.headerView = view;
-            this.headerView.setOnClickListener(headerFooterClickListener);
-            this.headerView.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        }
-    }
-
-    public void setFooterView(int layout) {
-        if (this.footerView == null) {
-            View view = layoutInflater.inflate(layout, null, false);
-            setFooterView(view);
-        }
-    }
-
-    public void setFooterView(View view, Object data, boolean isSelectable) {
-        if (this.footerView == null) {
-            this.menuListView.addFooterView(view, data, isSelectable);
-            this.footerView = view;
-            this.footerView.setOnClickListener(headerFooterClickListener);
-            this.footerView.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        }
-    }
-
-    public T getAdapter() {
-        return this.adapter;
-    }
-
-    public ListView getMenuListView() {
-        return this.menuListView;
-    }
-
-    public View getHeaderView() {
-        return headerView;
-    }
-
+    /**
+     * sets the header view of the popup menu list.
+     *
+     * @param view {@link View}.
+     */
     public void setHeaderView(View view) {
         if (this.headerView == null) {
             this.menuListView.addHeaderView(view);
@@ -479,10 +644,41 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
-    public View getFooterView() {
-        return footerView;
+    /**
+     * sets the header view of the popup menu list.
+     *
+     * @param view {@link View}.
+     * @param data {@link Object}.
+     * @param isSelectable is selectable or not.
+     */
+    public void setHeaderView(View view, Object data, boolean isSelectable) {
+        if (this.headerView == null) {
+            this.menuListView.addHeaderView(view, data, isSelectable);
+            this.headerView = view;
+            this.headerView.setOnClickListener(headerFooterClickListener);
+            this.headerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        }
     }
 
+    /**
+     * sets the header view of the popup menu using layout.
+     *
+     * @param layout layout.
+     */
+    public void setHeaderView(int layout) {
+        if (this.headerView == null) {
+            View view = layoutInflater.inflate(layout, null, false);
+            setHeaderView(view);
+        }
+    }
+
+    /**
+     * sets the footer view of the popup menu list.
+     *
+     * @param view {@link View}.
+     */
     public void setFooterView(View view) {
         if (this.footerView == null) {
             this.menuListView.addFooterView(view);
@@ -494,6 +690,79 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
         }
     }
 
+    /**
+     * sets the footer view of the popup menu list.
+     *
+     * @param view {@link View}.
+     * @param data {@link Object}.
+     * @param isSelectable is selectable or not.
+     */
+    public void setFooterView(View view, Object data, boolean isSelectable) {
+        if (this.footerView == null) {
+            this.menuListView.addFooterView(view, data, isSelectable);
+            this.footerView = view;
+            this.footerView.setOnClickListener(headerFooterClickListener);
+            this.footerView.measure(
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        }
+    }
+
+    /**
+     * sets the footer view of the popup menu using layout.
+     *
+     * @param layout layout.
+     */
+    public void setFooterView(int layout) {
+        if (this.footerView == null) {
+            View view = layoutInflater.inflate(layout, null, false);
+            setFooterView(view);
+        }
+    }
+
+    /**
+     * gets the adapter of the popup menu list.
+     *
+     * @return adapter
+     */
+    public T getAdapter() {
+        return this.adapter;
+    }
+
+    /**
+     * gets the {@link ListView} of the popup menu.
+     *
+     * @return {@link ListView}.
+     */
+    public ListView getMenuListView() {
+        return this.menuListView;
+    }
+
+    /**
+     * gets the header view of the popup menu list.
+     *
+     * @return {@link View}.
+     */
+    public View getHeaderView() {
+        return headerView;
+    }
+
+    /**
+     * gets the footer view of the popup menu list.
+     *
+     * @return {@link View}.
+     */
+    public View getFooterView() {
+        return footerView;
+    }
+
+    /**
+     * sets the auto-dismissing or not.
+     *
+     * <p>The popup menu will be dismissed automatically when the item would be clicked.
+     *
+     * @param autoDismiss is auto-dismissing or not.
+     */
     public void setAutoDismiss(boolean autoDismiss) {
         this.autoDismiss = autoDismiss;
     }
