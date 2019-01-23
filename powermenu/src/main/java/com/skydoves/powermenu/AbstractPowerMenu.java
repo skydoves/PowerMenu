@@ -191,7 +191,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     /**
-     * make focusing only on the menu popup.
+     * makes focusing only on the menu popup.
      *
      * @param focusable focusable or not.
      */
@@ -201,7 +201,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     /**
-     * sets {@link android.view.View.OnTouchListener} manually.
+     * sets {@link android.view.View.OnTouchListener} manually for the outside of popup.
      *
      * @param onTouchListener onTouchListener.
      */
@@ -602,7 +602,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
     }
 
     /**
-     * sets the selected position of the popup menu.
+     * sets the selected position of the popup menu. It can be used for scrolling as the position.
      *
      * @param position selected position.
      */
