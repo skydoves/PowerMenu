@@ -16,6 +16,8 @@
 
 package com.skydoves.powermenu;
 
+/** MenuAnimation is the collection of the popup animations. */
+@SuppressWarnings("SpellCheckingInspection")
 public enum MenuAnimation {
     SHOWUP_TOP_RIGHT,
     SHOWUP_TOP_LEFT,

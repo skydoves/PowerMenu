@@ -27,9 +27,16 @@ import androidx.lifecycle.OnLifecycleEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PowerMenu is one the implementation of the {@link AbstractPowerMenu}.
+ *
+ * <p>It implements the popup showing with the item selected effect by {@link MenuListAdapter}.
+ *
+ * <p>{@link PowerMenuItem} is the member of the PowerMenu's list.
+ */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
-        implements IMenuItem<PowerMenuItem> {
+        implements IMenuItem<PowerMenuItem>, IPowerMenuAdapter {
 
     protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
         super(context, abstractMenuBuilder);
@@ -115,24 +122,29 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
         dismiss();
     }
 
-    public void setSelectedEffect(boolean effect) {
-        getAdapter().setSelectedEffect(effect);
-    }
-
+    @Override
     public void setTextColor(int color) {
         this.getAdapter().setTextColor(color);
     }
 
+    @Override
     public void setMenuColor(int color) {
         this.getAdapter().setMenuColor(color);
     }
 
+    @Override
     public void setSelectedTextColor(int color) {
         this.getAdapter().setSelectedTextColor(color);
     }
 
+    @Override
     public void setSelectedMenuColor(int color) {
         this.getAdapter().setSelectedMenuColor(color);
+    }
+
+    @Override
+    public void setSelectedEffect(boolean selectedEffect) {
+        getAdapter().setSelectedEffect(selectedEffect);
     }
 
     public static class Builder extends AbstractMenuBuilder {

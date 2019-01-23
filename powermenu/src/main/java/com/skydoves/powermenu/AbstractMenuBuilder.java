@@ -23,6 +23,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import androidx.lifecycle.LifecycleOwner;
 
+/**
+ * AbstractMenuBuilder is the abstract builder class of {@link PowerMenu.Builder} and {@link
+ * CustomPowerMenu.Builder}.
+ */
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractMenuBuilder {
 

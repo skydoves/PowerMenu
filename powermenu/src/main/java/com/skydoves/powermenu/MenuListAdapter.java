@@ -25,8 +25,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * MenuListAdapter extends {@link MenuBaseAdapter}.
+ *
+ * <p>This is the {@link PowerMenu}'s default adapter.
+ */
 @SuppressWarnings({"WeakerAccess", "ConstantConditions"})
-public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
+public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
     private int textColor = -2;
     private int menuColor = -2;
@@ -104,22 +109,27 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> {
         }
     }
 
+    @Override
     public void setTextColor(int color) {
         this.textColor = color;
     }
 
+    @Override
     public void setMenuColor(int color) {
         this.menuColor = color;
     }
 
+    @Override
     public void setSelectedTextColor(int color) {
         this.selectedTextColor = color;
     }
 
+    @Override
     public void setSelectedMenuColor(int color) {
         this.selectedMenuColor = color;
     }
 
+    @Override
     public void setSelectedEffect(boolean selectedEffect) {
         this.selectedEffect = selectedEffect;
     }
