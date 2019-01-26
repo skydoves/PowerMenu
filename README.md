@@ -12,6 +12,8 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 ![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
 
 ## Download
+[![Download](https://api.bintray.com/packages/devmagician/maven/powermenu/images/download.svg)](https://bintray.com/devmagician/maven/powermenu/_latestVersion)
+[![Jitpack](https://jitpack.io/v/skydoves/PowerMenu.svg)](https://jitpack.io/#skydoves/PowerMenu)
 ### Gradle
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
