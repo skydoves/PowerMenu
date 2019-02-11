@@ -29,6 +29,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
+import java.util.List;
+
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -41,7 +44,8 @@ import androidx.lifecycle.LifecycleOwner;
  * <p>
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements LifecycleObserver {
+public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
+    implements IMenuItem<E>, LifecycleObserver {
 
     protected View backgroundView;
     protected View menuView;
@@ -727,6 +731,61 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter> implements
      */
     public T getAdapter() {
         return this.adapter;
+    }
+
+    @Override
+    public void addItem(E item) {
+        getAdapter().addItem(item);
+    }
+
+    @Override
+    public void addItem(int position, E item) {
+        getAdapter().addItem(position, item);
+    }
+
+    @Override
+    public void addItemList(List<E> itemList) {
+        getAdapter().addItemList(itemList);
+    }
+
+    @Override
+    public ListView getListView() {
+        return getAdapter().getListView();
+    }
+
+    @Override
+    public void setListView(ListView listView) {
+        getAdapter().setListView(getMenuListView());
+    }
+
+    @Override
+    public int getSelectedPosition() {
+        return getAdapter().getSelectedPosition();
+    }
+
+    @Override
+    public void setSelectedPosition(int position) {
+        getAdapter().setSelectedPosition(position);
+    }
+
+    @Override
+    public void removeItem(E item) {
+        getAdapter().removeItem(item);
+    }
+
+    @Override
+    public void removeItem(int position) {
+        getAdapter().removeItem(position);
+    }
+
+    @Override
+    public void clearItems() {
+        getAdapter().clearItems();
+    }
+
+    @Override
+    public List<E> getItemList() {
+        return getAdapter().getItemList();
     }
 
     /**

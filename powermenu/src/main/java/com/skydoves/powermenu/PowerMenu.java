@@ -20,12 +20,13 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * PowerMenu is one the implementation of the {@link AbstractPowerMenu}.
@@ -36,7 +37,7 @@ import java.util.List;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
-        implements IMenuItem<PowerMenuItem>, IPowerMenuAdapter {
+        implements IPowerMenuAdapter {
 
     protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
         super(context, abstractMenuBuilder);
@@ -60,61 +61,6 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     protected void initialize(Context context) {
         super.initialize(context);
         this.adapter = new MenuListAdapter(menuListView);
-    }
-
-    @Override
-    public ListView getListView() {
-        return getAdapter().getListView();
-    }
-
-    @Override
-    public void setListView(ListView listView) {
-        getAdapter().setListView(getMenuListView());
-    }
-
-    @Override
-    public int getSelectedPosition() {
-        return getAdapter().getSelectedPosition();
-    }
-
-    @Override
-    public void setSelectedPosition(int position) {
-        if (getAdapter() != null) getAdapter().setSelectedPosition(position);
-    }
-
-    @Override
-    public void addItem(PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().addItem(item);
-    }
-
-    @Override
-    public void addItem(int position, PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().addItem(position, item);
-    }
-
-    @Override
-    public void addItemList(List<PowerMenuItem> itemList) {
-        if (getAdapter() != null) getAdapter().addItemList(itemList);
-    }
-
-    @Override
-    public void removeItem(PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().removeItem(item);
-    }
-
-    @Override
-    public void removeItem(int position) {
-        if (getAdapter() != null) getAdapter().removeItem(position);
-    }
-
-    @Override
-    public void clearItems() {
-        if (adapter != null) getAdapter().clearItems();
-    }
-
-    @Override
-    public List<PowerMenuItem> getItemList() {
-        return getAdapter().getItemList();
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -147,6 +93,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
         getAdapter().setSelectedEffect(selectedEffect);
     }
 
+    /** Builder class for creating {@link PowerMenu}. */
     public static class Builder extends AbstractMenuBuilder {
 
         private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;

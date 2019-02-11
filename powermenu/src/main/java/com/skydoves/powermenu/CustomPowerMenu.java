@@ -33,8 +33,7 @@ import java.util.List;
  * <p>It implements the customized {@link PowerMenu} by the user.
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E>
-        implements IMenuItem<T> {
+public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
 
     protected CustomPowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
         super(context, abstractMenuBuilder);
@@ -57,67 +56,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
         this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
     }
 
-    @Override
-    public ListView getListView() {
-        return getAdapter().getListView();
-    }
-
-    @Override
-    public void setListView(ListView listView) {
-        getAdapter().setListView(getMenuListView());
-    }
-
-    @Override
-    public int getSelectedPosition() {
-        return getAdapter().getSelectedPosition();
-    }
-
-    @Override
-    public void setSelectedPosition(int position) {
-        getAdapter().setSelectedPosition(position);
-    }
-
-    @Override
-    public void addItem(Object item) {
-        getAdapter().addItem((T) item);
-    }
-
-    @Override
-    public void addItem(int position, T item) {
-        getAdapter().addItem(position, item);
-    }
-
-    @Override
-    public void addItemList(List<T> itemList) {
-        getAdapter().addItemList(itemList);
-    }
-
-    @Override
-    public void removeItem(T item) {
-        getAdapter().removeItem(item);
-    }
-
-    @Override
-    public void removeItem(int position) {
-        getAdapter().removeItem(position);
-    }
-
-    @Override
-    public void clearItems() {
-        getAdapter().clearItems();
-    }
-
-    @Override
-    public List<T> getItemList() {
-        return getAdapter().getItemList();
-    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         dismiss();
     }
 
-    /** {@link CustomPowerMenu} builder class. */
+    /** Builder class for creating {@link CustomPowerMenu}. */
     @SuppressWarnings("unchecked")
     public static class Builder<T, E extends MenuBaseAdapter<T>> extends AbstractMenuBuilder {
 
