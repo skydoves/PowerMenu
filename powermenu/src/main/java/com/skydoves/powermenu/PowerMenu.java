@@ -20,10 +20,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,294 +34,245 @@ import java.util.List;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
-        implements IMenuItem<PowerMenuItem>, IPowerMenuAdapter {
+    implements IPowerMenuAdapter {
 
-    protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
-        super(context, abstractMenuBuilder);
+  protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
+    super(context, abstractMenuBuilder);
 
-        Builder builder = (Builder) abstractMenuBuilder;
+    Builder builder = (Builder) abstractMenuBuilder;
 
-        setSelectedEffect(builder.selectedEffect);
-        if (builder.menuItemClickListener != null)
-            setOnMenuItemClickListener(builder.menuItemClickListener);
-        if (builder.textColor != -2) setTextColor(builder.textColor);
-        if (builder.menuColor != -2) setMenuColor(builder.menuColor);
-        if (builder.selectedTextColor != -2) setSelectedTextColor(builder.selectedTextColor);
-        if (builder.selectedMenuColor != -2) setSelectedMenuColor(builder.selectedMenuColor);
-        if (builder.selected != -1) setSelectedPosition(builder.selected);
+    setSelectedEffect(builder.selectedEffect);
+    if (builder.menuItemClickListener != null)
+      setOnMenuItemClickListener(builder.menuItemClickListener);
+    if (builder.textColor != -2) setTextColor(builder.textColor);
+    if (builder.menuColor != -2) setMenuColor(builder.menuColor);
+    if (builder.selectedTextColor != -2) setSelectedTextColor(builder.selectedTextColor);
+    if (builder.selectedMenuColor != -2) setSelectedMenuColor(builder.selectedMenuColor);
+    if (builder.selected != -1) setSelectedPosition(builder.selected);
 
-        this.menuListView.setAdapter(adapter);
-        addItemList(builder.powerMenuItems);
+    this.menuListView.setAdapter(adapter);
+    addItemList(builder.powerMenuItems);
+  }
+
+  @Override
+  protected void initialize(Context context) {
+    super.initialize(context);
+    this.adapter = new MenuListAdapter(menuListView);
+  }
+
+  @Override
+  public void setTextColor(int color) {
+    this.getAdapter().setTextColor(color);
+  }
+
+  @Override
+  public void setMenuColor(int color) {
+    this.getAdapter().setMenuColor(color);
+  }
+
+  @Override
+  public void setSelectedTextColor(int color) {
+    this.getAdapter().setSelectedTextColor(color);
+  }
+
+  @Override
+  public void setSelectedMenuColor(int color) {
+    this.getAdapter().setSelectedMenuColor(color);
+  }
+
+  @Override
+  public void setSelectedEffect(boolean selectedEffect) {
+    getAdapter().setSelectedEffect(selectedEffect);
+  }
+
+  /** Builder class for creating {@link PowerMenu}. */
+  public static class Builder extends AbstractMenuBuilder {
+
+    private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
+    private int textColor = -2;
+    private int menuColor = -2;
+    private boolean selectedEffect = true;
+    private int selectedTextColor = -2;
+    private int selectedMenuColor = -2;
+
+    private List<PowerMenuItem> powerMenuItems;
+
+    public Builder(Context context) {
+      this.context = context;
+      this.powerMenuItems = new ArrayList<>();
+      this.layoutInflater =
+          (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @Override
-    protected void initialize(Context context) {
-        super.initialize(context);
-        this.adapter = new MenuListAdapter(menuListView);
+    public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+      this.lifecycleOwner = lifecycleOwner;
+      return this;
     }
 
-    @Override
-    public ListView getListView() {
-        return getAdapter().getListView();
+    public Builder setShowBackground(boolean show) {
+      this.showBackground = show;
+      return this;
     }
 
-    @Override
-    public void setListView(ListView listView) {
-        getAdapter().setListView(getMenuListView());
+    public Builder setOnMenuItemClickListener(
+        OnMenuItemClickListener<PowerMenuItem> menuItemClickListener) {
+      this.menuItemClickListener = menuItemClickListener;
+      return this;
     }
 
-    @Override
-    public int getSelectedPosition() {
-        return getAdapter().getSelectedPosition();
+    public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
+      this.backgroundClickListener = onBackgroundClickListener;
+      return this;
     }
 
-    @Override
-    public void setSelectedPosition(int position) {
-        if (getAdapter() != null) getAdapter().setSelectedPosition(position);
+    public Builder setOnDismissListener(OnDismissedListener onDismissListener) {
+      this.onDismissedListener = onDismissListener;
+      return this;
     }
 
-    @Override
-    public void addItem(PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().addItem(item);
+    public Builder setHeaderView(int headerView) {
+      this.headerView = layoutInflater.inflate(headerView, null);
+      return this;
     }
 
-    @Override
-    public void addItem(int position, PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().addItem(position, item);
+    public Builder setHeaderView(View headerView) {
+      this.headerView = headerView;
+      return this;
     }
 
-    @Override
-    public void addItemList(List<PowerMenuItem> itemList) {
-        if (getAdapter() != null) getAdapter().addItemList(itemList);
+    public Builder setFooterView(int footerView) {
+      this.footerView = layoutInflater.inflate(footerView, null);
+      return this;
     }
 
-    @Override
-    public void removeItem(PowerMenuItem item) {
-        if (getAdapter() != null) getAdapter().removeItem(item);
+    public Builder setFooterView(View footerView) {
+      this.footerView = footerView;
+      return this;
     }
 
-    @Override
-    public void removeItem(int position) {
-        if (getAdapter() != null) getAdapter().removeItem(position);
+    public Builder setAnimation(MenuAnimation menuAnimation) {
+      this.menuAnimation = menuAnimation;
+      return this;
     }
 
-    @Override
-    public void clearItems() {
-        if (adapter != null) getAdapter().clearItems();
+    public Builder setAnimationStyle(int style) {
+      this.animationStyle = style;
+      return this;
     }
 
-    @Override
-    public List<PowerMenuItem> getItemList() {
-        return getAdapter().getItemList();
+    public Builder setMenuRadius(float radius) {
+      this.menuRadius = radius;
+      return this;
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    public void onDestroy() {
-        dismiss();
+    public Builder setMenuShadow(float shadow) {
+      this.menuShadow = shadow;
+      return this;
     }
 
-    @Override
-    public void setTextColor(int color) {
-        this.getAdapter().setTextColor(color);
+    public Builder setWidth(int width) {
+      this.width = width;
+      return this;
     }
 
-    @Override
-    public void setMenuColor(int color) {
-        this.getAdapter().setMenuColor(color);
+    public Builder setHeight(int height) {
+      this.height = height;
+      return this;
     }
 
-    @Override
-    public void setSelectedTextColor(int color) {
-        this.getAdapter().setSelectedTextColor(color);
+    public Builder setTextColor(int color) {
+      this.textColor = color;
+      return this;
     }
 
-    @Override
-    public void setSelectedMenuColor(int color) {
-        this.getAdapter().setSelectedMenuColor(color);
+    public Builder setMenuColor(int color) {
+      this.menuColor = color;
+      return this;
     }
 
-    @Override
-    public void setSelectedEffect(boolean selectedEffect) {
-        getAdapter().setSelectedEffect(selectedEffect);
+    public Builder setSelectedTextColor(int color) {
+      this.selectedTextColor = color;
+      return this;
     }
 
-    public static class Builder extends AbstractMenuBuilder {
-
-        private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
-        private int textColor = -2;
-        private int menuColor = -2;
-        private boolean selectedEffect = true;
-        private int selectedTextColor = -2;
-        private int selectedMenuColor = -2;
-
-        private List<PowerMenuItem> powerMenuItems;
-
-        public Builder(Context context) {
-            this.context = context;
-            this.powerMenuItems = new ArrayList<>();
-            this.layoutInflater =
-                    (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
-            this.lifecycleOwner = lifecycleOwner;
-            return this;
-        }
-
-        public Builder setShowBackground(boolean show) {
-            this.showBackground = show;
-            return this;
-        }
-
-        public Builder setOnMenuItemClickListener(
-                OnMenuItemClickListener<PowerMenuItem> menuItemClickListener) {
-            this.menuItemClickListener = menuItemClickListener;
-            return this;
-        }
-
-        public Builder setOnBackgroundClickListener(
-                View.OnClickListener onBackgroundClickListener) {
-            this.backgroundClickListener = onBackgroundClickListener;
-            return this;
-        }
-
-        public Builder setOnDismissListener(OnDismissedListener onDismissListener) {
-            this.onDismissedListener = onDismissListener;
-            return this;
-        }
-
-        public Builder setHeaderView(int headerView) {
-            this.headerView = layoutInflater.inflate(headerView, null);
-            return this;
-        }
-
-        public Builder setHeaderView(View headerView) {
-            this.headerView = headerView;
-            return this;
-        }
-
-        public Builder setFooterView(int footerView) {
-            this.footerView = layoutInflater.inflate(footerView, null);
-            return this;
-        }
-
-        public Builder setFooterView(View footerView) {
-            this.footerView = footerView;
-            return this;
-        }
-
-        public Builder setAnimation(MenuAnimation menuAnimation) {
-            this.menuAnimation = menuAnimation;
-            return this;
-        }
-
-        public Builder setAnimationStyle(int style) {
-            this.animationStyle = style;
-            return this;
-        }
-
-        public Builder setMenuRadius(float radius) {
-            this.menuRadius = radius;
-            return this;
-        }
-
-        public Builder setMenuShadow(float shadow) {
-            this.menuShadow = shadow;
-            return this;
-        }
-
-        public Builder setWidth(int width) {
-            this.width = width;
-            return this;
-        }
-
-        public Builder setHeight(int height) {
-            this.height = height;
-            return this;
-        }
-
-        public Builder setTextColor(int color) {
-            this.textColor = color;
-            return this;
-        }
-
-        public Builder setMenuColor(int color) {
-            this.menuColor = color;
-            return this;
-        }
-
-        public Builder setSelectedTextColor(int color) {
-            this.selectedTextColor = color;
-            return this;
-        }
-
-        public Builder setSelectedMenuColor(int color) {
-            this.selectedMenuColor = color;
-            return this;
-        }
-
-        public Builder setSelectedEffect(boolean effect) {
-            this.selectedEffect = effect;
-            return this;
-        }
-
-        public Builder setDividerHeight(int height) {
-            this.dividerHeight = height;
-            return this;
-        }
-
-        public Builder setDivider(Drawable divider) {
-            this.divider = divider;
-            return this;
-        }
-
-        public Builder setBackgroundColor(int color) {
-            this.backgroundColor = color;
-            return this;
-        }
-
-        public Builder setBackgroundAlpha(float alpha) {
-            this.backgroundAlpha = alpha;
-            return this;
-        }
-
-        public Builder setFocusable(boolean focusable) {
-            this.focusable = focusable;
-            return this;
-        }
-
-        public Builder setSelected(int position) {
-            this.selected = position;
-            return this;
-        }
-
-        public Builder setIsClipping(boolean isClipping) {
-            this.isClipping = isClipping;
-            return this;
-        }
-
-        public Builder setAutoDismiss(boolean autoDismiss) {
-            this.autoDismiss = autoDismiss;
-            return this;
-        }
-
-        public Builder addItem(PowerMenuItem item) {
-            this.powerMenuItems.add(item);
-            return this;
-        }
-
-        public Builder addItem(int position, PowerMenuItem item) {
-            this.powerMenuItems.add(position, item);
-            return this;
-        }
-
-        public Builder addItemList(List<PowerMenuItem> itemList) {
-            this.powerMenuItems.addAll(itemList);
-            return this;
-        }
-
-        public PowerMenu build() {
-            return new PowerMenu(context, this);
-        }
+    public Builder setSelectedMenuColor(int color) {
+      this.selectedMenuColor = color;
+      return this;
     }
+
+    public Builder setSelectedEffect(boolean effect) {
+      this.selectedEffect = effect;
+      return this;
+    }
+
+    public Builder setDividerHeight(int height) {
+      this.dividerHeight = height;
+      return this;
+    }
+
+    public Builder setDivider(Drawable divider) {
+      this.divider = divider;
+      return this;
+    }
+
+    public Builder setBackgroundColor(int color) {
+      this.backgroundColor = color;
+      return this;
+    }
+
+    public Builder setBackgroundAlpha(float alpha) {
+      this.backgroundAlpha = alpha;
+      return this;
+    }
+
+    public Builder setFocusable(boolean focusable) {
+      this.focusable = focusable;
+      return this;
+    }
+
+    public Builder setSelected(int position) {
+      this.selected = position;
+      return this;
+    }
+
+    public Builder setIsClipping(boolean isClipping) {
+      this.isClipping = isClipping;
+      return this;
+    }
+
+    public Builder setAutoDismiss(boolean autoDismiss) {
+      this.autoDismiss = autoDismiss;
+      return this;
+    }
+
+    public Builder addItem(PowerMenuItem item) {
+      this.powerMenuItems.add(item);
+      return this;
+    }
+
+    public Builder addItem(int position, PowerMenuItem item) {
+      this.powerMenuItems.add(position, item);
+      return this;
+    }
+
+    public Builder addItemList(List<PowerMenuItem> itemList) {
+      this.powerMenuItems.addAll(itemList);
+      return this;
+    }
+
+    public Builder setPreferenceName(String preferenceName) {
+      this.preferenceName = preferenceName;
+      return this;
+    }
+
+    public Builder setInitializeRule(Lifecycle.Event event, int defaultPosition) {
+      this.initializeRule = event;
+      this.defaultPosition = defaultPosition;
+      return this;
+    }
+
+    public PowerMenu build() {
+      return new PowerMenu(context, this);
+    }
+  }
 }
