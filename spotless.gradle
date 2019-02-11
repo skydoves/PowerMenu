@@ -5,7 +5,7 @@ spotless {
         trimTrailingWhitespace()
         removeUnusedImports()
         licenseHeaderFile '../spotless.license.java'
-        googleJavaFormat('1.6').aosp()
+        googleJavaFormat()
         endWithNewline()
     }
     kotlin {

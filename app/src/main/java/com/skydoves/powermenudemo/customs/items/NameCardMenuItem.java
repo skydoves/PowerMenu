@@ -20,37 +20,37 @@ import android.graphics.drawable.Drawable;
 
 @SuppressWarnings("unused")
 public class NameCardMenuItem {
-    private Drawable icon;
-    private String name;
-    private String content;
+  private Drawable icon;
+  private String name;
+  private String content;
 
-    public NameCardMenuItem(Drawable icon, String name, String content) {
-        this.icon = icon;
-        this.name = name;
-        this.content = content;
-    }
+  public NameCardMenuItem(Drawable icon, String name, String content) {
+    this.icon = icon;
+    this.name = name;
+    this.content = content;
+  }
 
-    public Drawable getIcon() {
-        return this.icon;
-    }
+  public Drawable getIcon() {
+    return this.icon;
+  }
 
-    public void setIcon(Drawable drawable) {
-        this.icon = drawable;
-    }
+  public void setIcon(Drawable drawable) {
+    this.icon = drawable;
+  }
 
-    public String getName() {
-        return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 }
