@@ -20,7 +20,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -206,6 +205,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
         public Builder addItemList(List<T> itemList) {
             this.Ts.addAll(itemList);
+            return this;
+        }
+
+        public Builder setPreferenceName(String preferenceName) {
+            this.preferenceName = preferenceName;
             return this;
         }
 

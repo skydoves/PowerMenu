@@ -29,12 +29,10 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-
-import java.util.List;
-
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
+import java.util.List;
 
 /**
  * AbstractPowerMenu is the abstract class of {@link PowerMenu} and {@link CustomPowerMenu}.
@@ -45,7 +43,7 @@ import androidx.lifecycle.LifecycleOwner;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
-    implements IMenuItem<E>, LifecycleObserver {
+        implements IMenuItem<E>, LifecycleObserver {
 
     protected View backgroundView;
     protected View menuView;
@@ -147,6 +145,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
         if (builder.height != 0) setHeight(builder.height);
         if (builder.divider != null) setDivider(builder.divider);
         if (builder.dividerHeight != 0) setDividerHeight(builder.dividerHeight);
+        if (builder.preferenceName != null) setPreferenceName(builder.preferenceName);
     }
 
     @SuppressLint("InflateParams")
@@ -176,6 +175,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
         setOnMenuItemClickListener(onMenuItemClickListener);
 
         contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
+        MenuPreferenceManager.initialize(context);
     }
 
     /**
@@ -824,5 +824,43 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
      */
     public void setAutoDismiss(boolean autoDismiss) {
         this.autoDismiss = autoDismiss;
+    }
+
+    /**
+     * gets the preference name of PowerMenu.
+     *
+     * @return preference name.
+     */
+    public String getPreferenceName() {
+        return getAdapter().getPreferenceName();
+    }
+
+    /**
+     * gets the saved preference position from the SharedPreferences.
+     *
+     * @param defaultPosition the default position of the preference.
+     * @return saved preference position.
+     */
+    public int getPreferencePosition(int defaultPosition) {
+        return MenuPreferenceManager.getInstance()
+                .getPosition(getAdapter().getPreferenceName(), defaultPosition);
+    }
+
+    /**
+     * sets a preference name for persistence.
+     *
+     * @param preferenceName preference name.
+     */
+    private void setPreferenceName(String preferenceName) {
+        if (preferenceName != null) {
+            getAdapter().setPreference(preferenceName);
+        }
+    }
+
+    /** clears the preference name of PowerMenu. */
+    public void clearPreference() {
+        if (getAdapter().getPreferenceName() != null) {
+            MenuPreferenceManager.getInstance().clearPosition(getAdapter().getPreferenceName());
+        }
     }
 }

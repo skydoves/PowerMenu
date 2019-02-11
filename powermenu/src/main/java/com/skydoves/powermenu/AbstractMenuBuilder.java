@@ -53,4 +53,5 @@ public abstract class AbstractMenuBuilder {
     protected int selected = -1;
     protected boolean isClipping = true;
     protected boolean autoDismiss = false;
+    protected String preferenceName = null;
 }

@@ -31,6 +31,7 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     private ListView listView;
 
     private int selectedPosition = -1;
+    private String preferenceName;
 
     public MenuBaseAdapter() {
         super();
@@ -103,6 +104,11 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
     @Override
     public void setSelectedPosition(int position) {
         this.selectedPosition = position;
+
+        MenuPreferenceManager instance = MenuPreferenceManager.getInstance();
+        if (instance != null && preferenceName != null) {
+            instance.setPosition(preferenceName, position);
+        }
     }
 
     @Override
@@ -155,5 +161,13 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
         getListView().setLayoutParams(params);
 
         return totalHeight;
+    }
+
+    public void setPreference(String preferenceName) {
+        this.preferenceName = preferenceName;
+    }
+
+    public String getPreferenceName() {
+        return preferenceName;
     }
 }

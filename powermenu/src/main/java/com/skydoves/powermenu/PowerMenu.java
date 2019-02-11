@@ -20,13 +20,11 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * PowerMenu is one the implementation of the {@link AbstractPowerMenu}.
@@ -266,6 +264,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
         public Builder addItemList(List<PowerMenuItem> itemList) {
             this.powerMenuItems.addAll(itemList);
+            return this;
+        }
+
+        public Builder setPreferenceName(String preferenceName) {
+            this.preferenceName = preferenceName;
             return this;
         }
 
