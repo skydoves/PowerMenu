@@ -18,7 +18,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powermenu:2.0.7"
+    implementation "com.github.skydoves:powermenu:2.0.8"
 }
 ```
 
@@ -149,6 +149,41 @@ private OnMenuItemClickListener<IconPowerMenuItem> onIconMenuItemClickListener =
 };
 ```
 
+## Preference
+PowerMenu supports saving of the last selected menu and recovering as lifecycle.<br>
+Here is how to save and recover selected menu.
+```java
+return new PowerMenu.Builder(context)
+    // saves the position automatically when the menu is selected.
+    // If we set the same preference name on the other PowerMenus, they will share the saving position.
+   .setPreferenceName("HamburgerPowerMenu")
+
+    // invokes the listener automatically that has the saved position arguments along the lifecycle rule.
+    // lifecycle rules should be ON_CREATE, ON_START or ON_RESUME.
+    // in the below codes, the onMenuClickListener will be invoked when onCreate lifecycle.
+   .setLifecycleOwner(lifecycleOwner)
+   .setInitializeRule(Lifecycle.Event.ON_CREATE, 0) // Lifecycle.Event and default positon.
+   --- skips ---
+```
+Here are the methods related to preference.
+```java
+.getPreferenceName() // gets the preference name of PowerMenu.
+.getPreferencePosition(int defaultPosition) // gets the saved preference position from the SharedPreferences.
+.setPreferencePosition(int defaultPosition) // sets the preference position name for persistence manually.
+.clearPreference() // clears the preference name of PowerMenu.
+```
+
+## Menu Effect
+We can give two types of circular revealed animation effect.<br><br>
+![menu_effect01](https://user-images.githubusercontent.com/24237865/52637461-9a878400-2f12-11e9-8a78-decfc1641d5b.gif)
+![menu_effect02](https://user-images.githubusercontent.com/24237865/52637462-9a878400-2f12-11e9-935d-189c518fe435.gif)
+<br>
+Here is how to create a menu effect simply.
+```java
+.setMenuEffect(MenuEffect.BODY) // shows circular revealed effects for all body of the popup menu.
+.setMenuEffect(MenuEffect.INNER) // Shows circular revealed effects for the content view of the popup menu.
+```
+
 ## Dialogs
 We can create looks like dialogs using `PowerMenu`.<br><br>
 ![screenshot_2017-12-18-23-39-00](https://user-images.githubusercontent.com/24237865/34111113-1de9bfce-e44c-11e7-9b60-44b8d440b910.png)
@@ -221,6 +256,16 @@ These are options for the background.
 .setFocusable(true) // makes focusing only on the menu popup.
 ```
 
+## Avoid Memory leak
+Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
+But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
+So we can solve the memory leak issue so easily.<br>
+
+Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
+```java
+.setLifecycleOwner(lifecycleOwner)
+```
+
 ## Functions
 ### PowerMenu methods
 ```java
@@ -271,16 +316,6 @@ These are options for the background.
 .showAtLocation(View anchor, int gravity, int xOff, int yOff) // showing the popup menu to the specific location to the anchor with Gravity.
 .isShowing(); // gets the popup is showing or not.
 .dismiss(); // dismiss the popup.
-```
-
-## Avoid Memory leak
-Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
-But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
-So we can solve the memory leak issue so easily.<br>
-
-Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
-```java
-.setLifecycleOwner(lifecycleOwner)
 ```
 
 ## Supports
