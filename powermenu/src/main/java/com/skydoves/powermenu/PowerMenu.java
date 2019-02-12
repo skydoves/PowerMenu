@@ -271,6 +271,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
       return this;
     }
 
+    public Builder setMenuEffect(MenuEffect menuEffect) {
+      this.menuEffect = menuEffect;
+      return this;
+    }
+
     public PowerMenu build() {
       return new PowerMenu(context, this);
     }

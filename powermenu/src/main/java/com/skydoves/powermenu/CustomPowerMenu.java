@@ -20,10 +20,12 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * CustomPowerMenu is one the implementation of the {@link AbstractPowerMenu}.
@@ -209,6 +211,11 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     public Builder setInitializeRule(Lifecycle.Event event, int defaultPosition) {
       this.initializeRule = event;
       this.defaultPosition = defaultPosition;
+      return this;
+    }
+
+    public Builder setMenuEffect(MenuEffect menuEffect) {
+      this.menuEffect = menuEffect;
       return this;
     }
 

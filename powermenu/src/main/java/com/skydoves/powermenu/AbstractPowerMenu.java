@@ -16,25 +16,30 @@
 
 package com.skydoves.powermenu;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
+import java.util.List;
+
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
-import java.util.List;
 
 /**
  * AbstractPowerMenu is the abstract class of {@link PowerMenu} and {@link CustomPowerMenu}.
@@ -75,6 +80,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
 
   protected int contentViewPadding;
   private int defaultPosition;
+  private MenuEffect menuEffect;
   private boolean autoDismiss;
   private AdapterView.OnItemClickListener itemClickListener =
       new AdapterView.OnItemClickListener() {
@@ -151,6 +157,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     if (builder.dividerHeight != 0) setDividerHeight(builder.dividerHeight);
     if (builder.preferenceName != null) setPreferenceName(builder.preferenceName);
     if (builder.initializeRule != null) setInitializeRule(builder.initializeRule);
+    if (builder.menuEffect != null) setMenuEffect(builder.menuEffect);
   }
 
   @SuppressLint("InflateParams")
@@ -243,6 +250,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   public void showPopup(View anchor) {
     if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
     isShowing = true;
+    doMenuEffect();
   }
 
   /**
@@ -393,6 +401,42 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       showPopup(anchor);
       menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
     }
+  }
+
+  /** apply menu effect. */
+  private void doMenuEffect() {
+    if (getMenuEffect() != null) {
+      if (getMenuEffect().equals(MenuEffect.BODY)) {
+        circularRevealed(menuWindow.getContentView());
+      } else if (getMenuEffect().equals(MenuEffect.INNER)) {
+        circularRevealed(getListView());
+      }
+    }
+  }
+
+  /**
+   * shows circular revealed animation to a view.
+   *
+   * @param targetView view for animation target.
+   */
+  private void circularRevealed(View targetView) {
+    targetView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+      @Override
+      public void onLayoutChange(View view, int left, int top, int right,
+                                 int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        view.removeOnLayoutChangeListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          Animator animator = ViewAnimationUtils.createCircularReveal(
+              view,
+              (view.getLeft() + view.getRight()) / 2,
+              (view.getTop() + view.getBottom()) / 2,
+              0f,
+              Math.max(view.getWidth(), view.getHeight()));
+          animator.setDuration(900);
+          animator.start();
+        }
+      }
+    });
   }
 
   /** dismiss the popup menu. */
@@ -940,6 +984,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   /**
    * sets initialize rule by {@link Lifecycle.Event}.
    *
+   * <p>There are three events(ON_CREATE, ON_START, ON_RESUME) working by lifecycle.
+   *
    * @param event {@link Lifecycle.Event}.
    */
   private void setInitializeRule(Lifecycle.Event event) {
@@ -962,5 +1008,23 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   private void setDefaultPosition(int defaultPosition) {
     this.defaultPosition = defaultPosition;
+  }
+
+  /**
+   * gets menu effect.
+   *
+   * @return {@link MenuEffect}.
+   */
+  public MenuEffect getMenuEffect() {
+    return this.menuEffect;
+  }
+
+  /**
+   * sets menu effects for showing popup more dynamically.
+   *
+   * @param menuEffect {@link MenuEffect}.
+   */
+  public void setMenuEffect(MenuEffect menuEffect) {
+    this.menuEffect = menuEffect;
   }
 }

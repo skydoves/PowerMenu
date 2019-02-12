@@ -21,6 +21,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -57,4 +58,5 @@ public abstract class AbstractMenuBuilder {
   protected String preferenceName = null;
   protected Lifecycle.Event initializeRule = null;
   protected int defaultPosition = 0;
+  protected MenuEffect menuEffect = null;
 }
