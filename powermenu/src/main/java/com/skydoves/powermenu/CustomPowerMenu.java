@@ -20,12 +20,10 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CustomPowerMenu is one the implementation of the {@link AbstractPowerMenu}.

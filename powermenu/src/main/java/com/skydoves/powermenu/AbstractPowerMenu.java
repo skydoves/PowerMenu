@@ -32,14 +32,12 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-
-import java.util.List;
-
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import java.util.List;
 
 /**
  * AbstractPowerMenu is the abstract class of {@link PowerMenu} and {@link CustomPowerMenu}.
@@ -420,23 +418,33 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param targetView view for animation target.
    */
   private void circularRevealed(View targetView) {
-    targetView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-      @Override
-      public void onLayoutChange(View view, int left, int top, int right,
-                                 int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-        view.removeOnLayoutChangeListener(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          Animator animator = ViewAnimationUtils.createCircularReveal(
-              view,
-              (view.getLeft() + view.getRight()) / 2,
-              (view.getTop() + view.getBottom()) / 2,
-              0f,
-              Math.max(view.getWidth(), view.getHeight()));
-          animator.setDuration(900);
-          animator.start();
-        }
-      }
-    });
+    targetView.addOnLayoutChangeListener(
+        new View.OnLayoutChangeListener() {
+          @Override
+          public void onLayoutChange(
+              View view,
+              int left,
+              int top,
+              int right,
+              int bottom,
+              int oldLeft,
+              int oldTop,
+              int oldRight,
+              int oldBottom) {
+            view.removeOnLayoutChangeListener(this);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+              Animator animator =
+                  ViewAnimationUtils.createCircularReveal(
+                      view,
+                      (view.getLeft() + view.getRight()) / 2,
+                      (view.getTop() + view.getBottom()) / 2,
+                      0f,
+                      Math.max(view.getWidth(), view.getHeight()));
+              animator.setDuration(900);
+              animator.start();
+            }
+          }
+        });
   }
 
   /** dismiss the popup menu. */
