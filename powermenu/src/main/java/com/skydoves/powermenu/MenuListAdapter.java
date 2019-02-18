@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+
 /**
  * MenuListAdapter extends {@link MenuBaseAdapter}.
  *
@@ -33,10 +35,10 @@ import android.widget.TextView;
 @SuppressWarnings({"WeakerAccess", "ConstantConditions"})
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
-  private int textColor = -2;
-  private int menuColor = -2;
-  private int selectedTextColor = -2;
-  private int selectedMenuColor = -2;
+  @ColorInt private int textColor = -2;
+  @ColorInt private int menuColor = -2;
+  @ColorInt private int selectedTextColor = -2;
+  @ColorInt private int selectedMenuColor = -2;
 
   private boolean selectedEffect = true;
 

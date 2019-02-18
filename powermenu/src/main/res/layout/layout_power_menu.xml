@@ -31,6 +31,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:focusedByDefault="true"
-            tools:listitem="@layout/item_power_menu" />
+            tools:listitem="@layout/item_power_menu"
+            tools:ignore="UnusedAttribute" />
     </androidx.cardview.widget.CardView>
 </FrameLayout>

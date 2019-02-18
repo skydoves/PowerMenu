@@ -4,8 +4,11 @@
     android:id="@+id/item_power_menu_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:foreground="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    android:focusable="true"
+    android:clickable="true"
+    tools:ignore="UnusedAttribute">
 
     <ImageView
         android:id="@+id/item_power_menu_icon"
@@ -13,7 +16,8 @@
         android:layout_height="35dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/item_power_menu_title"
@@ -25,6 +29,6 @@
         android:textColor="@color/menu_text_no_selected"
         android:textSize="14sp"
         android:textStyle="bold"
-        tools:text="All Contents" />
-
+        tools:text="All Contents"
+        tools:ignore="UnusedAttribute" />
 </LinearLayout>

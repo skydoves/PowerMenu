@@ -20,8 +20,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
 import com.skydoves.powermenu.MenuEffect;
@@ -32,6 +31,9 @@ import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class PowerMenuUtils {
@@ -69,6 +71,7 @@ public class PowerMenuUtils {
       LifecycleOwner lifecycleOwner,
       OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
     return new PowerMenu.Builder(context)
+        .setHeaderView(R.layout.item_title_header)
         .addItem(new PowerMenuItem("Profile", false))
         .addItem(new PowerMenuItem("Board", false))
         .addItem(new PowerMenuItem("Logout", false))
@@ -79,6 +82,7 @@ public class PowerMenuUtils {
         .setTextColor(context.getResources().getColor(R.color.md_grey_800))
         .setMenuColor(Color.WHITE)
         .setSelectedEffect(false)
+        .setShowBackground(false)
         .setOnMenuItemClickListener(onMenuItemClickListener)
         .build();
   }
