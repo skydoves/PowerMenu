@@ -8,8 +8,8 @@
 The most powerful and easiest way to implement modern popup. <br>
 PowerMenu can be fully customized and used for popup dialogs. <br>
 
-![gif1](https://user-images.githubusercontent.com/24237865/32500436-c52b02ec-c418-11e7-8027-9aceb5cbe368.gif)
-![screenshot0](https://user-images.githubusercontent.com/24237865/32500435-c4f81594-c418-11e7-98e5-d1ddbbb6c2ad.jpg)
+![gif0](https://user-images.githubusercontent.com/24237865/53217729-92f77600-369c-11e9-9a24-34e8d31148d0.gif)
+![screenshot0](https://user-images.githubusercontent.com/24237865/53217886-1d3fda00-369d-11e9-829e-fa8a2b1c4a43.jpg)
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/powermenu/images/download.svg)](https://bintray.com/devmagician/maven/powermenu/_latestVersion)
