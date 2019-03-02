@@ -22,6 +22,17 @@ dependencies {
 }
 ```
 
+## Table of Contents
+__[1. PowerMenu](https://github.com/skydoves/PowerMenu#usage)__ <br>
+__[2. Customizing Popup](https://github.com/skydoves/PowerMenu#customizing-popup)__ <br>
+__[3. Preference](https://github.com/skydoves/PowerMenu#preference)__<br>
+__[4. Menu Effect](https://github.com/skydoves/PowerMenu#menu-effect)__ <br>
+__[5. Dialogs](https://github.com/skydoves/PowerMenu#dialogs)__ <br>
+__[6. Anchor](https://github.com/skydoves/PowerMenu#anchor)__ <br>
+__[7. Background](https://github.com/skydoves/PowerMenu#background)__ <br>
+__[8. Avoid Memory leak](https://github.com/skydoves/PowerMenu#avoid-memory-leak)__ <br>
+__[9. Functions](https://github.com/skydoves/PowerMenu#functions)__ <br>
+
 ## Usage
 
 ### Basic example
@@ -318,7 +329,10 @@ Just use `setLifecycleOwner` method. Then `dismiss` method will be called automa
 .dismiss(); // dismiss the popup.
 ```
 
-## Supports
+## Find this library useful? :heart:
+Support it by joining [stargazers](https://github.com/skydoves/PowerMenu/stargazers) for this repository. :star:
+
+## Supports :coffee:
 If you feel like support me a coffee for my efforts, I would greatly appreciate it. <br><br>
 <a href="https://www.buymeacoffee.com/skydoves" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
