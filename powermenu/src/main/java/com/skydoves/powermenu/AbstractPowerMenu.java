@@ -290,6 +290,20 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   }
 
   /**
+   * showing the popup menu as left-top aligns to the anchor with x-off and y-off.
+   *
+   * @param anchor anchor view.
+   * @param xOff x-off.
+   * @param yOff y-off.
+   */
+  public void showAsAnchorLeftTop(View anchor, int xOff, int yOff) {
+    if (!isShowing()) {
+      showPopup(anchor);
+      menuWindow.showAsDropDown(anchor, xOff, yOff - anchor.getMeasuredHeight());
+    }
+  }
+
+  /**
    * showing the popup menu as left-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
@@ -298,6 +312,20 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     if (!isShowing()) {
       showPopup(anchor);
       menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
+    }
+  }
+
+  /**
+   * showing the popup menu as left-bottom aligns to the anchor.
+   *
+   * @param anchor anchor view.
+   * @param xOff x-off.
+   * @param yOff y-off.
+   */
+  public void showAsAnchorLeftBottom(View anchor, int xOff, int yOff) {
+    if (!isShowing()) {
+      showPopup(anchor);
+      menuWindow.showAsDropDown(anchor, xOff, yOff - getContentViewPadding());
     }
   }
 
@@ -317,6 +345,23 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   }
 
   /**
+   * showing the popup menu as right-top aligns to the anchor.
+   *
+   * @param anchor anchor view.
+   * @param xOff x-off.
+   * @param yOff y-off.
+   */
+  public void showAsAnchorRightTop(View anchor, int xOff, int yOff) {
+    if (!isShowing()) {
+      showPopup(anchor);
+      menuWindow.showAsDropDown(
+          anchor,
+          xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+          yOff - anchor.getMeasuredHeight());
+    }
+  }
+
+  /**
    * showing the popup menu as right-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
@@ -332,6 +377,23 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   }
 
   /**
+   * showing the popup menu as right-bottom aligns to the anchor.
+   *
+   * @param anchor anchor view.
+   * @param xOff x-off.
+   * @param yOff y-off.
+   */
+  public void showAsAnchorRightBottom(View anchor, int xOff, int yOff) {
+    if (!isShowing()) {
+      showPopup(anchor);
+      menuWindow.showAsDropDown(
+          anchor,
+          xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+          yOff - getContentViewPadding());
+    }
+  }
+
+  /**
    * showing the popup menu as center align to the anchor.
    *
    * @param anchor anchor view.
@@ -343,6 +405,23 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
           anchor,
           anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
           -anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
+    }
+  }
+
+  /**
+   * showing the popup menu as center align to the anchor.
+   *
+   * @param anchor anchor view.
+   * @param xOff x-off.
+   * @param yOff y-off.
+   */
+  public void showAsAnchorCenter(View anchor, int xOff, int yOff) {
+    if (!isShowing()) {
+      showPopup(anchor);
+      menuWindow.showAsDropDown(
+          anchor,
+          xOff + anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
+          yOff - anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
     }
   }
 
