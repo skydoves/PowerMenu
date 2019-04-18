@@ -18,7 +18,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:powermenu:2.0.8"
+  implementation "com.github.skydoves:powermenu:2.0.9"
 }
 ```
 
@@ -46,6 +46,7 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
           .setMenuRadius(10f) // sets the corner radius.
           .setMenuShadow(10f) // sets the shadow.
           .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+          .setTextGravity(Gravity.CENTER)
           .setSelectedTextColor(Color.WHITE)
           .setMenuColor(Color.WHITE)
           .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
@@ -292,6 +293,8 @@ Just use `setLifecycleOwner` method. Then `dismiss` method will be called automa
 .setDividerHeight(1) // sets the divider height.
 .setAnimation(MenuAnimation.FADE) // sets animations of the popup. It will start up when the popup is showing.
 .setTextColor(context.getResources().getColor(R.color.md_grey_800)) // sets the color of the default item text.
+.setTextSize(12) // sets a text size of the item text
+.setTextGravity(Gravity.CENTER) // sets a gravity of the item text.
 .setSelectedTextColor(Color.WHITE) // sets the color of the selected item text.
 .setMenuColor(Color.WHITE) // sets the color of the menu item color.
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // sets the color of the selected menu item color.
