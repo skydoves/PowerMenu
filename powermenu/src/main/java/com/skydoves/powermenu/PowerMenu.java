@@ -18,12 +18,15 @@ package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * PowerMenu is one the implementation of the {@link AbstractPowerMenu}.
@@ -49,6 +52,8 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     if (builder.selectedTextColor != -2) setSelectedTextColor(builder.selectedTextColor);
     if (builder.selectedMenuColor != -2) setSelectedMenuColor(builder.selectedMenuColor);
     if (builder.selected != -1) setSelectedPosition(builder.selected);
+    if (builder.textSize != 12) setTextSize(builder.textSize);
+    if (builder.textGravity != Gravity.START) setTextGravity(builder.textGravity);
 
     this.menuListView.setAdapter(adapter);
     addItemList(builder.powerMenuItems);
@@ -85,6 +90,16 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     getAdapter().setSelectedEffect(selectedEffect);
   }
 
+  @Override
+  public void setTextSize(int size) {
+    this.getAdapter().setTextSize(size);
+  }
+
+  @Override
+  public void setTextGravity(int gravity) {
+    this.getAdapter().setTextGravity(gravity);
+  }
+
   /** Builder class for creating {@link PowerMenu}. */
   public static class Builder extends AbstractMenuBuilder {
 
@@ -94,6 +109,8 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     private boolean selectedEffect = true;
     private int selectedTextColor = -2;
     private int selectedMenuColor = -2;
+    private int textSize = 12;
+    private int textGravity = Gravity.START;
 
     private List<PowerMenuItem> powerMenuItems;
 
@@ -182,6 +199,16 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
     public Builder setTextColor(int color) {
       this.textColor = color;
+      return this;
+    }
+
+    public Builder setTextSize(int size) {
+      this.textSize = size;
+      return this;
+    }
+
+    public Builder setTextGravity(int gravity) {
+      this.textGravity = gravity;
       return this;
     }
 

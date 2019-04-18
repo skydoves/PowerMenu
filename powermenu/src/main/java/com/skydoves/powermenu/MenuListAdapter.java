@@ -18,12 +18,14 @@ package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.annotation.ColorInt;
 
 /**
@@ -38,6 +40,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @ColorInt private int menuColor = -2;
   @ColorInt private int selectedTextColor = -2;
   @ColorInt private int selectedMenuColor = -2;
+  private int textSize = 12;
+  private int textGravity = Gravity.START;
 
   private boolean selectedEffect = true;
 
@@ -62,6 +66,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     final ImageView icon = view.findViewById(R.id.item_power_menu_icon);
 
     title.setText(powerMenuItem.title);
+    title.setTextSize(textSize);
+    title.setGravity(textGravity);
 
     if (powerMenuItem.icon != 0) {
       icon.setImageResource(powerMenuItem.icon);
@@ -132,5 +138,15 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @Override
   public void setSelectedEffect(boolean selectedEffect) {
     this.selectedEffect = selectedEffect;
+  }
+
+  @Override
+  public void setTextSize(int size) {
+    this.textSize = size;
+  }
+
+  @Override
+  public void setTextGravity(int gravity) {
+    this.textGravity = gravity;
   }
 }

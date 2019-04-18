@@ -29,6 +29,20 @@ interface IPowerMenuAdapter {
   void setTextColor(int color);
 
   /**
+   * sets the size of the item text.
+   *
+   * @param size size value.
+   */
+  void setTextSize(int size);
+
+  /**
+   * sets the {@link android.view.Gravity} of the item.
+   *
+   * @param gravity gravity value.
+   */
+  void setTextGravity(int gravity);
+
+  /**
    * sets the color of the menu item color.
    *
    * @param color color value.
