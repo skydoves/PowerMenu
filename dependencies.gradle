@@ -1,15 +1,15 @@
 ext.versions = [
     minSdk             : 15,
     compileSdk         : 28,
-    versionCode        : 15,
-    versionName        : '2.0.8',
+    versionCode        : 16,
+    versionName        : '2.0.9',
 
     gradleBuildTool    : '3.3.1',
     spotlessGradle     : '3.17.0',
     bintrayRelease     : '0.9',
 
-    androidxAppcompat  : '1.0.2',
-    googleMaterial     : '1.1.0-alpha03',
+    androidxAppcompat  : '1.1.0-alpha04',
+    googleMaterial     : '1.1.0-alpha05',
     cardView           : '1.0.0',
     circleimageview    : '2.2.0'
 ]
