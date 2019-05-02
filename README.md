@@ -18,7 +18,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.0.9"
+  implementation "com.github.skydoves:powermenu:2.1.0"
 }
 ```
 
