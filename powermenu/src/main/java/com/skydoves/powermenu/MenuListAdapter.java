@@ -18,6 +18,7 @@ package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,7 @@ import androidx.annotation.ColorInt;
  *
  * <p>This is the {@link PowerMenu}'s default adapter.
  */
-@SuppressWarnings({"WeakerAccess", "ConstantConditions"})
+@SuppressWarnings({"WeakerAccess"})
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
   @ColorInt private int textColor = -2;
@@ -41,6 +42,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @ColorInt private int selectedMenuColor = -2;
   private int textSize = 12;
   private int textGravity = Gravity.START;
+  private Typeface textTypeface = null;
 
   private boolean selectedEffect = true;
 
@@ -67,6 +69,10 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     title.setText(powerMenuItem.title);
     title.setTextSize(textSize);
     title.setGravity(textGravity);
+
+    if (textTypeface != null) {
+      title.setTypeface(textTypeface);
+    }
 
     if (powerMenuItem.icon != 0) {
       icon.setImageResource(powerMenuItem.icon);
@@ -147,5 +153,10 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @Override
   public void setTextGravity(int gravity) {
     this.textGravity = gravity;
+  }
+
+  @Override
+  public void setTextTypeface(Typeface typeface) {
+    this.textTypeface = typeface;
   }
 }

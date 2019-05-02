@@ -16,6 +16,8 @@
 
 package com.skydoves.powermenu;
 
+import android.graphics.Typeface;
+
 /**
  * IPowerMenuAdapter is an interface of the {@link MenuListAdapter} implementation for the item
  * selected effect.
@@ -41,6 +43,13 @@ interface IPowerMenuAdapter {
    * @param gravity gravity value.
    */
   void setTextGravity(int gravity);
+
+  /**
+   * sets the {@link Typeface} of the item.
+   *
+   * @param typeface typeface value.
+   */
+  void setTextTypeface(Typeface typeface);
 
   /**
    * sets the color of the menu item color.

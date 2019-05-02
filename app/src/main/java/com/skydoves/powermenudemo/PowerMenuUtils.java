@@ -18,6 +18,7 @@ package com.skydoves.powermenudemo;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -57,6 +58,7 @@ public class PowerMenuUtils {
         .setTextColor(context.getResources().getColor(R.color.md_grey_800))
         .setTextSize(12)
         .setTextGravity(Gravity.CENTER)
+        .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
         .setSelectedTextColor(Color.WHITE)
         .setMenuColor(Color.WHITE)
         .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
@@ -81,6 +83,7 @@ public class PowerMenuUtils {
         .setMenuRadius(10f)
         .setMenuShadow(10f)
         .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+        .setTextGravity(Gravity.CENTER)
         .setMenuColor(Color.WHITE)
         .setSelectedEffect(false)
         .setShowBackground(false)

@@ -17,6 +17,7 @@
 package com.skydoves.powermenu;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ import java.util.List;
  *
  * <p>{@link PowerMenuItem} is the member of the PowerMenu's list.
  */
-@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 
@@ -52,6 +53,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     if (builder.selected != -1) setSelectedPosition(builder.selected);
     if (builder.textSize != 12) setTextSize(builder.textSize);
     if (builder.textGravity != Gravity.START) setTextGravity(builder.textGravity);
+    if (builder.textTypeface != null) setTextTypeface(builder.textTypeface);
 
     this.menuListView.setAdapter(adapter);
     addItemList(builder.powerMenuItems);
@@ -98,6 +100,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     this.getAdapter().setTextGravity(gravity);
   }
 
+  @Override
+  public void setTextTypeface(Typeface typeface) {
+    this.getAdapter().setTextTypeface(typeface);
+  }
+
   /** Builder class for creating {@link PowerMenu}. */
   public static class Builder extends AbstractMenuBuilder {
 
@@ -109,6 +116,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     private int selectedMenuColor = -2;
     private int textSize = 12;
     private int textGravity = Gravity.START;
+    private Typeface textTypeface = null;
 
     private List<PowerMenuItem> powerMenuItems;
 
@@ -207,6 +215,11 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
     public Builder setTextGravity(int gravity) {
       this.textGravity = gravity;
+      return this;
+    }
+
+    public Builder setTextTypeface(Typeface typeface) {
+      this.textTypeface = typeface;
       return this;
     }
 
