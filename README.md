@@ -47,6 +47,7 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
           .setMenuShadow(10f) // sets the shadow.
           .setTextColor(context.getResources().getColor(R.color.md_grey_800))
           .setTextGravity(Gravity.CENTER)
+          .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
           .setSelectedTextColor(Color.WHITE)
           .setMenuColor(Color.WHITE)
           .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
@@ -295,6 +296,7 @@ Just use `setLifecycleOwner` method. Then `dismiss` method will be called automa
 .setTextColor(context.getResources().getColor(R.color.md_grey_800)) // sets the color of the default item text.
 .setTextSize(12) // sets a text size of the item text
 .setTextGravity(Gravity.CENTER) // sets a gravity of the item text.
+.setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD)) // sets a typeface of the item text
 .setSelectedTextColor(Color.WHITE) // sets the color of the selected item text.
 .setMenuColor(Color.WHITE) // sets the color of the menu item color.
 .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // sets the color of the selected menu item color.
