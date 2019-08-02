@@ -6,7 +6,7 @@ publish {
     groupId = 'com.github.skydoves'
     artifactId = 'powermenu'
     publishVersion = versions.versionName
-    desc = 'This is PowerMenu by skydoves'
+    desc = '🔥 The most powerful and easiest way to implement modern popup menu.'
     website = 'https://github.com/skydoves/PowerMenu'
     issueTracker = "${website}/issues"
     repository = "${website}.git"
