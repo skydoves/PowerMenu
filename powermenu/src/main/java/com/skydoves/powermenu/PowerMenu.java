@@ -34,7 +34,7 @@ import java.util.List;
  *
  * <p>{@link PowerMenuItem} is the member of the PowerMenu's list.
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("unused")
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 

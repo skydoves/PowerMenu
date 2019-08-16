@@ -50,6 +50,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     super(listView);
   }
 
+  @SuppressWarnings("ConstantConditions")
   @Override
   public View getView(final int index, View view, ViewGroup viewGroup) {
     final Context context = viewGroup.getContext();

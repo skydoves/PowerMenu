@@ -21,7 +21,7 @@ import android.content.res.Resources;
 import android.util.TypedValue;
 
 @SuppressWarnings({"WeakerAccess", "SameParameterValue"})
-public class ConvertUtil {
+class ConvertUtil {
   protected static int convertDpToPixel(float dp, Context context) {
     Resources resources = context.getResources();
     return Math.round(
