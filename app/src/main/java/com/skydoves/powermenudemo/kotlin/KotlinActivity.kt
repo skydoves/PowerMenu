@@ -31,6 +31,7 @@ class KotlinActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_test)
 
+    moreMenu.showAsDropDown(button)
     button.setOnClickListener {
       moreMenu.showAsDropDown(it)
     }

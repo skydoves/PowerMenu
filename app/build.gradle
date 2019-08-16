@@ -6,7 +6,7 @@ apply from: '../dependencies.gradle'
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.skydoves.powermenu.powermenudemo"
+        applicationId "com.skydoves.powermenudemo"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
         versionCode versions.versionCode

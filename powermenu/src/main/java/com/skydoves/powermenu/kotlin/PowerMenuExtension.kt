@@ -18,16 +18,9 @@
 
 package com.skydoves.powermenu.kotlin
 
-import android.os.Build
 import android.view.View
-import android.view.ViewTreeObserver
 import androidx.annotation.MainThread
 import com.skydoves.powermenu.AbstractPowerMenu
-
-/** showing the popup to the anchor. */
-fun View.showPopup(powerMenu: AbstractPowerMenu<*, *>) {
-  powermenu { powerMenu.showPopup(this) }
-}
 
 /** showing the popup menu as drop down to the anchor. */
 fun View.showAsDropDown(powerMenu: AbstractPowerMenu<*, *>) {
@@ -111,16 +104,5 @@ fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, gravity: Int, xOff: 
 
 @MainThread
 internal inline fun View.powermenu(crossinline block: () -> Unit) {
-  this.viewTreeObserver.addOnGlobalLayoutListener(
-    object : ViewTreeObserver.OnGlobalLayoutListener {
-      override fun onGlobalLayout() {
-        block()
-        if (Build.VERSION.SDK_INT >= 16) {
-          viewTreeObserver.removeOnGlobalLayoutListener(this)
-        } else {
-          @Suppress("DEPRECATION")
-          viewTreeObserver.removeGlobalOnLayoutListener(this)
-        }
-      }
-    })
+  post { block() }
 }
