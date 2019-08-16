@@ -32,6 +32,7 @@ __[6. Anchor](https://github.com/skydoves/PowerMenu#anchor)__ <br>
 __[7. Background](https://github.com/skydoves/PowerMenu#background)__ <br>
 __[8. Avoid Memory leak](https://github.com/skydoves/PowerMenu#avoid-memory-leak)__ <br>
 __[9. Functions](https://github.com/skydoves/PowerMenu#functions)__ <br>
+__[10. Lazy initialization in Kotlin](https://github.com/skydoves/PowerMenu#lazy-initialization-in-kotlin)__ <br>
 
 ## Usage
 
@@ -277,6 +278,42 @@ So we can solve the memory leak issue so easily.<br>
 Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
 ```java
 .setLifecycleOwner(lifecycleOwner)
+```
+
+## Lazy initialization in Kotlin
+We can initialize the `PowerMenu` property lazily using `powerMenu` keyword and `PowerMenu.Factory` abstract class.<br>
+The `powerMenu` extension keyword can be used in Activity and Fragment.
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+  private val moreMenu by powerMenu(MoreMenuFactory::class)
+  
+  //..
+```
+We should create a factory class which extends `PowerMenu.Factory`.<br>
+An implementation class of the factory must have a default(non-argument) constructor.
+
+```kotlin
+class MoreMenuFactory : PowerMenu.Factory() {
+
+  override fun create(context: Context, lifecycle: LifecycleOwner?): PowerMenu {
+    return createPowerMenu(context) {
+      addItem(PowerMenuItem("Novel", true))
+      addItem(PowerMenuItem("Poetry", false))
+      setAutoDismiss(true)
+      setLifecycleOwner(lifecycle)
+      setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
+      setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
+      setTextSize(12)
+      setTextGravity(Gravity.CENTER)
+      setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
+      setSelectedTextColor(Color.WHITE)
+      setMenuColor(Color.WHITE)
+      setInitializeRule(Lifecycle.Event.ON_CREATE, 0)
+    }
+  }
+}
 ```
 
 ## Functions
