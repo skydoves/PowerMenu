@@ -8,6 +8,7 @@ ext.versions = [
     spotlessGradle     : '3.23.1',
     bintrayRelease     : '0.9',
 
+    kotlin             : '1.3.41',
     androidxAppcompat  : '1.1.0-rc01',
     googleMaterial     : '1.1.0-alpha09',
     cardView           : '1.0.0',
