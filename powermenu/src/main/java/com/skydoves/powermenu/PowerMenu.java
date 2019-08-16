@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import java.util.List;
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 
-  protected PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
+  private PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
     Builder builder = (Builder) abstractMenuBuilder;
@@ -317,5 +318,16 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     public PowerMenu build() {
       return new PowerMenu(context, this);
     }
+  }
+
+  /**
+   * An abstract factory class for creating an instance of {@link PowerMenu}.
+   *
+   * <p>A factory implementation class must have a non-argument constructor.
+   */
+  public abstract static class Factory {
+
+    /** returns an instance of {@link PowerMenu}. */
+    public abstract @NonNull PowerMenu create(Context context, LifecycleOwner lifecycle);
   }
 }

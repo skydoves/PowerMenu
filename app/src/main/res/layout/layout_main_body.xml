@@ -1,189 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_margin="15dp"
+  android:orientation="vertical"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+  <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="15dp"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:padding="5dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+      <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/profile1"
+          android:layout_width="65dp"
+          android:layout_height="65dp"
+          android:layout_margin="10dp"
+          android:onClick="onAlert"
+          android:src="@drawable/face2" />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@+id/profile1"
+          android:fontFamily="sans-serif"
+          android:text="Grace"
+          android:textColor="@color/md_grey_800"
+          android:textSize="20sp"
+          android:textStyle="bold" />
+
+        <ImageView
+          android:layout_width="25dp"
+          android:layout_height="25dp"
+          android:layout_alignParentEnd="true"
+          android:layout_margin="10dp"
+          android:onClick="onShare"
+          android:src="@drawable/icon_share" />
+      </RelativeLayout>
+
+      <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:padding="5dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:maxLines="4"
+        android:text="@string/board1"
+        android:textColor="@color/md_grey_600"
+        android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+  <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:elevation="5dp"
+    android:padding="5dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile1"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_margin="10dp"
-                    android:onClick="onAlert"
-                    android:src="@drawable/face2" />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/profile1"
-                    android:fontFamily="sans-serif"
-                    android:text="Grace"
-                    android:textColor="@color/md_grey_800"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:onClick="onShare"
-                    android:src="@drawable/icon_share" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif"
-                android:maxLines="4"
-                android:text="@string/board1"
-                android:textColor="@color/md_grey_600"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
+      <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/profile2"
+          android:layout_width="65dp"
+          android:layout_height="65dp"
+          android:layout_margin="10dp"
+          android:onClick="onDialog"
+          android:src="@drawable/face1" />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@+id/profile2"
+          android:fontFamily="sans-serif"
+          android:text="Amelia"
+          android:textColor="@color/md_grey_800"
+          android:textSize="20sp"
+          android:textStyle="bold" />
+
+        <ImageView
+          android:layout_width="25dp"
+          android:layout_height="25dp"
+          android:layout_alignParentEnd="true"
+          android:layout_margin="10dp"
+          android:onClick="onShare"
+          android:src="@drawable/icon_share" />
+      </RelativeLayout>
+
+      <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:elevation="5dp"
-        android:padding="5dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:maxLines="4"
+        android:text="@string/board2"
+        android:textColor="@color/md_grey_600"
+        android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+  <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:elevation="5dp"
+    android:padding="5dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile2"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_margin="10dp"
-                    android:onClick="onDialog"
-                    android:src="@drawable/face1" />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/profile2"
-                    android:fontFamily="sans-serif"
-                    android:text="Amelia"
-                    android:textColor="@color/md_grey_800"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:onClick="onShare"
-                    android:src="@drawable/icon_share" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif"
-                android:maxLines="4"
-                android:text="@string/board2"
-                android:textColor="@color/md_grey_600"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
+      <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+          android:id="@+id/profile3"
+          android:layout_width="65dp"
+          android:layout_height="65dp"
+          android:layout_margin="10dp"
+          android:onClick="onCustomDialog"
+          android:src="@drawable/face3" />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@+id/profile3"
+          android:fontFamily="sans-serif"
+          android:text="Sophie"
+          android:textColor="@color/md_grey_800"
+          android:textSize="20sp"
+          android:textStyle="bold" />
+
+        <ImageView
+          android:layout_width="25dp"
+          android:layout_height="25dp"
+          android:layout_alignParentEnd="true"
+          android:layout_margin="10dp"
+          android:onClick="onShare"
+          android:src="@drawable/icon_share" />
+      </RelativeLayout>
+
+      <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:elevation="5dp"
-        android:padding="5dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:maxLines="4"
+        android:text="@string/board3"
+        android:textColor="@color/md_grey_600"
+        android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile3"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_margin="10dp"
-                    android:onClick="onCustomDialog"
-                    android:src="@drawable/face3" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/profile3"
-                    android:fontFamily="sans-serif"
-                    android:text="Sophie"
-                    android:textColor="@color/md_grey_800"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:onClick="onShare"
-                    android:src="@drawable/icon_share" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif"
-                android:maxLines="4"
-                android:text="@string/board3"
-                android:textColor="@color/md_grey_600"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
 
 </LinearLayout>

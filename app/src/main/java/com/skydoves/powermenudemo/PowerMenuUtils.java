@@ -21,6 +21,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CustomPowerMenu;
@@ -54,13 +55,13 @@ public class PowerMenuUtils {
         .setMenuEffect(MenuEffect.BODY)
         .setMenuRadius(10f)
         .setMenuShadow(10f)
-        .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+        .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
         .setTextSize(12)
         .setTextGravity(Gravity.CENTER)
         .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
         .setSelectedTextColor(Color.WHITE)
         .setMenuColor(Color.WHITE)
-        .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
+        .setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary))
         .setOnMenuItemClickListener(onMenuItemClickListener)
         .setOnDismissListener(onDismissedListener)
         .setPreferenceName("HamburgerPowerMenu")
@@ -81,7 +82,7 @@ public class PowerMenuUtils {
         .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
         .setMenuRadius(10f)
         .setMenuShadow(10f)
-        .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+        .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
         .setTextGravity(Gravity.CENTER)
         .setMenuColor(Color.WHITE)
         .setSelectedEffect(false)
@@ -95,7 +96,7 @@ public class PowerMenuUtils {
       LifecycleOwner lifecycleOwner,
       OnMenuItemClickListener onMenuItemClickListener) {
     ColorDrawable drawable =
-        new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300));
+        new ColorDrawable(ContextCompat.getColor(context, R.color.md_blue_grey_300));
     return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
         .addItem("Novel")
         .addItem("Poetry")
@@ -169,7 +170,7 @@ public class PowerMenuUtils {
         .setFooterView(R.layout.layout_custom_dialog_footer)
         .addItem(
             new NameCardMenuItem(
-                context.getResources().getDrawable(R.drawable.face3),
+                ContextCompat.getDrawable(context, R.drawable.face3),
                 "Sophie",
                 context.getString(R.string.board3)))
         .setLifecycleOwner(lifecycleOwner)

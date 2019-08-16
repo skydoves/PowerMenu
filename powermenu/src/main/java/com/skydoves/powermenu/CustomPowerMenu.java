@@ -20,6 +20,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import java.util.ArrayList;
@@ -220,5 +221,16 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     public CustomPowerMenu build() {
       return new CustomPowerMenu<>(context, this);
     }
+  }
+
+  /**
+   * An abstract factory class for creating an instance of {@link CustomPowerMenu}.
+   *
+   * <p>A factory implementation class must have a non-argument constructor.
+   */
+  public abstract static class Factory {
+
+    /** returns an instance of {@link CustomPowerMenu}. */
+    public abstract @NonNull CustomPowerMenu create(Context context, LifecycleOwner lifecycle);
   }
 }
