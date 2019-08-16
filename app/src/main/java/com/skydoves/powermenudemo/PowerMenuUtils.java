@@ -21,7 +21,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
-import android.view.View;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CustomPowerMenu;
@@ -126,11 +125,7 @@ public class PowerMenuUtils {
         .setMenuShadow(10f)
         .setFocusable(true)
         .setOnMenuItemClickListener(onMenuItemClickListener)
-        .setOnBackgroundClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {}
-            })
+        .setOnBackgroundClickListener(view -> {})
         .build();
   }
 

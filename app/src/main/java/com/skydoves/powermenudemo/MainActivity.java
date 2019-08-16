@@ -46,12 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
       };
   private OnDismissedListener onHamburgerMenuDismissedListener =
-      new OnDismissedListener() {
-        @Override
-        public void onDismissed() {
-          Log.d("Test", "onDismissed hamburger menu");
-        }
-      };
+      () -> Log.d("Test", "onDismissed hamburger menu");
   private OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
@@ -107,21 +102,15 @@ public class MainActivity extends AppCompatActivity {
     View footerView = dialogMenu.getFooterView();
     TextView textView_yes = footerView.findViewById(R.id.textView_yes);
     textView_yes.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Toast.makeText(getBaseContext(), "Yes", Toast.LENGTH_SHORT).show();
-            dialogMenu.dismiss();
-          }
+        view -> {
+          Toast.makeText(getBaseContext(), "Yes", Toast.LENGTH_SHORT).show();
+          dialogMenu.dismiss();
         });
     TextView textView_no = footerView.findViewById(R.id.textView_no);
     textView_no.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Toast.makeText(getBaseContext(), "No", Toast.LENGTH_SHORT).show();
-            dialogMenu.dismiss();
-          }
+        view -> {
+          Toast.makeText(getBaseContext(), "No", Toast.LENGTH_SHORT).show();
+          dialogMenu.dismiss();
         });
   }
 
@@ -130,21 +119,15 @@ public class MainActivity extends AppCompatActivity {
     View footerView = customDialogMenu.getFooterView();
     TextView textView_yes = footerView.findViewById(R.id.textView_yes);
     textView_yes.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Toast.makeText(getBaseContext(), "Read More", Toast.LENGTH_SHORT).show();
-            customDialogMenu.dismiss();
-          }
+        view -> {
+          Toast.makeText(getBaseContext(), "Read More", Toast.LENGTH_SHORT).show();
+          customDialogMenu.dismiss();
         });
     TextView textView_no = footerView.findViewById(R.id.textView_no);
     textView_no.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
-            customDialogMenu.dismiss();
-          }
+        view -> {
+          Toast.makeText(getBaseContext(), "Close", Toast.LENGTH_SHORT).show();
+          customDialogMenu.dismiss();
         });
   }
 

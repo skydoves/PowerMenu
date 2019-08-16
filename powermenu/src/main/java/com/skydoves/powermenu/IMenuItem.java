@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @param <T> item type.
  */
-public interface IMenuItem<T> {
+interface IMenuItem<T> {
   /**
    * add an item.
    *

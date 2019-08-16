@@ -19,7 +19,8 @@ package com.skydoves.powermenu;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.Gravity;
@@ -208,7 +209,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param focusable focusable or not.
    */
   public void setFocusable(boolean focusable) {
-    menuWindow.setBackgroundDrawable(new BitmapDrawable());
+    menuWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     menuWindow.setOutsideTouchable(!focusable);
   }
 

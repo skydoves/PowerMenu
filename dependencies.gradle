@@ -9,9 +9,9 @@ ext.versions = [
     bintrayRelease     : '0.9',
 
     androidxAppcompat  : '1.1.0-rc01',
-    googleMaterial     : '1.1.0-alpha08',
+    googleMaterial     : '1.1.0-alpha09',
     cardView           : '1.0.0',
 
     // for demo
-    circleimageview    : '2.2.0'
+    circleimageview    : '3.0.0'
 ]
