@@ -17,6 +17,7 @@
 package com.skydoves.powermenudemo.kotlin
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.powermenu.kotlin.powerMenu
 import com.skydoves.powermenudemo.R
@@ -32,6 +33,11 @@ class KotlinActivity : AppCompatActivity() {
 
     button.setOnClickListener {
       moreMenu.showAsDropDown(it)
+    }
+
+    moreMenu.setOnMenuItemClickListener { position, item ->
+      moreMenu.selectedPosition = position
+      Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
     }
   }
 }

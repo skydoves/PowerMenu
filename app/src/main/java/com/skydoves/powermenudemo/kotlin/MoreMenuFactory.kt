@@ -27,32 +27,33 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.MenuEffect
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
+import com.skydoves.powermenu.kotlin.createPowerMenu
 import com.skydoves.powermenudemo.R
 
 class MoreMenuFactory : PowerMenu.Factory() {
 
   override fun create(context: Context, lifecycle: LifecycleOwner?): PowerMenu {
-    return PowerMenu.Builder(context)
-      .addItem(PowerMenuItem("Novel", true))
-      .addItem(PowerMenuItem("Poetry", false))
-      .addItem(PowerMenuItem("Art", false))
-      .addItem(PowerMenuItem("Journals", false))
-      .addItem(PowerMenuItem("Travel", false))
-      .setAutoDismiss(true)
-      .setLifecycleOwner(lifecycle)
-      .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
-      .setMenuEffect(MenuEffect.BODY)
-      .setMenuRadius(10f)
-      .setMenuShadow(10f)
-      .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
-      .setTextSize(12)
-      .setTextGravity(Gravity.CENTER)
-      .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
-      .setSelectedTextColor(Color.WHITE)
-      .setMenuColor(Color.WHITE)
-      .setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary))
-      .setPreferenceName("HamburgerPowerMenu")
-      .setInitializeRule(Lifecycle.Event.ON_CREATE, 0)
-      .build()
+    return createPowerMenu(context) {
+      addItem(PowerMenuItem("Novel", true))
+      addItem(PowerMenuItem("Poetry", false))
+      addItem(PowerMenuItem("Art", false))
+      addItem(PowerMenuItem("Journals", false))
+      addItem(PowerMenuItem("Travel", false))
+      setAutoDismiss(true)
+      setLifecycleOwner(lifecycle)
+      setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
+      setMenuEffect(MenuEffect.BODY)
+      setMenuRadius(10f)
+      setMenuShadow(10f)
+      setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
+      setTextSize(12)
+      setTextGravity(Gravity.CENTER)
+      setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
+      setSelectedTextColor(Color.WHITE)
+      setMenuColor(Color.WHITE)
+      setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary))
+      setPreferenceName("HamburgerPowerMenu")
+      setInitializeRule(Lifecycle.Event.ON_CREATE, 0)
+    }
   }
 }

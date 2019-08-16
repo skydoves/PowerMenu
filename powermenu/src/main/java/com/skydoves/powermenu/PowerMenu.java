@@ -25,6 +25,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.kotlin.PowerMenuDsl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +108,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   /** Builder class for creating {@link PowerMenu}. */
+  @PowerMenuDsl
   public static class Builder extends AbstractMenuBuilder {
 
     private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
