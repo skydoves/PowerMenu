@@ -34,7 +34,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import androidx.annotation.MainThread;
-import androidx.annotation.RestrictTo;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -52,7 +51,6 @@ import kotlin.jvm.functions.Function0;
  * <p>
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     implements IMenuItem<E>, LifecycleObserver {
 

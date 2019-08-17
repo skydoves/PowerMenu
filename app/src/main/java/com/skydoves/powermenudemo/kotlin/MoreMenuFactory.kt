@@ -32,7 +32,7 @@ import com.skydoves.powermenudemo.R
 
 class MoreMenuFactory : PowerMenu.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner?): PowerMenu {
+  override fun create(context: Context, lifecycle: LifecycleOwner): PowerMenu {
     return createPowerMenu(context) {
       addItem(PowerMenuItem("Novel", true))
       addItem(PowerMenuItem("Poetry", false))

@@ -330,6 +330,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   public abstract static class Factory {
 
     /** returns an instance of {@link PowerMenu}. */
-    public abstract @NonNull PowerMenu create(Context context, LifecycleOwner lifecycle);
+    public abstract @NonNull PowerMenu create(
+        @NonNull Context context, @NonNull LifecycleOwner lifecycle);
   }
 }
