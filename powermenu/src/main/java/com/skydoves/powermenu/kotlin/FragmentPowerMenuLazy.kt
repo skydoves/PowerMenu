@@ -16,32 +16,30 @@
 
 package com.skydoves.powermenu.kotlin
 
-import android.content.Context
-import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.powermenu.PowerMenu
 import kotlin.reflect.KClass
 
 /**
- * An implementation of [Lazy] used by [ComponentActivity] and [Fragment]
+ * An implementation of [Lazy] used by [Fragment].
  *
  * tied to the given [lifecycleOwner], [clazz].
  */
-class PowerMenuLazy<out T : PowerMenu.Factory>(
-  private val context: Context,
+class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
+  private val fragment: Fragment,
   private val lifecycleOwner: LifecycleOwner,
   private val clazz: KClass<T>
-) : Lazy<PowerMenu> {
+) : Lazy<PowerMenu?> {
 
   private var cached: PowerMenu? = null
 
-  override val value: PowerMenu
+  override val value: PowerMenu?
     get() {
       var instance = cached
-      if (instance == null) {
+      if (instance == null && fragment.context != null) {
         val factory = clazz::java.get().newInstance()
-        instance = factory.create(context, lifecycleOwner)
+        instance = factory.create(fragment.requireContext(), lifecycleOwner)
         cached = instance
       }
 
