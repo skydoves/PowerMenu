@@ -30,5 +30,3 @@ dependencies {
 }
 
 apply from: '../spotless.gradle'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
