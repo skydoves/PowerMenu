@@ -25,5 +25,6 @@ import com.skydoves.powermenu.PowerMenu
 annotation class PowerMenuDsl
 
 /** creates an instance of [PowerMenu] by [PowerMenu.Builder] using kotlin dsl. */
+@PowerMenuDsl
 fun createPowerMenu(context: Context, block: PowerMenu.Builder.() -> Unit): PowerMenu =
   PowerMenu.Builder(context).apply(block).build()

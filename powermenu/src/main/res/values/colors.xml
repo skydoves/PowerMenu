@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="menu_background">#EDC9FF</color>
-  <color name="menu_text_selected">#AA00FF</color>
-  <color name="menu_text_no_selected">#dd000000</color>
+  <color name="white">#FFFFFFFF</color>
+  <color name="black">#dd000000</color>
+  <color name="colorPrimary">#C51162</color>
 </resources>

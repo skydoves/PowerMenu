@@ -46,12 +46,12 @@ PowerMenu powerMenu = new PowerMenu.Builder(context)
           .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT).
           .setMenuRadius(10f) // sets the corner radius.
           .setMenuShadow(10f) // sets the shadow.
-          .setTextColor(context.getResources().getColor(R.color.md_grey_800))
+          .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
           .setTextGravity(Gravity.CENTER)
           .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD))
           .setSelectedTextColor(Color.WHITE)
           .setMenuColor(Color.WHITE)
-          .setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary))
+          .setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary))
           .setOnMenuItemClickListener(onMenuItemClickListener)
           .build();
 ```
@@ -69,7 +69,7 @@ If **isSelected** is true, the item's text and the background color will be chan
 
 ```java
 .setSelectedTextColor(Color.WHITE) // sets the color of the selected item text. 
-.setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // sets the color of the selected menu item color.
+.setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary)) // sets the color of the selected menu item color.
 ```
 
 `OnMenuItemClickListener` is for listening to the item click of the popup menu.
@@ -143,10 +143,10 @@ public class IconMenuAdapter extends MenuBaseAdapter<IconPowerMenuItem> {
 The last, create the `CustomPowerMenu` with the `onMenuItemClickListener`.
 ```java
 CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new IconMenuAdapter())
-       .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_wechat), "WeChat"))
-       .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_facebook), "Facebook"))
-       .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_twitter), "Twitter"))
-       .addItem(new IconPowerMenuItem(context.getResources().getDrawable(R.drawable.ic_line), "Line"))
+       .addItem(new IconPowerMenuItem(ContextCompat.getDrawable(context, R.drawable.ic_wechat), "WeChat"))
+       .addItem(new IconPowerMenuItem(ContextCompat.getDrawable(context, R.drawable.ic_facebook), "Facebook"))
+       .addItem(new IconPowerMenuItem(ContextCompat.getDrawable(context, R.drawable.ic_twitter), "Twitter"))
+       .addItem(new IconPowerMenuItem(ContextCompat.getDrawable(context, R.drawable.ic_line), "Line"))
        .setOnMenuItemClickListener(onIconMenuItemClickListener)
        .setAnimation(MenuAnimation.SHOWUP_TOP_RIGHT)
        .setMenuRadius(10f)
@@ -225,7 +225,7 @@ CustomPowerMenu customPowerMenu = new CustomPowerMenu.Builder<>(context, new Cus
          setHeaderView(R.layout.layout_custom_dialog_header) // header used for title
         .setFooterView(R.layout.layout_custom_dialog_footer) // footer used for Read More and Close buttons
          // this is body
-        .addItem(new NameCardMenuItem(context.getResources().getDrawable(R.drawable.face3), "Sophie", context.getString(R.string.board3)))
+        .addItem(new NameCardMenuItem(ContextCompat.getDrawable(context, R.drawable.face3), "Sophie", context.getString(R.string.board3)))
         .setLifecycleOwner(lifecycleOwner)
         .setAnimation(MenuAnimation.SHOW_UP_CENTER)
         .setWith(800)
@@ -327,16 +327,16 @@ class MoreMenuFactory : PowerMenu.Factory() {
 .setHeight(400) // sets the popup height size.
 .setMenuRadius(10f) // sets the popup corner radius.
 .setMenuShadow(10f) // sets the popup shadow.
-.setDivider(new ColorDrawable(context.getResources().getColor(R.color.md_blue_grey_300))) // sets a divider.
+.setDivider(new ColorDrawable(ContextCompat.getColor(context, R.color.md_blue_grey_300))) // sets a divider.
 .setDividerHeight(1) // sets the divider height.
 .setAnimation(MenuAnimation.FADE) // sets animations of the popup. It will start up when the popup is showing.
-.setTextColor(context.getResources().getColor(R.color.md_grey_800)) // sets the color of the default item text.
+.setTextColor(ContextCompat.getColor(context, R.color.md_grey_800)) // sets the color of the default item text.
 .setTextSize(12) // sets a text size of the item text
 .setTextGravity(Gravity.CENTER) // sets a gravity of the item text.
 .setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD)) // sets a typeface of the item text
 .setSelectedTextColor(Color.WHITE) // sets the color of the selected item text.
 .setMenuColor(Color.WHITE) // sets the color of the menu item color.
-.setSelectedMenuColor(context.getResources().getColor(R.color.colorPrimary)) // sets the color of the selected menu item color.
+.setSelectedMenuColor(ContextCompat.getColor(context, R.color.colorPrimary)) // sets the color of the selected menu item color.
 .setSelectedEffect(false) // sets the selected effects what changing colors of the selected menu item.
 .setOnMenuItemClickListener(onMenuItemClickListener) // sets an item click listener.
 .setOnDismissListener(OnDismissedListener onDismissListener) // sets a menu dismiss listener.

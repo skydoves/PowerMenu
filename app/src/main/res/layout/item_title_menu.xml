@@ -12,7 +12,7 @@
     android:gravity="center"
     android:lineSpacingExtra="6sp"
     android:padding="13dp"
-    android:textColor="@color/menu_text_no_selected"
+    android:textColor="@color/black"
     android:textSize="14sp"
     android:textStyle="bold"
     tools:text="All Contents" />

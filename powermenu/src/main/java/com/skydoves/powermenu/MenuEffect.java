@@ -16,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+/** MenuEffect is an collection of the popup animation related to circularRevealed. */
 public enum MenuEffect {
   BODY,
   INNER

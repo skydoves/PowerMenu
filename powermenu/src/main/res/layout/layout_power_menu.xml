@@ -16,10 +16,6 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
-    <EditText
-      android:layout_width="0dp"
-      android:layout_height="0dp" />
-
     <ListView
       android:id="@+id/power_menu_listView"
       android:layout_width="150dp"

@@ -17,7 +17,7 @@
     android:layout_gravity="center_vertical"
     android:layout_marginLeft="7dp"
     android:scaleType="fitXY"
-    tools:ignore="RtlHardcoded" />
+    tools:ignore="ContentDescription,RtlHardcoded" />
 
   <TextView
     android:id="@+id/item_power_menu_title"
@@ -26,7 +26,7 @@
     android:fontFamily="sans-serif"
     android:lineSpacingExtra="6sp"
     android:padding="13dp"
-    android:textColor="@color/menu_text_no_selected"
+    android:textColor="@color/black"
     android:textSize="14sp"
     android:textStyle="bold"
     tools:ignore="UnusedAttribute"

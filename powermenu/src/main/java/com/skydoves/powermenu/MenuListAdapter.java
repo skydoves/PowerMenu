@@ -27,13 +27,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
 
 /**
  * MenuListAdapter extends {@link MenuBaseAdapter}.
  *
  * <p>This is the {@link PowerMenu}'s default adapter.
  */
-@SuppressWarnings({"WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
   @ColorInt private int textColor = -2;
@@ -50,7 +51,6 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     super(listView);
   }
 
-  @SuppressWarnings("ConstantConditions")
   @Override
   public View getView(final int index, View view, ViewGroup viewGroup) {
     final Context context = viewGroup.getContext();
@@ -58,6 +58,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     if (view == null) {
       LayoutInflater inflater =
           (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      assert inflater != null;
       view = inflater.inflate(R.layout.item_power_menu, viewGroup, false);
     }
 
@@ -87,18 +88,17 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
       setSelectedPosition(index);
 
       if (selectedMenuColor == -2)
-        background.setBackgroundColor(context.getResources().getColor(R.color.menu_background));
+        background.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
       else background.setBackgroundColor(selectedMenuColor);
 
       if (selectedTextColor == -2)
-        title.setTextColor(context.getResources().getColor(R.color.menu_text_selected));
+        title.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
       else title.setTextColor(selectedTextColor);
     } else {
       if (menuColor == -2) background.setBackgroundColor(Color.WHITE);
       else background.setBackgroundColor(menuColor);
 
-      if (textColor == -2)
-        title.setTextColor(context.getResources().getColor(R.color.menu_text_no_selected));
+      if (textColor == -2) title.setTextColor(ContextCompat.getColor(context, R.color.black));
       else title.setTextColor(textColor);
     }
     return super.getView(index, view, viewGroup);

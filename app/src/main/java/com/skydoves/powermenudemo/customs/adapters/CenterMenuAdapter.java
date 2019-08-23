@@ -21,10 +21,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.core.content.ContextCompat;
 import com.skydoves.powermenu.MenuBaseAdapter;
 import com.skydoves.powermenudemo.R;
 
-@SuppressWarnings("ConstantConditions")
 public class CenterMenuAdapter extends MenuBaseAdapter<String> {
 
   public CenterMenuAdapter() {
@@ -38,13 +38,14 @@ public class CenterMenuAdapter extends MenuBaseAdapter<String> {
     if (view == null) {
       LayoutInflater inflater =
           (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      assert inflater != null;
       view = inflater.inflate(R.layout.item_title_menu, viewGroup, false);
     }
 
     String item = (String) getItem(index);
     final TextView title = view.findViewById(R.id.item_title);
     title.setText(item);
-    title.setTextColor(context.getResources().getColor(R.color.md_grey_800));
+    title.setTextColor(ContextCompat.getColor(context, R.color.md_grey_800));
     return super.getView(index, view, viewGroup);
   }
 

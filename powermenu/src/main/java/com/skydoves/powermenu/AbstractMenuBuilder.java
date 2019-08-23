@@ -33,7 +33,6 @@ public abstract class AbstractMenuBuilder {
 
   protected Context context;
   protected LayoutInflater layoutInflater;
-
   protected boolean showBackground = true;
   protected LifecycleOwner lifecycleOwner = null;
   protected View.OnClickListener backgroundClickListener = null;
