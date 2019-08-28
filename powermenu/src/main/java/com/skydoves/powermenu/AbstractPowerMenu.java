@@ -33,15 +33,17 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.RestrictTo;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+
 import java.util.List;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -53,7 +55,6 @@ import kotlin.jvm.functions.Function0;
  * <p>
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     implements IMenuItem<E>, LifecycleObserver {
 
@@ -202,8 +203,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * <p>when onDestroy method called by lifecycle.
    *
    * @param lifecycleOwner {@link androidx.appcompat.app.AppCompatActivity},
-   *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
-   *     LifecycleOwner}.
+   *                       <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+   *                       LifecycleOwner}.
    */
   public void setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
     lifecycleOwner.getLifecycle().addObserver(this);
@@ -254,7 +255,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   @MainThread
-  private void showPopup(@NonNull final View anchor, final Function0 function) {
+  private void showPopup(final View anchor, final Function0 function) {
     if (!isShowing()) {
       isShowing = true;
       anchor.post(
@@ -274,7 +275,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsDropDown(@NonNull final View anchor) {
+  public void showAsDropDown(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -290,10 +291,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as drop down to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff x-off,
-   * @param yOff y-off.
+   * @param xOff   x-off,
+   * @param yOff   y-off.
    */
-  public void showAsDropDown(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsDropDown(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -310,7 +311,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsAnchorLeftTop(@NonNull final View anchor) {
+  public void showAsAnchorLeftTop(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -326,10 +327,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as left-top aligns to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAsAnchorLeftTop(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsAnchorLeftTop(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -346,7 +347,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsAnchorLeftBottom(@NonNull final View anchor) {
+  public void showAsAnchorLeftBottom(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -362,10 +363,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as left-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAsAnchorLeftBottom(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsAnchorLeftBottom(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -382,7 +383,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsAnchorRightTop(@NonNull final View anchor) {
+  public void showAsAnchorRightTop(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -401,10 +402,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as right-top aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAsAnchorRightTop(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsAnchorRightTop(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -424,7 +425,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsAnchorRightBottom(@NonNull final View anchor) {
+  public void showAsAnchorRightBottom(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -443,10 +444,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as right-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAsAnchorRightBottom(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsAnchorRightBottom(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -466,7 +467,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAsAnchorCenter(@NonNull final View anchor) {
+  public void showAsAnchorCenter(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -485,10 +486,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as center align to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAsAnchorCenter(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAsAnchorCenter(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -508,7 +509,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param anchor anchor view.
    */
-  public void showAtCenter(@NonNull final View anchor) {
+  public void showAtCenter(final View anchor) {
     Function0 function =
         new Function0() {
           @Override
@@ -524,10 +525,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu as center aligns to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAtCenter(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAtCenter(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -543,10 +544,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * showing the popup menu to the specific location to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff   x-off.
+   * @param yOff   y-off.
    */
-  public void showAtLocation(@NonNull final View anchor, final int xOff, final int yOff) {
+  public void showAtLocation(final View anchor, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -561,13 +562,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   /**
    * showing the popup menu to the specific location to the anchor with {@link Gravity}.
    *
-   * @param anchor anchor view.
+   * @param anchor  anchor view.
    * @param gravity gravity of the menu.
-   * @param xOff x-off.
-   * @param yOff y-off.
+   * @param xOff    x-off.
+   * @param yOff    y-off.
    */
   public void showAtLocation(
-      @NonNull final View anchor, final int gravity, final int xOff, final int yOff) {
+      final View anchor, final int gravity, final int xOff, final int yOff) {
     Function0 function =
         new Function0() {
           @Override
@@ -579,7 +580,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     showPopup(anchor, function);
   }
 
-  /** apply menu effect. */
+  /**
+   * apply menu effect.
+   */
   private void doMenuEffect() {
     if (getCircularEffect() != null) {
       if (getCircularEffect().equals(CircularEffect.BODY)) {
@@ -595,7 +598,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param targetView view for animation target.
    */
-  private void circularRevealed(@NonNull View targetView) {
+  private void circularRevealed(View targetView) {
     targetView.addOnLayoutChangeListener(
         new View.OnLayoutChangeListener() {
           @Override
@@ -625,7 +628,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
         });
   }
 
-  /** dismiss the popup menu. */
+  /**
+   * dismiss the popup menu.
+   */
   public void dismiss() {
     if (isShowing()) {
       this.menuWindow.dismiss();
@@ -747,7 +752,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param divider drawable of the divider.
    */
-  public void setDivider(@NonNull Drawable divider) {
+  public void setDivider(Drawable divider) {
     menuListView.setDivider(divider);
   }
 
@@ -879,7 +884,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param view {@link View}.
    */
-  public void setHeaderView(@NonNull View view) {
+  public void setHeaderView(View view) {
     if (this.headerView == null) {
       this.menuListView.addHeaderView(view);
       this.headerView = view;
@@ -893,11 +898,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   /**
    * sets the header view of the popup menu list.
    *
-   * @param view {@link View}.
-   * @param data Object.
+   * @param view         {@link View}.
+   * @param data         Object.
    * @param isSelectable is selectable or not.
    */
-  public void setHeaderView(@NonNull View view, Object data, boolean isSelectable) {
+  public void setHeaderView(View view, Object data, boolean isSelectable) {
     if (this.headerView == null) {
       this.menuListView.addHeaderView(view, data, isSelectable);
       this.headerView = view;
@@ -925,7 +930,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param view {@link View}.
    */
-  public void setFooterView(@NonNull View view) {
+  public void setFooterView(View view) {
     if (this.footerView == null) {
       this.menuListView.addFooterView(view);
       this.footerView = view;
@@ -939,11 +944,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   /**
    * sets the footer view of the popup menu list.
    *
-   * @param view {@link View}.
-   * @param data Object.
+   * @param view         {@link View}.
+   * @param data         Object.
    * @param isSelectable is selectable or not.
    */
-  public void setFooterView(@NonNull View view, Object data, boolean isSelectable) {
+  public void setFooterView(View view, Object data, boolean isSelectable) {
     if (this.footerView == null) {
       this.menuListView.addFooterView(view, data, isSelectable);
       this.footerView = view;
@@ -1158,7 +1163,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     getAdapter().setPreference(preferenceName);
   }
 
-  /** clears the preference name of PowerMenu. */
+  /**
+   * clears the preference name of PowerMenu.
+   */
   public void clearPreference() {
     if (getAdapter().getPreferenceName() != null) {
       MenuPreferenceManager.getInstance().clearPosition(getAdapter().getPreferenceName());

@@ -21,7 +21,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import androidx.annotation.RestrictTo;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -30,7 +30,6 @@ import androidx.lifecycle.LifecycleOwner;
  * CustomPowerMenu.Builder}.
  */
 @SuppressWarnings("WeakerAccess")
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public abstract class AbstractMenuBuilder {
 
   protected Context context;
