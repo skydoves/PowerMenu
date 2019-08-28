@@ -1,15 +1,23 @@
 # PowerMenu
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
-[![travis](https://travis-ci.org/skydoves/PowerMenu.svg?branch=master)](https://travis-ci.org/skydoves/PowerMenu) 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7)](https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade)
-[![Android Weekly](https://img.shields.io/badge/Android%20weekly-326-orange.svg)](https://androidweekly.net/issues/issue-326)
-[![Javadoc](https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg)](https://skydoves.github.io/libraries/powermenu/javadoc/index.html) <br>
-The most powerful and easiest way to implement modern popup. <br>
-PowerMenu can be fully customized and used for popup dialogs. <br>
 
-![gif0](https://user-images.githubusercontent.com/24237865/53217729-92f77600-369c-11e9-9a24-34e8d31148d0.gif)
-![screenshot0](https://user-images.githubusercontent.com/24237865/53217886-1d3fda00-369d-11e9-829e-fa8a2b1c4a43.jpg)
+<p align="center">
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
+  <a href="https://travis-ci.org/skydoves/PowerMenu"><img alt="Travis" src="https://travis-ci.org/skydoves/PowerMenu.svg?branch=master"/></a>
+  <a href="https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade"><img alt="Codacy" src="https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7"/></a>
+  <a href="https://androidweekly.net/issues/issue-326"><img alt="AndroidWeekly" src="https://img.shields.io/badge/Android%20weekly-326-orange.svg"/></a>
+  <a href="https://skydoves.github.io/libraries/powermenu/javadoc/index.html"><img alt="Javadoc" src="https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg"/></a>
+</p>
+
+<p align="center">
+:fire: The powerful and easiest way to implement modern material popup menu. <br>
+PowerMenu can be fully customized and used for popup dialogs. <br>
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/24237865/53217729-92f77600-369c-11e9-9a24-34e8d31148d0.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/53217886-1d3fda00-369d-11e9-829e-fa8a2b1c4a43.jpg" width="32%"/>
+</p>
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/powermenu/images/download.svg)](https://bintray.com/devmagician/maven/powermenu/_latestVersion)
@@ -18,7 +26,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.1.1"
+  implementation "com.github.skydoves:powermenu:2.1.2"
 }
 ```
 
