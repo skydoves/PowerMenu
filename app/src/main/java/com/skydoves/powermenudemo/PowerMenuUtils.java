@@ -24,9 +24,9 @@ import android.view.Gravity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.CircularEffect;
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
-import com.skydoves.powermenu.MenuEffect;
 import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
@@ -52,7 +52,7 @@ public class PowerMenuUtils {
         .setAutoDismiss(true)
         .setLifecycleOwner(lifecycleOwner)
         .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
-        .setMenuEffect(MenuEffect.BODY)
+        .setCircularEffect(CircularEffect.BODY)
         .setMenuRadius(10f)
         .setMenuShadow(10f)
         .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
@@ -105,7 +105,7 @@ public class PowerMenuUtils {
         .addItem("Travel")
         .setLifecycleOwner(lifecycleOwner)
         .setAnimation(MenuAnimation.FADE)
-        .setMenuEffect(MenuEffect.BODY)
+        .setCircularEffect(CircularEffect.BODY)
         .setMenuRadius(10f)
         .setMenuShadow(10f)
         .setDivider(drawable)

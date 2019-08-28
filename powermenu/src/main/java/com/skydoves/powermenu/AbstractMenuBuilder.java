@@ -58,5 +58,5 @@ public abstract class AbstractMenuBuilder {
   protected String preferenceName = null;
   protected Lifecycle.Event initializeRule = null;
   protected int defaultPosition = 0;
-  protected MenuEffect menuEffect = null;
+  protected CircularEffect circularEffect = null;
 }

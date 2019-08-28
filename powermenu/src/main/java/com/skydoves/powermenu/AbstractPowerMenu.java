@@ -85,7 +85,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
 
   protected int contentViewPadding;
   private int defaultPosition;
-  private MenuEffect menuEffect;
+  private CircularEffect circularEffect;
   private boolean autoDismiss;
   private AdapterView.OnItemClickListener itemClickListener =
       new AdapterView.OnItemClickListener() {
@@ -162,7 +162,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     if (builder.dividerHeight != 0) setDividerHeight(builder.dividerHeight);
     if (builder.preferenceName != null) setPreferenceName(builder.preferenceName);
     if (builder.initializeRule != null) setInitializeRule(builder.initializeRule);
-    if (builder.menuEffect != null) setMenuEffect(builder.menuEffect);
+    if (builder.circularEffect != null) setCircularEffect(builder.circularEffect);
   }
 
   @SuppressLint("InflateParams")
@@ -581,10 +581,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
 
   /** apply menu effect. */
   private void doMenuEffect() {
-    if (getMenuEffect() != null) {
-      if (getMenuEffect().equals(MenuEffect.BODY)) {
+    if (getCircularEffect() != null) {
+      if (getCircularEffect().equals(CircularEffect.BODY)) {
         circularRevealed(menuWindow.getContentView());
-      } else if (getMenuEffect().equals(MenuEffect.INNER)) {
+      } else if (getCircularEffect().equals(CircularEffect.INNER)) {
         circularRevealed(getListView());
       }
     }
@@ -1197,18 +1197,18 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   /**
    * gets menu effect.
    *
-   * @return {@link MenuEffect}.
+   * @return {@link CircularEffect}.
    */
-  public MenuEffect getMenuEffect() {
-    return this.menuEffect;
+  public CircularEffect getCircularEffect() {
+    return this.circularEffect;
   }
 
   /**
    * sets menu effects for showing popup more dynamically.
    *
-   * @param menuEffect {@link MenuEffect}.
+   * @param circularEffect {@link CircularEffect}.
    */
-  public void setMenuEffect(@NonNull MenuEffect menuEffect) {
-    this.menuEffect = menuEffect;
+  public void setCircularEffect(@NonNull CircularEffect circularEffect) {
+    this.circularEffect = circularEffect;
   }
 }

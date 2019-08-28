@@ -217,8 +217,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
       return this;
     }
 
-    public Builder setMenuEffect(@NonNull MenuEffect menuEffect) {
-      this.menuEffect = menuEffect;
+    public Builder setCircularEffect(@NonNull CircularEffect circularEffect) {
+      this.circularEffect = circularEffect;
       return this;
     }
 

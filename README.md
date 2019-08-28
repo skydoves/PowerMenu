@@ -194,8 +194,8 @@ We can give two types of circular revealed animation effect.<br><br>
 <br>
 Here is how to create a menu effect simply.
 ```java
-.setMenuEffect(MenuEffect.BODY) // shows circular revealed effects for all body of the popup menu.
-.setMenuEffect(MenuEffect.INNER) // Shows circular revealed effects for the content view of the popup menu.
+.setCircularEffect(CircularEffect.BODY) // shows circular revealed effects for all body of the popup menu.
+.setCircularEffect(CircularEffect.INNER) // Shows circular revealed effects for the content view of the popup menu.
 ```
 
 ## Dialogs
