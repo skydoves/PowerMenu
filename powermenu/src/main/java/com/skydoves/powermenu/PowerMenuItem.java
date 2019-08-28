@@ -16,9 +16,10 @@
 
 package com.skydoves.powermenu;
 
-/** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
+/* PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
+
   protected String title;
   protected int icon;
   protected boolean isSelected;
@@ -116,7 +117,7 @@ public class PowerMenuItem {
   /**
    * sets a tag.
    *
-   * @param tag {@link Object}.
+   * @param tag Object.
    */
   public void setTag(Object tag) {
     this.tag = tag;

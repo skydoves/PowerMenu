@@ -40,7 +40,7 @@ import java.util.List;
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 
-  private PowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
+  private PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
     Builder builder = (Builder) abstractMenuBuilder;
@@ -62,7 +62,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   @Override
-  protected void initialize(Context context) {
+  protected void initialize(@NonNull Context context) {
     super.initialize(context);
     this.adapter = new MenuListAdapter(menuListView);
   }
@@ -123,14 +123,14 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
     private List<PowerMenuItem> powerMenuItems;
 
-    public Builder(Context context) {
+    public Builder(@NonNull Context context) {
       this.context = context;
       this.powerMenuItems = new ArrayList<>();
       this.layoutInflater =
           (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+    public Builder setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
       this.lifecycleOwner = lifecycleOwner;
       return this;
     }
@@ -221,7 +221,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
       return this;
     }
 
-    public Builder setTextTypeface(Typeface typeface) {
+    public Builder setTextTypeface(@NonNull Typeface typeface) {
       this.textTypeface = typeface;
       return this;
     }
@@ -306,13 +306,13 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
       return this;
     }
 
-    public Builder setInitializeRule(Lifecycle.Event event, int defaultPosition) {
+    public Builder setInitializeRule(@NonNull Lifecycle.Event event, int defaultPosition) {
       this.initializeRule = event;
       this.defaultPosition = defaultPosition;
       return this;
     }
 
-    public Builder setMenuEffect(MenuEffect menuEffect) {
+    public Builder setMenuEffect(@NonNull MenuEffect menuEffect) {
       this.menuEffect = menuEffect;
       return this;
     }

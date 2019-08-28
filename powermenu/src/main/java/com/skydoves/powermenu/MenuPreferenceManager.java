@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class MenuPreferenceManager {
+class MenuPreferenceManager {
 
   private static final String position = "_POSITION";
   private static MenuPreferenceManager menuPreferenceManager;

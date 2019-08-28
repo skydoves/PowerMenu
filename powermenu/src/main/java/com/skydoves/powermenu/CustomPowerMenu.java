@@ -34,14 +34,18 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
 
-  protected CustomPowerMenu(Context context, AbstractMenuBuilder abstractMenuBuilder) {
+  protected CustomPowerMenu(
+      @NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
     Builder<T, E> builder = (Builder) abstractMenuBuilder;
 
-    if (builder.menuItemClickListener != null)
+    if (builder.menuItemClickListener != null) {
       setOnMenuItemClickListener(builder.menuItemClickListener);
-    if (builder.selected != -1) setSelectedPosition(builder.selected);
+    }
+    if (builder.selected != -1) {
+      setSelectedPosition(builder.selected);
+    }
 
     this.adapter = builder.adapter;
     this.adapter.setListView(getMenuListView());
@@ -50,7 +54,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
   }
 
   @Override
-  protected void initialize(Context context) {
+  protected void initialize(@NonNull Context context) {
     super.initialize(context);
     this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
   }
@@ -64,7 +68,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     private E adapter;
     private List<T> Ts;
 
-    public Builder(Context context, E adapter) {
+    public Builder(@NonNull Context context, @NonNull E adapter) {
       this.context = context;
       this.Ts = new ArrayList<>();
       this.adapter = adapter;
@@ -72,7 +76,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
           (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public Builder setLifecycleOwner(LifecycleOwner lifecycleOwner) {
+    public Builder setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
       this.lifecycleOwner = lifecycleOwner;
       return this;
     }
@@ -202,18 +206,18 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
       return this;
     }
 
-    public Builder setPreferenceName(String preferenceName) {
+    public Builder setPreferenceName(@NonNull String preferenceName) {
       this.preferenceName = preferenceName;
       return this;
     }
 
-    public Builder setInitializeRule(Lifecycle.Event event, int defaultPosition) {
+    public Builder setInitializeRule(@NonNull Lifecycle.Event event, int defaultPosition) {
       this.initializeRule = event;
       this.defaultPosition = defaultPosition;
       return this;
     }
 
-    public Builder setMenuEffect(MenuEffect menuEffect) {
+    public Builder setMenuEffect(@NonNull MenuEffect menuEffect) {
       this.menuEffect = menuEffect;
       return this;
     }
@@ -231,6 +235,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
   public abstract static class Factory {
 
     /** returns an instance of {@link CustomPowerMenu}. */
-    public abstract @NonNull CustomPowerMenu create(Context context, LifecycleOwner lifecycle);
+    public abstract @NonNull CustomPowerMenu create(
+        @NonNull Context context, @NonNull LifecycleOwner lifecycle);
   }
 }

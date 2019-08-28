@@ -19,10 +19,12 @@ package com.skydoves.powermenu;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;
+import androidx.annotation.NonNull;
 
 @SuppressWarnings({"WeakerAccess", "SameParameterValue"})
 class ConvertUtil {
-  protected static int convertDpToPixel(float dp, Context context) {
+
+  protected static int convertDpToPixel(float dp, @NonNull Context context) {
     Resources resources = context.getResources();
     return Math.round(
         TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics()));
