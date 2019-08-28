@@ -22,7 +22,6 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -140,16 +139,24 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
     /**
      * sets the {@link LifecycleOwner} for dismissing automatically when the {@link LifecycleOwner}
-     * is destroyed. It will prevents memory leak :
+     * is destroyed. It will prevents memory leak.
      *
-     * @see <a href="https://github.com/skydoves/PowerMenu#avoid-memory-leak"<a/>
+     * @param lifecycleOwner lifecycle owner
+     * @return {@link Builder}.
+     * @see <a href="https://github.com/skydoves/PowerMenu#avoid-memory-leak">GitHub :
+     *     PowerMenu-Avoid-Memory-Leak</a>
      */
     public Builder setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
       this.lifecycleOwner = lifecycleOwner;
       return this;
     }
 
-    /** sets the visibility of the background popup. */
+    /**
+     * sets the visibility of the background popup.
+     *
+     * @param show visibility of the background popup.
+     * @return {@link Builder}.
+     */
     public Builder setShowBackground(boolean show) {
       this.showBackground = show;
       return this;
@@ -250,7 +257,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param style animation resource.
      * @return {@link Builder}.
      */
-    public Builder setAnimationStyle(@IdRes int style) {
+    public Builder setAnimationStyle(int style) {
       this.animationStyle = style;
       return this;
     }

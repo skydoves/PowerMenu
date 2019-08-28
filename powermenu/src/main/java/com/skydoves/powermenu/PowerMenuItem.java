@@ -16,7 +16,7 @@
 
 package com.skydoves.powermenu;
 
-/* PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
+/** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
 
