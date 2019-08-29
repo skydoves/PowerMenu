@@ -16,7 +16,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/63956079-c0e0cb80-cac0-11e9-82ca-4397ca1f3750.gif" width="32%"/>
-<img src="https://user-images.githubusercontent.com/24237865/63956080-c0e0cb80-cac0-11e9-8dbe-3d6b202af747.jpg" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/63956377-42385e00-cac1-11e9-9639-81eac4b7511f.jpg" width="32%"/>
 </p>
 
 ## Download
