@@ -507,6 +507,17 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     }
 
     /**
+     * sets the system UI visibility of the background popup.
+     *
+     * @param visibility system UI visibility of the background popup.
+     * @return {@link Builder}.
+     */
+    public Builder setBackgroundSystemUiVisibility(int visibility) {
+      this.backgroundSystemUiVisibility = visibility;
+      return this;
+    }
+
+    /**
      * sets the focusability of the popup menu.
      *
      * @param focusable focusability of the popup menu.

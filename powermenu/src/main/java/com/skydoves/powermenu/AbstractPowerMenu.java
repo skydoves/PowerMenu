@@ -142,6 +142,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     setMenuShadow(builder.menuShadow);
     setBackgroundColor(builder.backgroundColor);
     setBackgroundAlpha(builder.backgroundAlpha);
+    setBackgroundSystemUiVisibility(builder.backgroundSystemUiVisibility);
     setFocusable(builder.focusable);
     setIsClipping(builder.isClipping);
     setAutoDismiss(builder.autoDismiss);
@@ -869,6 +870,15 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void setBackgroundAlpha(float alpha) {
     backgroundView.setAlpha(alpha);
+  }
+
+  /**
+   * sets system UI visibility flags for {@link #backgroundView}.
+   *
+   * @param visibility visibility value.
+   */
+  public void setBackgroundSystemUiVisibility(int visibility) {
+    backgroundView.setSystemUiVisibility(visibility);
   }
 
   /**
