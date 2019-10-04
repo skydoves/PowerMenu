@@ -49,6 +49,7 @@ public abstract class AbstractMenuBuilder {
   protected Drawable divider = null;
   protected int backgroundColor = Color.BLACK;
   protected float backgroundAlpha = 0.6f;
+  protected int backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
   protected boolean focusable = false;
   protected int selected = -1;
   protected boolean isClipping = true;
