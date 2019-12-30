@@ -54,6 +54,7 @@ public abstract class AbstractMenuBuilder {
   protected int selected = -1;
   protected boolean isClipping = true;
   protected boolean autoDismiss = false;
+  protected boolean dismissIfShowAgain = true;
   protected String preferenceName = null;
   protected Lifecycle.Event initializeRule = null;
   protected int defaultPosition = 0;

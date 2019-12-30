@@ -359,6 +359,18 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     }
 
     /**
+     * sets the dismiss action if already popup is showing.
+     *
+     * <p>Recommend to use with setFocusable(true) and setShowBackground(false).
+     *
+     * @param dismissIfShowAgain dismiss if already popup is showing.
+     */
+    public Builder setDismissIfShowAgain(boolean dismissIfShowAgain) {
+      this.dismissIfShowAgain = dismissIfShowAgain;
+      return this;
+    }
+
+    /**
      * sets the dismissing automatically when the menu item is clicked.
      *
      * @param autoDismiss dismissing automatically when the menu item is clicked.

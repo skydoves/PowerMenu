@@ -48,8 +48,9 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     Builder builder = (Builder) abstractMenuBuilder;
 
     setSelectedEffect(builder.selectedEffect);
-    if (builder.menuItemClickListener != null)
+    if (builder.menuItemClickListener != null) {
       setOnMenuItemClickListener(builder.menuItemClickListener);
+    }
     if (builder.textColor != -2) setTextColor(builder.textColor);
     if (builder.menuColor != -2) setMenuColor(builder.menuColor);
     if (builder.selectedTextColor != -2) setSelectedTextColor(builder.selectedTextColor);
@@ -558,6 +559,18 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      */
     public Builder setAutoDismiss(boolean autoDismiss) {
       this.autoDismiss = autoDismiss;
+      return this;
+    }
+
+    /**
+     * sets the dismiss action if already popup is showing.
+     *
+     * <p>Recommend to use with setFocusable(true) and setShowBackground(false).
+     *
+     * @param dismissIfShowAgain dismiss if already popup is showing.
+     */
+    public Builder setDismissIfShowAgain(boolean dismissIfShowAgain) {
+      this.dismissIfShowAgain = dismissIfShowAgain;
       return this;
     }
 

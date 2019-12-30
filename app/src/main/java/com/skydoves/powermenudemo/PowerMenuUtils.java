@@ -87,6 +87,7 @@ public class PowerMenuUtils {
         .setMenuColor(Color.WHITE)
         .setSelectedEffect(false)
         .setShowBackground(false)
+        .setFocusable(true)
         .setOnMenuItemClickListener(onMenuItemClickListener)
         .build();
   }

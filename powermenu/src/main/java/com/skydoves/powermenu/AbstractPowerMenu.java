@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -85,6 +86,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   private int defaultPosition;
   private CircularEffect circularEffect;
   private boolean autoDismiss;
+  private boolean dismissIfShowAgain;
   private AdapterView.OnItemClickListener itemClickListener =
       new AdapterView.OnItemClickListener() {
         @Override
@@ -147,10 +149,12 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
     setIsClipping(builder.isClipping);
     setAutoDismiss(builder.autoDismiss);
     setDefaultPosition(builder.defaultPosition);
+    setDismissIfShowAgain(builder.dismissIfShowAgain);
 
     if (builder.lifecycleOwner != null) setLifecycleOwner(builder.lifecycleOwner);
-    if (builder.backgroundClickListener != null)
+    if (builder.backgroundClickListener != null) {
       setOnBackgroundClickListener(builder.backgroundClickListener);
+    }
     if (builder.onDismissedListener != null) setOnDismissedListener(builder.onDismissedListener);
     if (builder.headerView != null) setHeaderView(builder.headerView);
     if (builder.footerView != null) setFooterView(builder.footerView);
@@ -215,8 +219,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param focusable focusable or not.
    */
   public void setFocusable(boolean focusable) {
-    menuWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-    menuWindow.setOutsideTouchable(!focusable);
+    this.menuWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    this.menuWindow.setOutsideTouchable(!focusable);
   }
 
   /**
@@ -255,7 +259,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   @MainThread
   private void showPopup(final View anchor, final Function0 function) {
     if (!isShowing()) {
-      isShowing = true;
+      Log.e("Test", "showww");
+      this.isShowing = true;
       anchor.post(
           new Runnable() {
             @Override
@@ -265,6 +270,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
               function.invoke();
             }
           });
+    } else if (this.dismissIfShowAgain) {
+      dismiss();
     }
   }
 
@@ -639,7 +646,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @return the popup is showing or not.
    */
   public boolean isShowing() {
-    return isShowing;
+    return this.isShowing;
   }
 
   /**
@@ -782,31 +789,34 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param menuAnimation menu animation.
    */
   public void setAnimation(@NonNull MenuAnimation menuAnimation) {
-    if (menuAnimation == MenuAnimation.NONE) menuWindow.setAnimationStyle(0);
-    else if (menuAnimation == MenuAnimation.DROP_DOWN) menuWindow.setAnimationStyle(-1);
-    else if (menuAnimation == MenuAnimation.FADE) {
+    if (menuAnimation == MenuAnimation.NONE) {
+      menuWindow.setAnimationStyle(0);
+    } else if (menuAnimation == MenuAnimation.DROP_DOWN) {
+      menuWindow.setAnimationStyle(-1);
+    } else if (menuAnimation == MenuAnimation.FADE) {
       menuWindow.setAnimationStyle(R.style.FadeMenuAnimation);
       backgroundWindow.setAnimationStyle(R.style.FadeMenuAnimation);
-    } else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_LEFT)
+    } else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_LEFT) {
       menuWindow.setAnimationStyle(R.style.ShowUpAnimation_BL);
-    else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_RIGHT)
+    } else if (menuAnimation == MenuAnimation.SHOWUP_BOTTOM_RIGHT) {
       menuWindow.setAnimationStyle(R.style.ShowUpAnimation_BR);
-    else if (menuAnimation == MenuAnimation.SHOWUP_TOP_LEFT)
+    } else if (menuAnimation == MenuAnimation.SHOWUP_TOP_LEFT) {
       menuWindow.setAnimationStyle(R.style.ShowUpAnimation_TL);
-    else if (menuAnimation == MenuAnimation.SHOWUP_TOP_RIGHT)
+    } else if (menuAnimation == MenuAnimation.SHOWUP_TOP_RIGHT) {
       menuWindow.setAnimationStyle(R.style.ShowUpAnimation_TR);
-    else if (menuAnimation == MenuAnimation.SHOW_UP_CENTER)
+    } else if (menuAnimation == MenuAnimation.SHOW_UP_CENTER) {
       menuWindow.setAnimationStyle(R.style.ShowUpAnimation_Center);
-    else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_LEFT)
+    } else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_LEFT) {
       menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_BL);
-    else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_RIGHT)
+    } else if (menuAnimation == MenuAnimation.ELASTIC_BOTTOM_RIGHT) {
       menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_BR);
-    else if (menuAnimation == MenuAnimation.ELASTIC_TOP_LEFT)
+    } else if (menuAnimation == MenuAnimation.ELASTIC_TOP_LEFT) {
       menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_TL);
-    else if (menuAnimation == MenuAnimation.ELASTIC_TOP_RIGHT)
+    } else if (menuAnimation == MenuAnimation.ELASTIC_TOP_RIGHT) {
       menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_TR);
-    else if (menuAnimation == MenuAnimation.ELASTIC_CENTER)
+    } else if (menuAnimation == MenuAnimation.ELASTIC_CENTER) {
       menuWindow.setAnimationStyle(R.style.ElasticMenuAnimation_Center);
+    }
   }
 
   /**
@@ -1122,6 +1132,15 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void setAutoDismiss(boolean autoDismiss) {
     this.autoDismiss = autoDismiss;
+  }
+
+  /**
+   * sets the dismiss action if already popup is showing.
+   *
+   * @param dismissIfShowAgain dismiss if already popup is showing.
+   */
+  public void setDismissIfShowAgain(boolean dismissIfShowAgain) {
+    this.dismissIfShowAgain = dismissIfShowAgain;
   }
 
   /**

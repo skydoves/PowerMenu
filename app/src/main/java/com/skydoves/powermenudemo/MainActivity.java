@@ -140,10 +140,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void onProfile(View view) {
-    if (profileMenu.isShowing()) {
-      profileMenu.dismiss();
-      return;
-    }
     profileMenu.showAsDropDown(view, -370, 0);
   }
 

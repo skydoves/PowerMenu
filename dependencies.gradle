@@ -4,11 +4,11 @@ ext.versions = [
     versionCode        : 19,
     versionName        : '2.1.2',
 
-    gradleBuildTool    : '3.4.2',
-    spotlessGradle     : '3.24.2',
+    gradleBuildTool    : '3.5.3',
+    spotlessGradle     : '3.26.1',
     bintrayRelease     : '0.9',
 
-    kotlin             : '1.3.41',
+    kotlin             : '1.3.61',
     androidxAppcompat  : '1.1.0-rc01',
     googleMaterial     : '1.1.0-alpha09',
     cardView           : '1.0.0',
