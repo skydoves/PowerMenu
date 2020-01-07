@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
+import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
 
 /**
@@ -41,7 +42,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @ColorInt private int menuColor = -2;
   @ColorInt private int selectedTextColor = -2;
   @ColorInt private int selectedMenuColor = -2;
-  private int textSize = 12;
+  @Px private int textSize = 12;
   private int textGravity = Gravity.START;
   private Typeface textTypeface = null;
 
@@ -87,19 +88,29 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
 
       setSelectedPosition(index);
 
-      if (selectedMenuColor == -2)
+      if (selectedMenuColor == -2) {
         background.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-      else background.setBackgroundColor(selectedMenuColor);
+      } else {
+        background.setBackgroundColor(selectedMenuColor);
+      }
 
-      if (selectedTextColor == -2)
+      if (selectedTextColor == -2) {
         title.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
-      else title.setTextColor(selectedTextColor);
+      } else {
+        title.setTextColor(selectedTextColor);
+      }
     } else {
-      if (menuColor == -2) background.setBackgroundColor(Color.WHITE);
-      else background.setBackgroundColor(menuColor);
+      if (menuColor == -2) {
+        background.setBackgroundColor(Color.WHITE);
+      } else {
+        background.setBackgroundColor(menuColor);
+      }
 
-      if (textColor == -2) title.setTextColor(ContextCompat.getColor(context, R.color.black));
-      else title.setTextColor(textColor);
+      if (textColor == -2) {
+        title.setTextColor(ContextCompat.getColor(context, R.color.black));
+      } else {
+        title.setTextColor(textColor);
+      }
     }
     return super.getView(index, view, viewGroup);
   }
@@ -122,22 +133,22 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   }
 
   @Override
-  public void setTextColor(int color) {
+  public void setTextColor(@ColorInt int color) {
     this.textColor = color;
   }
 
   @Override
-  public void setMenuColor(int color) {
+  public void setMenuColor(@ColorInt int color) {
     this.menuColor = color;
   }
 
   @Override
-  public void setSelectedTextColor(int color) {
+  public void setSelectedTextColor(@ColorInt int color) {
     this.selectedTextColor = color;
   }
 
   @Override
-  public void setSelectedMenuColor(int color) {
+  public void setSelectedMenuColor(@ColorInt int color) {
     this.selectedMenuColor = color;
   }
 
@@ -147,7 +158,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   }
 
   @Override
-  public void setTextSize(int size) {
+  public void setTextSize(@Px int size) {
     this.textSize = size;
   }
 

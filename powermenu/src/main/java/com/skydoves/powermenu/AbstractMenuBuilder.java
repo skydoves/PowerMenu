@@ -21,6 +21,10 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
+import androidx.annotation.Px;
+import androidx.annotation.StyleRes;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -40,15 +44,18 @@ public abstract class AbstractMenuBuilder {
   protected MenuAnimation menuAnimation = MenuAnimation.DROP_DOWN;
   protected View headerView = null;
   protected View footerView = null;
-  protected int animationStyle = -1;
-  protected float menuRadius = 5;
-  protected float menuShadow = 5;
-  protected int width = 0;
-  protected int height = 0;
-  protected int dividerHeight = 0;
+  @StyleRes protected int animationStyle = -1;
+  @Px protected float menuRadius = 5;
+  @Px protected float menuShadow = 5;
+  @Px protected int width = 0;
+  @Px protected int height = 0;
+  @Px protected int dividerHeight = 0;
   protected Drawable divider = null;
-  protected int backgroundColor = Color.BLACK;
+  @ColorInt protected int backgroundColor = Color.BLACK;
+
+  @FloatRange(from = 0.0, to = 1.0)
   protected float backgroundAlpha = 0.6f;
+
   protected int backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
   protected boolean focusable = false;
   protected int selected = -1;

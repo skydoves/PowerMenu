@@ -17,6 +17,8 @@
 package com.skydoves.powermenu;
 
 import android.graphics.Typeface;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Px;
 
 /**
  * IPowerMenuAdapter is an interface of the {@link MenuListAdapter} implementation for the item
@@ -28,14 +30,14 @@ interface IPowerMenuAdapter {
    *
    * @param color color value.
    */
-  void setTextColor(int color);
+  void setTextColor(@ColorInt int color);
 
   /**
    * sets the size of the item text.
    *
    * @param size size value.
    */
-  void setTextSize(int size);
+  void setTextSize(@Px int size);
 
   /**
    * sets the {@link android.view.Gravity} of the item.
@@ -56,21 +58,21 @@ interface IPowerMenuAdapter {
    *
    * @param color color value.
    */
-  void setMenuColor(int color);
+  void setMenuColor(@ColorInt int color);
 
   /**
    * sets the color of the selected item text.
    *
    * @param color color value.
    */
-  void setSelectedTextColor(int color);
+  void setSelectedTextColor(@ColorInt int color);
 
   /**
    * sets the color of the selected menu item color.
    *
    * @param color color value.
    */
-  void setSelectedMenuColor(int color);
+  void setSelectedMenuColor(@ColorInt int color);
 
   /**
    * sets the selected effects what changing colors of the selected menu item.

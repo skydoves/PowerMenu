@@ -20,8 +20,12 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import androidx.annotation.ColorRes;
+import androidx.annotation.FloatRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
+import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
@@ -197,7 +201,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param style animation resource.
      * @return {@link Builder}.
      */
-    public Builder setAnimationStyle(int style) {
+    public Builder setAnimationStyle(@StyleRes int style) {
       this.animationStyle = style;
       return this;
     }
@@ -208,7 +212,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param radius corner radius.
      * @return {@link Builder}.
      */
-    public Builder setMenuRadius(float radius) {
+    public Builder setMenuRadius(@Px float radius) {
       this.menuRadius = radius;
       return this;
     }
@@ -219,7 +223,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param shadow popup shadow.
      * @return {@link Builder}.
      */
-    public Builder setMenuShadow(float shadow) {
+    public Builder setMenuShadow(@Px float shadow) {
       this.menuShadow = shadow;
       return this;
     }
@@ -230,7 +234,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param width width size.
      * @return {@link Builder}.
      */
-    public Builder setWidth(int width) {
+    public Builder setWidth(@Px int width) {
       this.width = width;
       return this;
     }
@@ -241,7 +245,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setHeight(int height) {
+    public Builder setHeight(@Px int height) {
       this.height = height;
       return this;
     }
@@ -253,7 +257,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setSize(int width, int height) {
+    public Builder setSize(@Px int width, @Px int height) {
       this.width = width;
       this.height = height;
       return this;
@@ -265,7 +269,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height divider height between the menu items.
      * @return {@link Builder}.
      */
-    public Builder setDividerHeight(int height) {
+    public Builder setDividerHeight(@Px int height) {
       this.dividerHeight = height;
       return this;
     }
@@ -287,7 +291,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param color color of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColor(int color) {
+    public Builder setBackgroundColor(@Px int color) {
       this.backgroundColor = color;
       return this;
     }
@@ -298,7 +302,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param color color of the background popup by resource.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColorResource(int color) {
+    public Builder setBackgroundColorResource(@ColorRes int color) {
       this.backgroundColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -309,7 +313,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param alpha alpha of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundAlpha(float alpha) {
+    public Builder setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
       this.backgroundAlpha = alpha;
       return this;
     }

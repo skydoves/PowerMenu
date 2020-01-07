@@ -16,12 +16,14 @@
 
 package com.skydoves.powermenu;
 
+import androidx.annotation.DrawableRes;
+
 /** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
 
   protected String title;
-  protected int icon;
+  @DrawableRes protected int icon;
   protected boolean isSelected;
   protected Object tag;
 
@@ -34,12 +36,12 @@ public class PowerMenuItem {
     this.tag = tag;
   }
 
-  public PowerMenuItem(String title, int icon) {
+  public PowerMenuItem(String title, @DrawableRes int icon) {
     this.title = title;
     this.icon = icon;
   }
 
-  public PowerMenuItem(String title, int icon, Object tag) {
+  public PowerMenuItem(String title, @DrawableRes int icon, Object tag) {
     this.title = title;
     this.icon = icon;
     this.tag = tag;
@@ -56,13 +58,13 @@ public class PowerMenuItem {
     this.tag = tag;
   }
 
-  public PowerMenuItem(String title, int icon, boolean isSelected) {
+  public PowerMenuItem(String title, @DrawableRes int icon, boolean isSelected) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
   }
 
-  public PowerMenuItem(String title, int icon, boolean isSelected, Object tag) {
+  public PowerMenuItem(String title, @DrawableRes int icon, boolean isSelected, Object tag) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
@@ -137,7 +139,7 @@ public class PowerMenuItem {
    *
    * @param icon icon.
    */
-  public void setIcon(int icon) {
+  public void setIcon(@DrawableRes int icon) {
     this.icon = icon;
   }
 }

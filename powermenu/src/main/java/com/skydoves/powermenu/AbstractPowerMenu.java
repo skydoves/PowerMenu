@@ -23,7 +23,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -34,8 +33,12 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
+import androidx.annotation.StyleRes;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -54,7 +57,7 @@ import kotlin.jvm.functions.Function0;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
-    implements IMenuItem<E>, LifecycleObserver {
+  implements IMenuItem<E>, LifecycleObserver {
 
   protected View backgroundView;
   protected View menuView;
@@ -82,54 +85,54 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
 
   protected boolean isShowing = false;
 
-  protected int contentViewPadding;
+  @Px protected int contentViewPadding;
   private int defaultPosition;
   private CircularEffect circularEffect;
   private boolean autoDismiss;
   private boolean dismissIfShowAgain;
   private AdapterView.OnItemClickListener itemClickListener =
-      new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
-          if (autoDismiss) {
-            dismiss();
-          }
-          menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+    new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+        if (autoDismiss) {
+          dismiss();
         }
-      };
+        menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+      }
+    };
   private OnMenuItemClickListener onMenuItemClickListener =
-      new OnMenuItemClickListener<E>() {
-        @Override
-        public void onItemClick(int position, E item) {
-          // empty body
-        }
-      };
+    new OnMenuItemClickListener<E>() {
+      @Override
+      public void onItemClick(int position, E item) {
+        // empty body
+      }
+    };
   private View.OnClickListener background_clickListener =
-      new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          if (!allowTouchBackground) dismiss();
-        }
-      };
+    new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (!allowTouchBackground) dismiss();
+      }
+    };
   private View.OnTouchListener onTouchListener =
-      new View.OnTouchListener() {
-        @SuppressLint("ClickableViewAccessibility")
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-          if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
-            dismiss();
-            return true;
-          }
-          return false;
+    new View.OnTouchListener() {
+      @SuppressLint("ClickableViewAccessibility")
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_OUTSIDE && !showBackground) {
+          dismiss();
+          return true;
         }
-      };
+        return false;
+      }
+    };
   private View.OnClickListener headerFooterClickListener =
-      new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          // empty body
-        }
-      };
+    new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        // empty body
+      }
+    };
 
   protected AbstractPowerMenu(Context context) {
     initialize(context);
@@ -171,22 +174,22 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   @SuppressLint("InflateParams")
   protected void initialize(Context context) {
     this.layoutInflater =
-        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     assert layoutInflater != null;
     this.backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
     this.backgroundView.setOnClickListener(background_clickListener);
     this.backgroundView.setAlpha(0.5f);
     this.backgroundWindow =
-        new PopupWindow(
-            backgroundView,
-            RelativeLayout.LayoutParams.MATCH_PARENT,
-            RelativeLayout.LayoutParams.MATCH_PARENT);
+      new PopupWindow(
+        backgroundView,
+        RelativeLayout.LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams.MATCH_PARENT);
 
     this.menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
     this.menuListView = menuView.findViewById(R.id.power_menu_listView);
     this.menuWindow =
-        new PopupWindow(
-            menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+      new PopupWindow(
+        menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
     this.menuCard = menuView.findViewById(R.id.power_menu_card);
 
     setFocusable(false);
@@ -205,8 +208,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * <p>when onDestroy method called by lifecycle.
    *
    * @param lifecycleOwner {@link androidx.appcompat.app.AppCompatActivity},
-   *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
-   *     LifecycleOwner}.
+   * <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+   * LifecycleOwner}.
    */
   public void setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
     lifecycleOwner.getLifecycle().addObserver(this);
@@ -259,17 +262,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   @MainThread
   private void showPopup(final View anchor, final Function0 function) {
     if (!isShowing()) {
-      Log.e("Test", "showww");
       this.isShowing = true;
       anchor.post(
-          new Runnable() {
-            @Override
-            public void run() {
-              if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-              doMenuEffect();
-              function.invoke();
-            }
-          });
+        new Runnable() {
+          @Override
+          public void run() {
+            if (showBackground) backgroundWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+            doMenuEffect();
+            function.invoke();
+          }
+        });
     } else if (this.dismissIfShowAgain) {
       dismiss();
     }
@@ -282,13 +284,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsDropDown(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -301,13 +303,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsDropDown(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor, xOff, yOff);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor, xOff, yOff);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -318,13 +320,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorLeftTop(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -337,13 +339,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorLeftTop(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor, xOff, yOff - anchor.getMeasuredHeight());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor, xOff, yOff - anchor.getMeasuredHeight());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -354,13 +356,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorLeftBottom(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -373,13 +375,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorLeftBottom(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(anchor, xOff, yOff - getContentViewPadding());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(anchor, xOff, yOff - getContentViewPadding());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -390,16 +392,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorRightTop(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
-                -anchor.getMeasuredHeight());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+            -anchor.getMeasuredHeight());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -412,16 +414,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorRightTop(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
-                yOff - anchor.getMeasuredHeight());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+            yOff - anchor.getMeasuredHeight());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -432,16 +434,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorRightBottom(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
-                -getContentViewPadding());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+            -getContentViewPadding());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -454,16 +456,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorRightBottom(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
-                yOff - getContentViewPadding());
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            xOff + anchor.getMeasuredWidth() / 2 + getContentViewWidth() / 2,
+            yOff - getContentViewPadding());
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -474,16 +476,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorCenter(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
-                -anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
+            -anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -496,16 +498,16 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAsAnchorCenter(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAsDropDown(
-                anchor,
-                xOff + anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
-                yOff - anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAsDropDown(
+            anchor,
+            xOff + anchor.getMeasuredWidth() / 2 - getContentViewWidth() / 2,
+            yOff - anchor.getMeasuredHeight() / 2 - getContentViewHeight() / 2);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -516,13 +518,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAtCenter(final View anchor) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -535,13 +537,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAtCenter(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -554,13 +556,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAtLocation(final View anchor, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -574,13 +576,13 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public void showAtLocation(final View anchor, final int gravity, final int xOff, final int yOff) {
     Function0 function =
-        new Function0() {
-          @Override
-          public Unit invoke() {
-            menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
-            return Unit.INSTANCE;
-          }
-        };
+      new Function0() {
+        @Override
+        public Unit invoke() {
+          menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
+          return Unit.INSTANCE;
+        }
+      };
     showPopup(anchor, function);
   }
 
@@ -602,32 +604,32 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   private void circularRevealed(View targetView) {
     targetView.addOnLayoutChangeListener(
-        new View.OnLayoutChangeListener() {
-          @Override
-          public void onLayoutChange(
-              View view,
-              int left,
-              int top,
-              int right,
-              int bottom,
-              int oldLeft,
-              int oldTop,
-              int oldRight,
-              int oldBottom) {
-            view.removeOnLayoutChangeListener(this);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-              Animator animator =
-                  ViewAnimationUtils.createCircularReveal(
-                      view,
-                      (view.getLeft() + view.getRight()) / 2,
-                      (view.getTop() + view.getBottom()) / 2,
-                      0f,
-                      Math.max(view.getWidth(), view.getHeight()));
-              animator.setDuration(900);
-              animator.start();
-            }
+      new View.OnLayoutChangeListener() {
+        @Override
+        public void onLayoutChange(
+          View view,
+          int left,
+          int top,
+          int right,
+          int bottom,
+          int oldLeft,
+          int oldTop,
+          int oldRight,
+          int oldBottom) {
+          view.removeOnLayoutChangeListener(this);
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Animator animator =
+              ViewAnimationUtils.createCircularReveal(
+                view,
+                (view.getLeft() + view.getRight()) / 2,
+                (view.getTop() + view.getBottom()) / 2,
+                0f,
+                Math.max(view.getWidth(), view.getHeight()));
+            animator.setDuration(900);
+            animator.start();
           }
-        });
+        }
+      });
   }
 
   /** dismiss the popup menu. */
@@ -688,8 +690,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   protected View getMeasuredContentView() {
     View contentView = menuWindow.getContentView();
     contentView.measure(
-        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+      View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+      View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     return contentView;
   }
 
@@ -707,10 +709,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param width width of the popup menu.
    */
-  public void setWidth(int width) {
+  public void setWidth(@Px int width) {
     this.menuWindow.setWidth(width);
     FrameLayout.LayoutParams layoutParams =
-        (FrameLayout.LayoutParams) menuListView.getLayoutParams();
+      (FrameLayout.LayoutParams) menuListView.getLayoutParams();
     layoutParams.width = width - contentViewPadding;
     getMenuListView().setLayoutParams(layoutParams);
   }
@@ -720,7 +722,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param height height of the popup menu.
    */
-  public void setHeight(int height) {
+  public void setHeight(@Px int height) {
     this.fixedHeight = true;
     this.menuWindow.setHeight(height);
   }
@@ -730,10 +732,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param height the measured height of the popup menu list.
    */
-  protected void setMeasuredHeight(int height) {
+  protected void setMeasuredHeight(@Px int height) {
     this.menuWindow.setHeight(height);
     FrameLayout.LayoutParams layoutParams =
-        (FrameLayout.LayoutParams) menuListView.getLayoutParams();
+      (FrameLayout.LayoutParams) menuListView.getLayoutParams();
     layoutParams.height = height - contentViewPadding;
     getMenuListView().setLayoutParams(layoutParams);
   }
@@ -743,7 +745,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param height divider height of the popup menu.
    */
-  public void setDividerHeight(int height) {
+  public void setDividerHeight(@Px int height) {
     menuListView.setDividerHeight(height);
   }
 
@@ -824,7 +826,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param style custom animation style.
    */
-  public void setAnimationStyle(int style) {
+  public void setAnimationStyle(@StyleRes int style) {
     this.menuWindow.setAnimationStyle(style);
   }
 
@@ -833,7 +835,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param radius corner radius.
    */
-  public void setMenuRadius(float radius) {
+  public void setMenuRadius(@Px float radius) {
     this.menuCard.setRadius(radius);
   }
 
@@ -842,7 +844,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param shadow shadow value.
    */
-  public void setMenuShadow(float shadow) {
+  public void setMenuShadow(@Px float shadow) {
     this.menuCard.setCardElevation(shadow);
   }
 
@@ -869,7 +871,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param color color value.
    */
-  public void setBackgroundColor(int color) {
+  public void setBackgroundColor(@ColorInt int color) {
     backgroundView.setBackgroundColor(color);
   }
 
@@ -878,7 +880,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    *
    * @param alpha alpha value.
    */
-  public void setBackgroundAlpha(float alpha) {
+  public void setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
     backgroundView.setAlpha(alpha);
   }
 
@@ -902,8 +904,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       this.headerView = view;
       this.headerView.setOnClickListener(headerFooterClickListener);
       this.headerView.measure(
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     }
   }
 
@@ -920,8 +922,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       this.headerView = view;
       this.headerView.setOnClickListener(headerFooterClickListener);
       this.headerView.measure(
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     }
   }
 
@@ -948,8 +950,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       this.footerView = view;
       this.footerView.setOnClickListener(headerFooterClickListener);
       this.footerView.measure(
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     }
   }
 
@@ -966,8 +968,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       this.footerView = view;
       this.footerView.setOnClickListener(headerFooterClickListener);
       this.footerView.measure(
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-          View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
     }
   }
 
@@ -1001,8 +1003,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   public void invokeOnMenuListener(int position) {
     if (position >= 0 && position < getItemList().size() && getOnMenuItemClickListener() != null) {
       getOnMenuItemClickListener()
-          .onItemClick(
-              getPreferencePosition(position), getItemList().get(getPreferencePosition(position)));
+        .onItemClick(
+          getPreferencePosition(position), getItemList().get(getPreferencePosition(position)));
     }
   }
 
@@ -1160,7 +1162,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    */
   public int getPreferencePosition(int defaultPosition) {
     return MenuPreferenceManager.getInstance()
-        .getPosition(getAdapter().getPreferenceName(), defaultPosition);
+      .getPosition(getAdapter().getPreferenceName(), defaultPosition);
   }
 
   /**

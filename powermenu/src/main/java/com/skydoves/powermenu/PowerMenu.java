@@ -22,8 +22,13 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.FloatRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Px;
+import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
@@ -115,12 +120,12 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   public static class Builder extends AbstractMenuBuilder {
 
     private OnMenuItemClickListener<PowerMenuItem> menuItemClickListener = null;
-    private int textColor = -2;
-    private int menuColor = -2;
+    @ColorInt private int textColor = -2;
+    @ColorInt private int menuColor = -2;
     private boolean selectedEffect = true;
-    private int selectedTextColor = -2;
-    private int selectedMenuColor = -2;
-    private int textSize = 12;
+    @ColorInt private int selectedTextColor = -2;
+    @ColorInt private int selectedMenuColor = -2;
+    @Px private int textSize = 12;
     private int textGravity = Gravity.START;
     private Typeface textTypeface = null;
 
@@ -258,7 +263,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param style animation resource.
      * @return {@link Builder}.
      */
-    public Builder setAnimationStyle(int style) {
+    public Builder setAnimationStyle(@StyleRes int style) {
       this.animationStyle = style;
       return this;
     }
@@ -269,7 +274,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param radius corner radius.
      * @return {@link Builder}.
      */
-    public Builder setMenuRadius(float radius) {
+    public Builder setMenuRadius(@Px float radius) {
       this.menuRadius = radius;
       return this;
     }
@@ -291,7 +296,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param width width size.
      * @return {@link Builder}.
      */
-    public Builder setWidth(int width) {
+    public Builder setWidth(@Px int width) {
       this.width = width;
       return this;
     }
@@ -302,7 +307,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setHeight(int height) {
+    public Builder setHeight(@Px int height) {
       this.height = height;
       return this;
     }
@@ -314,7 +319,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setSize(int width, int height) {
+    public Builder setSize(@Px int width, @Px int height) {
       this.width = width;
       this.height = height;
       return this;
@@ -326,7 +331,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color menu item's content text color.
      * @return {@link Builder}.
      */
-    public Builder setTextColor(int color) {
+    public Builder setTextColor(@ColorInt int color) {
       this.textColor = color;
       return this;
     }
@@ -337,7 +342,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color menu item's content text color by resource.
      * @return {@link Builder}.
      */
-    public Builder setTextColorResource(int color) {
+    public Builder setTextColorResource(@ColorRes int color) {
       this.textColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -348,7 +353,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param size menu item's content text size.
      * @return {@link Builder}.
      */
-    public Builder setTextSize(int size) {
+    public Builder setTextSize(@Px int size) {
       this.textSize = size;
       return this;
     }
@@ -381,7 +386,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color normal menu item background color.
      * @return {@link Builder}.
      */
-    public Builder setMenuColor(int color) {
+    public Builder setMenuColor(@ColorInt int color) {
       this.menuColor = color;
       return this;
     }
@@ -392,7 +397,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color normal menu item background color by resource.
      * @return {@link Builder}.
      */
-    public Builder setMenuColorResource(int color) {
+    public Builder setMenuColorResource(@ColorRes int color) {
       this.menuColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -403,7 +408,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color selected menu item text color.
      * @return {@link Builder}.
      */
-    public Builder setSelectedTextColor(int color) {
+    public Builder setSelectedTextColor(@ColorInt int color) {
       this.selectedTextColor = color;
       return this;
     }
@@ -414,7 +419,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color selected menu item text color by resource.
      * @return {@link Builder}.
      */
-    public Builder setSelectedTextColorResource(int color) {
+    public Builder setSelectedTextColorResource(@ColorRes int color) {
       this.selectedTextColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -425,7 +430,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color selected menu item background color.
      * @return {@link Builder}.
      */
-    public Builder setSelectedMenuColor(int color) {
+    public Builder setSelectedMenuColor(@ColorInt int color) {
       this.selectedMenuColor = color;
       return this;
     }
@@ -436,7 +441,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color selected menu item background color by resource.
      * @return {@link Builder}.
      */
-    public Builder setSelectedMenuColorResource(int color) {
+    public Builder setSelectedMenuColorResource(@ColorRes int color) {
       this.selectedMenuColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -458,7 +463,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param height divider height between the menu items.
      * @return {@link Builder}.
      */
-    public Builder setDividerHeight(int height) {
+    public Builder setDividerHeight(@Px int height) {
       this.dividerHeight = height;
       return this;
     }
@@ -480,7 +485,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color color of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColor(int color) {
+    public Builder setBackgroundColor(@ColorInt int color) {
       this.backgroundColor = color;
       return this;
     }
@@ -491,7 +496,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param color color of the background popup by resource.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColorResource(int color) {
+    public Builder setBackgroundColorResource(@ColorRes int color) {
       this.backgroundColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -502,7 +507,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param alpha alpha of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundAlpha(float alpha) {
+    public Builder setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
       this.backgroundAlpha = alpha;
       return this;
     }
