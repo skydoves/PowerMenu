@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -14,12 +15,14 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-      <de.hdodenhof.circleimageview.CircleImageView
+      <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/item_name_card_profile"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_margin="10dp"
-        android:src="@drawable/face3" />
+        android:scaleType="center"
+        android:src="@drawable/face3"
+        app:shapeAppearanceOverlay="@style/CircleImageStyle" />
 
       <TextView
         android:id="@+id/item_name_card_name"
