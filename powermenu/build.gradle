@@ -21,6 +21,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
     implementation "androidx.cardview:cardview:$versions.cardView"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
 }
 
 apply from: '../spotless.gradle'
