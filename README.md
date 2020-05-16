@@ -189,7 +189,7 @@ return new PowerMenu.Builder(context)
     // lifecycle rules should be ON_CREATE, ON_START or ON_RESUME.
     // in the below codes, the onMenuClickListener will be invoked when onCreate lifecycle.
    .setLifecycleOwner(lifecycleOwner)
-   .setInitializeRule(Lifecycle.Event.ON_CREATE, 0) // Lifecycle.Event and default positon.
+   .setInitializeRule(Lifecycle.Event.ON_CREATE, 0) // Lifecycle.Event and default position.
    --- skips ---
 ```
 Here are the methods related to preference.

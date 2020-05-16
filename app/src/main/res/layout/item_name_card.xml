@@ -20,7 +20,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_margin="10dp"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:src="@drawable/face3"
         app:shapeAppearanceOverlay="@style/CircleImageStyle" />
 

@@ -44,6 +44,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import com.skydoves.powermenu.databinding.LayoutPowerBackgroundBinding;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuBinding;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -173,10 +175,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
 
   @SuppressLint("InflateParams")
   protected void initialize(Context context) {
-    this.layoutInflater =
-        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.layoutInflater = LayoutInflater.from(context);
     assert layoutInflater != null;
-    this.backgroundView = layoutInflater.inflate(R.layout.layout_power_background, null);
+    this.backgroundView =
+        LayoutPowerBackgroundBinding.inflate(layoutInflater, null, false).getRoot();
     this.backgroundView.setOnClickListener(background_clickListener);
     this.backgroundView.setAlpha(0.5f);
     this.backgroundWindow =
@@ -185,12 +187,14 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
             RelativeLayout.LayoutParams.MATCH_PARENT,
             RelativeLayout.LayoutParams.MATCH_PARENT);
 
-    this.menuView = layoutInflater.inflate(R.layout.layout_power_menu, null);
-    this.menuListView = menuView.findViewById(R.id.power_menu_listView);
+    LayoutPowerMenuBinding bindingMenu =
+        LayoutPowerMenuBinding.inflate(layoutInflater, null, false);
+    this.menuView = bindingMenu.getRoot();
+    this.menuListView = bindingMenu.powerMenuListView;
     this.menuWindow =
         new PopupWindow(
             menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-    this.menuCard = menuView.findViewById(R.id.power_menu_card);
+    this.menuCard = bindingMenu.powerMenuCard;
 
     setFocusable(false);
     setTouchInterceptor(onTouchListener);

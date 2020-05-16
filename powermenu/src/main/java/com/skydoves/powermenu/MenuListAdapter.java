@@ -57,8 +57,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     final Context context = viewGroup.getContext();
 
     if (view == null) {
-      LayoutInflater inflater =
-          (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      LayoutInflater inflater = LayoutInflater.from(context);
       assert inflater != null;
       view = inflater.inflate(R.layout.item_power_menu, viewGroup, false);
     }
