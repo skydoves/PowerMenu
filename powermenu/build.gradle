@@ -24,4 +24,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
 }
 
+tasks.withType(Javadoc) {
+    excludes = ['**/*.kt']
+    options.addBooleanOption('Xdoclint:none', true)
+}
+
 apply from: '../spotless.gradle'

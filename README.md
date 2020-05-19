@@ -31,7 +31,7 @@ I really appreciate that 🔥Power Menu is used in more than __90,000+__ project
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.1.2"
+  implementation "com.github.skydoves:powermenu:2.1.3"
 }
 ```
 
