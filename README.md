@@ -8,12 +8,14 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://travis-ci.org/skydoves/PowerMenu"><img alt="Travis" src="https://travis-ci.org/skydoves/PowerMenu.svg?branch=master"/></a>
-  <a href="https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade"><img alt="Codacy" src="https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7"/></a>
-  <a href="https://androidweekly.net/issues/issue-326"><img alt="AndroidWeekly" src="https://img.shields.io/badge/Android%20weekly-326-orange.svg"/></a>
+  <a href="https://github.com/skydoves/PowerMenu/actions"><img alt="CI" src="https://github.com/skydoves/PowerMenu/workflows/Android%20CI/badge.svg"/></a>
+  <a href="https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade"><img alt="Codacy" src="https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7"/></a></br>
+  <a href="https://androidweekly.net/issues/issue-326"><img alt="AndroidWeekly" src="https://skydoves.github.io/badges/android-weekly.svg"/></a>
   <a href="https://proandroiddev.com/building-a-beautiful-disney-android-application-1-material-motion-systems-34607eae2501"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
+  <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
   <a href="https://medium.com/@skydoves/how-to-implement-modern-popup-in-android-3d51f4a40c56"><img alt="Javadoc" src="https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg"/></a>
 </p>
+</br>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/63956079-c0e0cb80-cac0-11e9-82ca-4397ca1f3750.gif" width="32%"/>
@@ -386,11 +388,8 @@ class MoreMenuFactory : PowerMenu.Factory() {
 ```
 
 ## Find this library useful? :heart:
-Support it by joining [stargazers](https://github.com/skydoves/PowerMenu/stargazers) for this repository. :star:
-
-## Supports :coffee:
-If you feel like support me a coffee for my efforts, I would greatly appreciate it. <br><br>
-<a href="https://www.buymeacoffee.com/skydoves" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+Support it by joining [stargazers](https://github.com/skydoves/PowerMenu/stargazers) for this repository. :star: <br>
+And __[follow](https://github.com/skydoves)__ me for my next creations! 🤩
 
 # License
 ```xml
