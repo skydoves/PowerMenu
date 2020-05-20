@@ -1,4 +1,9 @@
-# PowerMenu
+<h1 align="center">PowerMenu</h1></br>
+<p align="center">
+:fire: The powerful and easiest way to implement modern material popup menu. <br>
+PowerMenu can be fully customized and used for popup dialogs. <br>
+</p>
+</br>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
@@ -6,12 +11,8 @@
   <a href="https://travis-ci.org/skydoves/PowerMenu"><img alt="Travis" src="https://travis-ci.org/skydoves/PowerMenu.svg?branch=master"/></a>
   <a href="https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade"><img alt="Codacy" src="https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7"/></a>
   <a href="https://androidweekly.net/issues/issue-326"><img alt="AndroidWeekly" src="https://img.shields.io/badge/Android%20weekly-326-orange.svg"/></a>
-  <a href="https://skydoves.github.io/libraries/powermenu/javadoc/index.html"><img alt="Javadoc" src="https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg"/></a>
-</p>
-
-<p align="center">
-:fire: The powerful and easiest way to implement modern material popup menu. <br>
-PowerMenu can be fully customized and used for popup dialogs. <br>
+  <a href="https://proandroiddev.com/building-a-beautiful-disney-android-application-1-material-motion-systems-34607eae2501"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
+  <a href="https://medium.com/@skydoves/how-to-implement-modern-popup-in-android-3d51f4a40c56"><img alt="Javadoc" src="https://img.shields.io/badge/Javadoc-PowerMenu-yellow.svg"/></a>
 </p>
 
 <p align="center">
