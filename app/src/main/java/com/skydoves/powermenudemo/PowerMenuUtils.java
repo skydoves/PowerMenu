@@ -35,7 +35,7 @@ import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
-@SuppressWarnings({"WeakerAccess", "unchecked"})
+@SuppressWarnings({"WeakerAccess"})
 public class PowerMenuUtils {
 
   public static PowerMenu getHamburgerPowerMenu(
@@ -92,10 +92,10 @@ public class PowerMenuUtils {
         .build();
   }
 
-  public static CustomPowerMenu getWritePowerMenu(
+  public static CustomPowerMenu<String, CenterMenuAdapter> getWritePowerMenu(
       Context context,
       LifecycleOwner lifecycleOwner,
-      OnMenuItemClickListener onMenuItemClickListener) {
+      OnMenuItemClickListener<String> onMenuItemClickListener) {
     ColorDrawable drawable =
         new ColorDrawable(ContextCompat.getColor(context, R.color.md_blue_grey_300));
     return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
@@ -115,10 +115,10 @@ public class PowerMenuUtils {
         .build();
   }
 
-  public static CustomPowerMenu getAlertPowerMenu(
+  public static CustomPowerMenu<String, CenterMenuAdapter> getAlertPowerMenu(
       Context context,
       LifecycleOwner lifecycleOwner,
-      OnMenuItemClickListener onMenuItemClickListener) {
+      OnMenuItemClickListener<String> onMenuItemClickListener) {
     return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
         .addItem("You need to login!")
         .setLifecycleOwner(lifecycleOwner)
@@ -134,7 +134,7 @@ public class PowerMenuUtils {
   public static PowerMenu getIconPowerMenu(
       Context context,
       LifecycleOwner lifecycleOwner,
-      OnMenuItemClickListener onMenuItemClickListener) {
+      OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
 
     return new PowerMenu.Builder(context)
         .addItem(new PowerMenuItem("WeChat", R.drawable.ic_wechat))
@@ -164,7 +164,7 @@ public class PowerMenuUtils {
         .build();
   }
 
-  public static CustomPowerMenu getCustomDialogPowerMenu(
+  public static CustomPowerMenu<NameCardMenuItem, CustomDialogMenuAdapter> getCustomDialogPowerMenu(
       Context context, LifecycleOwner lifecycleOwner) {
     return new CustomPowerMenu.Builder<>(context, new CustomDialogMenuAdapter())
         .setHeaderView(R.layout.layout_custom_dialog_header)

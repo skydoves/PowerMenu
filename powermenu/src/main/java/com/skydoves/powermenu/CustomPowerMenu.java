@@ -37,14 +37,14 @@ import java.util.List;
  *
  * <p>It implements the customized {@link PowerMenu} by the user.
  */
-@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
+@SuppressWarnings({"unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
 
   protected CustomPowerMenu(
       @NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
-    Builder<T, E> builder = (Builder) abstractMenuBuilder;
+    Builder<T, E> builder = (Builder<T, E>) abstractMenuBuilder;
 
     if (builder.menuItemClickListener != null) {
       setOnMenuItemClickListener(builder.menuItemClickListener);
@@ -66,7 +66,6 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
   }
 
   /** Builder class for creating {@link CustomPowerMenu}. */
-  @SuppressWarnings("unchecked")
   public static class Builder<T, E extends MenuBaseAdapter<T>> extends AbstractMenuBuilder {
 
     private OnMenuItemClickListener<T> menuItemClickListener = null;
@@ -91,7 +90,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @see <a href="https://github.com/skydoves/PowerMenu#avoid-memory-leak">GitHub :
      *     PowerMenu-Avoid-Memory-Leak</a>
      */
-    public Builder setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
+    public Builder<T, E> setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
       this.lifecycleOwner = lifecycleOwner;
       return this;
     }
@@ -102,7 +101,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param show visibility of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setShowBackground(boolean show) {
+    public Builder<T, E> setShowBackground(boolean show) {
       this.showBackground = show;
       return this;
     }
@@ -113,7 +112,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param menuItemClickListener {@link OnMenuItemClickListener} interface.
      * @return {@link Builder}.
      */
-    public Builder setOnMenuItemClickListener(Object menuItemClickListener) {
+    public Builder<T, E> setOnMenuItemClickListener(Object menuItemClickListener) {
       this.menuItemClickListener = (OnMenuItemClickListener<T>) menuItemClickListener;
       return this;
     }
@@ -124,7 +123,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param onBackgroundClickListener {@link View.OnClickListener} interface.
      * @return {@link Builder}.
      */
-    public Builder setOnBackgroundClickListener(View.OnClickListener onBackgroundClickListener) {
+    public Builder<T, E> setOnBackgroundClickListener(
+        View.OnClickListener onBackgroundClickListener) {
       this.backgroundClickListener = onBackgroundClickListener;
       return this;
     }
@@ -135,7 +135,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param onDismissListener {@link OnDismissedListener} interface.
      * @return {@link Builder}.
      */
-    public Builder setOnDismissListener(OnDismissedListener onDismissListener) {
+    public Builder<T, E> setOnDismissListener(OnDismissedListener onDismissListener) {
       this.onDismissedListener = onDismissListener;
       return this;
     }
@@ -146,7 +146,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param headerView layout resource
      * @return {@link Builder}.
      */
-    public Builder setHeaderView(@LayoutRes int headerView) {
+    public Builder<T, E> setHeaderView(@LayoutRes int headerView) {
       this.headerView = layoutInflater.inflate(headerView, null);
       return this;
     }
@@ -157,7 +157,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param headerView header view.
      * @return {@link Builder}.
      */
-    public Builder setHeaderView(View headerView) {
+    public Builder<T, E> setHeaderView(View headerView) {
       this.headerView = headerView;
       return this;
     }
@@ -168,7 +168,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param footerView footer view.
      * @return {@link Builder}.
      */
-    public Builder setFooterView(@LayoutRes int footerView) {
+    public Builder<T, E> setFooterView(@LayoutRes int footerView) {
       this.footerView = layoutInflater.inflate(footerView, null);
       return this;
     }
@@ -179,7 +179,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param footerView footer view.
      * @return {@link Builder}.
      */
-    public Builder setFooterView(View footerView) {
+    public Builder<T, E> setFooterView(View footerView) {
       this.footerView = footerView;
       return this;
     }
@@ -190,7 +190,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param menuAnimation animation.
      * @return {@link Builder}.
      */
-    public Builder setAnimation(@NonNull MenuAnimation menuAnimation) {
+    public Builder<T, E> setAnimation(@NonNull MenuAnimation menuAnimation) {
       this.menuAnimation = menuAnimation;
       return this;
     }
@@ -201,7 +201,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param style animation resource.
      * @return {@link Builder}.
      */
-    public Builder setAnimationStyle(@StyleRes int style) {
+    public Builder<T, E> setAnimationStyle(@StyleRes int style) {
       this.animationStyle = style;
       return this;
     }
@@ -212,7 +212,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param radius corner radius.
      * @return {@link Builder}.
      */
-    public Builder setMenuRadius(@Px float radius) {
+    public Builder<T, E> setMenuRadius(@Px float radius) {
       this.menuRadius = radius;
       return this;
     }
@@ -223,7 +223,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param shadow popup shadow.
      * @return {@link Builder}.
      */
-    public Builder setMenuShadow(@Px float shadow) {
+    public Builder<T, E> setMenuShadow(@Px float shadow) {
       this.menuShadow = shadow;
       return this;
     }
@@ -234,7 +234,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param width width size.
      * @return {@link Builder}.
      */
-    public Builder setWidth(@Px int width) {
+    public Builder<T, E> setWidth(@Px int width) {
       this.width = width;
       return this;
     }
@@ -245,7 +245,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setHeight(@Px int height) {
+    public Builder<T, E> setHeight(@Px int height) {
       this.height = height;
       return this;
     }
@@ -257,7 +257,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height height size.
      * @return {@link Builder}.
      */
-    public Builder setSize(@Px int width, @Px int height) {
+    public Builder<T, E> setSize(@Px int width, @Px int height) {
       this.width = width;
       this.height = height;
       return this;
@@ -269,7 +269,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param height divider height between the menu items.
      * @return {@link Builder}.
      */
-    public Builder setDividerHeight(@Px int height) {
+    public Builder<T, E> setDividerHeight(@Px int height) {
       this.dividerHeight = height;
       return this;
     }
@@ -280,7 +280,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param divider divider {@link Drawable} between the menu items.
      * @return {@link Builder}.
      */
-    public Builder setDivider(Drawable divider) {
+    public Builder<T, E> setDivider(Drawable divider) {
       this.divider = divider;
       return this;
     }
@@ -291,7 +291,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param color color of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColor(@Px int color) {
+    public Builder<T, E> setBackgroundColor(@Px int color) {
       this.backgroundColor = color;
       return this;
     }
@@ -302,7 +302,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param color color of the background popup by resource.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundColorResource(@ColorRes int color) {
+    public Builder<T, E> setBackgroundColorResource(@ColorRes int color) {
       this.backgroundColor = ContextCompat.getColor(context, color);
       return this;
     }
@@ -313,7 +313,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param alpha alpha of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
+    public Builder<T, E> setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
       this.backgroundAlpha = alpha;
       return this;
     }
@@ -324,7 +324,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param visibility system UI visibility of the background popup.
      * @return {@link Builder}.
      */
-    public Builder setBackgroundSystemUiVisibility(int visibility) {
+    public Builder<T, E> setBackgroundSystemUiVisibility(int visibility) {
       this.backgroundSystemUiVisibility = visibility;
       return this;
     }
@@ -335,7 +335,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param focusable focusability of the popup menu.
      * @return {@link Builder}.
      */
-    public Builder setFocusable(boolean focusable) {
+    public Builder<T, E> setFocusable(boolean focusable) {
       this.focusable = focusable;
       return this;
     }
@@ -346,7 +346,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param position initialized selected effect menu item position.
      * @return {@link Builder}.
      */
-    public Builder setSelected(int position) {
+    public Builder<T, E> setSelected(int position) {
       this.selected = position;
       return this;
     }
@@ -357,7 +357,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param isClipping clipping or not of the popup menu.
      * @return {@link Builder}.
      */
-    public Builder setIsClipping(boolean isClipping) {
+    public Builder<T, E> setIsClipping(boolean isClipping) {
       this.isClipping = isClipping;
       return this;
     }
@@ -369,7 +369,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      *
      * @param dismissIfShowAgain dismiss if already popup is showing.
      */
-    public Builder setDismissIfShowAgain(boolean dismissIfShowAgain) {
+    public Builder<T, E> setDismissIfShowAgain(boolean dismissIfShowAgain) {
       this.dismissIfShowAgain = dismissIfShowAgain;
       return this;
     }
@@ -380,7 +380,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param autoDismiss dismissing automatically when the menu item is clicked.
      * @return {@link Builder}.
      */
-    public Builder setAutoDismiss(boolean autoDismiss) {
+    public Builder<T, E> setAutoDismiss(boolean autoDismiss) {
       this.autoDismiss = autoDismiss;
       return this;
     }
@@ -391,7 +391,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param item {@link PowerMenuItem} item.
      * @return {@link Builder}.
      */
-    public Builder addItem(Object item) {
+    public Builder<T, E> addItem(Object item) {
       this.Ts.add((T) item);
       return this;
     }
@@ -403,7 +403,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param item {@link PowerMenuItem} item.
      * @return {@link Builder}.
      */
-    public Builder addItem(int position, Object item) {
+    public Builder<T, E> addItem(int position, Object item) {
       this.Ts.add(position, (T) item);
       return this;
     }
@@ -414,7 +414,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param itemList list of the {@link PowerMenuItem}.
      * @return {@link Builder}.
      */
-    public Builder addItemList(List<T> itemList) {
+    public Builder<T, E> addItemList(List<T> itemList) {
       this.Ts.addAll(itemList);
       return this;
     }
@@ -429,7 +429,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @return {@link Builder}.
      * @see <a href="https://github.com/skydoves/PowerMenu#preference"</a>
      */
-    public Builder setPreferenceName(@NonNull String preferenceName) {
+    public Builder<T, E> setPreferenceName(@NonNull String preferenceName) {
       this.preferenceName = preferenceName;
       return this;
     }
@@ -441,7 +441,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param defaultPosition default selected position.
      * @return {@link Builder}.
      */
-    public Builder setInitializeRule(@NonNull Lifecycle.Event event, int defaultPosition) {
+    public Builder<T, E> setInitializeRule(@NonNull Lifecycle.Event event, int defaultPosition) {
       this.initializeRule = event;
       this.defaultPosition = defaultPosition;
       return this;
@@ -453,12 +453,12 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param circularEffect circular revealed effect using {@link CircularEffect}.
      * @return @return {@link Builder}.
      */
-    public Builder setCircularEffect(@NonNull CircularEffect circularEffect) {
+    public Builder<T, E> setCircularEffect(@NonNull CircularEffect circularEffect) {
       this.circularEffect = circularEffect;
       return this;
     }
 
-    public CustomPowerMenu build() {
+    public CustomPowerMenu<T, E> build() {
       return new CustomPowerMenu<>(context, this);
     }
   }
@@ -468,10 +468,10 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
    *
    * <p>A factory implementation class must have a non-argument constructor.
    */
-  public abstract static class Factory {
+  public abstract static class Factory<T, E extends MenuBaseAdapter<T>> {
 
     /** returns an instance of {@link CustomPowerMenu}. */
-    public abstract @NonNull CustomPowerMenu create(
+    public abstract @NonNull CustomPowerMenu<T, E> create(
         @NonNull Context context, @NonNull LifecycleOwner lifecycle);
   }
 }

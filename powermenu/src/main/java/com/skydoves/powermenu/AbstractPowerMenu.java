@@ -58,7 +58,7 @@ import kotlin.jvm.functions.Function0;
  * <p>
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
-public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
+public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     implements IMenuItem<E>, LifecycleObserver {
 
   protected View backgroundView;
@@ -72,7 +72,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
   protected LifecycleOwner lifecycleOwner;
 
   protected ListView menuListView;
-  protected OnMenuItemClickListener menuItemClickListener;
+  protected OnMenuItemClickListener<E> menuItemClickListener;
   protected OnDismissedListener onDismissedListener;
   protected LayoutInflater layoutInflater;
 
@@ -99,10 +99,10 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
           if (autoDismiss) {
             dismiss();
           }
-          menuItemClickListener.onItemClick(index, menuListView.getItemAtPosition(index));
+          menuItemClickListener.onItemClick(index, (E) menuListView.getItemAtPosition(index));
         }
       };
-  private OnMenuItemClickListener onMenuItemClickListener =
+  private OnMenuItemClickListener<E> onMenuItemClickListener =
       new OnMenuItemClickListener<E>() {
         @Override
         public void onItemClick(int position, E item) {
@@ -264,7 +264,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   @MainThread
-  private void showPopup(final View anchor, final Function0 function) {
+  private void showPopup(final View anchor, final Function0<Object> function) {
     if (!isShowing()) {
       this.isShowing = true;
       anchor.post(
@@ -287,8 +287,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsDropDown(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor);
@@ -306,8 +306,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsDropDown(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor, xOff, yOff);
@@ -323,8 +323,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsAnchorLeftTop(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
@@ -342,8 +342,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsAnchorLeftTop(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor, xOff, yOff - anchor.getMeasuredHeight());
@@ -359,8 +359,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsAnchorLeftBottom(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor, 0, -getContentViewPadding());
@@ -378,8 +378,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsAnchorLeftBottom(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(anchor, xOff, yOff - getContentViewPadding());
@@ -395,8 +395,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsAnchorRightTop(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -417,8 +417,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsAnchorRightTop(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -437,8 +437,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsAnchorRightBottom(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -459,8 +459,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsAnchorRightBottom(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -479,8 +479,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAsAnchorCenter(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -501,8 +501,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAsAnchorCenter(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAsDropDown(
@@ -521,8 +521,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param anchor anchor view.
    */
   public void showAtCenter(final View anchor) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAtLocation(anchor, Gravity.CENTER, 0, 0);
@@ -540,8 +540,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAtCenter(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
@@ -559,8 +559,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAtLocation(final View anchor, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
@@ -579,8 +579,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
    * @param yOff y-off.
    */
   public void showAtLocation(final View anchor, final int gravity, final int xOff, final int yOff) {
-    Function0 function =
-        new Function0() {
+    Function0<Object> function =
+        new Function0<Object>() {
           @Override
           public Unit invoke() {
             menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
@@ -680,10 +680,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter>
       height += getAdapter().getContentViewHeight() + getContentViewPadding();
       if (getHeaderView() != null) height += getHeaderView().getMeasuredHeight();
       if (getFooterView() != null) height += getFooterView().getMeasuredHeight();
-      return height;
-    } else {
-      return height;
     }
+    return height;
   }
 
   /**

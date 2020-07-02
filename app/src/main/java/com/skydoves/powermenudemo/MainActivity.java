@@ -27,15 +27,18 @@ import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
 import com.skydoves.powermenu.PowerMenuItem;
+import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
+import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
+import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
   private PowerMenu hamburgerMenu;
   private PowerMenu profileMenu;
-  private CustomPowerMenu writeMenu;
-  private CustomPowerMenu alertMenu;
+  private CustomPowerMenu<String, CenterMenuAdapter> writeMenu;
+  private CustomPowerMenu<String, CenterMenuAdapter> alertMenu;
   private PowerMenu dialogMenu;
-  private CustomPowerMenu customDialogMenu;
+  private CustomPowerMenu<NameCardMenuItem, CustomDialogMenuAdapter> customDialogMenu;
   private PowerMenu iconMenu;
   private OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
@@ -189,13 +192,22 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public void onBackPressed() {
-    if (hamburgerMenu.isShowing()) hamburgerMenu.dismiss();
-    else if (profileMenu.isShowing()) profileMenu.dismiss();
-    else if (writeMenu.isShowing()) writeMenu.dismiss();
-    else if (alertMenu.isShowing()) alertMenu.dismiss();
-    else if (dialogMenu.isShowing()) dialogMenu.dismiss();
-    else if (customDialogMenu.isShowing()) customDialogMenu.dismiss();
-    else if (iconMenu.isShowing()) iconMenu.dismiss();
-    else super.onBackPressed();
+    if (hamburgerMenu.isShowing()) {
+      hamburgerMenu.dismiss();
+    } else if (profileMenu.isShowing()) {
+      profileMenu.dismiss();
+    } else if (writeMenu.isShowing()) {
+      writeMenu.dismiss();
+    } else if (alertMenu.isShowing()) {
+      alertMenu.dismiss();
+    } else if (dialogMenu.isShowing()) {
+      dialogMenu.dismiss();
+    } else if (customDialogMenu.isShowing()) {
+      customDialogMenu.dismiss();
+    } else if (iconMenu.isShowing()) {
+      iconMenu.dismiss();
+    } else {
+      super.onBackPressed();
+    }
   }
 }
