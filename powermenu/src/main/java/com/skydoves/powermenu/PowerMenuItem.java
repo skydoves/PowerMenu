@@ -22,49 +22,49 @@ import androidx.annotation.DrawableRes;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class PowerMenuItem {
 
-  protected String title;
+  protected CharSequence title;
   @DrawableRes protected int icon;
   protected boolean isSelected;
   protected Object tag;
 
-  public PowerMenuItem(String title) {
+  public PowerMenuItem(CharSequence title) {
     this.title = title;
   }
 
-  public PowerMenuItem(String title, Object tag) {
+  public PowerMenuItem(CharSequence title, Object tag) {
     this.title = title;
     this.tag = tag;
   }
 
-  public PowerMenuItem(String title, @DrawableRes int icon) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int icon) {
     this.title = title;
     this.icon = icon;
   }
 
-  public PowerMenuItem(String title, @DrawableRes int icon, Object tag) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int icon, Object tag) {
     this.title = title;
     this.icon = icon;
     this.tag = tag;
   }
 
-  public PowerMenuItem(String title, boolean isSelected) {
+  public PowerMenuItem(CharSequence title, boolean isSelected) {
     this.title = title;
     this.isSelected = isSelected;
   }
 
-  public PowerMenuItem(String title, boolean isSelected, Object tag) {
+  public PowerMenuItem(CharSequence title, boolean isSelected, Object tag) {
     this.title = title;
     this.isSelected = isSelected;
     this.tag = tag;
   }
 
-  public PowerMenuItem(String title, @DrawableRes int icon, boolean isSelected) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int icon, boolean isSelected) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
   }
 
-  public PowerMenuItem(String title, @DrawableRes int icon, boolean isSelected, Object tag) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int icon, boolean isSelected, Object tag) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
@@ -76,7 +76,7 @@ public class PowerMenuItem {
    *
    * @return the title.
    */
-  public String getTitle() {
+  public CharSequence getTitle() {
     return this.title;
   }
 
@@ -85,7 +85,7 @@ public class PowerMenuItem {
    *
    * @param title title.
    */
-  public void setTitle(String title) {
+  public void setTitle(CharSequence title) {
     this.title = title;
   }
 
