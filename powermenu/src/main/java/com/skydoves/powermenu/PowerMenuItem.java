@@ -19,7 +19,7 @@ package com.skydoves.powermenu;
 import androidx.annotation.DrawableRes;
 
 /** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"unused"})
 public class PowerMenuItem {
 
   protected CharSequence title;

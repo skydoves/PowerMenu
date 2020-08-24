@@ -57,7 +57,7 @@ import kotlin.jvm.functions.Function0;
  *
  * <p>
  */
-@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
+@SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     implements IMenuItem<E>, LifecycleObserver {
 
@@ -173,7 +173,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     if (builder.circularEffect != null) setCircularEffect(builder.circularEffect);
   }
 
-  @SuppressLint("InflateParams")
   protected void initialize(Context context) {
     this.layoutInflater = LayoutInflater.from(context);
     assert layoutInflater != null;

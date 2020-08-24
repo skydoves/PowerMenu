@@ -125,7 +125,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     private boolean selectedEffect = true;
     @ColorInt private int selectedTextColor = -2;
     @ColorInt private int selectedMenuColor = -2;
-    @Px private int textSize = 12;
+    private int textSize = 12;
     private int textGravity = Gravity.START;
     private Typeface textTypeface = null;
 

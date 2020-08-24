@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
@@ -35,14 +36,18 @@ import androidx.core.content.ContextCompat;
  *
  * <p>This is the {@link PowerMenu}'s default adapter.
  */
-@SuppressWarnings("WeakerAccess")
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
-  @ColorInt private int textColor = -2;
-  @ColorInt private int menuColor = -2;
-  @ColorInt private int selectedTextColor = -2;
-  @ColorInt private int selectedMenuColor = -2;
-  @Px private int textSize = 12;
+  @ColorInt
+  private int textColor = -2;
+  @ColorInt
+  private int menuColor = -2;
+  @ColorInt
+  private int selectedTextColor = -2;
+  @ColorInt
+  private int selectedMenuColor = -2;
+  @Px
+  private int textSize = 12;
   private int textGravity = Gravity.START;
   private Typeface textTypeface = null;
 

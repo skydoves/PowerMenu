@@ -19,7 +19,7 @@ package com.skydoves.powermenu;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 class MenuPreferenceManager {
 
   private static final String position = "_POSITION";

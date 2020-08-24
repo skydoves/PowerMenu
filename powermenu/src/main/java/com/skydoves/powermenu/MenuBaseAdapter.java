@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** MenuBaseAdapter is the base adapter class for {@link CustomPowerMenu}. */
-@SuppressWarnings("WeakerAccess")
 public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
   private List<T> itemList;

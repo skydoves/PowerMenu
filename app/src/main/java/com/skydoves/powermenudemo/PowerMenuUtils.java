@@ -35,7 +35,6 @@ import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
 
-@SuppressWarnings({"WeakerAccess"})
 public class PowerMenuUtils {
 
   public static PowerMenu getHamburgerPowerMenu(
