@@ -32,6 +32,7 @@ import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.annotations.Sp;
 import com.skydoves.powermenu.kotlin.PowerMenuDsl;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +102,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   @Override
-  public void setTextSize(int size) {
+  public void setTextSize(@Sp int size) {
     this.getAdapter().setTextSize(size);
   }
 
@@ -353,7 +354,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param size menu item's content text size.
      * @return {@link Builder}.
      */
-    public Builder setTextSize(@Px int size) {
+    public Builder setTextSize(@Sp int size) {
       this.textSize = size;
       return this;
     }

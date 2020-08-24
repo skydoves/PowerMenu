@@ -26,10 +26,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.ColorInt;
-import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
+import com.skydoves.powermenu.annotations.Sp;
+import com.skydoves.powermenu.databinding.ItemPowerMenuBinding;
 
 /**
  * MenuListAdapter extends {@link MenuBaseAdapter}.
@@ -38,16 +38,11 @@ import androidx.core.content.ContextCompat;
  */
 public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements IPowerMenuAdapter {
 
-  @ColorInt
-  private int textColor = -2;
-  @ColorInt
-  private int menuColor = -2;
-  @ColorInt
-  private int selectedTextColor = -2;
-  @ColorInt
-  private int selectedMenuColor = -2;
-  @Px
-  private int textSize = 12;
+  @ColorInt private int textColor = -2;
+  @ColorInt private int menuColor = -2;
+  @ColorInt private int selectedTextColor = -2;
+  @ColorInt private int selectedMenuColor = -2;
+  @Sp private int textSize = 12;
   private int textGravity = Gravity.START;
   private Typeface textTypeface = null;
 
@@ -63,8 +58,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
 
     if (view == null) {
       LayoutInflater inflater = LayoutInflater.from(context);
-      assert inflater != null;
-      view = inflater.inflate(R.layout.item_power_menu, viewGroup, false);
+      view = ItemPowerMenuBinding.inflate(inflater, viewGroup, false).getRoot();
     }
 
     PowerMenuItem powerMenuItem = (PowerMenuItem) getItem(index);
@@ -162,7 +156,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   }
 
   @Override
-  public void setTextSize(@Px int size) {
+  public void setTextSize(@Sp int size) {
     this.textSize = size;
   }
 

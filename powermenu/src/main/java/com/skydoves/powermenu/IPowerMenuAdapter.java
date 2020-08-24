@@ -18,7 +18,7 @@ package com.skydoves.powermenu;
 
 import android.graphics.Typeface;
 import androidx.annotation.ColorInt;
-import androidx.annotation.Px;
+import com.skydoves.powermenu.annotations.Sp;
 
 /**
  * IPowerMenuAdapter is an interface of the {@link MenuListAdapter} implementation for the item
@@ -37,7 +37,7 @@ interface IPowerMenuAdapter {
    *
    * @param size size value.
    */
-  void setTextSize(@Px int size);
+  void setTextSize(@Sp int size);
 
   /**
    * sets the {@link android.view.Gravity} of the item.

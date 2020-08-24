@@ -19,7 +19,6 @@ package com.skydoves.powermenu;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.TypedValue;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
