@@ -22,9 +22,10 @@ import android.content.Context
 import com.skydoves.powermenu.PowerMenu
 
 @DslMarker
-annotation class PowerMenuDsl
+internal annotation class PowerMenuDsl
 
 /** creates an instance of [PowerMenu] by [PowerMenu.Builder] using kotlin dsl. */
 @PowerMenuDsl
+@JvmSynthetic
 inline fun createPowerMenu(context: Context, block: PowerMenu.Builder.() -> Unit): PowerMenu =
   PowerMenu.Builder(context).apply(block).build()

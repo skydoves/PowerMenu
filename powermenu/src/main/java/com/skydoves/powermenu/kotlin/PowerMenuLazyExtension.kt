@@ -26,6 +26,7 @@ import kotlin.reflect.KClass
 
 /** returns a [Lazy] delegate to access the [ComponentActivity]'s PowerMenu property. */
 @MainThread
+@JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
   factory: KClass<T>
 ): Lazy<PowerMenu> {
@@ -34,6 +35,7 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
 
 /** returns a [Lazy] delegate to access the [Fragment]'s PowerMenu property. */
 @MainThread
+@JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
   factory: KClass<T>
 ): Lazy<PowerMenu?> {

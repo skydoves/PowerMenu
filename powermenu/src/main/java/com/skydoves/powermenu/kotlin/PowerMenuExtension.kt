@@ -103,6 +103,7 @@ fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, gravity: Int, xOff: 
 }
 
 @MainThread
+@JvmSynthetic
 internal inline fun View.powermenu(crossinline block: () -> Unit) {
   post { block() }
 }
