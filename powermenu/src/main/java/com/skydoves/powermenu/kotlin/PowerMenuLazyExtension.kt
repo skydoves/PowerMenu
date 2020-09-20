@@ -37,5 +37,5 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
 inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
   factory: KClass<T>
 ): Lazy<PowerMenu?> {
-  return FragmentPowerMenuLazy(this, this, factory)
+  return FragmentPowerMenuLazy(this, factory)
 }
