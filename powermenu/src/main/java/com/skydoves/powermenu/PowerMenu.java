@@ -102,6 +102,21 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   @Override
+  public void setIconSize(int iconSize) {
+    getAdapter().setIconSize(iconSize);
+  }
+
+  @Override
+  public void setIconColor(int iconColor) {
+    getAdapter().setIconColor(iconColor);
+  }
+
+  @Override
+  public void setIconPadding(int iconPadding) {
+    getAdapter().setIconPadding(iconPadding);
+  }
+
+  @Override
   public void setTextSize(@Sp int size) {
     this.getAdapter().setTextSize(size);
   }

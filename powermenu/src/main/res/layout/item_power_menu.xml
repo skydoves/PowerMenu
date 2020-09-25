@@ -11,15 +11,6 @@
   android:orientation="horizontal"
   tools:ignore="UnusedAttribute">
 
-  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/item_power_menu_icon"
-    android:layout_width="35dp"
-    android:layout_height="35dp"
-    android:layout_gravity="center_vertical"
-    android:layout_marginStart="7dp"
-    android:layout_marginLeft="7dp"
-    android:scaleType="fitXY" />
-
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/item_power_menu_title"
     android:layout_width="match_parent"
