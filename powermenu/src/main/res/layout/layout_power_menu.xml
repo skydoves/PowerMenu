@@ -12,7 +12,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:clipToPadding="false"
-    android:padding="5dp"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
@@ -29,5 +28,7 @@
       android:focusedByDefault="true"
       tools:ignore="UnusedAttribute"
       tools:listitem="@layout/item_power_menu" />
+
   </androidx.cardview.widget.CardView>
+
 </FrameLayout>

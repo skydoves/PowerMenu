@@ -166,6 +166,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     if (builder.animationStyle != -1) setAnimationStyle(builder.animationStyle);
     if (builder.width != 0) setWidth(builder.width);
     if (builder.height != 0) setHeight(builder.height);
+    if (builder.padding != 0) setPadding(builder.padding);
     if (builder.divider != null) setDivider(builder.divider);
     if (builder.dividerHeight != 0) setDividerHeight(builder.dividerHeight);
     if (builder.preferenceName != null) setPreferenceName(builder.preferenceName);
@@ -726,6 +727,15 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   public void setHeight(@Px int height) {
     this.fixedHeight = true;
     this.menuWindow.setHeight(height);
+  }
+
+  /**
+   * sets a padding size of the popup menu.
+   *
+   * @param padding padding size.
+   */
+  public void setPadding(@Px int padding) {
+    this.menuListView.setPadding(padding, padding, padding, padding);
   }
 
   /**

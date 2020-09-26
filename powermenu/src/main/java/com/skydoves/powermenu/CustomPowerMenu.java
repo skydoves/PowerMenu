@@ -251,6 +251,17 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     }
 
     /**
+     * sets a padding size of the popup menu.
+     *
+     * @param padding padding size.
+     * @return {@link PowerMenu.Builder}
+     */
+    public Builder<T, E> setPadding(@Px int padding) {
+      this.padding = padding;
+      return this;
+    }
+
+    /**
      * sets the width and height size of the popup menu.
      *
      * @param width width size.

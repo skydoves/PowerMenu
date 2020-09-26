@@ -158,6 +158,7 @@ public class PowerMenuUtils {
         .setAnimation(MenuAnimation.SHOW_UP_CENTER)
         .setMenuRadius(10f)
         .setMenuShadow(10f)
+        .setPadding(14)
         .setWidth(600)
         .setSelectedEffect(false)
         .build();

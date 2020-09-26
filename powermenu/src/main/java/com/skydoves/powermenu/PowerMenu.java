@@ -342,6 +342,17 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     }
 
     /**
+     * sets a padding size of the popup menu.
+     *
+     * @param padding padding size.
+     * @return {@link Builder}
+     */
+    public Builder setPadding(@Px int padding) {
+      this.padding = padding;
+      return this;
+    }
+
+    /**
      * sets the content text color of the popup menu item.
      *
      * @param color menu item's content text color.

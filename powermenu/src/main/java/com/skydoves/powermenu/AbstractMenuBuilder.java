@@ -48,6 +48,7 @@ public abstract class AbstractMenuBuilder {
   @Px protected float menuShadow = 5;
   @Px protected int width = 0;
   @Px protected int height = 0;
+  @Px protected int padding = 0;
   @Px protected int dividerHeight = 0;
   protected Drawable divider = null;
   @ColorInt protected int backgroundColor = Color.BLACK;
