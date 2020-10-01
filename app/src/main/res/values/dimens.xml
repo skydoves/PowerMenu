@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="menu_corner_radius">24dp</dimen>
+    <dimen name="menu_elevation">8dp</dimen>
+</resources>

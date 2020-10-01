@@ -21,7 +21,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CircularEffect;
@@ -135,7 +137,9 @@ public class PowerMenuUtils {
       LifecycleOwner lifecycleOwner,
       OnMenuItemClickListener<PowerMenuItem> onMenuItemClickListener) {
 
-    return new PowerMenu.Builder(context)
+    Context styledContext = new ContextThemeWrapper(context, R.style.PopupCardThemeOverlay);
+
+    return new PowerMenu.Builder(styledContext)
         .addItem(new PowerMenuItem("WeChat", R.drawable.ic_wechat))
         .addItem(new PowerMenuItem("Facebook", R.drawable.ic_facebook))
         .addItem(new PowerMenuItem("Twitter", R.drawable.ic_twitter))
@@ -144,8 +148,8 @@ public class PowerMenuUtils {
         .setLifecycleOwner(lifecycleOwner)
         .setOnMenuItemClickListener(onMenuItemClickListener)
         .setAnimation(MenuAnimation.FADE)
-        .setMenuRadius(10f)
-        .setMenuShadow(10f)
+        .setMenuRadius(context.getResources().getDimensionPixelSize(R.dimen.menu_corner_radius))
+        .setMenuShadow(context.getResources().getDimensionPixelSize(R.dimen.menu_elevation))
         .build();
   }
 
