@@ -23,7 +23,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CircularEffect;
