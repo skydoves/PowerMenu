@@ -13,7 +13,5 @@ ext.versions = [
     androidxAppcompat: '1.3.0-alpha01',
     cardView         : '1.0.0',
     lifecycle        : '2.2.0',
-
-    // for demo
     googleMaterial   : '1.3.0-alpha01',
 ]

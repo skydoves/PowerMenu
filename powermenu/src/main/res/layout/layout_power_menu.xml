@@ -6,14 +6,12 @@
   android:layout_height="wrap_content"
   android:focusable="true">
 
-  <androidx.cardview.widget.CardView
+  <com.google.android.material.card.MaterialCardView
     android:id="@+id/power_menu_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:clipToPadding="false"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="5dp">
+    android:clipToPadding="false" >
 
     <ListView
       android:id="@+id/power_menu_listView"
@@ -29,6 +27,6 @@
       tools:ignore="UnusedAttribute"
       tools:listitem="@layout/item_power_menu" />
 
-  </androidx.cardview.widget.CardView>
+  </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
