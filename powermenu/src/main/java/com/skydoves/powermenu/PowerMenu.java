@@ -32,6 +32,7 @@ import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
 import com.skydoves.powermenu.kotlin.PowerMenuDsl;
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ import java.util.List;
  *
  * <p>{@link PowerMenuItem} is the member of the PowerMenu's list.
  */
-@SuppressWarnings("unused")
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 
@@ -65,6 +65,9 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     if (builder.textSize != 12) setTextSize(builder.textSize);
     if (builder.textGravity != Gravity.START) setTextGravity(builder.textGravity);
     if (builder.textTypeface != null) setTextTypeface(builder.textTypeface);
+    if (builder.iconSize != 35) setIconSize(builder.iconSize);
+    if (builder.iconPadding != 7) setIconPadding(builder.iconPadding);
+    if (builder.iconColor != -2) setIconColor(builder.iconColor);
 
     this.menuListView.setAdapter(adapter);
     addItemList(builder.powerMenuItems);
@@ -132,6 +135,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   /** Builder class for creating {@link PowerMenu}. */
+  @SuppressWarnings("unused")
   @PowerMenuDsl
   public static class Builder extends AbstractMenuBuilder {
 
@@ -404,6 +408,36 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      */
     public Builder setTextTypeface(@NonNull Typeface typeface) {
       this.textTypeface = typeface;
+      return this;
+    }
+
+    /**
+     * sets an icon color of the menu item.
+     *
+     * @param iconColor icon color of the menu item.
+     */
+    public Builder setIconColor(@ColorInt int iconColor) {
+      this.iconColor = iconColor;
+      return this;
+    }
+
+    /**
+     * sets an icon size of the menu item.
+     *
+     * @param iconSize icon size of the menu item.
+     */
+    public Builder setIconSize(@Dp int iconSize) {
+      this.iconSize = iconSize;
+      return this;
+    }
+
+    /**
+     * sets a padding value between icon and menu item.
+     *
+     * @param iconPadding padding value between icon and menu item.
+     */
+    public Builder setIconPadding(@Dp int iconPadding) {
+      this.iconPadding = iconPadding;
       return this;
     }
 

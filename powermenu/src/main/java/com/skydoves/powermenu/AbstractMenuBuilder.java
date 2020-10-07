@@ -27,6 +27,7 @@ import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.annotations.Dp;
 
 /**
  * AbstractMenuBuilder is the abstract builder class of {@link PowerMenu.Builder} and {@link
@@ -52,6 +53,9 @@ public abstract class AbstractMenuBuilder {
   @Px protected int dividerHeight = 0;
   protected Drawable divider = null;
   @ColorInt protected int backgroundColor = Color.BLACK;
+  @Dp protected int iconSize = 35;
+  @Dp protected int iconPadding = 7;
+  @ColorInt protected int iconColor = -2;
 
   @FloatRange(from = 0.0, to = 1.0)
   protected float backgroundAlpha = 0.6f;
