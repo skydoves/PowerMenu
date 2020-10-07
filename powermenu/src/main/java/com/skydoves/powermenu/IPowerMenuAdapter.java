@@ -18,7 +18,7 @@ package com.skydoves.powermenu;
 
 import android.graphics.Typeface;
 import androidx.annotation.ColorInt;
-import androidx.annotation.Px;
+import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
 
 /**
@@ -83,13 +83,6 @@ interface IPowerMenuAdapter {
   void setSelectedEffect(boolean selectedEffect);
 
   /**
-   * sets an icon size of the menu item.
-   *
-   * @param iconSize icon size of the menu item.
-   */
-  void setIconSize(@Px int iconSize);
-
-  /**
    * sets an icon color of the menu item.
    *
    * @param iconColor icon color of the menu item.
@@ -97,9 +90,16 @@ interface IPowerMenuAdapter {
   void setIconColor(@ColorInt int iconColor);
 
   /**
+   * sets an icon size of the menu item.
+   *
+   * @param iconSize icon size of the menu item.
+   */
+  void setIconSize(@Dp int iconSize);
+
+  /**
    * sets a padding value between icon and menu item.
    *
-   * @param padding padding value between icon and menu item.
+   * @param iconPadding padding value between icon and menu item.
    */
-  void setIconPadding(@Px int padding);
+  void setIconPadding(@Dp int iconPadding);
 }

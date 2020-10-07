@@ -17,22 +17,20 @@
 package com.skydoves.powermenu;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
-import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.core.widget.ImageViewCompat;
+import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
 import com.skydoves.powermenu.databinding.ItemPowerMenuBinding;
 
@@ -49,8 +47,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
   @ColorInt private int selectedMenuColor = -2;
   @ColorInt private int iconColor = -2;
   @Sp private int textSize = 12;
-  @Px private int iconSize = 26;
-  @Px private int iconPadding = 7;
+  @Dp private int iconSize = 35;
+  @Dp private int iconPadding = 7;
   private int textGravity = Gravity.START;
   private Typeface textTypeface = null;
 
@@ -73,6 +71,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
 
     final View background = view.findViewById(R.id.item_power_menu_layout);
     final TextView title = view.findViewById(R.id.item_power_menu_title);
+    final ImageView icon = view.findViewById(R.id.item_power_menu_icon);
 
     title.setText(powerMenuItem.title);
     title.setTextSize(textSize);
@@ -83,23 +82,19 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     }
 
     if (powerMenuItem.icon != 0) {
-      Drawable drawable =
-          ResourcesCompat.getDrawable(context.getResources(), powerMenuItem.icon, null);
-      if (drawable != null) {
-        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        Drawable resized =
-            new BitmapDrawable(
-                context.getResources(),
-                Bitmap.createScaledBitmap(bitmap, iconSize, iconSize, true));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && iconColor != -2) {
-          resized.setTint(iconColor);
-        }
-        title.setCompoundDrawablesWithIntrinsicBounds(resized, null, null, null);
-        title.setCompoundDrawablePadding(iconPadding);
+      icon.getLayoutParams().width = ConvertUtil.convertDpToPixel(iconSize, context);
+      icon.getLayoutParams().height = ConvertUtil.convertDpToPixel(iconSize, context);
+      icon.setImageResource(powerMenuItem.icon);
+      if (iconColor != -2) {
+        ImageViewCompat.setImageTintList(icon, ColorStateList.valueOf(iconColor));
       }
+      if (icon.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        ((ViewGroup.MarginLayoutParams) icon.getLayoutParams()).rightMargin =
+            ConvertUtil.convertDpToPixel(iconPadding, context);
+      }
+      icon.setVisibility(View.VISIBLE);
     } else {
-      title.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-      title.setCompoundDrawablePadding(0);
+      icon.setVisibility(View.GONE);
     }
 
     if (powerMenuItem.isSelected) {
