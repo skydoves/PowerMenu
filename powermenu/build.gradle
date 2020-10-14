@@ -18,9 +18,8 @@ android {
 }
 
 dependencies {
+    implementation "com.google.android.material:material:$versions.googleMaterial"
     implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
-    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
-    compileOnly "com.google.android.material:material:$versions.googleMaterial"
 }
 
 tasks.withType(Javadoc).all { enabled = false }

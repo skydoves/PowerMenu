@@ -10,7 +10,6 @@ ext.versions = [
     bintrayRelease   : '0.9.2',
 
     kotlin           : '1.4.10',
-    androidxAppcompat: '1.3.0-alpha02',
-    googleMaterial   : '1.3.0-alpha03',
+    googleMaterial   : '1.2.1',
     lifecycle        : '2.2.0'
 ]
