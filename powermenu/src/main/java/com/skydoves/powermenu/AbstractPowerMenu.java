@@ -186,6 +186,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
             backgroundView,
             RelativeLayout.LayoutParams.MATCH_PARENT,
             RelativeLayout.LayoutParams.MATCH_PARENT);
+    this.backgroundWindow.setClippingEnabled(false);
 
     LayoutPowerMenuBinding bindingMenu =
         LayoutPowerMenuBinding.inflate(layoutInflater, null, false);
