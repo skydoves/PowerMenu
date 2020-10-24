@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
@@ -102,13 +101,13 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
       setSelectedPosition(index);
 
       if (selectedMenuColor == -2) {
-        background.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+        background.setBackgroundColor(Color.WHITE);
       } else {
         background.setBackgroundColor(selectedMenuColor);
       }
 
       if (selectedTextColor == -2) {
-        title.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        title.setTextColor(ResourceUtil.getAccentColor(context));
       } else {
         title.setTextColor(selectedTextColor);
       }
@@ -120,7 +119,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
       }
 
       if (textColor == -2) {
-        title.setTextColor(ContextCompat.getColor(context, R.color.black));
+        title.setTextColor(Color.BLACK);
       } else {
         title.setTextColor(textColor);
       }
