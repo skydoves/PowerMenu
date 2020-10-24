@@ -4,7 +4,7 @@ ext.versions = [
     versionCode      : 23,
     versionName      : '2.1.7-alpha01',
 
-    gradleBuildTool  : '3.6.3',
+    gradleBuildTool  : '4.0.1',
     spotlessGradle   : '5.7.0',
     ktlintGradle     : '0.39.0',
     bintrayPlugin    : '1.8.5',
