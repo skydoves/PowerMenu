@@ -24,6 +24,7 @@ PowerMenu can be fully customized and used for popup dialogs. <br>
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/powermenu/images/download.svg)](https://bintray.com/devmagician/maven/powermenu/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/powermenu.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22powermenu%22)
 [![Jitpack](https://jitpack.io/v/skydoves/PowerMenu.svg)](https://jitpack.io/#skydoves/PowerMenu)
 
 I really appreciate that 🔥Power Menu is used in more than __120,000+__ project's dependency all over the 🌎world. <br>
