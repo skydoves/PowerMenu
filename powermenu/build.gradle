@@ -13,6 +13,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

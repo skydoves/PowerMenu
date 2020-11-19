@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
   private PowerMenu dialogMenu;
   private CustomPowerMenu<NameCardMenuItem, CustomDialogMenuAdapter> customDialogMenu;
   private PowerMenu iconMenu;
-  private OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener =
+  private final OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
           hamburgerMenu.setSelectedPosition(position);
         }
       };
-  private OnDismissedListener onHamburgerMenuDismissedListener =
+  private final OnDismissedListener onHamburgerMenuDismissedListener =
       () -> Log.d("Test", "onDismissed hamburger menu");
-  private OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener =
+  private final OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
           profileMenu.dismiss();
         }
       };
-  private OnMenuItemClickListener<String> onWriteItemClickListener =
+  private final OnMenuItemClickListener<String> onWriteItemClickListener =
       new OnMenuItemClickListener<String>() {
         @Override
         public void onItemClick(int position, String title) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
           writeMenu.dismiss();
         }
       };
-  private OnMenuItemClickListener<String> onAlertItemClickListener =
+  private final OnMenuItemClickListener<String> onAlertItemClickListener =
       new OnMenuItemClickListener<String>() {
         @Override
         public void onItemClick(int position, String title) {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
           alertMenu.dismiss();
         }
       };
-  private OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener =
+  private final OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
