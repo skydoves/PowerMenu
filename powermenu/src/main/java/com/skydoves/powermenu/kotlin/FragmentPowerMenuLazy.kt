@@ -28,7 +28,8 @@ import kotlin.reflect.KClass
  * This will prevents memory leak: [Avoid Memory Leak](https://github.com/skydoves/balloon#avoid-memory-leak).
  * @param clazz A [PowerMenu.Factory] kotlin class for creating a new instance of the Balloon.
  */
-class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
+@PublishedApi
+internal class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
   private val fragment: Fragment,
   private val clazz: KClass<T>
 ) : Lazy<PowerMenu?> {
