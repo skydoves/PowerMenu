@@ -26,7 +26,7 @@ import java.util.List;
 /** MenuBaseAdapter is the base adapter class for {@link CustomPowerMenu}. */
 public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
-  private List<T> itemList;
+  private final List<T> itemList;
   private ListView listView;
 
   private int selectedPosition = -1;
@@ -62,15 +62,11 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
   public View getView(final int index, View view, ViewGroup viewGroup) {
     if (view != null && listView != null && listView.getOnItemClickListener() != null) {
       view.setOnClickListener(
-          new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+          view1 ->
               listView
                   .getOnItemClickListener()
                   .onItemClick(
-                      listView, view, index + listView.getHeaderViewsCount(), getItemId(index));
-            }
-          });
+                      listView, view1, index + listView.getHeaderViewsCount(), getItemId(index)));
     }
     return view;
   }

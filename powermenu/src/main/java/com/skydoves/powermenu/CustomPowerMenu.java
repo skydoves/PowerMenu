@@ -70,8 +70,8 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
     private OnMenuItemClickListener<T> menuItemClickListener = null;
 
-    private E adapter;
-    private List<T> Ts;
+    private final E adapter;
+    private final List<T> Ts;
 
     public Builder(@NonNull Context context, @NonNull E adapter) {
       this.context = context;

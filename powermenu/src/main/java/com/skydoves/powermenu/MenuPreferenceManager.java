@@ -24,7 +24,7 @@ class MenuPreferenceManager {
 
   private static final String position = "_POSITION";
   private static MenuPreferenceManager menuPreferenceManager;
-  private SharedPreferences sharedPreferences;
+  private final SharedPreferences sharedPreferences;
 
   private MenuPreferenceManager(Context context) {
     sharedPreferences =

@@ -149,7 +149,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     private int textGravity = Gravity.START;
     private Typeface textTypeface = null;
 
-    private List<PowerMenuItem> powerMenuItems;
+    private final List<PowerMenuItem> powerMenuItems;
 
     /**
      * Builder class for creating {@link PowerMenu}.
