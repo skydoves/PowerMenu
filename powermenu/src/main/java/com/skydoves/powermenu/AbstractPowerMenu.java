@@ -40,12 +40,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 import com.skydoves.powermenu.databinding.LayoutPowerBackgroundBinding;
 import com.skydoves.powermenu.databinding.LayoutPowerMenuBinding;
+import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
 import java.util.List;
 
 /**
@@ -254,7 +256,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    */
   @MainThread
   private void showPopup(final View anchor, final Runnable function) {
-    if (!isShowing()) {
+    if (!isShowing()
+        && ViewCompat.isAttachedToWindow(anchor)
+        && !ContextExtensionsKt.isFinishing(anchor.getContext())) {
       this.isShowing = true;
       anchor.post(
           () -> {
