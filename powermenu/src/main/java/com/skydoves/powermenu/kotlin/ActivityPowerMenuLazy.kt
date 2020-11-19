@@ -17,17 +17,21 @@
 package com.skydoves.powermenu.kotlin
 
 import android.content.Context
-import androidx.activity.ComponentActivity
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.powermenu.PowerMenu
 import kotlin.reflect.KClass
 
 /**
- * An implementation of [Lazy] used by [ComponentActivity].
+ * An implementation of [Lazy] for creating an instance of the [PowerMenu] lazily in Activities.
+ * Tied to the given [lifecycleOwner], [clazz].
  *
- * tied to the given [lifecycleOwner], [clazz].
+ * @param context A context for creating resources of the [PowerMenu] lazily.
+ * @param lifecycleOwner A [LifecycleOwner] for dismissing automatically when the [LifecycleOwner] is being destroyed.
+ * This will prevents memory leak: [Avoid Memory Leak](https://github.com/skydoves/balloon#avoid-memory-leak).
+ * @param clazz A [PowerMenu.Factory] kotlin class for creating a new instance of the Balloon.
  */
-class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
+@PublishedApi
+internal class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
   private val context: Context,
   private val lifecycleOwner: LifecycleOwner,
   private val clazz: KClass<T>
@@ -38,7 +42,7 @@ class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
   override val value: PowerMenu
     get() {
       var instance = cached
-      if (instance == null) {
+      if (instance === null) {
         val factory = clazz::java.get().newInstance()
         instance = factory.create(context, lifecycleOwner)
         cached = instance
@@ -47,5 +51,7 @@ class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
       return instance
     }
 
-  override fun isInitialized() = cached != null
+  override fun isInitialized(): Boolean = cached !== null
+
+  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }
