@@ -30,6 +30,7 @@ class KotlinActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     val binding = ActivityTestBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
     moreMenu.showAsDropDown(binding.button)
     binding.button.setOnClickListener {

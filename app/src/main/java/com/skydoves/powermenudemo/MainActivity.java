@@ -30,6 +30,7 @@ import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
+import com.skydoves.powermenudemo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,10 +84,15 @@ public class MainActivity extends AppCompatActivity {
         }
       };
 
+  private ActivityMainBinding binding;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+
+    binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+    setContentView(binding.getRoot());
 
     hamburgerMenu =
         PowerMenuUtils.getHamburgerPowerMenu(
@@ -151,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
       dialogMenu.dismiss();
       return;
     }
-    View layout = findViewById(R.id.layout_main);
+    View layout = binding.getRoot();
     dialogMenu.showAtCenter(layout);
   }
 
@@ -160,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
       customDialogMenu.dismiss();
       return;
     }
-    View layout = findViewById(R.id.layout_main);
+    View layout = binding.getRoot();
     customDialogMenu.showAtCenter(layout);
   }
 
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
       writeMenu.dismiss();
       return;
     }
-    View layout = findViewById(R.id.layout_main);
+    View layout = binding.getRoot();
     writeMenu.showAtCenter(layout);
   }
 
@@ -178,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
       alertMenu.dismiss();
       return;
     }
-    View layout = findViewById(R.id.layout_main);
+    View layout = binding.getRoot();
     alertMenu.showAtCenter(layout);
   }
 
