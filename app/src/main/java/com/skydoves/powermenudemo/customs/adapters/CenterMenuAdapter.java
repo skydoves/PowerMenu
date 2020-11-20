@@ -21,9 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
-
 import com.skydoves.powermenu.MenuBaseAdapter;
 import com.skydoves.powermenudemo.R;
 
