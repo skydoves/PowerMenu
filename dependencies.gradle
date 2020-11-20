@@ -9,7 +9,7 @@ ext.versions = [
     ktlintGradle     : '0.39.0',
     bintrayPlugin    : '1.8.5',
 
-    kotlin           : '1.4.10',
+    kotlin           : '1.4.20',
     googleMaterial   : '1.2.1',
     lifecycle        : '2.2.0'
 ]
