@@ -21,7 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.core.content.ContextCompat;
+
 import com.skydoves.powermenu.MenuBaseAdapter;
 import com.skydoves.powermenudemo.R;
 
@@ -36,8 +38,7 @@ public class CenterMenuAdapter extends MenuBaseAdapter<String> {
     final Context context = viewGroup.getContext();
 
     if (view == null) {
-      LayoutInflater inflater =
-          (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      LayoutInflater inflater = LayoutInflater.from(context);
       assert inflater != null;
       view = inflater.inflate(R.layout.item_title_menu, viewGroup, false);
     }

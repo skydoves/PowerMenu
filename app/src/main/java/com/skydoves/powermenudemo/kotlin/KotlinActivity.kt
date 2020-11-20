@@ -20,8 +20,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.powermenu.kotlin.powerMenu
-import com.skydoves.powermenudemo.R
-import kotlinx.android.synthetic.main.activity_test.*
+import com.skydoves.powermenudemo.databinding.ActivityTestBinding
 
 class KotlinActivity : AppCompatActivity() {
 
@@ -29,10 +28,11 @@ class KotlinActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_test)
 
-    moreMenu.showAsDropDown(button)
-    button.setOnClickListener {
+    val binding = ActivityTestBinding.inflate(layoutInflater)
+
+    moreMenu.showAsDropDown(binding.button)
+    binding.button.setOnClickListener {
       moreMenu.showAsDropDown(it)
     }
 
