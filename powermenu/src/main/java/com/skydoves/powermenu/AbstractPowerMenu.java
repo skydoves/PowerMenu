@@ -125,10 +125,6 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
         // empty body
       };
 
-  protected AbstractPowerMenu(Context context) {
-    initialize(context, false);
-  }
-
   protected AbstractPowerMenu(Context context, AbstractMenuBuilder builder) {
     initialize(context, builder.isMaterial);
 
