@@ -45,6 +45,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
+import androidx.viewbinding.ViewBinding;
 import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
 import java.util.List;
@@ -57,9 +58,10 @@ import java.util.List;
  * <p>
  */
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
+public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>, V extends ViewBinding>
     implements IMenuItem<E>, LifecycleObserver {
 
+  protected V binding;
   protected View backgroundView;
   protected View menuView;
   protected CardView menuCard;
@@ -177,12 +179,12 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
             RelativeLayout.LayoutParams.MATCH_PARENT);
     this.backgroundWindow.setClippingEnabled(false);
 
-    this.menuView = getMenuRoot();
-    this.menuListView = getMenuList();
+    this.menuView = getMenuRoot(binding);
+    this.menuListView = getMenuList(binding);
     this.menuWindow =
         new PopupWindow(
             menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-    this.menuCard = getMenuCard();
+    this.menuCard = getMenuCard(binding);
 
     setFocusable(false);
     setTouchInterceptor(onTouchListener);
@@ -197,21 +199,21 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    *
    * @return The root content of the popup menu.
    */
-  abstract View getMenuRoot();
+  abstract View getMenuRoot(V binding);
 
   /**
    * Returns the {@link ListView} which constructing the items of the popup menu.
    *
    * @return The {@link ListView} which constructing the items of the popup menu.
    */
-  abstract ListView getMenuList();
+  abstract ListView getMenuList(V binding);
 
   /**
    * Returns the {@link CardView} which wrapping the list of the popup menu.
    *
    * @return The {@link CardView} which wrapping the list of the popup menu.
    */
-  abstract CardView getMenuCard();
+  abstract CardView getMenuCard(V binding);
 
   /**
    * sets {@link LifecycleOwner} for preventing memory leak.

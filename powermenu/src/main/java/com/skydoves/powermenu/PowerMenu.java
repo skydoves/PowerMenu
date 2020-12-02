@@ -48,12 +48,11 @@ import java.util.List;
  *
  * <p>{@link PowerMenuItem} is the member of the PowerMenu's list.
  */
-public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
+public class PowerMenu
+    extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter, LayoutPowerMenuLibrarySkydovesBinding>
     implements IPowerMenuAdapter {
 
-  private LayoutPowerMenuLibrarySkydovesBinding binding;
-
-  private PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
+  protected PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
     Builder builder = (Builder) abstractMenuBuilder;
@@ -87,17 +86,17 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   @Override
-  View getMenuRoot() {
+  View getMenuRoot(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.getRoot();
   }
 
   @Override
-  ListView getMenuList() {
+  ListView getMenuList(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.powerMenuListView;
   }
 
   @Override
-  CardView getMenuCard() {
+  CardView getMenuCard(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.powerMenuCard;
   }
 

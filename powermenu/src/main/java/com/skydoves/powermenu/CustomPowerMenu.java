@@ -41,9 +41,8 @@ import java.util.List;
  * <p>It implements the customized {@link PowerMenu} by the user.
  */
 @SuppressWarnings({"unchecked", "unused"})
-public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
-
-  private LayoutPowerMenuLibrarySkydovesBinding binding;
+public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>>
+    extends AbstractPowerMenu<T, E, LayoutPowerMenuLibrarySkydovesBinding> {
 
   protected CustomPowerMenu(
       @NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
@@ -73,17 +72,17 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
   }
 
   @Override
-  View getMenuRoot() {
+  View getMenuRoot(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.getRoot();
   }
 
   @Override
-  ListView getMenuList() {
+  ListView getMenuList(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.powerMenuListView;
   }
 
   @Override
-  CardView getMenuCard() {
+  CardView getMenuCard(LayoutPowerMenuLibrarySkydovesBinding binding) {
     return binding.powerMenuCard;
   }
 
