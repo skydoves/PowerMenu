@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:focusable="true">
+
+  <com.google.android.material.card.MaterialCardView
+    android:id="@+id/power_menu_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clipToPadding="false" >
+
+    <ListView
+      android:id="@+id/power_menu_listView"
+      android:layout_width="150dp"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:descendantFocusability="blocksDescendants"
+      android:divider="@null"
+      android:dividerHeight="0dp"
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:focusedByDefault="true"
+      tools:ignore="UnusedAttribute"
+      tools:listitem="@layout/item_power_menu_library_skydoves" />
+
+  </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>
