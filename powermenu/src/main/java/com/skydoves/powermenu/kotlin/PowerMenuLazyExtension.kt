@@ -21,10 +21,11 @@ package com.skydoves.powermenu.kotlin
 import androidx.activity.ComponentActivity
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
+import com.skydoves.powermenu.MaterialPowerMenu
 import com.skydoves.powermenu.PowerMenu
 import kotlin.reflect.KClass
 
-/** returns a [Lazy] delegate to access the [ComponentActivity]'s PowerMenu property. */
+/** returns a [Lazy] delegate to access the [ComponentActivity]'s [PowerMenu] property. */
 @MainThread
 @JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
@@ -33,11 +34,29 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
   return ActivityPowerMenuLazy(this, this, factory)
 }
 
-/** returns a [Lazy] delegate to access the [Fragment]'s PowerMenu property. */
+/** returns a [Lazy] delegate to access the [Fragment]'s [PowerMenu] property. */
 @MainThread
 @JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
   factory: KClass<T>
 ): Lazy<PowerMenu?> {
   return FragmentPowerMenuLazy(this, factory)
+}
+
+/** returns a [Lazy] delegate to access the [ComponentActivity]'s [MaterialPowerMenu] property. */
+@MainThread
+@JvmSynthetic
+inline fun <reified T : MaterialPowerMenu.Factory> ComponentActivity.materialPowerMenu(
+  factory: KClass<T>
+): Lazy<MaterialPowerMenu> {
+  return ActivityMaterialPowerMenuLazy(this, this, factory)
+}
+
+/** returns a [Lazy] delegate to access the [Fragment]'s [MaterialPowerMenu] property. */
+@MainThread
+@JvmSynthetic
+inline fun <reified T : MaterialPowerMenu.Factory> Fragment.materialPowerMenu(
+  factory: KClass<T>
+): Lazy<MaterialPowerMenu?> {
+  return FragmentMaterialPowerMenuLazy(this, factory)
 }
