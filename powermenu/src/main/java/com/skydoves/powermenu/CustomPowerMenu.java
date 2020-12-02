@@ -20,15 +20,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.databinding.LayoutMaterialPowerMenuLibrarySkydovesBinding;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +43,9 @@ import java.util.List;
  */
 @SuppressWarnings({"unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
+
+  private LayoutPowerMenuLibrarySkydovesBinding binding;
+  private LayoutMaterialPowerMenuLibrarySkydovesBinding materialBinding;
 
   protected CustomPowerMenu(
       @NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
@@ -60,9 +67,43 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
   }
 
   @Override
-  protected void initialize(@NonNull Context context) {
-    super.initialize(context);
+  protected void initialize(@NonNull Context context, Boolean isMaterial) {
+    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    if (isMaterial) {
+      materialBinding =
+          LayoutMaterialPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
+    } else {
+      binding = LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
+    }
     this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
+    super.initialize(context, isMaterial);
+  }
+
+  @Override
+  View getMenuRoot(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.getRoot();
+    } else {
+      return binding.getRoot();
+    }
+  }
+
+  @Override
+  ListView getMenuList(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.powerMenuListView;
+    } else {
+      return binding.powerMenuListView;
+    }
+  }
+
+  @Override
+  CardView getMenuCard(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.powerMenuCard;
+    } else {
+      return binding.powerMenuCard;
+    }
   }
 
   /** Builder class for creating {@link CustomPowerMenu}. */
@@ -466,6 +507,17 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      */
     public Builder<T, E> setCircularEffect(@NonNull CircularEffect circularEffect) {
       this.circularEffect = circularEffect;
+      return this;
+    }
+
+    /**
+     * sets the menu layout should be composed of material components.
+     *
+     * @param isMaterial is material layout or not.
+     * @return @return {@link PowerMenu.Builder}.
+     */
+    public Builder<T, E> setIsMaterial(Boolean isMaterial) {
+      this.isMaterial = isMaterial;
       return this;
     }
 

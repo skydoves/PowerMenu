@@ -46,7 +46,6 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
-import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
 import java.util.List;
 
@@ -126,12 +125,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
         // empty body
       };
 
-  protected AbstractPowerMenu(Context context) {
-    initialize(context);
-  }
-
   protected AbstractPowerMenu(Context context, AbstractMenuBuilder builder) {
-    initialize(context);
+    initialize(context, builder.isMaterial);
 
     setShowBackground(builder.showBackground);
     setAnimation(builder.menuAnimation);
@@ -164,7 +159,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     if (builder.circularEffect != null) setCircularEffect(builder.circularEffect);
   }
 
-  protected void initialize(Context context) {
+  protected void initialize(Context context, Boolean isMaterial) {
     this.layoutInflater = LayoutInflater.from(context);
     assert layoutInflater != null;
     this.backgroundView =
@@ -178,14 +173,12 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
             RelativeLayout.LayoutParams.MATCH_PARENT);
     this.backgroundWindow.setClippingEnabled(false);
 
-    LayoutPowerMenuLibrarySkydovesBinding bindingMenu =
-        LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
-    this.menuView = bindingMenu.getRoot();
-    this.menuListView = bindingMenu.powerMenuListView;
+    this.menuView = getMenuRoot(isMaterial);
+    this.menuListView = getMenuList(isMaterial);
+    this.menuCard = getMenuCard(isMaterial);
     this.menuWindow =
         new PopupWindow(
             menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-    this.menuCard = bindingMenu.powerMenuCard;
 
     setFocusable(false);
     setTouchInterceptor(onTouchListener);
@@ -194,6 +187,27 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     MenuPreferenceManager.initialize(context);
   }
+
+  /**
+   * Returns the main root content of the popup menu.
+   *
+   * @return The root content of the popup menu.
+   */
+  abstract View getMenuRoot(Boolean isMaterial);
+
+  /**
+   * Returns the {@link ListView} which constructing the items of the popup menu.
+   *
+   * @return The {@link ListView} which constructing the items of the popup menu.
+   */
+  abstract ListView getMenuList(Boolean isMaterial);
+
+  /**
+   * Returns the {@link CardView} which wrapping the list of the popup menu.
+   *
+   * @return The {@link CardView} which wrapping the list of the popup menu.
+   */
+  abstract CardView getMenuCard(Boolean isMaterial);
 
   /**
    * sets {@link LifecycleOwner} for preventing memory leak.

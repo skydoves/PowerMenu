@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
@@ -29,11 +30,14 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
+import com.skydoves.powermenu.databinding.LayoutMaterialPowerMenuLibrarySkydovesBinding;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.PowerMenuDsl;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +52,10 @@ import java.util.List;
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
 
-  private PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
+  private LayoutPowerMenuLibrarySkydovesBinding binding;
+  private LayoutMaterialPowerMenuLibrarySkydovesBinding materialBinding;
+
+  protected PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
 
     Builder builder = (Builder) abstractMenuBuilder;
@@ -74,9 +81,43 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
   }
 
   @Override
-  protected void initialize(@NonNull Context context) {
-    super.initialize(context);
+  protected void initialize(@NonNull Context context, Boolean isMaterial) {
+    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    if (isMaterial) {
+      materialBinding =
+          LayoutMaterialPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
+    } else {
+      binding = LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
+    }
+    super.initialize(context, isMaterial);
     this.adapter = new MenuListAdapter(menuListView);
+  }
+
+  @Override
+  View getMenuRoot(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.getRoot();
+    } else {
+      return binding.getRoot();
+    }
+  }
+
+  @Override
+  ListView getMenuList(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.powerMenuListView;
+    } else {
+      return binding.powerMenuListView;
+    }
+  }
+
+  @Override
+  CardView getMenuCard(Boolean isMaterial) {
+    if (isMaterial) {
+      return materialBinding.powerMenuCard;
+    } else {
+      return binding.powerMenuCard;
+    }
   }
 
   @Override
@@ -710,6 +751,17 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      */
     public Builder setCircularEffect(@NonNull CircularEffect circularEffect) {
       this.circularEffect = circularEffect;
+      return this;
+    }
+
+    /**
+     * sets the menu layout should be composed of material components.
+     *
+     * @param isMaterial is material layout or not.
+     * @return @return {@link Builder}.
+     */
+    public Builder setIsMaterial(Boolean isMaterial) {
+      this.isMaterial = isMaterial;
       return this;
     }
 
