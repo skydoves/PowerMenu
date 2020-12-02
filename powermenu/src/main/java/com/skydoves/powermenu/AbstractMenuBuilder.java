@@ -70,4 +70,6 @@ public abstract class AbstractMenuBuilder {
   protected Lifecycle.Event initializeRule = null;
   protected int defaultPosition = 0;
   protected CircularEffect circularEffect = null;
+
+  protected Boolean isMaterial = false;
 }

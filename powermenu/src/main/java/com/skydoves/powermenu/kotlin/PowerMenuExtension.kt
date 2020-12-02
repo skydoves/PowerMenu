@@ -23,82 +23,82 @@ import androidx.annotation.MainThread
 import com.skydoves.powermenu.AbstractPowerMenu
 
 /** showing the popup menu as drop down to the anchor. */
-fun View.showAsDropDown(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsDropDown(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsDropDown(this) }
 }
 
 /** showing the popup menu as drop down to the anchor with x-off and y-off. */
-fun View.showAsDropDown(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsDropDown(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsDropDown(this, xOff, yOff) }
 }
 
 /** showing the popup menu as left-top aligns to the anchor. */
-fun View.showAsAnchorLeftTop(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsAnchorLeftTop(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsAnchorLeftTop(this) }
 }
 
 /** showing the popup menu as left-top aligns to the anchor with x-off and y-off. */
-fun View.showAsAnchorLeftTop(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsAnchorLeftTop(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsAnchorLeftTop(this, xOff, yOff) }
 }
 
 /** showing the popup menu as left-bottom aligns to the anchor. */
-fun View.showAsAnchorLeftBottom(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsAnchorLeftBottom(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsAnchorLeftBottom(this) }
 }
 
 /** showing the popup menu as left-bottom aligns to the anchor. */
-fun View.showAsAnchorLeftBottom(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsAnchorLeftBottom(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsAnchorLeftBottom(this, xOff, yOff) }
 }
 
 /** showing the popup menu as right-top aligns to the anchor. */
-fun View.showAsAnchorRightTop(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsAnchorRightTop(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsAnchorRightTop(this) }
 }
 
 /** showing the popup menu as right-top aligns to the anchor. */
-fun View.showAsAnchorRightTop(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsAnchorRightTop(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsAnchorRightTop(this, xOff, yOff) }
 }
 
 /** showing the popup menu as right-bottom aligns to the anchor. */
-fun View.showAsAnchorRightBottom(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsAnchorRightBottom(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsAnchorRightBottom(this) }
 }
 
 /** showing the popup menu as right-bottom aligns to the anchor. */
-fun View.showAsAnchorRightBottom(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsAnchorRightBottom(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsAnchorRightBottom(this, xOff, yOff) }
 }
 
 /** showing the popup menu as center align to the anchor. */
-fun View.showAsAnchorCenter(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAsAnchorCenter(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAsAnchorRightBottom(this) }
 }
 
 /** showing the popup menu as center align to the anchor. */
-fun View.showAsAnchorCenter(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAsAnchorCenter(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAsAnchorCenter(this, xOff, yOff) }
 }
 
 /** showing the popup menu as center aligns to the anchor. */
-fun View.showAtCenter(powerMenu: AbstractPowerMenu<*, *, *>) {
+fun View.showAtCenter(powerMenu: AbstractPowerMenu<*, *>) {
   powermenu { powerMenu.showAtCenter(this) }
 }
 
 /** showing the popup menu as center aligns to the anchor with x-off and y-off. */
-fun View.showAtCenter(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAtCenter(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAtCenter(this, xOff, yOff) }
 }
 
 /** showing the popup menu to the specific location to the anchor. */
-fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *, *>, xOff: Int, yOff: Int) {
+fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAtLocation(this, xOff, yOff) }
 }
 
 /** showing the popup menu to the specific location to the anchor with {@link Gravity}. */
-fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *, *>, gravity: Int, xOff: Int, yOff: Int) {
+fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, gravity: Int, xOff: Int, yOff: Int) {
   powermenu { powerMenu.showAtLocation(this, gravity, xOff, yOff) }
 }
 

@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.skydoves.powermenu.CustomPowerMenu;
-import com.skydoves.powermenu.MaterialPowerMenu;
 import com.skydoves.powermenu.OnDismissedListener;
 import com.skydoves.powermenu.OnMenuItemClickListener;
 import com.skydoves.powermenu.PowerMenu;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
   private CustomPowerMenu<String, CenterMenuAdapter> alertMenu;
   private PowerMenu dialogMenu;
   private CustomPowerMenu<NameCardMenuItem, CustomDialogMenuAdapter> customDialogMenu;
-  private MaterialPowerMenu iconMenu;
+  private PowerMenu iconMenu;
   private final OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener =
       new OnMenuItemClickListener<PowerMenuItem>() {
         @Override
