@@ -760,7 +760,7 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
      * @param isMaterial is material layout or not.
      * @return @return {@link Builder}.
      */
-    public Builder isMaterial(Boolean isMaterial) {
+    public Builder setIsMaterial(Boolean isMaterial) {
       this.isMaterial = isMaterial;
       return this;
     }

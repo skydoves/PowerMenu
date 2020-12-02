@@ -149,7 +149,7 @@ public class PowerMenuUtils {
         .setAnimation(MenuAnimation.FADE)
         .setMenuRadius(context.getResources().getDimensionPixelSize(R.dimen.menu_corner_radius))
         .setMenuShadow(context.getResources().getDimensionPixelSize(R.dimen.menu_elevation))
-        .isMaterial(true)
+        .setIsMaterial(true)
         .build();
   }
 

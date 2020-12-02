@@ -516,7 +516,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
      * @param isMaterial is material layout or not.
      * @return @return {@link PowerMenu.Builder}.
      */
-    public Builder<T, E> isMaterial(Boolean isMaterial) {
+    public Builder<T, E> setIsMaterial(Boolean isMaterial) {
       this.isMaterial = isMaterial;
       return this;
     }
