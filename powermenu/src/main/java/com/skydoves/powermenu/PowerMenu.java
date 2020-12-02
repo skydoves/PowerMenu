@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
@@ -29,11 +30,13 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.PowerMenuDsl;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,8 @@ import java.util.List;
  */
 public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
     implements IPowerMenuAdapter {
+
+  private LayoutPowerMenuLibrarySkydovesBinding binding;
 
   private PowerMenu(@NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
     super(context, abstractMenuBuilder);
@@ -75,8 +80,25 @@ public class PowerMenu extends AbstractPowerMenu<PowerMenuItem, MenuListAdapter>
 
   @Override
   protected void initialize(@NonNull Context context) {
+    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    binding = LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
     super.initialize(context);
     this.adapter = new MenuListAdapter(menuListView);
+  }
+
+  @Override
+  View getMenuRoot() {
+    return binding.getRoot();
+  }
+
+  @Override
+  ListView getMenuList() {
+    return binding.powerMenuListView;
+  }
+
+  @Override
+  CardView getMenuCard() {
+    return binding.powerMenuCard;
   }
 
   @Override

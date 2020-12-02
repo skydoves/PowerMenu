@@ -46,7 +46,6 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
-import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
 import java.util.List;
 
@@ -178,14 +177,12 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
             RelativeLayout.LayoutParams.MATCH_PARENT);
     this.backgroundWindow.setClippingEnabled(false);
 
-    LayoutPowerMenuLibrarySkydovesBinding bindingMenu =
-        LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
-    this.menuView = bindingMenu.getRoot();
-    this.menuListView = bindingMenu.powerMenuListView;
+    this.menuView = getMenuRoot();
+    this.menuListView = getMenuList();
     this.menuWindow =
         new PopupWindow(
             menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-    this.menuCard = bindingMenu.powerMenuCard;
+    this.menuCard = getMenuCard();
 
     setFocusable(false);
     setTouchInterceptor(onTouchListener);
@@ -194,6 +191,27 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
     MenuPreferenceManager.initialize(context);
   }
+
+  /**
+   * Returns the main root content of the popup menu.
+   *
+   * @return The root content of the popup menu.
+   */
+  abstract View getMenuRoot();
+
+  /**
+   * Returns the {@link ListView} which constructing the items of the popup menu.
+   *
+   * @return The {@link ListView} which constructing the items of the popup menu.
+   */
+  abstract ListView getMenuList();
+
+  /**
+   * Returns the {@link CardView} which wrapping the list of the popup menu.
+   *
+   * @return The {@link CardView} which wrapping the list of the popup menu.
+   */
+  abstract CardView getMenuCard();
 
   /**
    * sets {@link LifecycleOwner} for preventing memory leak.

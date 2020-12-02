@@ -20,15 +20,18 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +42,8 @@ import java.util.List;
  */
 @SuppressWarnings({"unchecked", "unused"})
 public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPowerMenu<T, E> {
+
+  private LayoutPowerMenuLibrarySkydovesBinding binding;
 
   protected CustomPowerMenu(
       @NonNull Context context, @NonNull AbstractMenuBuilder abstractMenuBuilder) {
@@ -61,8 +66,25 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
 
   @Override
   protected void initialize(@NonNull Context context) {
+    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    binding = LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
     super.initialize(context);
     this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
+  }
+
+  @Override
+  View getMenuRoot() {
+    return binding.getRoot();
+  }
+
+  @Override
+  ListView getMenuList() {
+    return binding.powerMenuListView;
+  }
+
+  @Override
+  CardView getMenuCard() {
+    return binding.powerMenuCard;
   }
 
   /** Builder class for creating {@link CustomPowerMenu}. */
