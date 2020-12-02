@@ -31,7 +31,7 @@ import androidx.annotation.ColorInt;
 import androidx.core.widget.ImageViewCompat;
 import com.skydoves.powermenu.annotations.Dp;
 import com.skydoves.powermenu.annotations.Sp;
-import com.skydoves.powermenu.databinding.ItemPowerMenuBinding;
+import com.skydoves.powermenu.databinding.ItemPowerMenuLibrarySkydovesBinding;
 
 /**
  * MenuListAdapter extends {@link MenuBaseAdapter}.
@@ -63,7 +63,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
 
     if (view == null) {
       LayoutInflater inflater = LayoutInflater.from(context);
-      view = ItemPowerMenuBinding.inflate(inflater, viewGroup, false).getRoot();
+      view = ItemPowerMenuLibrarySkydovesBinding.inflate(inflater, viewGroup, false).getRoot();
     }
 
     PowerMenuItem powerMenuItem = (PowerMenuItem) getItem(index);

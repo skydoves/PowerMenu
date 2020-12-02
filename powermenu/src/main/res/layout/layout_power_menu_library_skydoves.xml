@@ -25,7 +25,7 @@
       android:focusableInTouchMode="true"
       android:focusedByDefault="true"
       tools:ignore="UnusedAttribute"
-      tools:listitem="@layout/item_power_menu" />
+      tools:listitem="@layout/item_power_menu_library_skydoves" />
 
   </com.google.android.material.card.MaterialCardView>
 

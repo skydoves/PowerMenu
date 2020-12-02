@@ -45,8 +45,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
-import com.skydoves.powermenu.databinding.LayoutPowerBackgroundBinding;
-import com.skydoves.powermenu.databinding.LayoutPowerMenuBinding;
+import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
+import com.skydoves.powermenu.databinding.LayoutPowerMenuLibrarySkydovesBinding;
 import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
 import java.util.List;
 
@@ -168,7 +168,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     this.layoutInflater = LayoutInflater.from(context);
     assert layoutInflater != null;
     this.backgroundView =
-        LayoutPowerBackgroundBinding.inflate(layoutInflater, null, false).getRoot();
+        LayoutPowerBackgroundLibrarySkydovesBinding.inflate(layoutInflater, null, false).getRoot();
     this.backgroundView.setOnClickListener(background_clickListener);
     this.backgroundView.setAlpha(0.5f);
     this.backgroundWindow =
@@ -178,8 +178,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
             RelativeLayout.LayoutParams.MATCH_PARENT);
     this.backgroundWindow.setClippingEnabled(false);
 
-    LayoutPowerMenuBinding bindingMenu =
-        LayoutPowerMenuBinding.inflate(layoutInflater, null, false);
+    LayoutPowerMenuLibrarySkydovesBinding bindingMenu =
+        LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
     this.menuView = bindingMenu.getRoot();
     this.menuListView = bindingMenu.powerMenuListView;
     this.menuWindow =
