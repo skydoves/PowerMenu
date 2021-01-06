@@ -24,7 +24,12 @@ import androidx.fragment.app.Fragment
 import com.skydoves.powermenu.PowerMenu
 import kotlin.reflect.KClass
 
-/** returns a [Lazy] delegate to access the [ComponentActivity]'s [PowerMenu] property. */
+/**
+ * Returns a [Lazy] delegate to access the [ComponentActivity]'s PowerMenu property.
+ * The PowerMenu property will be initialized lazily.
+ *
+ * @see [Lazy Initialization](https://github.com/skydoves/powermenu#lazy-initialization-in-kotlin)
+ */
 @MainThread
 @JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
@@ -33,7 +38,12 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
   return ActivityPowerMenuLazy(this, this, factory)
 }
 
-/** returns a [Lazy] delegate to access the [Fragment]'s [PowerMenu] property. */
+/**
+ * Returns a [Lazy] delegate to access the [Fragment]'s PowerMenu property.
+ * The PowerMenu property will be initialized lazily.
+ *
+ * @see [Lazy Initialization](https://github.com/skydoves/powermenu#lazy-initialization-in-kotlin)
+ */
 @MainThread
 @JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
