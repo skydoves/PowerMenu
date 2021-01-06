@@ -27,8 +27,8 @@ import kotlin.reflect.KClass
  *
  * @param context A context for creating resources of the [PowerMenu] lazily.
  * @param lifecycleOwner A [LifecycleOwner] for dismissing automatically when the [LifecycleOwner] is being destroyed.
- * This will prevents memory leak: [Avoid Memory Leak](https://github.com/skydoves/balloon#avoid-memory-leak).
- * @param clazz A [PowerMenu.Factory] kotlin class for creating a new instance of the Balloon.
+ * This will prevents memory leak: [Avoid Memory Leak](https://github.com/skydoves/powermenu#avoid-memory-leak).
+ * @param clazz A [PowerMenu.Factory] kotlin class for creating a new instance of the PowerMenu.
  */
 @PublishedApi
 internal class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(

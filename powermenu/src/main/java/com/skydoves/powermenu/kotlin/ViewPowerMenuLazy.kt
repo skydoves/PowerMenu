@@ -16,44 +16,47 @@
 
 package com.skydoves.powermenu.kotlin
 
-import androidx.fragment.app.Fragment
+import android.content.Context
+import androidx.activity.ComponentActivity
 import com.skydoves.powermenu.PowerMenu
+import java.io.Serializable
 import kotlin.reflect.KClass
 
 /**
- * An implementation of [Lazy] for creating an instance of the [PowerMenu] in Fragments.
- * Tied to the given fragment's lifecycle and, [clazz].
+ * An implementation of [Lazy] for creating an instance of the [PowerMenu] lazily in Activities.
+ * Tied to the given Activity's lifecycleOwner, [factory].
  *
- * @param fragment An instance of the [PowerMenu] will be created in this Fragment lazily.
+ * @param context A context for creating resources of the [PowerMenu] lazily.
  * This will prevents memory leak: [Avoid Memory Leak](https://github.com/skydoves/powermenu#avoid-memory-leak).
- * @param clazz A [PowerMenu.Factory] kotlin class for creating a new instance of the PowerMenu.
+ * @param factory A [PowerMenu.Factory] kotlin class for creating a new instance of the PowerMenu.
  */
 @PublishedApi
-internal class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
-  private val fragment: Fragment,
-  private val clazz: KClass<T>
-) : Lazy<PowerMenu?> {
+internal class ViewPowerMenuLazy<out T : PowerMenu.Factory>(
+  private val context: Context,
+  private val factory: KClass<T>
+) : Lazy<PowerMenu>, Serializable {
 
   private var cached: PowerMenu? = null
 
-  override val value: PowerMenu?
+  override val value: PowerMenu
     get() {
       var instance = cached
-      if (instance == null && fragment.context !== null) {
-        val factory = clazz::java.get().newInstance()
-        val lifecycle = if (fragment.view !== null) {
-          fragment.viewLifecycleOwner
+      if (instance === null) {
+        if (context is ComponentActivity) {
+          val factory = factory::java.get().newInstance()
+          instance = factory.create(context, context)
+          cached = instance
         } else {
-          fragment
+          throw IllegalArgumentException(
+            "PowerMenu can not be initialized. The passed context is not an instance of the ComponentActivity."
+          )
         }
-        instance = factory.create(fragment.requireContext(), lifecycle)
-        cached = instance
       }
 
       return instance
     }
 
-  override fun isInitialized() = cached !== null
+  override fun isInitialized(): Boolean = cached !== null
 
   override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }
