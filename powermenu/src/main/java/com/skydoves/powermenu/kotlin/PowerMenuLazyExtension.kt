@@ -18,6 +18,7 @@
 
 package com.skydoves.powermenu.kotlin
 
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
@@ -50,4 +51,16 @@ inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
   factory: KClass<T>
 ): Lazy<PowerMenu?> {
   return FragmentPowerMenuLazy(this, factory)
+}
+
+/**
+ * Returns a [Lazy] delegate to access the custom [View]'s PowerMenu property.
+ * The PowerMenu property will be initialized lazily.
+ *
+ * @see [Lazy Initialization](https://github.com/skydoves/powermenu#lazy-initialization-in-kotlin)
+ */
+@MainThread
+@JvmSynthetic
+inline fun <reified T : PowerMenu.Factory> View.powerMenu(): Lazy<PowerMenu> {
+  return ViewPowerMenuLazy(context, T::class)
 }
