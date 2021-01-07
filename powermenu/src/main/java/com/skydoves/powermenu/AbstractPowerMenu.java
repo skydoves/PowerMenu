@@ -141,7 +141,11 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     setDefaultPosition(builder.defaultPosition);
     setDismissIfShowAgain(builder.dismissIfShowAgain);
 
-    if (builder.lifecycleOwner != null) setLifecycleOwner(builder.lifecycleOwner);
+    if (builder.lifecycleOwner != null) {
+      setLifecycleOwner(builder.lifecycleOwner);
+    } else {
+      setLifecycleOwnerFromContext(context);
+    }
     if (builder.backgroundClickListener != null) {
       setOnBackgroundClickListener(builder.backgroundClickListener);
     }
@@ -208,6 +212,24 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * @return The {@link CardView} which wrapping the list of the popup menu.
    */
   abstract CardView getMenuCard(Boolean isMaterial);
+
+  /**
+   * sets {@link LifecycleOwner} for preventing memory leak.
+   *
+   * <p>if sets the {@link LifecycleOwner} this popup will be dismissed automatically
+   *
+   * <p>when onDestroy method called by lifecycle.
+   *
+   * @param context {@link Context} which can be the {@link
+   *     androidx.appcompat.app.AppCompatActivity},
+   *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+   *     LifecycleOwner}.
+   */
+  public void setLifecycleOwnerFromContext(@NonNull Context context) {
+    if (context instanceof LifecycleOwner) {
+      setLifecycleOwner((LifecycleOwner) context);
+    }
+  }
 
   /**
    * sets {@link LifecycleOwner} for preventing memory leak.
