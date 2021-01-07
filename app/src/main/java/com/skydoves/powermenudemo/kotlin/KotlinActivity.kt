@@ -24,7 +24,7 @@ import com.skydoves.powermenudemo.databinding.ActivityTestBinding
 
 class KotlinActivity : AppCompatActivity() {
 
-  private val moreMenu by powerMenu(MoreMenuFactory::class)
+  private val moreMenu by powerMenu<MoreMenuFactory>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
