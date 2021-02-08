@@ -5,9 +5,10 @@ ext.versions = [
     versionName      : '2.1.9',
 
     gradleBuildTool  : '4.1.1',
-    spotlessGradle   : '5.8.2',
-    ktlintGradle     : '0.39.0',
-    bintrayPlugin    : '1.8.5',
+    spotlessGradle   : '5.9.0',
+    ktlintGradle     : '0.40.0',
+    dokkaGradle      : '1.4.20',
+    mavenPublish     : '0.13.0',
 
     kotlin           : '1.4.20',
     googleMaterial   : '1.2.1',

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply from: '../dependencies.gradle'
-apply from: '../publish.gradle'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -26,6 +25,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
 }
 
-tasks.withType(Javadoc).all { enabled = false }
-
+apply plugin: "com.vanniktech.maven.publish"
 apply from: '../spotless.gradle'
