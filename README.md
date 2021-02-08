@@ -32,6 +32,14 @@ I really appreciate that 🔥Power Menu is used in more than __190,000+__ projec
 ![screenshot1903218121](https://user-images.githubusercontent.com/24237865/64470618-49c2cb80-d181-11e9-99b4-0e14a20a86a0.png)
 
 ### Gradle
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+```gradle
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+```
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
