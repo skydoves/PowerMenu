@@ -98,7 +98,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
           if (autoDismiss) {
             dismiss();
           }
-          menuItemClickListener.onItemClick(index - menuListView.getHeaderViewsCount(), (E) menuListView.getItemAtPosition(index));
+          menuItemClickListener.onItemClick(
+              index - menuListView.getHeaderViewsCount(),
+              (E) menuListView.getItemAtPosition(index));
         }
       };
   private final OnMenuItemClickListener<E> onMenuItemClickListener =
