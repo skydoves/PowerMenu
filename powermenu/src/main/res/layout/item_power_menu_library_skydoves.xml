@@ -30,4 +30,5 @@
     android:textSize="14sp"
     android:textStyle="bold"
     app:fontFamily="sans-serif" />
+
 </LinearLayout>
