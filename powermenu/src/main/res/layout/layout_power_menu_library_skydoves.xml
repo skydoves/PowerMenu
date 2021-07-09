@@ -26,6 +26,8 @@
       android:focusable="true"
       android:focusableInTouchMode="true"
       android:focusedByDefault="true"
+      android:overScrollMode="never"
+      android:scrollbarStyle="outsideOverlay"
       tools:ignore="UnusedAttribute"
       tools:listitem="@layout/item_power_menu_library_skydoves" />
 
