@@ -33,12 +33,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-
-import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
-import com.skydoves.powermenu.kotlin.ContextExt;
-
-import java.util.List;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
@@ -50,6 +44,9 @@ import androidx.core.view.ViewCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
+import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
+import com.skydoves.powermenu.kotlin.ContextExt;
+import java.util.List;
 
 /**
  * AbstractPowerMenu is the abstract class of {@link PowerMenu} and {@link CustomPowerMenu}.
@@ -88,8 +85,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
 
   protected boolean isShowing = false;
 
-  @Px
-  protected int contentViewPadding;
+  @Px protected int contentViewPadding;
   private int defaultPosition;
   private CircularEffect circularEffect;
   private boolean autoDismiss;
@@ -226,9 +222,9 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * <p>when onDestroy method called by lifecycle.
    *
    * @param context {@link Context} which can be the {@link
-   *                androidx.appcompat.app.AppCompatActivity},
-   *                <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
-   *                LifecycleOwner}.
+   *     androidx.appcompat.app.AppCompatActivity},
+   *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+   *     LifecycleOwner}.
    */
   public void setLifecycleOwnerFromContext(@NonNull Context context) {
     if (context instanceof LifecycleOwner) {
@@ -244,8 +240,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * <p>when onDestroy method called by lifecycle.
    *
    * @param lifecycleOwner {@link androidx.appcompat.app.AppCompatActivity},
-   *                       <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
-   *                       LifecycleOwner}.
+   *     <p>{@link androidx.fragment.app.FragmentActivity} or etc are implements {@link
+   *     LifecycleOwner}.
    */
   public void setLifecycleOwner(@NonNull LifecycleOwner lifecycleOwner) {
     lifecycleOwner.getLifecycle().addObserver(this);
@@ -326,8 +322,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as drop down to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off,
-   * @param yOff   y-off.
+   * @param xOff x-off,
+   * @param yOff y-off.
    */
   public void showAsDropDown(final View anchor, final int xOff, final int yOff) {
     Runnable function = () -> menuWindow.showAsDropDown(anchor, xOff, yOff);
@@ -348,8 +344,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as left-top aligns to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAsAnchorLeftTop(final View anchor, final int xOff, final int yOff) {
     Runnable function =
@@ -371,8 +367,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as left-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAsAnchorLeftBottom(final View anchor, final int xOff, final int yOff) {
     Runnable function =
@@ -399,8 +395,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as right-top aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAsAnchorRightTop(final View anchor, final int xOff, final int yOff) {
     Runnable function =
@@ -431,8 +427,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as right-bottom aligns to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAsAnchorRightBottom(final View anchor, final int xOff, final int yOff) {
     Runnable function =
@@ -463,8 +459,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as center align to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAsAnchorCenter(final View anchor, final int xOff, final int yOff) {
     Runnable function =
@@ -490,8 +486,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu as center aligns to the anchor with x-off and y-off.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAtCenter(final View anchor, final int xOff, final int yOff) {
     Runnable function = () -> menuWindow.showAtLocation(anchor, Gravity.CENTER, xOff, yOff);
@@ -502,8 +498,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    * showing the popup menu to the specific location to the anchor.
    *
    * @param anchor anchor view.
-   * @param xOff   x-off.
-   * @param yOff   y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAtLocation(final View anchor, final int xOff, final int yOff) {
     Runnable function = () -> menuWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xOff, yOff);
@@ -513,19 +509,17 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   /**
    * showing the popup menu to the specific location to the anchor with {@link Gravity}.
    *
-   * @param anchor  anchor view.
+   * @param anchor anchor view.
    * @param gravity gravity of the menu.
-   * @param xOff    x-off.
-   * @param yOff    y-off.
+   * @param xOff x-off.
+   * @param yOff y-off.
    */
   public void showAtLocation(final View anchor, final int gravity, final int xOff, final int yOff) {
     Runnable function = () -> menuWindow.showAtLocation(anchor, gravity, xOff, yOff);
     showPopup(anchor, function);
   }
 
-  /**
-   * apply menu effect.
-   */
+  /** apply menu effect. */
   private void doMenuEffect() {
     if (getCircularEffect() != null) {
       if (getCircularEffect().equals(CircularEffect.BODY)) {
@@ -571,9 +565,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
         });
   }
 
-  /**
-   * dismiss the popup menu.
-   */
+  /** dismiss the popup menu. */
   public void dismiss() {
     if (isShowing()) {
       this.menuWindow.dismiss();
@@ -860,8 +852,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   /**
    * sets the header view of the popup menu list.
    *
-   * @param view         {@link View}.
-   * @param data         Object.
+   * @param view {@link View}.
+   * @param data Object.
    * @param isSelectable is selectable or not.
    */
   public void setHeaderView(View view, Object data, boolean isSelectable) {
@@ -906,8 +898,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   /**
    * sets the footer view of the popup menu list.
    *
-   * @param view         {@link View}.
-   * @param data         Object.
+   * @param view {@link View}.
+   * @param data Object.
    * @param isSelectable is selectable or not.
    */
   public void setFooterView(View view, Object data, boolean isSelectable) {
@@ -1134,9 +1126,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     getAdapter().setPreference(preferenceName);
   }
 
-  /**
-   * clears the preference name of PowerMenu.
-   */
+  /** clears the preference name of PowerMenu. */
   public void clearPreference() {
     if (getAdapter().getPreferenceName() != null) {
       MenuPreferenceManager.getInstance().clearPosition(getAdapter().getPreferenceName());
