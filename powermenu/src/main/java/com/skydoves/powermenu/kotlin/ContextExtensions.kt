@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:JvmName("ContextExt")
+
 package com.skydoves.powermenu.kotlin
 
 import android.app.Activity
