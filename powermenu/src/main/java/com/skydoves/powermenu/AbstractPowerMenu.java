@@ -41,12 +41,11 @@ import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import com.skydoves.powermenu.databinding.LayoutPowerBackgroundLibrarySkydovesBinding;
-import com.skydoves.powermenu.kotlin.ContextExtensionsKt;
+import com.skydoves.powermenu.kotlin.ContextExt;
 import java.util.List;
 
 /**
@@ -58,7 +57,7 @@ import java.util.List;
  */
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
-    implements IMenuItem<E>, LifecycleObserver {
+    implements IMenuItem<E>, DefaultLifecycleObserver {
 
   protected View backgroundView;
   protected View menuView;
@@ -296,7 +295,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   private void showPopup(final View anchor, final Runnable function) {
     if (!isShowing()
         && ViewCompat.isAttachedToWindow(anchor)
-        && !ContextExtensionsKt.isFinishing(anchor.getContext())) {
+        && !ContextExt.isFinishing(anchor.getContext())) {
       this.isShowing = true;
       anchor.post(
           () -> {
@@ -949,29 +948,29 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     }
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-  public void onCreate() {
+  @Override
+  public void onCreate(@NonNull LifecycleOwner owner) {
     if (checkRuleValidates(Lifecycle.Event.ON_CREATE)) {
       invokeOnMenuListener(defaultPosition);
     }
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_START)
-  public void onStart() {
+  @Override
+  public void onStart(@NonNull LifecycleOwner owner) {
     if (checkRuleValidates(Lifecycle.Event.ON_START)) {
       invokeOnMenuListener(defaultPosition);
     }
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-  public void onResume() {
+  @Override
+  public void onResume(@NonNull LifecycleOwner owner) {
     if (checkRuleValidates(Lifecycle.Event.ON_RESUME)) {
       invokeOnMenuListener(defaultPosition);
     }
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-  public void onDestroy() {
+  @Override
+  public void onDestroy(@NonNull LifecycleOwner owner) {
     dismiss();
   }
 

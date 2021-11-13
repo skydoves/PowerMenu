@@ -23,28 +23,6 @@ import androidx.activity.ComponentActivity
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import com.skydoves.powermenu.PowerMenu
-import kotlin.reflect.KClass
-
-/**
- * Returns a [Lazy] delegate to access the [ComponentActivity]'s PowerMenu property.
- * The PowerMenu property will be initialized lazily.
- *
- * @see [Lazy Initialization](https://github.com/skydoves/powermenu#lazy-initialization-in-kotlin)
- */
-@Deprecated(
-  message = "Use powerMenu<T>() instead",
-  replaceWith = ReplaceWith(
-    "powerMenu<T>()",
-    imports = ["com.skydoves.powermenu.kotlin"]
-  )
-)
-@MainThread
-@JvmSynthetic
-inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
-  factory: KClass<T>
-): Lazy<PowerMenu> {
-  return ActivityPowerMenuLazy(this, this, factory)
-}
 
 /**
  * Returns a [Lazy] delegate to access the [ComponentActivity]'s PowerMenu property.
@@ -56,27 +34,6 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(
 @JvmSynthetic
 inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(): Lazy<PowerMenu> {
   return ActivityPowerMenuLazy(this, this, T::class)
-}
-
-/**
- * Returns a [Lazy] delegate to access the [Fragment]'s PowerMenu property.
- * The PowerMenu property will be initialized lazily.
- *
- * @see [Lazy Initialization](https://github.com/skydoves/powermenu#lazy-initialization-in-kotlin)
- */
-@Deprecated(
-  message = "Use powerMenu<T>() instead",
-  replaceWith = ReplaceWith(
-    "powerMenu<T>()",
-    imports = ["com.skydoves.powermenu.kotlin"]
-  )
-)
-@MainThread
-@JvmSynthetic
-inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(
-  factory: KClass<T>
-): Lazy<PowerMenu?> {
-  return FragmentPowerMenuLazy(this, factory)
 }
 
 /**
