@@ -1,15 +1,14 @@
 <h1 align="center">PowerMenu</h1></br>
 <p align="center">
-:fire: The powerful and easiest way to implement modern material popup menu. <br>
-PowerMenu can be fully customized and used for popup dialogs. <br>
+:fire: A powerful and polished, fully customizable modern Material Popup menu. <br>
 </p>
 </br>
 
 <p align="center">
+  <a href="https://devlibrary.withgoogle.com/products/android/repos/skydoves-powermenu"><img alt="Google" src="https://skydoves.github.io/badges/google-devlib.svg"/></a><br>
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=15"><img alt="API" src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://github.com/skydoves/PowerMenu/actions"><img alt="CI" src="https://github.com/skydoves/PowerMenu/workflows/Android%20CI/badge.svg"/></a>
-  <a href="https://www.codacy.com/app/skydoves/PowerMenu?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skydoves/PowerMenu&amp;utm_campaign=Badge_Grade"><img alt="Codacy" src="https://api.codacy.com/project/badge/Grade/1e798e4f5cf5407ca0ce89ccbed949a7"/></a></br>
   <a href="https://androidweekly.net/issues/issue-326"><img alt="AndroidWeekly" src="https://skydoves.github.io/badges/android-weekly.svg"/></a>
   <a href="https://proandroiddev.com/building-a-beautiful-disney-android-application-1-material-motion-systems-34607eae2501"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
   <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
