@@ -18,6 +18,7 @@ package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
 
 @SuppressWarnings({"unused"})
 class MenuPreferenceManager {
