@@ -20,67 +20,71 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 
-@SuppressWarnings({ "unused" })
+@SuppressWarnings({"unused"})
 class MenuPreferenceManager {
 
-    private static final String position = "_POSITION";
-    private static MenuPreferenceManager menuPreferenceManager;
-    private final SharedPreferences sharedPreferences;
+  private static final String position = "_POSITION";
+  private static MenuPreferenceManager menuPreferenceManager;
+  private final SharedPreferences sharedPreferences;
 
-    private MenuPreferenceManager(Context context) {
-        StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
-        StrictMode.allowThreadDiskWrites();
-        sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
-        StrictMode.setThreadPolicy(oldPolicy);
+  private MenuPreferenceManager(Context context) {
+    // Temporarily allow disk writes to avoid Strict mode exception 
+    StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
+    StrictMode.allowThreadDiskWrites();
+    try {
+      sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
+    } finally {
+      StrictMode.setThreadPolicy(oldPolicy);
     }
+  }
 
-    /**
-     * initialize the {@link MenuPreferenceManager} instance.
-     *
-     * @param context context.
-     */
-    protected static void initialize(Context context) {
-        menuPreferenceManager = new MenuPreferenceManager(context);
-    }
+  /**
+   * initialize the {@link MenuPreferenceManager} instance.
+   *
+   * @param context context.
+   */
+  protected static void initialize(Context context) {
+    menuPreferenceManager = new MenuPreferenceManager(context);
+  }
 
-    /**
-     * gets an instance of the {@link MenuPreferenceManager}.
-     *
-     * <p>It must be called after invoking initialize() method.
-     *
-     * @return {@link MenuPreferenceManager}.
-     */
-    protected static MenuPreferenceManager getInstance() {
-        return menuPreferenceManager;
-    }
+  /**
+   * gets an instance of the {@link MenuPreferenceManager}.
+   *
+   * <p>It must be called after invoking initialize() method.
+   *
+   * @return {@link MenuPreferenceManager}.
+   */
+  protected static MenuPreferenceManager getInstance() {
+    return menuPreferenceManager;
+  }
 
-    /**
-     * gets the saved menu position from preference.
-     *
-     * @param name            preference name.
-     * @param defaultPosition default preference menu position.
-     * @return the saved menu position.
-     */
-    protected int getPosition(String name, int defaultPosition) {
-        return sharedPreferences.getInt(name, defaultPosition);
-    }
+  /**
+   * gets the saved menu position from preference.
+   *
+   * @param name preference name.
+   * @param defaultPosition default preference menu position.
+   * @return the saved menu position.
+   */
+  protected int getPosition(String name, int defaultPosition) {
+    return sharedPreferences.getInt(name, defaultPosition);
+  }
 
-    /**
-     * saves a menu position on preference.
-     *
-     * @param name     preference name.
-     * @param position preference menu position.
-     */
-    protected void setPosition(String name, int position) {
-        sharedPreferences.edit().putInt(name, position).apply();
-    }
+  /**
+   * saves a menu position on preference.
+   *
+   * @param name preference name.
+   * @param position preference menu position.
+   */
+  protected void setPosition(String name, int position) {
+    sharedPreferences.edit().putInt(name, position).apply();
+  }
 
-    /**
-     * clears the saved color from preference.
-     *
-     * @param name preference name.
-     */
-    protected void clearPosition(String name) {
-        sharedPreferences.edit().remove(name).apply();
-    }
+  /**
+   * clears the saved color from preference.
+   *
+   * @param name preference name.
+   */
+  protected void clearPosition(String name) {
+    sharedPreferences.edit().remove(name).apply();
+  }
 }
