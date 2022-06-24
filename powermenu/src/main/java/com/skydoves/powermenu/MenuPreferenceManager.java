@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 
-@SuppressWarnings({ "unused" })
+@SuppressWarnings({"unused"})
 class MenuPreferenceManager {
 
     private static final String position = "_POSITION";
@@ -30,8 +30,11 @@ class MenuPreferenceManager {
     private MenuPreferenceManager(Context context) {
         StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
         StrictMode.allowThreadDiskWrites();
-        sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
-        StrictMode.setThreadPolicy(oldPolicy);
+        try {
+            sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
+        }
     }
 
     /**
@@ -57,7 +60,7 @@ class MenuPreferenceManager {
     /**
      * gets the saved menu position from preference.
      *
-     * @param name            preference name.
+     * @param name preference name.
      * @param defaultPosition default preference menu position.
      * @return the saved menu position.
      */
@@ -68,7 +71,7 @@ class MenuPreferenceManager {
     /**
      * saves a menu position on preference.
      *
-     * @param name     preference name.
+     * @param name preference name.
      * @param position preference menu position.
      */
     protected void setPosition(String name, int position) {
