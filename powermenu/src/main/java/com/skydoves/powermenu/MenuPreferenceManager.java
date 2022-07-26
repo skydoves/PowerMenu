@@ -30,7 +30,8 @@ class MenuPreferenceManager {
   private MenuPreferenceManager(Context context) {
     StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
     StrictMode.allowThreadDiskWrites();
-    sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
+    sharedPreferences =
+        context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
     StrictMode.setThreadPolicy(oldPolicy);
   }
 
