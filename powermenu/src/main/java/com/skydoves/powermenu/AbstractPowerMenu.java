@@ -184,6 +184,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     this.menuWindow =
         new PopupWindow(
             menuView, FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+    this.menuWindow.setInputMethodMode(INPUT_METHOD_NEEDED);
 
     setFocusable(false);
     setTouchInterceptor(onTouchListener);
