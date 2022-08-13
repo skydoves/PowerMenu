@@ -16,6 +16,8 @@
 
 package com.skydoves.powermenu;
 
+import static androidx.appcompat.widget.ListPopupWindow.INPUT_METHOD_NEEDED;
+
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
