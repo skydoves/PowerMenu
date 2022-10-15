@@ -32,7 +32,7 @@ import com.skydoves.powermenu.PowerMenu
  */
 @MainThread
 @JvmSynthetic
-inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(): Lazy<PowerMenu> {
+public inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(): Lazy<PowerMenu> {
   return ActivityPowerMenuLazy(this, this, T::class)
 }
 
@@ -44,7 +44,7 @@ inline fun <reified T : PowerMenu.Factory> ComponentActivity.powerMenu(): Lazy<P
  */
 @MainThread
 @JvmSynthetic
-inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(): Lazy<PowerMenu?> {
+public inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(): Lazy<PowerMenu?> {
   return FragmentPowerMenuLazy(this, T::class)
 }
 
@@ -56,6 +56,6 @@ inline fun <reified T : PowerMenu.Factory> Fragment.powerMenu(): Lazy<PowerMenu?
  */
 @MainThread
 @JvmSynthetic
-inline fun <reified T : PowerMenu.Factory> View.powerMenu(): Lazy<PowerMenu> {
+public inline fun <reified T : PowerMenu.Factory> View.powerMenu(): Lazy<PowerMenu> {
   return ViewPowerMenuLazy(context, T::class)
 }

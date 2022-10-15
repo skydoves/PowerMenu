@@ -29,5 +29,5 @@ internal annotation class PowerMenuDsl
 @MainThread
 @PowerMenuDsl
 @JvmSynthetic
-inline fun createPowerMenu(context: Context, crossinline block: PowerMenu.Builder.() -> Unit): PowerMenu =
+public inline fun createPowerMenu(context: Context, crossinline block: PowerMenu.Builder.() -> Unit): PowerMenu =
   PowerMenu.Builder(context).apply(block).build()
