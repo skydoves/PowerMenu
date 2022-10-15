@@ -23,7 +23,7 @@ import androidx.annotation.Dimension
  * to represent a scale independent pixel dimension.
  */
 @MustBeDocumented
-@kotlin.annotation.Retention(AnnotationRetention.BINARY)
+@Retention(AnnotationRetention.BINARY)
 @Target(
   AnnotationTarget.FUNCTION,
   AnnotationTarget.PROPERTY_GETTER,

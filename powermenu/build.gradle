@@ -20,6 +20,10 @@ android {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions.freeCompilerArgs += ["-Xexplicit-api=strict"]
+}
+
 dependencies {
     implementation "com.google.android.material:material:$versions.googleMaterial"
     implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
