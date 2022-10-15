@@ -1,16 +1,15 @@
 ext.versions = [
-    minSdk           : 15,
-    compileSdk       : 31,
+    minSdk           : 19,
+    compileSdk       : 33,
     versionCode      : 27,
     versionName      : '2.2.0',
 
-    gradleBuildTool  : '7.0.2',
-    spotlessGradle   : '5.15.0',
-    ktlintGradle     : '0.41.0',
-    dokkaGradle      : '1.4.32',
+    gradleBuildTool  : '7.3.0',
+    spotlessGradle   : '6.7.0',
+    dokkaGradle      : '1.7.20',
     mavenPublish     : '0.15.1',
 
-    kotlin           : '1.4.31',
-    googleMaterial   : '1.4.0',
-    lifecycle        : '2.4.0'
+    kotlin           : '1.7.20',
+    googleMaterial   : '1.6.0',
+    lifecycle        : '2.5.1'
 ]
