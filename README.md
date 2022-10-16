@@ -41,7 +41,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.2.0"
+  implementation "com.github.skydoves:powermenu:2.2.1"
 }
 ```
 
@@ -63,7 +63,7 @@ __[10. Lazy initialization in Kotlin](https://github.com/skydoves/PowerMenu#lazy
 This is a basic example on a screenshot. Here is how to create `PowerMenu` using `PowerMenu.Builder`.
 ```java
 PowerMenu powerMenu = new PowerMenu.Builder(context)
-          .addItemList(list) // list has "Novel", "Poerty", "Art"
+          .addItemList(list) // list has "Novel", "Poetry", "Art"
           .addItem(new PowerMenuItem("Journals", false)) // add an item.
           .addItem(new PowerMenuItem("Travel", false)) // aad an item list.
           .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT) // Animation start point (TOP | LEFT).
