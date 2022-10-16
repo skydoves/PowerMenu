@@ -80,10 +80,14 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
       title.setTypeface(textTypeface);
     }
 
-    if (powerMenuItem.icon != 0) {
+    if (powerMenuItem.iconRes != 0 || powerMenuItem.icon != null) {
       icon.getLayoutParams().width = ConvertUtil.convertDpToPixel(iconSize, context);
       icon.getLayoutParams().height = ConvertUtil.convertDpToPixel(iconSize, context);
-      icon.setImageResource(powerMenuItem.icon);
+      if (powerMenuItem.iconRes != 0) {
+        icon.setImageResource(powerMenuItem.iconRes);
+      } else if (powerMenuItem.icon != null) {
+        icon.setImageDrawable(powerMenuItem.icon);
+      }
       if (iconColor != -2) {
         ImageViewCompat.setImageTintList(icon, ColorStateList.valueOf(iconColor));
       }

@@ -16,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+import android.graphics.drawable.Drawable;
 import androidx.annotation.DrawableRes;
 
 /** PowerMenuItem is the item class for constructing the {@link PowerMenu}'s list. */
@@ -23,7 +24,8 @@ import androidx.annotation.DrawableRes;
 public class PowerMenuItem {
 
   protected CharSequence title;
-  @DrawableRes protected int icon;
+  @DrawableRes protected int iconRes;
+  protected Drawable icon;
   protected boolean isSelected;
   protected Object tag;
 
@@ -36,12 +38,23 @@ public class PowerMenuItem {
     this.tag = tag;
   }
 
-  public PowerMenuItem(CharSequence title, @DrawableRes int icon) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int iconRes) {
+    this.title = title;
+    this.iconRes = iconRes;
+  }
+
+  public PowerMenuItem(CharSequence title, @DrawableRes int iconRes, Object tag) {
+    this.title = title;
+    this.iconRes = iconRes;
+    this.tag = tag;
+  }
+
+  public PowerMenuItem(CharSequence title, Drawable icon) {
     this.title = title;
     this.icon = icon;
   }
 
-  public PowerMenuItem(CharSequence title, @DrawableRes int icon, Object tag) {
+  public PowerMenuItem(CharSequence title, Drawable icon, Object tag) {
     this.title = title;
     this.icon = icon;
     this.tag = tag;
@@ -58,13 +71,27 @@ public class PowerMenuItem {
     this.tag = tag;
   }
 
-  public PowerMenuItem(CharSequence title, @DrawableRes int icon, boolean isSelected) {
+  public PowerMenuItem(CharSequence title, @DrawableRes int iconRes, boolean isSelected) {
+    this.title = title;
+    this.iconRes = iconRes;
+    this.isSelected = isSelected;
+  }
+
+  public PowerMenuItem(
+      CharSequence title, @DrawableRes int iconRes, boolean isSelected, Object tag) {
+    this.title = title;
+    this.iconRes = iconRes;
+    this.isSelected = isSelected;
+    this.tag = tag;
+  }
+
+  public PowerMenuItem(CharSequence title, Drawable icon, boolean isSelected) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
   }
 
-  public PowerMenuItem(CharSequence title, @DrawableRes int icon, boolean isSelected, Object tag) {
+  public PowerMenuItem(CharSequence title, Drawable icon, boolean isSelected, Object tag) {
     this.title = title;
     this.icon = icon;
     this.isSelected = isSelected;
@@ -126,20 +153,39 @@ public class PowerMenuItem {
   }
 
   /**
-   * gets the icon.
+   * gets the icon resource.
    *
-   * @return the icon.
+   * @return the icon resource.
    */
-  public int getIcon() {
+  @DrawableRes
+  public int getIconRes() {
+    return iconRes;
+  }
+
+  /**
+   * gets the icon drawable.
+   *
+   * @return the icon drawable.
+   */
+  public Drawable getIcon() {
     return icon;
   }
 
   /**
-   * sets a icon.
+   * sets an icon.
    *
    * @param icon icon.
    */
-  public void setIcon(@DrawableRes int icon) {
+  public void setIconRes(@DrawableRes int icon) {
+    this.iconRes = icon;
+  }
+
+  /**
+   * sets an icon drawable.
+   *
+   * @param iconRes drawable.
+   */
+  public void setIconRes(Drawable iconRes) {
     this.icon = icon;
   }
 }
