@@ -1,34 +1,40 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: '../dependencies.gradle'
+
+import com.skydoves.powermenu.Configuration
+import com.skydoves.powermenu.Dependencies
 
 android {
-    compileSdkVersion versions.compileSdk
+  compileSdkVersion Configuration.compileSdk
     defaultConfig {
         applicationId "com.skydoves.powermenudemo"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+      minSdkVersion Configuration.minSdk
+      targetSdkVersion Configuration.targetSdk
+      versionCode Configuration.versionCode
+      versionName Configuration.versionName
     }
+
     lintOptions {
         abortOnError false
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding true
     }
 }
 
 dependencies {
-    implementation "com.google.android.material:material:$versions.googleMaterial"
+    implementation Dependencies.material
     implementation project(":powermenu")
 }
 
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless/spotless.gradle"

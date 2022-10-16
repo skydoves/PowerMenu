@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 skydoves
+ * Copyright (C) 2017 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,9 @@ class ResourceUtil {
 
   protected static int getAccentColor(Context context) {
     TypedValue typedValue = new TypedValue();
-    TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[] {R.attr.colorAccent});
+    TypedArray a =
+        context.obtainStyledAttributes(
+            typedValue.data, new int[] {androidx.appcompat.R.attr.colorAccent});
     int color = a.getColor(0, 0);
     a.recycle();
     return color;

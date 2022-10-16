@@ -1,19 +1,35 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply from: '../dependencies.gradle'
+import com.skydoves.powermenu.Configuration
+import com.skydoves.powermenu.Dependencies
+
+plugins {
+  id 'com.android.library'
+  id 'org.jetbrains.kotlin.android'
+  id 'org.jetbrains.dokka'
+  id 'binary-compatibility-validator'
+}
+
+ext {
+  PUBLISH_GROUP_ID = Configuration.artifactGroup
+  PUBLISH_ARTIFACT_ID = 'powermenu'
+  PUBLISH_VERSION = rootVersionName
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
-    compileSdkVersion versions.compileSdk
+  compileSdkVersion Configuration.compileSdk
     defaultConfig {
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+      minSdkVersion Configuration.minSdk
+      targetSdkVersion Configuration.targetSdk
+      versionCode Configuration.versionCode
+      versionName Configuration.versionName
     }
+
     buildFeatures {
         viewBinding true
         buildConfig false
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -25,9 +41,8 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 dependencies {
-    implementation "com.google.android.material:material:$versions.googleMaterial"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+  implementation Dependencies.material
+    implementation Dependencies.lifecycle
 }
 
-apply plugin: "com.vanniktech.maven.publish"
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless/spotless.gradle"
