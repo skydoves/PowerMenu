@@ -1,3 +1,6 @@
+import com.skydoves.powermenu.Configuration
+import com.skydoves.powermenu.Dependencies
+
 plugins {
   id 'com.android.library'
   id 'org.jetbrains.kotlin.android'
@@ -5,8 +8,13 @@ plugins {
   id 'binary-compatibility-validator'
 }
 
-import com.skydoves.powermenu.Configuration
-import com.skydoves.powermenu.Dependencies
+ext {
+  PUBLISH_GROUP_ID = Configuration.artifactGroup
+  PUBLISH_ARTIFACT_ID = 'powermenu'
+  PUBLISH_VERSION = rootVersionName
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
 
 android {
   compileSdkVersion Configuration.compileSdk
