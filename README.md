@@ -1,6 +1,6 @@
 <h1 align="center">PowerMenu</h1></br>
 <p align="center">
-:fire: Powerful and modernized popup menu with fully customizable. <br>
+:fire: PowerMenu is a modernized fully customizable popup menu, which can be displayed on top of layouts. <br>
 </p>
 </br>
 
