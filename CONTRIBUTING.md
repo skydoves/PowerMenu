@@ -8,6 +8,12 @@ Ensure your change is properly formatted by running:
 ./gradlew spotlessApply
 ```
 
+Then dump binary API of this library that is public in sense of Kotlin visibilities and ensures that the public binary API wasn't changed in a way that make this change binary incompatible. 
+
+```gradle
+./gradlew apiDump
+```
+
 Please correct any failures before requesting a review.
 
 ## Code reviews
