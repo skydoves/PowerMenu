@@ -37,4 +37,4 @@ dependencies {
     implementation project(":powermenu")
 }
 
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless/spotless.gradle"

@@ -13,21 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-@file:Suppress("unused")
-
-package com.skydoves.powermenu.kotlin
-
-import android.content.Context
-import androidx.annotation.MainThread
-import com.skydoves.powermenu.PowerMenu
-
-@DslMarker
-internal annotation class PowerMenuDsl
-
-/** creates an instance of [PowerMenu] by [PowerMenu.Builder] using kotlin dsl. */
-@MainThread
-@PowerMenuDsl
-@JvmSynthetic
-public inline fun createPowerMenu(context: Context, crossinline block: PowerMenu.Builder.() -> Unit): PowerMenu =
-  PowerMenu.Builder(context).apply(block).build()
+ 
