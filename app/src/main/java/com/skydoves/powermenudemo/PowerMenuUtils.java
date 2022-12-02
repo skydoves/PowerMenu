@@ -21,10 +21,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+
 import com.skydoves.powermenu.CircularEffect;
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
@@ -35,6 +32,11 @@ import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
+
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 public class PowerMenuUtils {
 
@@ -121,13 +123,17 @@ public class PowerMenuUtils {
       OnMenuItemClickListener<String> onMenuItemClickListener) {
     return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
         .addItem("You need to login!")
+        .addItem("You need to login2!")
+        .addItem("You need to login3!")
         .setLifecycleOwner(lifecycleOwner)
         .setAnimation(MenuAnimation.ELASTIC_CENTER)
-        .setMenuRadius(10f)
-        .setMenuShadow(10f)
+        .setMenuRadius(context.getResources().getDimensionPixelSize(R.dimen.menu_corner_radius))
+        .setMenuShadow(context.getResources().getDimensionPixelSize(R.dimen.menu_elevation))
+        .setIsMaterial(true)
         .setFocusable(true)
+        .setAutoDismiss(true)
+        .setShowBackground(false)
         .setOnMenuItemClickListener(onMenuItemClickListener)
-        .setOnBackgroundClickListener(view -> {})
         .build();
   }
 
