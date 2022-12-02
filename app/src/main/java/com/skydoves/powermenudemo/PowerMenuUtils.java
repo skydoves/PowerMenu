@@ -21,7 +21,10 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
-
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import com.skydoves.powermenu.CircularEffect;
 import com.skydoves.powermenu.CustomPowerMenu;
 import com.skydoves.powermenu.MenuAnimation;
@@ -32,11 +35,6 @@ import com.skydoves.powermenu.PowerMenuItem;
 import com.skydoves.powermenudemo.customs.adapters.CenterMenuAdapter;
 import com.skydoves.powermenudemo.customs.adapters.CustomDialogMenuAdapter;
 import com.skydoves.powermenudemo.customs.items.NameCardMenuItem;
-
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 
 public class PowerMenuUtils {
 
