@@ -121,13 +121,17 @@ public class PowerMenuUtils {
       OnMenuItemClickListener<String> onMenuItemClickListener) {
     return new CustomPowerMenu.Builder<>(context, new CenterMenuAdapter())
         .addItem("You need to login!")
+        .addItem("You need to login2!")
+        .addItem("You need to login3!")
         .setLifecycleOwner(lifecycleOwner)
         .setAnimation(MenuAnimation.ELASTIC_CENTER)
-        .setMenuRadius(10f)
-        .setMenuShadow(10f)
+        .setMenuRadius(context.getResources().getDimensionPixelSize(R.dimen.menu_corner_radius))
+        .setMenuShadow(context.getResources().getDimensionPixelSize(R.dimen.menu_elevation))
+        .setIsMaterial(true)
         .setFocusable(true)
+        .setAutoDismiss(true)
+        .setShowBackground(false)
         .setOnMenuItemClickListener(onMenuItemClickListener)
-        .setOnBackgroundClickListener(view -> {})
         .build();
   }
 

@@ -259,6 +259,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   public void setFocusable(boolean focusable) {
     this.menuWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     this.menuWindow.setOutsideTouchable(!focusable);
+    menuWindow.setFocusable(focusable);
   }
 
   /**
