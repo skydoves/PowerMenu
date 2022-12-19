@@ -19,12 +19,13 @@ package com.skydoves.powermenu
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 
-/** PowerMenuItem is the item class for constructing the [PowermMenu]'s list. */
+/** PowerMenuItem is the item class for constructing the [PowerMenu]'s list. */
 public data class PowerMenuItem @JvmOverloads constructor(
   @JvmField public var title: CharSequence? = null,
   @JvmField public var isSelected: Boolean = false,
   @JvmField @DrawableRes
   public var iconRes: Int = 0,
   @JvmField public var icon: Drawable? = null,
+  @JvmField public val iconContentDescription: CharSequence? = null,
   @JvmField public var tag: Any? = null
 )

@@ -96,6 +96,8 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
             ConvertUtil.convertDpToPixel(iconPadding, context);
       }
       icon.setVisibility(View.VISIBLE);
+    } else if (powerMenuItem.iconContentDescription != null) {
+      icon.setContentDescription(powerMenuItem.iconContentDescription);
     } else {
       icon.setVisibility(View.GONE);
     }
@@ -138,11 +140,7 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
     if (selectedEffect) {
       for (int i = 0; i < getItemList().size(); i++) {
         PowerMenuItem item = (PowerMenuItem) getItem(i);
-
-        item.isSelected = false;
-        if (i == position) {
-          item.isSelected = true;
-        }
+        item.isSelected = i == position;
       }
       notifyDataSetChanged();
     }
