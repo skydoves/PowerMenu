@@ -338,34 +338,29 @@ public abstract class com/skydoves/powermenu/PowerMenu$Factory {
 	public abstract fun create (Landroid/content/Context;Landroidx/lifecycle/LifecycleOwner;)Lcom/skydoves/powermenu/PowerMenu;
 }
 
-public class com/skydoves/powermenu/PowerMenuItem {
-	protected field icon Landroid/graphics/drawable/Drawable;
-	protected field iconRes I
-	protected field isSelected Z
-	protected field tag Ljava/lang/Object;
-	protected field title Ljava/lang/CharSequence;
+public final class com/skydoves/powermenu/PowerMenuItem {
+	public field icon Landroid/graphics/drawable/Drawable;
+	public field iconRes I
+	public field isSelected Z
+	public field tag Ljava/lang/Object;
+	public field title Ljava/lang/CharSequence;
+	public fun <init> ()V
 	public fun <init> (Ljava/lang/CharSequence;)V
-	public fun <init> (Ljava/lang/CharSequence;I)V
-	public fun <init> (Ljava/lang/CharSequence;ILjava/lang/Object;)V
-	public fun <init> (Ljava/lang/CharSequence;IZ)V
-	public fun <init> (Ljava/lang/CharSequence;IZLjava/lang/Object;)V
-	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;)V
-	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Ljava/lang/Object;)V
-	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;Z)V
-	public fun <init> (Ljava/lang/CharSequence;Landroid/graphics/drawable/Drawable;ZLjava/lang/Object;)V
-	public fun <init> (Ljava/lang/CharSequence;Ljava/lang/Object;)V
 	public fun <init> (Ljava/lang/CharSequence;Z)V
-	public fun <init> (Ljava/lang/CharSequence;ZLjava/lang/Object;)V
-	public fun getIcon ()Landroid/graphics/drawable/Drawable;
-	public fun getIconRes ()I
-	public fun getTag ()Ljava/lang/Object;
-	public fun getTitle ()Ljava/lang/CharSequence;
-	public fun isSelected ()Z
-	public fun setIconRes (I)V
-	public fun setIconRes (Landroid/graphics/drawable/Drawable;)V
-	public fun setIsSelected (Z)V
-	public fun setTag (Ljava/lang/Object;)V
-	public fun setTitle (Ljava/lang/CharSequence;)V
+	public fun <init> (Ljava/lang/CharSequence;ZI)V
+	public fun <init> (Ljava/lang/CharSequence;ZILandroid/graphics/drawable/Drawable;)V
+	public fun <init> (Ljava/lang/CharSequence;ZILandroid/graphics/drawable/Drawable;Ljava/lang/Object;)V
+	public synthetic fun <init> (Ljava/lang/CharSequence;ZILandroid/graphics/drawable/Drawable;Ljava/lang/Object;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/CharSequence;
+	public final fun component2 ()Z
+	public final fun component3 ()I
+	public final fun component4 ()Landroid/graphics/drawable/Drawable;
+	public final fun component5 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/CharSequence;ZILandroid/graphics/drawable/Drawable;Ljava/lang/Object;)Lcom/skydoves/powermenu/PowerMenuItem;
+	public static synthetic fun copy$default (Lcom/skydoves/powermenu/PowerMenuItem;Ljava/lang/CharSequence;ZILandroid/graphics/drawable/Drawable;Ljava/lang/Object;ILjava/lang/Object;)Lcom/skydoves/powermenu/PowerMenuItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/skydoves/powermenu/databinding/ItemPowerMenuLibrarySkydovesBinding : androidx/viewbinding/ViewBinding {

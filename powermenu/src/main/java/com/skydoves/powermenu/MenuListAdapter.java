@@ -139,9 +139,9 @@ public class MenuListAdapter extends MenuBaseAdapter<PowerMenuItem> implements I
       for (int i = 0; i < getItemList().size(); i++) {
         PowerMenuItem item = (PowerMenuItem) getItem(i);
 
-        item.setIsSelected(false);
+        item.isSelected = false;
         if (i == position) {
-          item.setIsSelected(true);
+          item.isSelected = true;
         }
       }
       notifyDataSetChanged();
