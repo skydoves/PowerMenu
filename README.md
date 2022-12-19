@@ -24,23 +24,15 @@
 ## Download
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/powermenu.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22powermenu%22)
 
-I really appreciate that 🔥 PowerMenu has been used in more than __300,000+__ projects all over the world. 🌎 <br>
+I really appreciate that 🔥 PowerMenu has been used in more than __340,000+__ projects all over the world. 🌎 <br>
 
 ![screenshot1903218121](https://user-images.githubusercontent.com/24237865/64470618-49c2cb80-d181-11e9-99b4-0e14a20a86a0.png)
 
 ### Gradle
-Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
-```gradle
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}
-```
-And add a dependency code to your **module**'s `build.gradle` file.
+And add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.2.1"
+  implementation "com.github.skydoves:powermenu:2.2.2"
 }
 ```
 
