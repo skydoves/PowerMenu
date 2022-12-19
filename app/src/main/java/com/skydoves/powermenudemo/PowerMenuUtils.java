@@ -143,10 +143,10 @@ public class PowerMenuUtils {
     Context styledContext = new ContextThemeWrapper(context, R.style.PopupCardThemeOverlay);
 
     return new PowerMenu.Builder(styledContext)
-        .addItem(new PowerMenuItem("WeChat", R.drawable.ic_wechat))
-        .addItem(new PowerMenuItem("Facebook", R.drawable.ic_facebook))
-        .addItem(new PowerMenuItem("Twitter", R.drawable.ic_twitter))
-        .addItem(new PowerMenuItem("Line", R.drawable.ic_line))
+        .addItem(new PowerMenuItem("WeChat", false, R.drawable.ic_wechat))
+        .addItem(new PowerMenuItem("Facebook", false, R.drawable.ic_facebook))
+        .addItem(new PowerMenuItem("Twitter", false, R.drawable.ic_twitter))
+        .addItem(new PowerMenuItem("Line", false, R.drawable.ic_line))
         .addItem(new PowerMenuItem("Other"))
         .setLifecycleOwner(lifecycleOwner)
         .setOnMenuItemClickListener(onMenuItemClickListener)

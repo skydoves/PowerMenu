@@ -42,25 +42,25 @@ public class MainActivity extends AppCompatActivity {
   private CustomPowerMenu<NameCardMenuItem, CustomDialogMenuAdapter> customDialogMenu;
   private PowerMenu iconMenu;
   private final OnMenuItemClickListener<PowerMenuItem> onHamburgerItemClickListener =
-      new OnMenuItemClickListener<PowerMenuItem>() {
+      new OnMenuItemClickListener<>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
-          Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(getBaseContext(), item.title, Toast.LENGTH_SHORT).show();
           hamburgerMenu.setSelectedPosition(position);
         }
       };
   private final OnDismissedListener onHamburgerMenuDismissedListener =
       () -> Log.d("Test", "onDismissed hamburger menu");
   private final OnMenuItemClickListener<PowerMenuItem> onProfileItemClickListener =
-      new OnMenuItemClickListener<PowerMenuItem>() {
+      new OnMenuItemClickListener<>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
-          Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(getBaseContext(), item.title, Toast.LENGTH_SHORT).show();
           profileMenu.dismiss();
         }
       };
   private final OnMenuItemClickListener<String> onWriteItemClickListener =
-      new OnMenuItemClickListener<String>() {
+      new OnMenuItemClickListener<>() {
         @Override
         public void onItemClick(int position, String title) {
           Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
       };
   private final OnMenuItemClickListener<String> onAlertItemClickListener =
-      new OnMenuItemClickListener<String>() {
+      new OnMenuItemClickListener<>() {
         @Override
         public void onItemClick(int position, String title) {
           Toast.makeText(getBaseContext(), title, Toast.LENGTH_SHORT).show();
@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         }
       };
   private final OnMenuItemClickListener<PowerMenuItem> onIconMenuItemClickListener =
-      new OnMenuItemClickListener<PowerMenuItem>() {
+      new OnMenuItemClickListener<>() {
         @Override
         public void onItemClick(int position, PowerMenuItem item) {
-          Toast.makeText(getBaseContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+          Toast.makeText(getBaseContext(), item.title, Toast.LENGTH_SHORT).show();
           iconMenu.dismiss();
         }
       };
