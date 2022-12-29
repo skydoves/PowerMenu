@@ -18,30 +18,29 @@ package com.skydoves.powermenu;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.StrictMode;
 
 @SuppressWarnings({"unused"})
 class MenuPreferenceManager {
 
   private static final String position = "_POSITION";
   private static MenuPreferenceManager menuPreferenceManager;
-  private final SharedPreferences sharedPreferences;
+  private static SharedPreferences sharedPreferences;
 
-  private MenuPreferenceManager(Context context) {
-    StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
-    StrictMode.allowThreadDiskWrites();
-    sharedPreferences =
-        context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
-    StrictMode.setThreadPolicy(oldPolicy);
+  public static SharedPreferences getSharedPrefsInstance(Context context)
+  {
+    if (sharedPreferences == null) {
+      sharedPreferences = context.getSharedPreferences("com.skydoves.powermenu", Context.MODE_PRIVATE);
+    }
+    return sharedPreferences;
   }
 
   /**
    * initialize the {@link MenuPreferenceManager} instance.
    *
-   * @param context context.
+   *
    */
-  protected static void initialize(Context context) {
-    menuPreferenceManager = new MenuPreferenceManager(context);
+  protected static void initialize() {
+    menuPreferenceManager = new MenuPreferenceManager();
   }
 
   /**
@@ -58,12 +57,13 @@ class MenuPreferenceManager {
   /**
    * gets the saved menu position from preference.
    *
+   * @param context
    * @param name preference name.
    * @param defaultPosition default preference menu position.
    * @return the saved menu position.
    */
-  protected int getPosition(String name, int defaultPosition) {
-    return sharedPreferences.getInt(name, defaultPosition);
+  protected int getPosition(Context context, String name, int defaultPosition) {
+    return getSharedPrefsInstance(context).getInt(name, defaultPosition);
   }
 
   /**
@@ -72,8 +72,8 @@ class MenuPreferenceManager {
    * @param name preference name.
    * @param position preference menu position.
    */
-  protected void setPosition(String name, int position) {
-    sharedPreferences.edit().putInt(name, position).apply();
+  protected void setPosition(Context context, String name, int position) {
+    getSharedPrefsInstance(context).edit().putInt(name, position).apply();
   }
 
   /**
@@ -81,7 +81,7 @@ class MenuPreferenceManager {
    *
    * @param name preference name.
    */
-  protected void clearPosition(String name) {
-    sharedPreferences.edit().remove(name).apply();
+  protected void clearPosition(Context context, String name) {
+    getSharedPrefsInstance(context).edit().remove(name).apply();
   }
 }

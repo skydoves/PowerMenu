@@ -16,6 +16,7 @@
 
 package com.skydoves.powermenu;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,16 +32,19 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
   private int selectedPosition = -1;
   private String preferenceName;
+  private Context mContext;
 
-  public MenuBaseAdapter() {
+  public MenuBaseAdapter(Context context) {
     super();
     this.itemList = new ArrayList<>();
+    mContext = context;
   }
 
-  public MenuBaseAdapter(ListView listView) {
+  public MenuBaseAdapter(ListView listView, Context context) {
     super();
     this.itemList = new ArrayList<>();
     this.listView = listView;
+    mContext = context;
   }
 
   @Override
@@ -100,7 +104,7 @@ public class MenuBaseAdapter<T> extends BaseAdapter implements IMenuItem<T> {
 
     MenuPreferenceManager instance = MenuPreferenceManager.getInstance();
     if (instance != null && preferenceName != null) {
-      instance.setPosition(preferenceName, position);
+      instance.setPosition(mContext, preferenceName, position);
     }
   }
 

@@ -84,6 +84,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   protected boolean fixedHeight = false;
 
   protected boolean isShowing = false;
+  private Context mContext;
 
   @Px protected int contentViewPadding;
   private int defaultPosition;
@@ -190,7 +191,8 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
     setOnMenuItemClickListener(onMenuItemClickListener);
 
     contentViewPadding = ConvertUtil.convertDpToPixel(10, context);
-    MenuPreferenceManager.initialize(context);
+    MenuPreferenceManager.initialize();
+    mContext = context;
   }
 
   /**
@@ -1102,7 +1104,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
    */
   public int getPreferencePosition(int defaultPosition) {
     return MenuPreferenceManager.getInstance()
-        .getPosition(getAdapter().getPreferenceName(), defaultPosition);
+        .getPosition(mContext, getAdapter().getPreferenceName(), defaultPosition);
   }
 
   /**
@@ -1113,7 +1115,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   public void setPreferencePosition(int defaultPosition) {
     MenuPreferenceManager instance = MenuPreferenceManager.getInstance();
     if (instance != null && getPreferenceName() != null) {
-      instance.setPosition(getPreferenceName(), defaultPosition);
+      instance.setPosition(mContext, getPreferenceName(), defaultPosition);
     }
   }
 
@@ -1129,7 +1131,7 @@ public abstract class AbstractPowerMenu<E, T extends MenuBaseAdapter<E>>
   /** clears the preference name of PowerMenu. */
   public void clearPreference() {
     if (getAdapter().getPreferenceName() != null) {
-      MenuPreferenceManager.getInstance().clearPosition(getAdapter().getPreferenceName());
+      MenuPreferenceManager.getInstance().clearPosition(mContext, getAdapter().getPreferenceName());
     }
   }
 
