@@ -367,9 +367,9 @@ public final class com/skydoves/powermenu/PowerMenuItem {
 }
 
 public final class com/skydoves/powermenu/databinding/ItemPowerMenuLibrarySkydovesBinding : androidx/viewbinding/ViewBinding {
-	public final field itemPowerMenuIcon Landroidx/appcompat/widget/AppCompatImageView;
+	public final field itemPowerMenuIcon Landroid/widget/ImageView;
 	public final field itemPowerMenuLayout Landroid/widget/LinearLayout;
-	public final field itemPowerMenuTitle Landroidx/appcompat/widget/AppCompatTextView;
+	public final field itemPowerMenuTitle Landroid/widget/TextView;
 	public static fun bind (Landroid/view/View;)Lcom/skydoves/powermenu/databinding/ItemPowerMenuLibrarySkydovesBinding;
 	public synthetic fun getRoot ()Landroid/view/View;
 	public fun getRoot ()Landroid/widget/LinearLayout;
