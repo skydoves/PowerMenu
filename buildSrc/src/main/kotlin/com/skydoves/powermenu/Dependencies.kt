@@ -2,7 +2,7 @@ package com.skydoves.powermenu
 
 object Versions {
   internal const val ANDROID_GRADLE_PLUGIN = "7.4.1"
-  internal const val ANDROID_GRADLE_SPOTLESS = "6.7.0"
+  internal const val ANDROID_GRADLE_SPOTLESS = "6.17.0"
   internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.3.0"
   internal const val KOTLIN = "1.8.10"
   internal const val KOTLIN_GRADLE_DOKKA = "1.8.10"

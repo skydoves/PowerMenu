@@ -33,7 +33,7 @@ import kotlin.reflect.KClass
 @PublishedApi
 internal class ViewPowerMenuLazy<out T : PowerMenu.Factory>(
   private val context: Context,
-  private val factory: KClass<T>
+  private val factory: KClass<T>,
 ) : Lazy<PowerMenu>, Serializable {
 
   private var cached: PowerMenu? = null
@@ -48,7 +48,8 @@ internal class ViewPowerMenuLazy<out T : PowerMenu.Factory>(
           cached = instance
         } else {
           throw IllegalArgumentException(
-            "PowerMenu can not be initialized. The passed context is not an instance of the ComponentActivity."
+            "PowerMenu can not be initialized. " +
+              "The passed context is not an instance of the ComponentActivity.",
           )
         }
       }
@@ -58,5 +59,6 @@ internal class ViewPowerMenuLazy<out T : PowerMenu.Factory>(
 
   override fun isInitialized(): Boolean = cached !== null
 
-  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
+  override fun toString(): String =
+    if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }

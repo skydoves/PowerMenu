@@ -34,7 +34,7 @@ import kotlin.reflect.KClass
 internal class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
   private val context: Context,
   private val lifecycleOwner: LifecycleOwner,
-  private val clazz: KClass<T>
+  private val clazz: KClass<T>,
 ) : Lazy<PowerMenu> {
 
   private var cached: PowerMenu? = null
@@ -53,5 +53,6 @@ internal class ActivityPowerMenuLazy<out T : PowerMenu.Factory>(
 
   override fun isInitialized(): Boolean = cached !== null
 
-  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
+  override fun toString(): String =
+    if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }

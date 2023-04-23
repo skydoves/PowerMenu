@@ -27,5 +27,5 @@ public data class PowerMenuItem @JvmOverloads constructor(
   public var iconRes: Int = 0,
   @JvmField public var icon: Drawable? = null,
   @JvmField public val iconContentDescription: CharSequence? = null,
-  @JvmField public var tag: Any? = null
+  @JvmField public var tag: Any? = null,
 )

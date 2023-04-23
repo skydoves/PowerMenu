@@ -31,7 +31,7 @@ import kotlin.reflect.KClass
 @PublishedApi
 internal class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
   private val fragment: Fragment,
-  private val clazz: KClass<T>
+  private val clazz: KClass<T>,
 ) : Lazy<PowerMenu?> {
 
   private var cached: PowerMenu? = null
@@ -55,5 +55,6 @@ internal class FragmentPowerMenuLazy<out T : PowerMenu.Factory>(
 
   override fun isInitialized() = cached !== null
 
-  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
+  override fun toString(): String =
+    if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }
