@@ -98,7 +98,12 @@ public fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, xOff: Int, yO
 }
 
 /** showing the popup menu to the specific location to the anchor with {@link Gravity}. */
-public fun View.showAtLocation(powerMenu: AbstractPowerMenu<*, *>, gravity: Int, xOff: Int, yOff: Int) {
+public fun View.showAtLocation(
+  powerMenu: AbstractPowerMenu<*, *>,
+  gravity: Int,
+  xOff: Int,
+  yOff: Int,
+) {
   powermenu { powerMenu.showAtLocation(this, gravity, xOff, yOff) }
 }
 
