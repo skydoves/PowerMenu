@@ -75,7 +75,7 @@ public class CustomPowerMenu<T, E extends MenuBaseAdapter<T>> extends AbstractPo
     } else {
       binding = LayoutPowerMenuLibrarySkydovesBinding.inflate(layoutInflater, null, false);
     }
-    this.adapter = (E) (new MenuBaseAdapter<>(menuListView));
+    this.adapter = (E) (new MenuBaseAdapter<>(menuListView, context));
     super.initialize(context, isMaterial);
   }
 
