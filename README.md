@@ -32,7 +32,7 @@ I really appreciate that 🔥 PowerMenu has been used in more than __340,000+__ 
 And add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-  implementation "com.github.skydoves:powermenu:2.2.3"
+  implementation "com.github.skydoves:powermenu:2.2.4"
 }
 ```
 
